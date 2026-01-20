@@ -1,0 +1,1887 @@
+/* =====================================================================
+   PIRIPIRI CUSTOM UTILITIES
+   Extended utilities following Lumos naming conventions
+   ===================================================================== */
+
+/* =====================================================================
+   CUSTOM FONTS
+   Neulis Neue - Primary/Heading font (replaces Paytone One)
+   ===================================================================== */
+
+/* Neulis Neue Regular (400) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neulis Neue Regular Italic (400) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Neulis Neue Medium (500) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neulis Neue Medium Italic (500) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Medium_Italic.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Neulis Neue Bold (700) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neulis Neue Bold Italic (700) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Bold_Italic.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Neulis Neue Black (900) - for extra bold/black weight */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Black.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Neulis Neue Black Italic (900) */
+@font-face {
+  font-family: "Neulis Neue";
+  src: url("../resources/fonts/Nulis/fonnts.com-Neulis_Neue_Black_Italic.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Salsita Funk - Tertiary/Display font */
+@font-face {
+  font-family: "Salsita Funk";
+  src: url("../resources/fonts/Salsita-Funk.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Override primary font family variable and add black weight + tertiary font */
+:root {
+  --_typography---font--primary-family: "Neulis Neue", sans-serif;
+  --_typography---font--primary-black: 900;
+  --_typography---font--tertiary-family: "Salsita Funk", cursive;
+  --_typography---font--tertiary-regular: 400;
+  --_typography---font--tertiary-trim-top: .33em;
+  --_typography---font--tertiary-trim-bottom: .38em;
+
+  /* Extended spacing variables (following Lumos fluid clamp pattern) */
+  --_spacing---space--9: clamp(3rem, 3rem + 1.5vw, 5rem);
+  --_spacing---space--10: clamp(3.5rem, 3.5rem + 2vw, 6rem);
+  --_spacing---space--12: clamp(4rem, 4rem + 2.5vw, 7rem);
+
+  /* Negative gap for border overlap (borders blend instead of doubling) */
+  --border-width--overlap: calc(var(--border-width--main) * -1);
+}
+
+/* Extended padding utilities */
+.u-padding-9 {
+  padding: var(--_spacing---space--9);
+}
+
+.u-padding-10 {
+  padding: var(--_spacing---space--10);
+}
+
+.u-padding-12 {
+  padding: var(--_spacing---space--12);
+}
+
+.u-padding-block-8 {
+  padding-block: var(--_spacing---space--8);
+}
+
+.u-padding-block-10 {
+  padding-block: var(--_spacing---space--10);
+}
+
+.u-padding-block-12 {
+  padding-block: var(--_spacing---space--12);
+}
+
+.u-padding-inline-12 {
+  padding-inline: var(--_spacing---space--12);
+}
+
+/* Gap overlap utility - for elements with borders that need to blend */
+.u-gap-overlap {
+  gap: var(--border-width--overlap);
+}
+
+.u-margin-left-overlap {
+  margin-left: var(--border-width--overlap);
+}
+
+/* =====================================================================
+   TEXT STYLE WEIGHT OVERRIDES
+   Make headings use heavier weights for Neulis Neue
+   ===================================================================== */
+
+/* Display and H1: Use Black (900) for maximum impact */
+.u-text-style-display {
+  --_text-style---font-weight: 900;
+  font-weight: 900 !important;
+}
+
+.u-text-style-h1 {
+  --_text-style---font-weight: 900;
+  font-weight: 900 !important;
+}
+
+/* H2: Use Black (900) */
+.u-text-style-h2 {
+  --_text-style---font-weight: 900;
+  font-weight: 900 !important;
+}
+
+/* H3: Use Bold (700) */
+.u-text-style-h3 {
+  --_text-style---font-weight: 700;
+  font-weight: 700 !important;
+}
+
+/* H4: Use Bold (700) */
+.u-text-style-h4 {
+  --_text-style---font-weight: 700;
+  font-weight: 700 !important;
+}
+
+/* H5: Use Bold (700) for menu button and similar elements */
+.u-text-style-h5 {
+  --_text-style---font-weight: 700;
+  font-weight: 700 !important;
+}
+
+/* =====================================================================
+   BUTTON OVERRIDES
+   Make button text use primary font with Black weight, fix secondary style
+   ===================================================================== */
+
+/* Button text: Use primary font (Neulis Neue) with Black weight */
+.button_main_text {
+  font-family: var(--_typography---font--primary-family);
+  font-weight: 900 !important;
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+/* Secondary button: Outline style (transparent bg, no shadow, border visible) */
+.button_main_element:where(.w-variant-e85564cd-af30-a478-692b-71732aefb3ab) {
+  --_button-style---background: transparent;
+  --_button-style---border: var(--_theme---text);
+  --_button-style---text: var(--_theme---text);
+  --_button-style---background-hover: var(--_theme---text);
+  --_button-style---border-hover: var(--_theme---text);
+  --_button-style---text-hover: var(--_theme---background);
+  box-shadow: none;
+}
+
+.button_main_element:where(.w-variant-e85564cd-af30-a478-692b-71732aefb3ab):hover {
+  box-shadow: none;
+  transform: none;
+}
+
+/* =====================================================================
+   LIST STYLE
+   ===================================================================== */
+.u-list-style-none {
+  list-style: none;
+}
+
+.u-list-style-disc {
+  list-style: disc;
+}
+
+.u-list-style-decimal {
+  list-style: decimal;
+}
+
+.u-list-style-inside {
+  list-style-position: inside;
+}
+
+.u-list-style-outside {
+  list-style-position: outside;
+}
+
+/* =====================================================================
+   FONT FAMILY
+   ===================================================================== */
+.u-font-primary {
+  font-family: var(--_typography---font--primary-family);
+}
+
+.u-font-secondary {
+  font-family: var(--_typography---font--secondary-family);
+}
+
+.u-font-tertiary {
+  font-family: var(--_typography---font--tertiary-family);
+}
+
+/* =====================================================================
+   TEXT DECORATION
+   ===================================================================== */
+.u-text-decoration-none {
+  text-decoration: none;
+}
+
+.u-text-decoration-underline {
+  text-decoration: underline;
+}
+
+.u-text-decoration-line-through {
+  text-decoration: line-through;
+}
+
+/* =====================================================================
+   CURSOR
+   ===================================================================== */
+.u-cursor-auto {
+  cursor: auto;
+}
+
+.u-cursor-default {
+  cursor: default;
+}
+
+.u-cursor-pointer {
+  cursor: pointer;
+}
+
+.u-cursor-grab {
+  cursor: grab;
+}
+
+.u-cursor-grabbing {
+  cursor: grabbing;
+}
+
+.u-cursor-not-allowed {
+  cursor: not-allowed;
+}
+
+.u-cursor-text {
+  cursor: text;
+}
+
+.u-cursor-move {
+  cursor: move;
+}
+
+/* =====================================================================
+   BORDER WIDTH
+   Uses existing Lumos variables: --border-width--main, --border-width--thick
+   ===================================================================== */
+.u-border-none {
+  border: none;
+}
+
+.u-border-main {
+  border: var(--border-width--main) solid var(--_theme---border);
+}
+
+.u-border-thick {
+  border: var(--border-width--thick) solid var(--_theme---border);
+}
+
+/* Directional borders - main width */
+.u-border-top-main {
+  border-top: var(--border-width--main) solid var(--_theme---border);
+}
+
+.u-border-right-main {
+  border-right: var(--border-width--main) solid var(--_theme---border);
+}
+
+.u-border-bottom-main {
+  border-bottom: var(--border-width--main) solid var(--_theme---border);
+}
+
+.u-border-left-main {
+  border-left: var(--border-width--main) solid var(--_theme---border);
+}
+
+/* Directional borders - thick width */
+.u-border-top-thick {
+  border-top: var(--border-width--thick) solid var(--_theme---border);
+}
+
+.u-border-right-thick {
+  border-right: var(--border-width--thick) solid var(--_theme---border);
+}
+
+.u-border-bottom-thick {
+  border-bottom: var(--border-width--thick) solid var(--_theme---border);
+}
+
+.u-border-left-thick {
+  border-left: var(--border-width--thick) solid var(--_theme---border);
+}
+
+/* Inline/Block borders */
+.u-border-block-main {
+  border-block: var(--border-width--main) solid var(--_theme---border);
+}
+
+.u-border-inline-main {
+  border-inline: var(--border-width--main) solid var(--_theme---border);
+}
+
+/* Border colors - using theme swatches */
+.u-border-color-inherit {
+  border-color: inherit;
+}
+
+.u-border-color-current {
+  border-color: currentColor;
+}
+
+.u-border-color-brand {
+  border-color: var(--swatch--brand-500);
+}
+
+.u-border-color-light {
+  border-color: var(--swatch--light-400);
+}
+
+.u-border-color-dark {
+  border-color: var(--swatch--dark-900);
+}
+
+.u-border-color-orchid {
+  border-color: var(--swatch--orchid-500);
+}
+
+/* =====================================================================
+   BORDER RADIUS (extends existing u-radius-*)
+   ===================================================================== */
+.u-radius-large {
+  border-radius: var(--radius--large);
+}
+
+/* Directional radius */
+.u-radius-top-none {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.u-radius-top-small {
+  border-top-left-radius: var(--radius--small);
+  border-top-right-radius: var(--radius--small);
+}
+
+.u-radius-top-main {
+  border-top-left-radius: var(--radius--main);
+  border-top-right-radius: var(--radius--main);
+}
+
+.u-radius-top-large {
+  border-top-left-radius: var(--radius--large);
+  border-top-right-radius: var(--radius--large);
+}
+
+.u-radius-bottom-none {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.u-radius-bottom-small {
+  border-bottom-left-radius: var(--radius--small);
+  border-bottom-right-radius: var(--radius--small);
+}
+
+.u-radius-bottom-main {
+  border-bottom-left-radius: var(--radius--main);
+  border-bottom-right-radius: var(--radius--main);
+}
+
+.u-radius-bottom-large {
+  border-bottom-left-radius: var(--radius--large);
+  border-bottom-right-radius: var(--radius--large);
+}
+
+.u-radius-left-none {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.u-radius-left-main {
+  border-top-left-radius: var(--radius--main);
+  border-bottom-left-radius: var(--radius--main);
+}
+
+.u-radius-right-none {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.u-radius-right-main {
+  border-top-right-radius: var(--radius--main);
+  border-bottom-right-radius: var(--radius--main);
+}
+
+/* =====================================================================
+   BOX SHADOW
+   ===================================================================== */
+.u-shadow-none {
+  box-shadow: none;
+}
+
+.u-shadow-small {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.u-shadow-main {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.u-shadow-large {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.u-shadow-xl {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* Inset shadows */
+.u-shadow-inset-small {
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.u-shadow-inset-main {
+  box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* =====================================================================
+   TRANSITION
+   ===================================================================== */
+.u-transition-none {
+  transition: none;
+}
+
+.u-transition-all-fast {
+  transition: all 0.15s ease;
+}
+
+.u-transition-all-main {
+  transition: all 0.2s ease;
+}
+
+.u-transition-all-slow {
+  transition: all 0.3s ease;
+}
+
+.u-transition-color-fast {
+  transition: color 0.15s ease;
+}
+
+.u-transition-color-main {
+  transition: color 0.2s ease;
+}
+
+.u-transition-color-slow {
+  transition: color 0.3s ease;
+}
+
+.u-transition-opacity-fast {
+  transition: opacity 0.15s ease;
+}
+
+.u-transition-opacity-main {
+  transition: opacity 0.2s ease;
+}
+
+.u-transition-opacity-slow {
+  transition: opacity 0.3s ease;
+}
+
+.u-transition-transform-fast {
+  transition: transform 0.15s ease;
+}
+
+.u-transition-transform-main {
+  transition: transform 0.2s ease;
+}
+
+.u-transition-transform-slow {
+  transition: transform 0.3s ease;
+}
+
+.u-transition-background-main {
+  transition: background-color 0.2s ease;
+}
+
+/* =====================================================================
+   TRANSFORM
+   ===================================================================== */
+.u-transform-none {
+  transform: none;
+}
+
+/* Scale */
+.u-scale-95 {
+  transform: scale(0.95);
+}
+
+.u-scale-100 {
+  transform: scale(1);
+}
+
+.u-scale-105 {
+  transform: scale(1.05);
+}
+
+.u-scale-110 {
+  transform: scale(1.1);
+}
+
+/* Translate Y */
+.u-translate-y-0 {
+  transform: translateY(0);
+}
+
+.u-translate-y-up-1 {
+  transform: translateY(calc(var(--_spacing---space--1) * -1));
+}
+
+.u-translate-y-up-2 {
+  transform: translateY(calc(var(--_spacing---space--2) * -1));
+}
+
+.u-translate-y-up-3 {
+  transform: translateY(calc(var(--_spacing---space--3) * -1));
+}
+
+.u-translate-y-down-1 {
+  transform: translateY(var(--_spacing---space--1));
+}
+
+.u-translate-y-down-2 {
+  transform: translateY(var(--_spacing---space--2));
+}
+
+/* Rotate */
+.u-rotate-0 {
+  transform: rotate(0deg);
+}
+
+.u-rotate-45 {
+  transform: rotate(45deg);
+}
+
+.u-rotate-90 {
+  transform: rotate(90deg);
+}
+
+.u-rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* =====================================================================
+   MAX WIDTH
+   ===================================================================== */
+.u-max-width-25 {
+  max-width: 25%;
+}
+
+.u-max-width-33 {
+  max-width: 33.333%;
+}
+
+.u-max-width-50 {
+  max-width: 50%;
+}
+
+.u-max-width-66 {
+  max-width: 66.666%;
+}
+
+.u-max-width-75 {
+  max-width: 75%;
+}
+
+/* Fixed max-widths using spacing scale */
+.u-max-width-prose {
+  max-width: 65ch;
+}
+
+.u-max-width-small {
+  max-width: 24rem;
+}
+
+.u-max-width-main {
+  max-width: 32rem;
+}
+
+.u-max-width-large {
+  max-width: 48rem;
+}
+
+.u-max-width-xl {
+  max-width: 64rem;
+}
+
+/* =====================================================================
+   MIN HEIGHT
+   ===================================================================== */
+.u-min-height-0 {
+  min-height: 0;
+}
+
+.u-min-height-full {
+  min-height: 100%;
+}
+
+.u-min-height-25vh {
+  min-height: 25vh;
+}
+
+.u-min-height-50vh {
+  min-height: 50vh;
+}
+
+.u-min-height-75vh {
+  min-height: 75vh;
+}
+
+/* =====================================================================
+   SIZING (width/height using rem)
+   ===================================================================== */
+.u-size-4 {
+  width: 1rem;
+  height: 1rem;
+}
+
+.u-size-5 {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.u-size-6 {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.u-size-8 {
+  width: 2rem;
+  height: 2rem;
+}
+
+.u-size-10 {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.u-size-12 {
+  width: 3rem;
+  height: 3rem;
+}
+
+.u-size-16 {
+  width: 4rem;
+  height: 4rem;
+}
+
+/* =====================================================================
+   FONT STYLE
+   ===================================================================== */
+.u-font-style-normal {
+  font-style: normal;
+}
+
+.u-font-style-italic {
+  font-style: italic;
+}
+
+/* =====================================================================
+   BACKGROUND COLOR (using theme swatches)
+   ===================================================================== */
+.u-bg-transparent {
+  background-color: transparent;
+}
+
+.u-bg-current {
+  background-color: currentColor;
+}
+
+.u-bg-inherit {
+  background-color: inherit;
+}
+
+.u-bg-brand {
+  background-color: var(--swatch--brand-500);
+}
+
+.u-bg-orchid {
+  background-color: var(--swatch--orchid-500);
+}
+
+.u-bg-gold {
+  background-color: var(--swatch--gold);
+}
+
+.u-bg-hierba {
+  background-color: var(--swatch--hierba);
+}
+
+.u-bg-light-100 {
+  background-color: var(--swatch--light-100);
+}
+
+.u-bg-light-200 {
+  background-color: var(--swatch--light-200);
+}
+
+.u-bg-light-300 {
+  background-color: var(--swatch--light-300);
+}
+
+.u-bg-light-400 {
+  background-color: var(--swatch--light-400);
+}
+
+.u-bg-dark-700 {
+  background-color: var(--swatch--dark-700);
+}
+
+.u-bg-dark-800 {
+  background-color: var(--swatch--dark-800);
+}
+
+.u-bg-dark-900 {
+  background-color: var(--swatch--dark-900);
+}
+
+/* =====================================================================
+   TEXT COLOR (using theme swatches)
+   ===================================================================== */
+.u-text-brand {
+  color: var(--swatch--brand-500);
+}
+
+.u-text-orchid {
+  color: var(--swatch--orchid-500);
+}
+
+.u-text-gold {
+  color: var(--swatch--gold);
+}
+
+.u-text-hierba {
+  color: var(--swatch--hierba);
+}
+
+.u-text-light-100 {
+  color: var(--swatch--light-100);
+}
+
+.u-text-light-200 {
+  color: var(--swatch--light-200);
+}
+
+.u-text-light-400 {
+  color: var(--swatch--light-400);
+}
+
+.u-text-dark-700 {
+  color: var(--swatch--dark-700);
+}
+
+.u-text-dark-800 {
+  color: var(--swatch--dark-800);
+}
+
+.u-text-dark-900 {
+  color: var(--swatch--dark-900);
+}
+
+/* =====================================================================
+   USER SELECT
+   ===================================================================== */
+.u-select-none {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.u-select-text {
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.u-select-all {
+  user-select: all;
+  -webkit-user-select: all;
+}
+
+.u-select-auto {
+  user-select: auto;
+  -webkit-user-select: auto;
+}
+
+/* =====================================================================
+   POINTER EVENTS
+   ===================================================================== */
+.u-pointer-events-none {
+  pointer-events: none;
+}
+
+.u-pointer-events-auto {
+  pointer-events: auto;
+}
+
+/* =====================================================================
+   SCROLL BEHAVIOR
+   ===================================================================== */
+.u-scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.u-scroll-auto {
+  scroll-behavior: auto;
+}
+
+/* Hide scrollbar */
+.u-scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.u-scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* =====================================================================
+   OVERFLOW-X / OVERFLOW-Y (extends existing u-overflow-*)
+   ===================================================================== */
+.u-overflow-x-hidden {
+  overflow-x: hidden;
+}
+
+.u-overflow-x-scroll {
+  overflow-x: scroll;
+}
+
+.u-overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+.u-overflow-y-scroll {
+  overflow-y: scroll;
+}
+
+/* =====================================================================
+   OPACITY
+   ===================================================================== */
+.u-opacity-0 {
+  opacity: 0;
+}
+
+.u-opacity-25 {
+  opacity: 0.25;
+}
+
+.u-opacity-50 {
+  opacity: 0.5;
+}
+
+.u-opacity-75 {
+  opacity: 0.75;
+}
+
+.u-opacity-100 {
+  opacity: 1;
+}
+
+/* =====================================================================
+   VISIBILITY
+   ===================================================================== */
+.u-visible {
+  visibility: visible;
+}
+
+.u-invisible {
+  visibility: hidden;
+}
+
+/* =====================================================================
+   HOVER STATES
+   Common hover patterns for interactive elements
+   ===================================================================== */
+.u-hover-color-brand:hover {
+  color: var(--swatch--brand-500);
+}
+
+.u-hover-color-orchid:hover {
+  color: var(--swatch--orchid-500);
+}
+
+.u-hover-opacity-75:hover {
+  opacity: 0.75;
+}
+
+.u-hover-scale-105:hover {
+  transform: scale(1.05);
+}
+
+.u-hover-translate-y-up-1:hover {
+  transform: translateY(calc(var(--_spacing---space--1) * -1));
+}
+
+.u-hover-shadow-large:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* =====================================================================
+   RESPONSIVE DISPLAY UTILITIES
+   Show/hide at breakpoints (following Lumos tablet/mobile-landscape/mobile pattern)
+   ===================================================================== */
+@media (max-width: 991px) {
+  .u-hide-tablet {
+    display: none;
+  }
+
+  .u-show-tablet {
+    display: block;
+  }
+
+  .u-show-tablet-flex {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-hide-mobile {
+    display: none;
+  }
+
+  .u-show-mobile {
+    display: block;
+  }
+
+  .u-show-mobile-flex {
+    display: flex;
+  }
+
+  /* Mobile-specific max-width override */
+  .u-max-width-full-mobile {
+    max-width: 100%;
+  }
+
+  /* Mobile-specific flex direction */
+  .u-flex-column-mobile {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 479px) {
+  .u-hide-mobile-portrait {
+    display: none;
+  }
+
+  .u-show-mobile-portrait {
+    display: block;
+  }
+}
+
+/* =====================================================================
+   ASPECT RATIO
+   ===================================================================== */
+.u-aspect-square {
+  aspect-ratio: 1 / 1;
+}
+
+.u-aspect-video {
+  aspect-ratio: 16 / 9;
+}
+
+.u-aspect-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+.u-aspect-landscape {
+  aspect-ratio: 4 / 3;
+}
+
+/* =====================================================================
+   OBJECT FIT
+   ===================================================================== */
+.u-object-cover {
+  object-fit: cover;
+}
+
+.u-object-contain {
+  object-fit: contain;
+}
+
+.u-object-fill {
+  object-fit: fill;
+}
+
+.u-object-none {
+  object-fit: none;
+}
+
+/* Object position */
+.u-object-center {
+  object-position: center;
+}
+
+.u-object-top {
+  object-position: top;
+}
+
+.u-object-bottom {
+  object-position: bottom;
+}
+
+/* =====================================================================
+   SLIDER RESPONSIVE (Container Queries)
+   Lumos slider uses --slide-count variable that switches at breakpoints
+   ===================================================================== */
+
+/* Enable container queries on slider wrapper */
+.slider_wrap {
+  container-type: inline-size;
+}
+
+/* Base slider offset defaults */
+.slider_offset {
+  --slide-count: var(--lg);
+  --lg: 3;
+  --md: var(--lg);
+  --sm: var(--md);
+  --xs: var(--sm);
+}
+
+/* Medium breakpoint (< 50em / ~800px) */
+@container (width < 50em) {
+  .slider_offset {
+    --slide-count: var(--md);
+  }
+}
+
+/* Small breakpoint (< 35em / ~560px) */
+@container (width < 35em) {
+  .slider_offset {
+    --slide-count: var(--sm);
+  }
+}
+
+/* Extra small breakpoint (< 20em / ~320px) */
+@container (width < 20em) {
+  .slider_offset {
+    --slide-count: var(--xs);
+  }
+}
+
+/* =====================================================================
+   MARQUEE - Lumos Infinite Scroll Component
+   ===================================================================== */
+
+/* Marquee wrapper */
+.marquee_wrap {
+  grid-column-gap: 0rem;
+  grid-row-gap: var(--_spacing---space--4);
+  flex-flow: column;
+  display: flex;
+  container-type: inline-size;
+}
+
+/* Marquee offset - responsive slide count */
+.marquee_offset {
+  margin-left: calc(var(--_gap---size) * -0.5);
+  margin-right: calc(var(--_gap---size) * -0.5);
+  flex: 1;
+  display: flex;
+  --slide-count: var(--lg);
+  --lg: 3;
+  --md: var(--lg);
+  --sm: var(--md);
+  --xs: var(--sm);
+}
+
+@container (width < 50em) {
+  .marquee_offset { --slide-count: var(--md); }
+}
+@container (width < 35em) {
+  .marquee_offset { --slide-count: var(--sm); }
+}
+@container (width < 20em) {
+  .marquee_offset { --slide-count: var(--xs); }
+}
+
+/* Marquee element (Swiper container) */
+.marquee_element.swiper {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: visible;
+}
+
+/* Overflow hidden variant */
+[data-wf--marquee--style="overflow-hidden"] .marquee_element.swiper {
+  overflow: hidden;
+}
+
+/* Marquee list */
+.marquee_list {
+  height: 100%;
+}
+
+.marquee_list.swiper-wrapper {
+  display: flex;
+}
+
+/* Marquee essentials - animation styles */
+.marquee_element.is-marquee .marquee_list {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.marquee_element.is-marquee .marquee_list > * {
+  flex: 0 0 auto;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+}
+
+.marquee_element.is-marquee .marquee-clone {
+  pointer-events: none;
+}
+
+/* Marquee item sizing */
+.marquee_list > *,
+.marquee_list > .w-dyn-list > * > * > * {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count)) !important;
+}
+
+/* Allow smart text sizing items to be natural width */
+.marquee_list > .u-text-fill-width,
+.marquee_list > [data-auto-duplicate] {
+  width: auto !important;
+  flex: 0 0 auto;
+}
+
+/* Text fill container for dynamic scaling */
+.text-fill-container {
+  container-type: inline-size;
+  width: 100%;
+}
+
+.u-text-fill-width {
+  white-space: nowrap !important;
+  line-height: 1 !important;
+}
+
+/* Drag cursor states */
+.marquee_element.is-marquee {
+  cursor: grab;
+}
+
+.marquee_element.is-marquee.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+/* =====================================================================
+   FOOD SLIDER - Platos Estrella
+   ===================================================================== */
+.food_slide_item {
+  padding-inline: calc(var(--_gap---size) / 2);
+  height: auto !important;
+  flex: 0 0 auto;
+  width: calc(100% / var(--slide-count));
+}
+
+.food_slide_image {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+
+.food_slide_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.food_slide_item:hover .food_slide_image img {
+  transform: scale(1.05);
+}
+
+/* Gallery slide styles */
+.gallery_slide_image {
+  aspect-ratio: 4 / 5;
+  width: 100%;
+}
+
+.gallery_slide_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery_slide_item:hover .gallery_slide_image img {
+  transform: scale(1.05);
+}
+
+/* =====================================================================
+   SLIDER PROGRESS BAR
+   ===================================================================== */
+.slider_progress_wrap {
+  height: 4px;
+  background-color: var(--_theme---border);
+  border-radius: 100vw;
+  overflow: hidden;
+}
+
+.slider_progress_bar {
+  height: 100%;
+  width: 0%;
+  background-color: var(--swatch--brand-500);
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+/* =====================================================================
+   OUTLINE TEXT - Stroke/Hollow Heading
+   ===================================================================== */
+.platos_heading {
+  font-family: var(--_typography---font--tertiary-family);
+  font-style: normal;
+  font-weight: var(--_typography---font--tertiary-regular) !important;
+  -webkit-text-stroke: var(--border-width--main) currentColor;
+  -webkit-text-fill-color: transparent;
+  paint-order: stroke fill;
+}
+
+/* =====================================================================
+   BUTTON SIZE OVERRIDE
+   Make all buttons 1.5x bigger
+   ===================================================================== */
+.button_main_element {
+  padding: 1rem 2rem;
+}
+
+.button_main_text {
+  font-size: 1.6875rem; /* 1.125rem * 1.5 */
+}
+
+.button_main_icon {
+  width: 1.75rem !important;
+  height: auto !important;
+}
+
+/* =====================================================================
+   SECONDARY BUTTON STYLES
+   Two modes: Orange (default) and Orchid Pink
+   ===================================================================== */
+
+/* Secondary button - Orange mode (default) */
+.button_main_element.w-variant-e85564cd-af30-a478-692b-71732aefb3ab {
+  --_button-shadow-color: var(--swatch--brand-500);
+  background-color: var(--swatch--dark-900);
+  border-color: var(--swatch--light-400);
+  color: var(--swatch--light-400);
+  box-shadow: 0 5px 0 0 var(--_button-shadow-color);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.button_main_element.w-variant-e85564cd-af30-a478-692b-71732aefb3ab:hover {
+  background-color: var(--swatch--dark-800);
+  box-shadow: 0 0 0 0 var(--_button-shadow-color);
+  transform: translate(0, 5px);
+}
+
+/* Secondary button - Orchid Pink mode */
+.button_main_element.w-variant-e85564cd-af30-a478-692b-71732aefb3ab.is-orchid {
+  --_button-shadow-color: var(--swatch--orchid-500);
+}
+
+/* Alternative class for orchid mode */
+[data-button-mode="orchid"] .button_main_element.w-variant-e85564cd-af30-a478-692b-71732aefb3ab,
+.button_main_wrap[data-button-mode="orchid"] .button_main_element.w-variant-e85564cd-af30-a478-692b-71732aefb3ab {
+  --_button-shadow-color: var(--swatch--orchid-500);
+}
+
+/* Secondary button style using data attribute */
+[data-wf--button-main--variant="secondary"] .button_main_element {
+  background-color: transparent;
+  border-color: var(--_theme---text);
+  color: var(--_theme---text);
+  box-shadow: 0 5px 0 0 var(--swatch--brand-500);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+[data-wf--button-main--variant="secondary"] .button_main_element:hover {
+  background-color: transparent;
+  box-shadow: 0 0 0 0 var(--swatch--brand-500);
+  transform: translate(0, 5px);
+}
+
+/* Orchid mode for secondary buttons */
+[data-wf--button-main--variant="secondary"][data-button-mode="orchid"] .button_main_element {
+  box-shadow: 0 5px 0 0 var(--swatch--orchid-500);
+}
+
+[data-wf--button-main--variant="secondary"][data-button-mode="orchid"] .button_main_element:hover {
+  box-shadow: 0 0 0 0 var(--swatch--orchid-500);
+}
+
+/* =====================================================================
+   VALUES TABS - Interactive Section
+   ===================================================================== */
+
+/* Tab button reset and styling */
+.values-tab {
+  background: none;
+  border: none;
+  padding: var(--_spacing---space--4);
+  border-radius: var(--radius--main);
+  color: var(--swatch--brand-500);
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.values-tab svg {
+  width: clamp(4rem, 8vw, 6rem);
+  height: clamp(4rem, 8vw, 6rem);
+}
+
+.values-tab:hover {
+  background-color: var(--swatch--dark-800);
+}
+
+.values-tab.is-active {
+  background-color: var(--swatch--dark-800);
+}
+
+/* Panel transitions */
+.values-panel,
+.values-content {
+  transition: opacity 0.3s ease;
+}
+
+.values-panel:not(.is-active),
+.values-content:not(.is-active) {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.values-panel.is-active,
+.values-content.is-active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
+/* =====================================================================
+   MASONRY GRID - Photo Grid Section
+   ===================================================================== */
+
+.masonry-grid {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.masonry-row {
+  display: flex;
+}
+
+.masonry-row + .masonry-row {
+  margin-top: var(--border-width--overlap);
+}
+
+.masonry-item {
+  overflow: hidden;
+  border-radius: var(--radius--main);
+  border: var(--border-width--main) solid currentColor;
+}
+
+.masonry-item + .masonry-item {
+  margin-left: var(--border-width--overlap);
+}
+
+.masonry-item--half {
+  flex: 1 1 50%;
+}
+
+.masonry-item--wide {
+  flex: 1 1 60%;
+}
+
+.masonry-item--narrow {
+  flex: 1 1 40%;
+}
+
+.masonry-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Marquee styling for masonry section - overlapping bottom row, full viewport width */
+.masonry-marquee {
+  color: var(--swatch--brand-500);
+  position: absolute;
+  bottom: 0;
+  left: calc(var(--site--margin) * -1);
+  right: calc(var(--site--margin) * -1);
+  transform: translateY(50%);
+  z-index: 2;
+}
+
+.masonry-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.masonry-marquee-text {
+  font-family: var(--_typography---font--tertiary-family);
+  font-weight: var(--_typography---font--tertiary-regular);
+  color: currentColor;
+}
+
+.masonry-marquee-icon {
+  width: 0.5em;
+  height: 0.6em;
+  display: inline-block;
+  margin-inline: var(--_spacing---space--4);
+  fill: currentColor;
+}
+
+/* =====================================================================
+   HERO SECTION - Striped Background
+   ===================================================================== */
+
+.hero_bg_stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 4rem,
+    var(--swatch--dark-800) 4rem,
+    var(--swatch--dark-800) 4.125rem
+  );
+}
+
+/* =====================================================================
+   IFRAME WRAPPER - Reservation System
+   ===================================================================== */
+
+.iframe-wrapper {
+  border-radius: var(--radius--main);
+  overflow: hidden;
+  max-width: 100%;
+  background: var(--swatch--dark-900);
+  border: var(--border-width--main) solid var(--swatch--brand-500);
+  padding: 0;
+}
+
+.iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* =====================================================================
+   CONTACT FORM - Piri Piri Custom Styles
+   Pill inputs + underline textarea
+   ===================================================================== */
+
+/* Contact form wrapper */
+.contact_form_wrap {
+  container-type: inline-size;
+}
+
+/* Pill-style input fields */
+.form_field.is-pill {
+  border-radius: var(--radius--round);
+  border-color: color-mix(in srgb, var(--_theme---text) 50%, transparent);
+  background-color: transparent;
+  height: 3.5rem;
+  padding: 0 1.5rem;
+  font-style: italic;
+}
+
+.form_field.is-pill:focus {
+  border-color: var(--_theme---text);
+}
+
+.form_field.is-pill::placeholder {
+  color: color-mix(in srgb, var(--_theme---text) 50%, transparent);
+  font-style: italic;
+}
+
+/* Underline-style textarea */
+.form_field.is-underline {
+  border: none;
+  border-bottom: var(--border-width--main) solid color-mix(in srgb, var(--_theme---text) 50%, transparent);
+  border-radius: 0;
+  background-color: transparent;
+  padding: var(--_spacing---space--4) 0;
+  min-height: 4rem;
+  resize: vertical;
+  font-style: italic;
+}
+
+.form_field.is-underline:focus {
+  border-bottom-color: var(--_theme---text);
+}
+
+.form_field.is-underline::placeholder {
+  color: color-mix(in srgb, var(--_theme---text) 50%, transparent);
+  font-style: italic;
+}
+
+/* =====================================================================
+   POPUP CLOSE BUTTON
+   ===================================================================== */
+
+.popup-close-btn {
+  position: absolute;
+  top: var(--_spacing---space--4);
+  right: var(--_spacing---space--4);
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: transparent;
+  border: var(--border-width--main) solid currentColor;
+  padding: 0;
+  cursor: pointer;
+  color: currentColor;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.popup-close-btn:hover {
+  background-color: var(--swatch--light-400);
+  color: var(--swatch--dark-900);
+}
+
+/* Contact form 2-column grid */
+.contact_form_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--_spacing---space--4);
+}
+
+@container (width < 35em) {
+  .contact_form_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Full width element in grid */
+.contact_form_full {
+  grid-column: 1 / -1;
+}
+
+/* =====================================================================
+   NEWSLETTER CHECKBOX - Custom Square Tick
+   ===================================================================== */
+
+.newsletter-checkbox-box {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius--small);
+  border: 2px solid currentColor;
+  background: transparent;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
+.newsletter-checkbox-box .newsletter_checkbox {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.newsletter-checkbox-box .newsletter-checkbox-check {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+  z-index: 1;
+  color: var(--swatch--dark-900);
+}
+
+.newsletter-consent:hover .newsletter-checkbox-box {
+  border-color: var(--swatch--orchid-500);
+}
+
+.newsletter-checkbox-box:has(.newsletter_checkbox:checked) {
+  background-color: var(--swatch--orchid-500);
+  border-color: var(--swatch--orchid-500);
+}
+
+.newsletter-checkbox-box:has(.newsletter_checkbox:checked) .newsletter-checkbox-check {
+  opacity: 1;
+}
+
+.newsletter-checkbox-box:has(.newsletter_checkbox:focus-visible) {
+  outline: 2px solid var(--swatch--orchid-500);
+  outline-offset: 2px;
+}
+
+/* =====================================================================
+   HISTORIA PAGE - Hero Section
+   ===================================================================== */
+
+.section_historia-hero {
+  overflow: hidden;
+  container-type: inline-size;
+}
+
+.historia_hero_visual {
+  max-width: 50%;
+}
+
+.historia_hero_image {
+  width: 100%;
+  height: auto;
+  max-width: 28rem;
+}
+
+.historia_hero_content {
+  max-width: 50%;
+}
+
+/* Responsive: container query (Lumos breakpointless) */
+@container (width < 50em) {
+  .historia_hero_visual,
+  .historia_hero_content {
+    max-width: 100%;
+  }
+
+  .historia_hero_visual {
+    order: -1;
+  }
+
+  .historia_hero_image {
+    max-width: 16rem;
+    margin-inline: auto;
+    display: block;
+  }
+}
+
+/* =====================================================================
+   HISTORIA PAGE - Quote Section
+   ===================================================================== */
+
+.historia_quote_box {
+  container-type: inline-size;
+}
+
+.historia_quote_image {
+  max-width: 40%;
+}
+
+.historia_quote_image img {
+  aspect-ratio: 4 / 3;
+}
+
+@container (width < 50em) {
+  .historia_quote_box .u-flex-horizontal-nowrap {
+    flex-direction: column;
+  }
+
+  .historia_quote_image {
+    max-width: 100%;
+  }
+}
+
+/* =====================================================================
+   HISTORIA PAGE - Intro Section
+   ===================================================================== */
+
+.historia_intro_box {
+  container-type: inline-size;
+}
+
+@container (width < 50em) {
+  .historia_intro_box .u-flex-horizontal-nowrap {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .historia_intro_box .u-flex-horizontal-nowrap .u-flex-horizontal-nowrap {
+    justify-content: center;
+  }
+}
+
+/* =====================================================================
+   TIMELINE COMPONENT
+   Vertical timeline with alternating image/content layout
+   ===================================================================== */
+
+.timeline_item {
+  position: relative;
+  container-type: inline-size;
+}
+
+.timeline_item + .timeline_item {
+  margin-top: var(--_spacing---space--8);
+}
+
+.timeline_row {
+  align-items: stretch;
+}
+
+/* Column sizing */
+.timeline_col--image,
+.timeline_col--content {
+  flex: 1 1 45%;
+}
+
+.timeline_col--divider {
+  flex: 0 0 auto;
+  width: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Timeline line */
+.timeline_line {
+  flex: 1;
+  width: 2px;
+  background-color: var(--swatch--dark-900);
+}
+
+/* Timeline dot */
+.timeline_dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--swatch--dark-900);
+  border: 3px solid var(--swatch--brand-500);
+  flex-shrink: 0;
+}
+
+/* Image styles */
+.timeline_image_wrap {
+  aspect-ratio: 4 / 5;
+}
+
+.timeline_image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Content styles */
+.timeline_content {
+  padding-block: var(--_spacing---space--6);
+}
+
+/* Year styling */
+.timeline_year {
+  display: block;
+  line-height: 0.9;
+  margin-bottom: var(--_spacing---space--2);
+}
+
+/* Reverse layout for alternating items */
+.timeline_item--reverse .timeline_row {
+  flex-direction: row-reverse;
+}
+
+/* Mobile: Stack vertically */
+@container (width < 50em) {
+  .timeline_row {
+    flex-direction: column !important;
+  }
+
+  .timeline_col--image {
+    order: 1;
+  }
+
+  .timeline_col--divider {
+    order: 2;
+    flex-direction: row;
+    width: 100%;
+    height: 3rem;
+    margin-block: var(--_spacing---space--4);
+  }
+
+  .timeline_col--content {
+    order: 3;
+    text-align: center;
+  }
+
+  .timeline_col--content .u-flex-horizontal-nowrap {
+    justify-content: center;
+  }
+
+  .timeline_line {
+    width: auto;
+    height: 2px;
+  }
+
+  .timeline_image_wrap {
+    aspect-ratio: 16 / 9;
+  }
+}
+

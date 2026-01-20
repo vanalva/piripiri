@@ -1,0 +1,2275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piri Piri - Carta</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Manrope:200,300,regular,500,600,700:latin,latin-ext"]  }});</script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/webflow.css">
+  <link rel="stylesheet" href="css/piripiri.css">
+  <link rel="stylesheet" href="css/piripiri-custom.css">
+
+  <style>
+    /* Custom cursor using CSS variables and data URIs */
+    *, *::before, *::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23efdece' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+    *:active, *:active::before, *:active::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+
+    .u-theme-light *, .u-theme-light *::before, .u-theme-light *::after,
+    .u-theme-brand *, .u-theme-brand *::before, .u-theme-brand *::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%231d1d1b' stroke='%23efdece' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+    .u-theme-light *:active, .u-theme-light *:active::before, .u-theme-light *:active::after,
+    .u-theme-brand *:active, .u-theme-brand *:active::before, .u-theme-brand *:active::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%23efdece' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+
+    .u-theme-light .u-theme-dark *, .u-theme-light .u-theme-dark *::before, .u-theme-light .u-theme-dark *::after,
+    .u-theme-brand .u-theme-dark *, .u-theme-brand .u-theme-dark *::before, .u-theme-brand .u-theme-dark *::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23efdece' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+    .u-theme-light .u-theme-dark *:active, .u-theme-light .u-theme-dark *:active::before, .u-theme-light .u-theme-dark *:active::after,
+    .u-theme-brand .u-theme-dark *:active, .u-theme-brand .u-theme-dark *:active::before, .u-theme-brand .u-theme-dark *:active::after {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+    }
+
+    .carta-grid .viewport {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      inset: 0%;
+      overflow: hidden;
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      z-index: 1;
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      background: var(--_theme---background-2);
+    }
+
+    .carta-grid .exp-viewport {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      inset: 0%;
+      overflow: auto;
+      z-index: 1;
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      background: var(--_theme---background-2);
+      padding: calc(var(--site--margin) + var(--_spacing---space--6));
+    }
+
+    .carta-grid .exp-grid {
+      display: grid;
+      gap: var(--_spacing---space--4);
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-auto-rows: 160px;
+      grid-auto-flow: dense;
+    }
+
+    .carta-grid .exp-tile {
+      position: relative;
+      border-radius: var(--radius--main);
+      border: var(--border-width--main) solid var(--_theme---border);
+      background: var(--_theme---background);
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .carta-grid .exp-tile.is-large {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    .carta-grid .exp-item {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .carta-grid .exp-item-bg {
+      position: absolute;
+      inset: 0%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .carta-grid .exp-item-overlay {
+      position: absolute;
+      inset: 0%;
+      background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--_theme---background) 92%, transparent) 100%);
+    }
+
+    .carta-grid .exp-item-text {
+      position: relative;
+      z-index: 1;
+      padding: var(--_spacing---space--4);
+      color: var(--_theme---text);
+    }
+
+    .carta-grid .exp-item-title {
+      font-family: var(--_typography---font--primary-family);
+      font-weight: var(--_typography---font--primary-bold);
+      font-size: var(--_typography---font-size--text-main);
+      line-height: var(--_typography---line-height--medium);
+      margin: 0;
+    }
+
+    .carta-grid .exp-sticker {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--_theme---text);
+      background: var(--_theme---background-2);
+    }
+
+    .carta-grid .exp-sticker span {
+      font-family: var(--_typography---font--secondary-family);
+      font-weight: var(--_typography---font--secondary-medium);
+      font-size: var(--_typography---font-size--text-small);
+      letter-spacing: 0.08em;
+    }
+
+    .carta-grid .exp-title {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--_theme---background-2);
+    }
+
+    .carta-grid .exp-title span {
+      font-family: var(--_typography---font--secondary-family);
+      font-weight: var(--_typography---font--secondary-bold);
+      font-size: var(--_typography---font-size--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--_theme---text);
+    }
+
+    .carta-grid .viewport.dragging {
+      cursor: grabbing;
+    }
+
+    .carta-grid .grid-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      inset: 0%;
+    }
+
+    .carta-grid .grid-item {
+      position: absolute;
+      border-radius: var(--radius--main);
+      overflow: hidden;
+      background: var(--_theme---background);
+      border: var(--border-width--main) solid var(--_theme---border);
+      transition: transform 0.2s ease;
+    }
+
+    .carta-grid .grid-item:hover {
+      transform: scale(1.03);
+      z-index: 2;
+    }
+
+    .carta-grid .grid-item.exp-title,
+    .carta-grid .grid-item.exp-sticker,
+    .carta-grid .grid-item.exp-empty {
+      border: none;
+      background: transparent;
+      cursor: default;
+    }
+
+    .carta-grid .grid-item.exp-title:hover,
+    .carta-grid .grid-item.exp-sticker:hover,
+    .carta-grid .grid-item.exp-empty:hover {
+      transform: none;
+    }
+
+    .carta-grid .grid-item.exp-title .item-overlay,
+    .carta-grid .grid-item.exp-sticker .item-overlay,
+    .carta-grid .grid-item.exp-empty .item-overlay,
+    .carta-grid .grid-item.exp-title .item-price,
+    .carta-grid .grid-item.exp-sticker .item-price,
+    .carta-grid .grid-item.exp-empty .item-price,
+    .carta-grid .grid-item.exp-title .item-desc,
+    .carta-grid .grid-item.exp-sticker .item-desc,
+    .carta-grid .grid-item.exp-empty .item-desc {
+      display: none;
+    }
+
+    .carta-grid .grid-item.exp-title .item-content,
+    .carta-grid .grid-item.exp-sticker .item-content,
+    .carta-grid .grid-item.exp-empty .item-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+      padding: var(--_spacing---space--3);
+    }
+
+    .carta-grid .grid-item.exp-title .item-text,
+    .carta-grid .grid-item.exp-sticker .item-text,
+    .carta-grid .grid-item.exp-empty .item-text {
+      position: static;
+      inset: auto;
+      transform: none;
+      opacity: 1;
+      padding: 0;
+      gap: 0;
+    }
+
+    .carta-grid .grid-item.exp-title .item-title {
+      text-align: center;
+      max-width: 100%;
+      word-break: break-word;
+      white-space: nowrap;
+    }
+
+    .carta-grid .grid-item.exp-sticker .item-title {
+      font-family: var(--_typography---font--secondary-family);
+      font-weight: var(--_typography---font--secondary-bold);
+      font-size: var(--_typography---font-size--text-small);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .carta-grid .item-content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .carta-grid .item-bg {
+      position: absolute;
+      inset: 0%;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .carta-grid .item-overlay {
+      position: absolute;
+      inset: 0%;
+      background: linear-gradient(to bottom, transparent 0%, color-mix(in srgb, var(--_theme---background) 92%, transparent) 100%);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .carta-grid .grid-item:hover .item-overlay {
+      opacity: 1;
+    }
+
+    .carta-grid .item-text {
+      position: absolute;
+      inset: auto var(--_spacing---space--4) var(--_spacing---space--4) var(--_spacing---space--4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--_spacing---space--2);
+      color: var(--_theme---text);
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .carta-grid .item-title {
+      position: static;
+      color: var(--_theme---text);
+      font-weight: var(--_typography---font--primary-bold);
+      font-size: var(--_typography---font-size--text-main);
+      line-height: var(--_typography---line-height--medium);
+    }
+
+    .carta-grid .item-desc {
+      position: static;
+      color: var(--_theme---text);
+      opacity: 0.75;
+      font-size: var(--_typography---font-size--text-small);
+      line-height: var(--_typography---line-height--medium);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      max-width: 100%;
+    }
+
+    .carta-grid .grid-item[data-hide-desc="true"] .item-desc {
+      display: none;
+    }
+
+    .carta-grid .item-price {
+      position: absolute;
+      top: var(--_spacing---space--3);
+      right: var(--_spacing---space--3);
+      color: var(--swatch--brand-500);
+      font-family: var(--_typography---font--primary-family);
+      font-weight: var(--_typography---font--primary-bold);
+      font-size: var(--_typography---font-size--text-small);
+      background: var(--_theme---background-2);
+      border: var(--border-width--main) solid var(--swatch--light-200);
+      padding: var(--_spacing---space--1) var(--_spacing---space--2);
+      border-radius: var(--radius--main);
+      display: flex;
+      flex-direction: column;
+      gap: var(--_spacing---space--1);
+      align-items: flex-end;
+      text-align: right;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .carta-grid .grid-item:hover .item-text {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .carta-grid .grid-item:hover .item-price {
+      opacity: 1;
+    }
+    .legend-toggle .legend-circle {
+      border: 2px solid transparent;
+      box-sizing: border-box;
+      background:
+        linear-gradient(var(--_theme---background-2), var(--_theme---background-2)) padding-box,
+        conic-gradient(
+          from 0deg,
+          var(--swatch--brand-500) 0deg,
+          var(--swatch--orchid-500) 72deg,
+          var(--swatch--gold) 144deg,
+          var(--swatch--hierba) 216deg,
+          var(--swatch--red-500) 288deg,
+          var(--swatch--brand-500) 360deg
+        ) border-box;
+    }
+
+    .legend-toggle .legend-circle svg {
+      position: relative;
+      z-index: 1;
+      color: var(--_theme---text);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    [data-view-toggle] {
+      flex-wrap: wrap;
+      align-items: stretch;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    [data-view-toggle] .button_main_wrap {
+      flex: 0 0 auto;
+    }
+
+  </style>
+</head>
+
+<body class="u-theme-dark">
+  <div class="page_wrap">
+    <main class="page_main">
+      <nav class="hero_nav u-flex-horizontal-nowrap u-justify-content-end u-align-items-center u-padding-block-4 u-padding-inline-gutter u-width-full u-position-fixed u-zindex-3" style="top: 0; left: 0; right: 0; pointer-events: none;">
+        <div data-wf--button-main--variant="secondary" data-modal-trigger="menu" class="button_main_wrap u-radius-round" data-trigger="hover focus" style="pointer-events: auto;">
+          <button class="button_main_element w-variant-e85564cd-af30-a478-692b-71732aefb3ab" aria-label="Abrir menú" style="background: var(--swatch--dark-900);">
+            <svg class="button_main_icon" viewBox="0 0 39.261 32.661" fill="currentColor" aria-hidden="true" style="width: 1.25rem; height: auto;">
+              <path d="M.924,25.974h38.337l-.924,6.687H0Z"/>
+              <path d="M.924,12.987h38.337l-.924,6.687H0Z"/>
+              <path d="M.924,0h38.337l-.924,6.686H0Z"/>
+            </svg>
+            <div class="button_main_text u-text-style-main">MENÚ</div>
+          </button>
+        </div>
+      </nav>
+
+      <!-- FULLSCREEN MENU -->
+      <dialog data-wf--modal--variant="full-screen" data-modal-target="menu" data-show-in-designer="false" class="modal_dialog u-theme-dark">
+        <div class="u-embed-css w-embed">
+          <style>
+.modal_dialog::backdrop { opacity: 0; }
+.modal_dialog { z-index: 9999; }
+.modal_dialog:not([open]) { display: none; }
+.wf-design-mode [data-show-in-designer="true"] { display: block; }
+[data-menu-list] [data-menu-heart] { opacity: 0; transform: scale(.9); transition: opacity .2s ease, transform .2s ease; }
+[data-menu-item]:hover [data-menu-heart] { opacity: 1; transform: scale(1); }
+          </style>
+        </div>
+        <div class="modal_inner w-variant-abed2e46-044e-db8d-e420-f41a8503c278 u-position-relative u-bg-dark-900">
+          <div data-modal-close="" class="modal_backdrop"></div>
+          <div class="modal_content w-variant-abed2e46-044e-db8d-e420-f41a8503c278 u-bg-transparent u-position-relative" style="overflow: visible;">
+            <img src="resources/graphics/fire-decorative_alpha_1024.svg" alt="" class="u-position-absolute u-pointer-off" style="top: -16rem; right: -16rem; width: clamp(24rem, 65vw, 70rem); height: auto; z-index: 0;">
+            <div data-lenis-prevent=" " data-modal-scroll="" class="modal_scroll w-variant-abed2e46-044e-db8d-e420-f41a8503c278 u-zindex-1 u-flex-vertical-nowrap u-min-height-full" style="padding: var(--_spacing---space--4) var(--_spacing---space--3);">
+              <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-start u-width-full">
+                <a href="home.html#inicio" class="hero_logo_wrap" aria-label="Ir al inicio" style="width: 8rem;">
+                  <svg viewBox="0 0 84 36" fill="currentColor" class="u-svg" aria-hidden="true">
+                    <path d="M64.6885 3.86108C64.8623 3.85696 68.8297 3.80551 71.3027 6.45288C72.7493 8.00106 73.368 10.0776 73.1406 12.6257C72.6719 17.9369 69.8975 20.0423 67.582 20.6511C68.1416 23.1532 70.5841 31.2958 76.2754 31.5671L75.9121 34.7185C67.0161 34.2787 65.2897 23.7924 65.0752 23.1765L64.7695 29.8064L61.6992 29.0896L63.2637 3.89136L64.6885 3.86108ZM6.99707 6.59741C7.1744 6.5602 11.3916 5.70245 14.5674 8.13745C16.5419 9.65468 17.6341 12.0254 17.8066 15.1843C18.0975 20.4552 15.9866 23.2423 14.167 24.6531C13.0478 25.5171 11.9196 25.9707 11.1055 26.2058L11.8828 32.5837L8.66699 34.0203L5.5 6.91479L6.99707 6.59741ZM23.7842 28.95L20.7227 29.7302L19.8496 16.8943L22.9111 16.0925L23.7842 28.95ZM77.708 18.8767C77.7024 18.9162 77.1315 22.9073 76.3848 29.2234C75.4614 29.2971 74.0147 28.6829 73.3594 27.8357C74.2828 20.1906 74.6191 17.988 74.6191 17.988L77.708 18.8767ZM26.2275 2.73804C26.3931 2.71309 30.3224 2.16052 33.1104 4.47632C34.7391 5.82959 35.6176 7.81267 35.7129 10.3689C35.9085 15.4906 33.6156 17.9432 31.459 18.9207C32.992 22.0045 34.671 24.7838 37.4053 26.4001L35.8174 29.0886C32.6653 27.2244 30.7319 24.7374 28.9805 20.9119L29.3213 27.8894L26.2324 28.4646L24.8174 2.948L26.2275 2.73804ZM60.1846 15.5974L59.3477 28.6677L56.2539 28.1433L57.0908 15.0466L60.1846 15.5974ZM46.4678 1.40991C46.6407 1.39518 50.7305 1.08814 53.4736 3.81128C55.2252 5.55288 55.9944 8.04505 55.7578 11.2166C55.3667 16.4241 53.0008 18.8957 51.0811 20.0515C49.9027 20.7622 48.7608 21.0679 47.9463 21.198L47.8193 27.1238L44.5303 26.9734L44.9844 1.53296L46.4678 1.40991ZM42.0684 26.9402L38.9521 26.9451L38.9336 13.8318L42.0498 13.8259L42.0684 26.9402ZM10.2686 21.9119C11.8016 21.3161 14.2851 19.5618 14.0078 14.4773C13.8893 12.3529 13.2439 10.8225 12.0928 9.92944C11.0645 9.13292 9.76826 8.91972 8.76758 8.89429L10.2686 21.9119ZM65.4521 18.5671L65.916 18.6189C66.2663 18.6439 69.5602 18.6608 70.0381 13.2429C70.179 11.6009 69.8559 10.3735 69.0371 9.48999C68.2318 8.62195 67.0762 8.22024 66.166 8.03491L65.4521 18.5671ZM28.7168 17.4626L29.1855 17.4558C29.5381 17.4301 32.8014 17.0356 32.5967 11.6033C32.533 9.95635 32.0556 8.77933 31.1318 8.00562C30.2264 7.24561 29.0298 6.99322 28.1064 6.92358L28.7168 17.4626ZM47.7822 16.9441C49.3201 16.5362 51.8769 15.1011 52.25 10.0779C52.4137 7.91183 51.9678 6.2898 50.9307 5.25854C50.071 4.40364 48.9107 4.04378 48.001 3.89526L47.7822 16.9441ZM77.0303 11.8044C77.9537 11.8833 78.6048 13.0464 78.4863 14.4011C78.3726 15.7557 77.5312 16.7903 76.6123 16.7117C75.6933 16.6328 75.0426 15.4697 75.1562 14.115C75.2745 12.76 76.1115 11.726 77.0303 11.8044ZM20.8135 9.91772C21.7369 9.88309 22.5241 10.9571 22.5742 12.3162C22.6243 13.6753 21.9198 14.8052 20.9961 14.8396C20.0727 14.8739 19.2858 13.7994 19.2354 12.4402C19.1855 11.081 19.8903 9.95228 20.8135 9.91772ZM58.9297 8.60718C59.853 8.60741 60.5986 9.70994 60.5986 11.0701C60.5985 12.4296 59.8529 13.5318 58.9297 13.532C58.0064 13.532 57.2599 12.4298 57.2598 11.0701C57.2598 9.71016 58.0062 8.60718 58.9297 8.60718ZM40.5039 7.23022C41.4277 7.23022 42.1738 8.33284 42.1738 9.69312C42.1737 11.0528 41.4228 12.155 40.5039 12.155C39.585 12.155 38.8302 11.0532 38.8301 9.69312C38.8301 8.33287 39.5801 7.23026 40.5039 7.23022Z"/>
+                  </svg>
+                </a>
+                <div class="modal_close">
+                  <div data-wf--button-close--variant="primary-medium" data-modal-close=" " class="button_close_wrap" autofocus=" " data-button=" " data-trigger="hover focus">
+                    <div class="button_close_element w-variant-ab355ea0-b722-2f23-3507-f0290f710e57 u-bg-transparent">
+                      <div aria-hidden="true" class="button_close_icon">
+                        <img src="resources/icons/close-icon_alpha_512.svg" alt="" class="u-cover-absolute">
+                      </div>
+                    </div>
+                    <div class="clickable_wrap u-cover-absolute">
+                      <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Close</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Close</span></button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="modal_slot u-flex-grow u-flex-vertical-nowrap u-justify-content-center u-padding-left-6">
+                <div class="u-flex-vertical-nowrap u-gap-4" data-menu-list>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="home.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">INICIO</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="historia.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">HISTORIA</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="club-secreto.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">CLUB SECRETO</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="carta.html" class="u-text-style-display u-text-transform-uppercase u-text-brand u-text-decoration-none u-transition-color-main u-hover-color-brand">CARTA</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="contacto.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">CONTACTO</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                  <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
+                    <a href="https://carta.somospiripiri.com/" target="_blank" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">PEDIDOS</a>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                  </div>
+                </div>
+              </div>
+
+              <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-end u-width-full u-gap-6 u-flex-column-mobile">
+                <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-4 u-padding-left-6">
+                  <ul class="u-flex-horizontal-nowrap u-gap-4 u-list-style-none">
+                    <li>
+                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="YouTube">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M23.5 6.5c-.3-1.2-1.2-2.1-2.4-2.4C19.1 3.5 12 3.5 12 3.5s-7.1 0-9.1.6C1.7 4.4.8 5.3.5 6.5 0 8.5 0 12 0 12s0 3.5.5 5.5c.3 1.2 1.2 2.1 2.4 2.4 2 .6 9.1.6 9.1.6s7.1 0 9.1-.6c1.2-.3 2.1-1.2 2.4-2.4.5-2 .5-5.5.5-5.5s0-3.5-.5-5.5zM9.5 15.5v-7l6 3.5-6 3.5z"/>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="Instagram">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.2.1 4.7 1.7 4.8 4.8.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.1-1.6 4.7-4.8 4.8-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.2-.1-4.7-1.7-4.8-4.8-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-3.1 1.6-4.7 4.8-4.8 1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zM12 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6.4-11.8c-.8 0-1.4.6-1.4 1.4s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z"/>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="Facebook">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3v-2.6c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/>
+                        </svg>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="TikTok">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M19.6 8.2c-2.3 0-4.2-1.9-4.2-4.2V3h-3.5v13.4c0 1.7-1.4 3.1-3.1 3.1s-3.1-1.4-3.1-3.1 1.4-3.1 3.1-3.1c.3 0 .6 0 .9.1V9.9c-.3 0-.6-.1-.9-.1-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4V9.3c1.4 1 3.1 1.6 4.9 1.6V7.6c-.3 0-.9.1-1.5.6z"/>
+                        </svg>
+                      </a>
+                    </li>
+                  </ul>
+                  <address class="u-text-style-small u-color-inherit u-font-style-normal">
+                    P.º DE LA TIERRA DE MELIDE, 27
+                  </address>
+                </div>
+
+                <div class="u-flex-horizontal-nowrap u-gap-4">
+                  <div data-wf--button-main--variant="primary" class="button_main_wrap" data-trigger="hover focus">
+                    <a href="home.html#reservas" class="button_main_element">
+                      <div class="button_main_text u-text-style-main">RESERVA</div>
+                    </a>
+                  </div>
+                  <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-trigger="hover focus">
+                    <a href="home.html#pedidos" class="button_main_element w-variant-e85564cd-af30-a478-692b-71732aefb3ab">
+                      <div class="button_main_text u-text-style-main">PIDE YA</div>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </dialog>
+      <section id="carta" class="u-section u-width-full u-padding-block-8 u-theme-dark">
+        <div class="u-container u-flex-vertical-nowrap u-gap-6">
+          <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-start u-flex-column-mobile u-gap-4" data-view-header="list">
+            <div>
+              <h1 class="u-text-style-h1 u-margin-bottom-2">Carta</h1>
+              <p class="u-text-style-main u-opacity-75">Explora el menú con imágenes o cambia a vista en lista para ver descripción, precio y dieta.</p>
+            </div>
+            <div class="u-flex-vertical-nowrap u-gap-3 u-align-items-end">
+              <div class="u-flex-horizontal-nowrap u-gap-3 u-justify-content-end u-align-items-start" data-view-toggle>
+                <div data-wf--button-main--variant="primary" class="button_main_wrap" data-view-btn="grid" data-trigger="hover focus" aria-pressed="true">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
+                        <rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
+                      </svg>
+                      <span>Grilla</span>
+                    </div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-view-btn="list" data-trigger="hover focus" aria-pressed="false">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                      <img src="resources/icons/hamburger-icon_alpha_512.svg" alt="" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
+                      <span>LISTA</span>
+                    </div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-view-btn="grid-experimental" data-trigger="hover focus" aria-pressed="false">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main">
+                      Mosaico
+                    </div>
+                  </button>
+                </div>
+              </div>
+              <div class="u-flex-horizontal-wrap u-gap-2" data-filter-group>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="all" data-trigger="hover focus" aria-pressed="true" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Todos</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="platos-principales" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Principales</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="complementos" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Acompañamientos</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Abrebocas</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Postres</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="bebidas" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Bebidas</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Menu items source (optional fallback if JS data is missing) -->
+          <ul class="u-display-none" data-menu-items></ul>
+
+          <div class="u-text-style-main u-opacity-75" data-menu-empty>
+            Agrega tus platos en el bloque `data-menu-items` para activar la carta.
+          </div>
+
+          <!-- Grid View -->
+          <div class="carta-grid u-width-full" data-view-panel="grid">
+            <div class="u-radius-main u-padding-5 u-flex-vertical-nowrap u-gap-3 u-position-fixed" data-view-header="grid" style="top: var(--site--margin); left: var(--site--margin); right: var(--site--margin); max-width: 36rem; background: var(--_theme---background-2); border: var(--border-width--main) solid var(--_theme---border); z-index: 2;">
+              <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-start">
+                <div>
+                  <h1 class="u-text-style-h1 u-margin-bottom-2">Carta</h1>
+                  <p class="u-text-style-main u-opacity-75">Explora el menú con imágenes o cambia a vista en lista para ver descripción, precio y dieta.</p>
+                </div>
+                <button type="button" class="legend-toggle" data-legend-toggle aria-pressed="false" style="appearance: none; border: none; background: transparent; padding: 0; display: inline-flex; align-items: center; gap: var(--_spacing---space--2); cursor: pointer; flex-shrink: 0;">
+                  <span class="u-text-style-small" style="white-space: nowrap;">Leyenda</span>
+                  <span class="legend-circle" data-legend-circle style="position: relative; width: 2rem; height: 2rem; border-radius: 50%; border: 2px solid; background: var(--_theme---background-2); transition: all 0.2s ease; display: flex; align-items: center; justify-content: center;">
+                    <svg data-legend-check width="18" height="18" viewBox="0 0 39.276 32.661" aria-hidden="true" style="opacity: 0; transition: opacity 0.2s ease;">
+                      <path d="M3 18 L8 13 L16 21 L32 5 L36 9 L16 29 Z" fill="currentColor"></path>
+                    </svg>
+                  </span>
+                </button>
+              </div>
+            <div class="u-flex-vertical-nowrap u-gap-4 u-align-items-start">
+              <div class="u-flex-horizontal-nowrap u-gap-3 u-flex-column-mobile u-justify-content-start u-align-items-start" data-view-toggle>
+                <div data-wf--button-main--variant="primary" class="button_main_wrap" data-view-btn="grid" data-trigger="hover focus" aria-pressed="true">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                      <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
+                        <rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
+                        <rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
+                      </svg>
+                      <span>Grilla</span>
+                    </div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-view-btn="list" data-trigger="hover focus" aria-pressed="false">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                      <img src="resources/icons/hamburger-icon_alpha_512.svg" alt="" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
+                      <span>LISTA</span>
+                    </div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-view-btn="grid-experimental" data-trigger="hover focus" aria-pressed="false">
+                  <button type="button" class="button_main_element">
+                    <div class="button_main_text u-text-style-main">Mosaico</div>
+                  </button>
+                </div>
+              </div>
+              <div class="u-flex-horizontal-wrap u-gap-2" data-filter-group>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="all" data-trigger="hover focus" aria-pressed="true" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Todos</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="platos-principales" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Principales</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="complementos" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Acompañamientos</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Abrebocas</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Postres</div>
+                  </button>
+                </div>
+                <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-filter-btn="bebidas" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--2); padding-inline: var(--_spacing---space--3); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: var(--_typography---font--secondary-medium); font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text u-text-style-h6">Bebidas</div>
+                  </button>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="viewport" data-grid-mode="standard">
+              <div class="grid-container"></div>
+            </div>
+            <div class="exp-viewport u-display-none" data-grid-mode="experimental">
+              <div class="exp-grid" data-experimental-grid></div>
+            </div>
+          </div>
+
+          <!-- List View -->
+          <div class="u-width-full u-display-none" data-view-panel="list">
+            <div class="u-flex-vertical-nowrap u-gap-4" data-menu-list></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="sandbox/resources/data/menu_items.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const defaultImage = "resources/images/lumos-v2.webp";
+      const itemNodes = Array.from(document.querySelectorAll("[data-menu-items] li"));
+      const menuEmpty = document.querySelector("[data-menu-empty]");
+      const listContainer = document.querySelector("[data-view-panel='list'] [data-menu-list]");
+      const gridRoot = document.querySelector(".carta-grid");
+      const gridModes = gridRoot ? Array.from(gridRoot.querySelectorAll("[data-grid-mode]")) : [];
+      const viewButtons = Array.from(document.querySelectorAll("[data-view-btn]"));
+      const viewPanels = Array.from(document.querySelectorAll("[data-view-panel]"));
+      const viewHeaders = Array.from(document.querySelectorAll("[data-view-header]"));
+      const filterButtons = Array.from(document.querySelectorAll("[data-filter-btn]"));
+
+      const menuItems = Array.isArray(window.MENU_ITEMS) && window.MENU_ITEMS.length
+        ? window.MENU_ITEMS.map((item) => ({
+            title: item.name || "",
+            image: item.image || "",
+            price: item.price || "",
+            desc: item.description || "",
+            dietary: Array.isArray(item.dietary) ? item.dietary.join(", ") : (item.dietary || ""),
+            slug: item.slug || "",
+            category: item.category || ""
+          }))
+        : itemNodes.map((node) => ({
+            title: node.dataset.title || "",
+            image: node.dataset.image || "",
+            price: node.dataset.price || "",
+            desc: node.dataset.desc || "",
+            dietary: node.dataset.dietary || "",
+            slug: node.dataset.slug || "",
+            category: node.dataset.category || ""
+          }));
+      let activeFilter = "all";
+      let gridInstance = null;
+      let categoryToggleOn = false;
+      let hoveredFilterCategory = null;
+      let listItemRefs = [];
+      let currentGridItems = [];
+
+      const normalizeCategory = (value) => {
+        return (value || "")
+          .toString()
+          .trim()
+          .toLowerCase()
+          .replace(/[^a-z0-9\s-]/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-");
+      };
+
+      let currentView = "grid";
+      const setGridMode = () => {
+        if (!gridModes.length) return;
+        gridModes.forEach((element) => {
+          const isStandard = element.dataset.gridMode === "standard";
+          if (isStandard) {
+            element.classList.remove("u-display-none");
+          } else {
+            element.classList.add("u-display-none");
+          }
+        });
+      };
+
+      const getCategoryLabel = (category) => {
+        const normalized = normalizeCategory(category);
+        switch (normalized) {
+          case "para-compartir":
+            return "Abrebocas";
+          case "platos-principales":
+            return "Principales";
+          case "complementos":
+            return "Acompañamientos";
+          case "bebidas":
+            return "Bebidas";
+          case "postres":
+            return "Postres";
+          default:
+            return "Especiales";
+        }
+      };
+
+      const setView = (view) => {
+        currentView = view;
+        viewPanels.forEach((panel) => {
+          const isGridView = view === "grid" || view === "grid-experimental";
+          if (panel.dataset.viewPanel === view || (isGridView && panel.dataset.viewPanel === "grid")) {
+            panel.classList.remove("u-display-none");
+          } else {
+            panel.classList.add("u-display-none");
+          }
+        });
+        viewHeaders.forEach((header) => {
+          if (header.dataset.viewHeader === view) {
+            header.classList.remove("u-display-none");
+          } else {
+            header.classList.add("u-display-none");
+          }
+        });
+        viewButtons.forEach((btn) => {
+          const isActive = btn.dataset.viewBtn === view;
+          btn.setAttribute("data-wf--button-main--variant", isActive ? "primary" : "secondary");
+          btn.setAttribute("aria-pressed", String(isActive));
+        });
+        setGridMode();
+        if (gridInstance) {
+          gridInstance.setLayoutMode(view === "grid-experimental" ? "experimental" : "standard");
+        }
+      };
+
+      viewButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setView(btn.dataset.viewBtn));
+      });
+
+      if (!menuItems.length) {
+        setView("list");
+        return;
+      }
+
+      const getCategoryBorderColor = (category) => {
+        const normalized = normalizeCategory(category);
+        switch (normalized) {
+          case "platos-principales":
+            return "var(--swatch--brand-500)";
+          case "complementos":
+            return "var(--swatch--orchid-500)";
+          case "postres":
+            return "var(--swatch--gold)";
+          case "bebidas":
+            return "var(--swatch--hierba)";
+          case "para-compartir":
+            return "var(--swatch--red-500)";
+          default:
+            return "var(--_theme---border)";
+        }
+      };
+
+      const getFilterButtonColor = (filter) => {
+        const normalized = normalizeCategory(filter);
+        if (normalized === "all") {
+          return "var(--swatch--light-200)";
+        }
+        return getCategoryBorderColor(normalized);
+      };
+
+      const updateFilterButtonColors = () => {
+        filterButtons.forEach((btn) => {
+          const element = btn.querySelector(".button_main_element");
+          if (!element) return;
+          const isActive = btn.dataset.filterBtn === activeFilter;
+          const activeColor = getFilterButtonColor(btn.dataset.filterBtn);
+          if (categoryToggleOn) {
+            const color = getFilterButtonColor(btn.dataset.filterBtn);
+            element.style.borderColor = color;
+            element.style.color = color;
+          } else if (isActive) {
+            element.style.borderColor = activeColor;
+            element.style.color = activeColor;
+          } else {
+            element.style.borderColor = "var(--_theme---text)";
+            element.style.color = "var(--_theme---text)";
+          }
+        });
+      };
+
+      const shouldShowCategoryBorder = (itemCategory) => {
+        if (categoryToggleOn) {
+          return true;
+        }
+        if (hoveredFilterCategory === null) {
+          return false;
+        }
+        return normalizeCategory(itemCategory) === normalizeCategory(hoveredFilterCategory);
+      };
+
+      const getItemBorderColor = (itemCategory) => {
+        if (shouldShowCategoryBorder(itemCategory)) {
+          return getCategoryBorderColor(itemCategory);
+        }
+        return "var(--_theme---border)";
+      };
+
+      const updateAllItemBorders = () => {
+        listItemRefs.forEach((ref) => {
+          if (ref.element && ref.category) {
+            ref.element.style.border = `var(--border-width--main) solid ${getItemBorderColor(ref.category)}`;
+          }
+        });
+        if (gridInstance && gridInstance.visibleItems) {
+          gridInstance.visibleItems.forEach((itemEl) => {
+            if (itemEl && itemEl.dataset.category) {
+              itemEl.style.border = `var(--border-width--main) solid ${getItemBorderColor(itemEl.dataset.category)}`;
+            }
+          });
+        }
+      };
+
+      const buildList = (items) => {
+        listContainer.innerHTML = "";
+        listItemRefs = [];
+        items.forEach((item) => {
+          const card = document.createElement("a");
+          const itemUrl = item.slug ? `carta-item.html?slug=${encodeURIComponent(item.slug)}` : "#";
+          card.href = itemUrl;
+          card.className = "u-flex-horizontal-nowrap u-gap-5 u-radius-main u-padding-5 u-flex-column-mobile u-align-items-start u-color-inherit u-text-decoration-none";
+          card.style.border = `var(--border-width--main) solid ${getItemBorderColor(item.category)}`;
+          card.style.background = "var(--_theme---background-2)";
+          if (item.slug) {
+            card.addEventListener("click", () => {
+              try {
+                sessionStorage.setItem("carta:lastSlug", item.slug);
+              } catch (err) {}
+            });
+          }
+          listItemRefs.push({ element: card, category: item.category });
+
+          let imageWrap = null;
+          if (item.image) {
+            imageWrap = document.createElement("div");
+            imageWrap.className = "u-radius-main";
+            imageWrap.style.flex = "0 0 38%";
+            imageWrap.style.overflow = "hidden";
+            imageWrap.style.aspectRatio = "4 / 3";
+
+            const image = document.createElement("img");
+            image.src = item.image || defaultImage;
+            image.alt = item.title;
+            image.className = "u-width-full u-height-full u-object-fit-cover";
+
+            imageWrap.appendChild(image);
+          }
+
+          const content = document.createElement("div");
+          content.className = "u-flex-vertical-nowrap u-gap-3 u-align-items-start";
+          content.style.flex = "1";
+
+          const title = document.createElement("h3");
+          title.className = "u-text-style-h3 u-margin-bottom-0";
+          title.textContent = item.title;
+
+          const price = document.createElement("div");
+          price.className = "u-text-style-main u-text-brand";
+          price.textContent = item.price;
+
+          const desc = document.createElement("p");
+          desc.className = "u-text-style-main u-opacity-75";
+          desc.textContent = item.desc;
+
+          const dietary = document.createElement("div");
+          dietary.className = "u-flex-horizontal-wrap u-gap-2";
+          const tags = item.dietary.split(",").map((t) => t.trim()).filter(Boolean);
+          tags.forEach((tag) => {
+            const chip = document.createElement("span");
+            chip.className = "u-text-style-small u-opacity-75";
+            chip.textContent = tag;
+            dietary.appendChild(chip);
+          });
+
+          content.appendChild(title);
+          if (item.price) content.appendChild(price);
+          if (item.desc) content.appendChild(desc);
+          if (tags.length) content.appendChild(dietary);
+
+          if (imageWrap) card.appendChild(imageWrap);
+          card.appendChild(content);
+          listContainer.appendChild(card);
+        });
+      };
+
+      const applyFilter = () => {
+        const filteredItems = activeFilter === "all"
+          ? menuItems
+          : menuItems.filter((item) => normalizeCategory(item.category) === activeFilter);
+        const listItems = filteredItems.filter((item) => item.title);
+        const categoryOrder = [
+          "para-compartir",
+          "platos-principales",
+          "complementos",
+          "bebidas",
+          "postres"
+        ];
+        const getCategoryRank = (category) => {
+          const normalized = normalizeCategory(category);
+          const index = categoryOrder.indexOf(normalized);
+          return index === -1 ? categoryOrder.length : index;
+        };
+        listItems.sort((a, b) => {
+          const rankA = getCategoryRank(a.category);
+          const rankB = getCategoryRank(b.category);
+          if (rankA !== rankB) return rankA - rankB;
+          return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
+        });
+        const gridItems = listItems.map((item) => ({
+          ...item,
+          image: item.image || defaultImage
+        }));
+
+        buildList(listItems);
+
+        currentGridItems = gridItems;
+        if (!gridItems.length) {
+          menuEmpty.textContent = "No hay platos en esta categoría.";
+          menuEmpty.classList.remove("u-display-none");
+          if ((currentView === "grid" || currentView === "grid-experimental") && gridInstance) {
+            gridRoot.classList.add("u-display-none");
+          }
+          return;
+        }
+
+        menuEmpty.classList.add("u-display-none");
+        if (currentView === "grid" || currentView === "grid-experimental") {
+          gridRoot.classList.remove("u-display-none");
+        }
+        const viewport = gridRoot.querySelector(".viewport");
+        const cellSize = 220 + 24;
+        const viewWidth = viewport ? viewport.clientWidth : gridRoot.clientWidth;
+        const viewHeight = viewport ? viewport.clientHeight : gridRoot.clientHeight;
+        const cols = Math.max(1, Math.ceil(viewWidth / cellSize));
+        const rows = Math.max(1, Math.ceil(viewHeight / cellSize));
+        const allowInfinite = activeFilter === "all"
+          ? true
+          : listItems.length >= (cols * rows);
+
+        if (currentView === "grid" || currentView === "grid-experimental") {
+          if (!gridInstance) {
+            gridInstance = new InfiniteGrid(gridRoot, gridItems, allowInfinite);
+          } else {
+            gridInstance.setItems(gridItems, allowInfinite);
+          }
+          if (currentView === "grid-experimental") {
+            gridInstance.setLayoutMode("experimental");
+          } else {
+            gridInstance.setLayoutMode("standard");
+          }
+        } else if (gridInstance) {
+          gridInstance.setItems(gridItems, allowInfinite);
+        }
+      };
+
+      const setFilter = (filter) => {
+        activeFilter = filter;
+        filterButtons.forEach((btn) => {
+          const isActive = btn.dataset.filterBtn === filter;
+          const element = btn.querySelector(".button_main_element");
+          const text = btn.querySelector(".button_main_text");
+          btn.setAttribute("data-wf--button-main--variant", "secondary");
+          if (element) {
+            element.style.background = "transparent";
+            element.style.boxShadow = "none";
+            element.style.transition = "none";
+            element.style.transform = "none";
+          }
+          if (text) {
+            text.style.fontFamily = "var(--_typography---font--secondary-family)";
+            text.style.fontWeight = "var(--_typography---font--secondary-medium)";
+            text.style.fontStyle = "normal";
+            text.style.textTransform = "none";
+            text.style.letterSpacing = "normal";
+          }
+          btn.setAttribute("aria-pressed", String(isActive));
+        });
+        updateFilterButtonColors();
+        applyFilter();
+      };
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setFilter(btn.dataset.filterBtn));
+        const filterCategory = btn.dataset.filterBtn;
+        if (filterCategory !== "all") {
+          btn.addEventListener("mouseenter", () => {
+            hoveredFilterCategory = filterCategory;
+            updateAllItemBorders();
+          });
+          btn.addEventListener("mouseleave", () => {
+            hoveredFilterCategory = null;
+            updateAllItemBorders();
+          });
+        }
+      });
+
+      const legendToggle = document.querySelector("[data-legend-toggle]");
+      if (legendToggle) {
+        const legendCircle = legendToggle.querySelector("[data-legend-circle]");
+        const legendCheck = legendToggle.querySelector("[data-legend-check]");
+        const baseLegendBg = `linear-gradient(var(--_theme---background-2), var(--_theme---background-2)) padding-box, conic-gradient(from 0deg, var(--swatch--brand-500) 0deg, var(--swatch--orchid-500) 72deg, var(--swatch--gold) 144deg, var(--swatch--hierba) 216deg, var(--swatch--red-500) 288deg, var(--swatch--brand-500) 360deg) border-box`;
+        const activeLegendBg = `linear-gradient(var(--_theme---text), var(--_theme---text)) padding-box, conic-gradient(from 0deg, var(--swatch--brand-500) 0deg, var(--swatch--orchid-500) 72deg, var(--swatch--gold) 144deg, var(--swatch--hierba) 216deg, var(--swatch--red-500) 288deg, var(--swatch--brand-500) 360deg) border-box`;
+        const syncLegendToggle = (isChecked) => {
+          categoryToggleOn = isChecked;
+          legendToggle.setAttribute("aria-pressed", String(isChecked));
+          if (legendCircle) {
+            legendCircle.style.background = isChecked ? activeLegendBg : baseLegendBg;
+          }
+          if (legendCheck) {
+            legendCheck.style.opacity = isChecked ? "1" : "0";
+            legendCheck.style.color = isChecked ? "var(--_theme---background-2)" : "var(--_theme---text)";
+          }
+          updateAllItemBorders();
+          updateFilterButtonColors();
+        };
+        legendToggle.addEventListener("click", () => {
+          syncLegendToggle(!categoryToggleOn);
+        });
+        syncLegendToggle(false);
+      }
+
+      class InfiniteGrid {
+        constructor(root, items, allowInfinite = true) {
+          this.root = root;
+          this.viewport = root.querySelector(".viewport");
+          this.container = root.querySelector(".grid-container");
+          this.items = items;
+          this.allowInfinite = allowInfinite;
+          this.layoutMode = "standard";
+          this.itemSize = 220;
+          this.gap = 24;
+          this.scale = 1;
+          this.minScale = 0.7;
+          this.maxScale = 2.2;
+          this.openScale = 2.4;
+          this.zoomResistance = 0.7;
+          this.zoomOverscroll = 0;
+          this.targetScale = 1;
+          this.zoomLerp = 0.18;
+          this.zoomAnimId = null;
+          this.zoomOverscrollStart = 0;
+          this.openQueued = false;
+          this.hoveredItem = null;
+          this.focusIntensity = 0;
+          this.overlayEl = null;
+          this.zoomCommit = 0.7;
+          this.zoomIdleTimer = null;
+          this.initialFill = true;
+          this.patternCols = 0;
+          this.patternRows = 0;
+          this.patternItems = [];
+          this.offsetX = 0;
+          this.offsetY = 0;
+          this.patternStartX = 0;
+          this.patternStartY = 0;
+          this.isDragging = false;
+          this.dragMoved = false;
+          this.dragThreshold = 6;
+          this.justDragged = false;
+          this.velocityX = 0;
+          this.velocityY = 0;
+          this.lastMoveTime = 0;
+          this.inertiaId = null;
+          this.zoomBounceId = null;
+          this.zoomBounceTimer = null;
+          this.lastZoomMouseX = 0;
+          this.lastZoomMouseY = 0;
+          this.lastZoomWorldX = 0;
+          this.lastZoomWorldY = 0;
+          this.dragStartX = 0;
+          this.dragStartY = 0;
+          this.lastPointerX = 0;
+          this.lastPointerY = 0;
+          this.visibleItems = new Map();
+          this.itemPool = [];
+          this.titleSpanCache = new Map();
+          this.titleMeasureEl = null;
+          this.titlePadding = this.getCssVarPx("--_spacing---space--3", 16);
+          this.patternDirty = false;
+          this.patternViewportWidth = 0;
+          this.patternViewportHeight = 0;
+          this.init();
+        }
+
+        getCssVarPx(varName, fallback = 0) {
+          const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+          if (!raw) return fallback;
+          const value = parseFloat(raw);
+          if (Number.isNaN(value)) return fallback;
+          if (raw.endsWith("rem")) {
+            const rootSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+            return value * rootSize;
+          }
+          return value;
+        }
+
+        ensureTitleMeasureEl() {
+          if (this.titleMeasureEl) return this.titleMeasureEl;
+          const span = document.createElement("span");
+          span.className = "u-text-style-display";
+          span.style.position = "absolute";
+          span.style.visibility = "hidden";
+          span.style.whiteSpace = "nowrap";
+          span.style.pointerEvents = "none";
+          span.style.top = "-9999px";
+          span.style.left = "-9999px";
+          document.body.appendChild(span);
+          this.titleMeasureEl = span;
+          return span;
+        }
+
+        measureTitleWidth(text) {
+          const el = this.ensureTitleMeasureEl();
+          el.textContent = text || "";
+          return el.getBoundingClientRect().width || 0;
+        }
+
+        getMeasureFontMetrics() {
+          const el = this.ensureTitleMeasureEl();
+          const style = getComputedStyle(el);
+          const fontSize = parseFloat(style.fontSize) || 16;
+          const lineHeightPx = parseFloat(style.lineHeight);
+          const lineHeightRatio = lineHeightPx ? (lineHeightPx / fontSize) : 1.1;
+          return { fontSize, lineHeightRatio };
+        }
+
+        getTitleFontSize(title, tileWidth, tileHeight) {
+          const textWidth = this.measureTitleWidth(title);
+          if (!textWidth) return null;
+          const padding = this.titlePadding * 2;
+          const targetWidth = Math.max(0, tileWidth - padding);
+          if (!targetWidth) return null;
+          const { fontSize, lineHeightRatio } = this.getMeasureFontMetrics();
+          const widthScaled = fontSize * (targetWidth / textWidth);
+          const maxFontSize = Math.max(0, (tileHeight - padding) / lineHeightRatio);
+          return Math.max(8, Math.min(widthScaled, maxFontSize));
+        }
+
+        getIdealTitleSpan(title) {
+          if (!title) return 1;
+          if (this.titleSpanCache.has(title)) {
+            return this.titleSpanCache.get(title);
+          }
+          const textWidth = this.measureTitleWidth(title);
+          if (!textWidth) {
+            this.titleSpanCache.set(title, 2);
+            return 2;
+          }
+          const padding = this.titlePadding * 2;
+          const cell = this.itemSize;
+          const gap = this.gap;
+          const options = [1, 2, 4];
+          let ideal = 4;
+          for (const span of options) {
+            const width = span * cell + (span - 1) * gap - padding;
+            if (textWidth <= width) {
+              ideal = span;
+              break;
+            }
+          }
+          this.titleSpanCache.set(title, ideal);
+          return ideal;
+        }
+
+        getPatternDimensions() {
+          const cellSize = this.itemSize + this.gap;
+          const viewWidth = this.viewport.clientWidth;
+          const viewHeight = this.viewport.clientHeight;
+          const overscan = 6;
+          const cols = Math.max(1, Math.ceil(viewWidth / cellSize) + overscan);
+          const rows = Math.max(1, Math.ceil(viewHeight / cellSize) + overscan);
+          return { cols, rows, viewWidth, viewHeight };
+        }
+
+        rebuildPattern(cols, rows) {
+          this.patternCols = cols;
+          this.patternRows = rows;
+          this.patternItems = this.buildPatternItems(cols, rows);
+          this.patternViewportWidth = this.viewport.clientWidth;
+          this.patternViewportHeight = this.viewport.clientHeight;
+          for (const item of this.visibleItems.values()) {
+            this.container.removeChild(item);
+            this.itemPool.push(item);
+          }
+          this.visibleItems.clear();
+          this.patternDirty = false;
+        }
+
+        init() {
+          this.setupEventListeners();
+          this.setupInitialGrid();
+          this.updateGrid();
+          if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(() => {
+              this.titleSpanCache.clear();
+              this.patternDirty = true;
+              this.updateGrid();
+            }).catch(() => {});
+          }
+        }
+
+        setItems(items, allowInfinite = true) {
+          this.items = items;
+          this.allowInfinite = allowInfinite;
+          this.patternCols = 0;
+          this.patternRows = 0;
+          this.patternItems = [];
+          this.titleSpanCache.clear();
+          this.patternDirty = true;
+          this.initialFill = true;
+          this.visibleItems.clear();
+          this.container.innerHTML = "";
+          this.setupInitialGrid();
+          this.updateGrid();
+        }
+
+        setLayoutMode(mode = "standard") {
+          const nextMode = mode === "experimental" ? "experimental" : "standard";
+          if (this.layoutMode === nextMode) return;
+          this.layoutMode = nextMode;
+          this.patternCols = 0;
+          this.patternRows = 0;
+          this.patternItems = [];
+          this.titleSpanCache.clear();
+          this.patternDirty = true;
+          this.initialFill = true;
+          this.visibleItems.clear();
+          this.container.innerHTML = "";
+          this.setupInitialGrid();
+          this.updateGrid();
+        }
+
+        setupInitialGrid() {
+          this.offsetX = 0;
+          this.offsetY = 0;
+          this.visibleItems.clear();
+          this.container.innerHTML = "";
+        }
+
+        getItemData(x, y) {
+          if (this.patternItems.length && this.patternCols && this.patternRows) {
+            const { col, row } = this.getPatternCoords(x, y);
+            const cell = this.getPatternCellByCoords(col, row);
+            if (cell && cell.type === "occupied" && Number.isFinite(cell._originX) && Number.isFinite(cell._originY)) {
+              const originX = x - (col - cell._originX);
+              const originY = y - (row - cell._originY);
+              return this.getPatternCell(originX, originY) || cell;
+            }
+            return cell;
+          }
+          const index = Math.abs(x * 1000 + y) % this.items.length;
+          return this.items[index];
+        }
+
+        getPatternCoords(x, y) {
+          const col = (((x - this.patternStartX) % this.patternCols) + this.patternCols) % this.patternCols;
+          const row = (((y - this.patternStartY) % this.patternRows) + this.patternRows) % this.patternRows;
+          return { col, row, index: row * this.patternCols + col };
+        }
+
+        getPatternCellByCoords(col, row) {
+          const index = row * this.patternCols + col;
+          return this.patternItems[index] || null;
+        }
+
+        getPatternCell(x, y) {
+          if (!this.patternItems.length || !this.patternCols || !this.patternRows) return null;
+          const { col, row } = this.getPatternCoords(x, y);
+          return this.getPatternCellByCoords(col, row);
+        }
+
+        createGridItem(x, y, dataOverride = null, existingItem = null) {
+          let item = existingItem || this.itemPool.pop();
+          if (!item) {
+            item = document.createElement("div");
+            item.className = "grid-item";
+            item.innerHTML = `
+              <div class="item-content">
+                <div class="item-bg"></div>
+                <div class="item-overlay"></div>
+                <div class="item-price"></div>
+                <div class="item-text">
+                  <div class="item-title"></div>
+                  <div class="item-desc"></div>
+                </div>
+              </div>
+            `;
+            item.style.cursor = "pointer";
+            item.addEventListener("mouseenter", () => {
+              this.hoveredItem = item;
+            });
+            item.addEventListener("mouseleave", () => {
+              if (this.hoveredItem === item) {
+                this.hoveredItem = null;
+              }
+            });
+            item.addEventListener("click", () => {
+              if (this.justDragged) return;
+              const slug = item.dataset.slug;
+              if (slug) {
+                try {
+                  sessionStorage.setItem("carta:lastSlug", slug);
+                } catch (err) {}
+                window.location.href = `carta-item.html?slug=${encodeURIComponent(slug)}&from=grid`;
+              }
+            });
+          }
+
+          const data = dataOverride || this.getItemData(x, y);
+          const dataType = data && data.type ? data.type : "item";
+          const isTitle = dataType === "title";
+          const isSticker = dataType === "sticker";
+          const isEmpty = dataType === "empty";
+          const isItem = !isTitle && !isSticker && !isEmpty;
+          const bg = item.querySelector(".item-bg");
+          const title = item.querySelector(".item-title");
+          const desc = item.querySelector(".item-desc");
+          const price = item.querySelector(".item-price");
+          item.classList.toggle("exp-title", isTitle);
+          item.classList.toggle("exp-sticker", isSticker);
+          item.classList.toggle("exp-empty", isEmpty);
+          item.classList.toggle("exp-large", data && data.size === "large");
+          item.style.pointerEvents = isItem ? "auto" : "none";
+
+          bg.style.backgroundImage = isItem && data.image ? `url(${data.image})` : "none";
+          title.classList.toggle("u-text-style-display", isTitle);
+          title.textContent = isTitle || isSticker ? (data.title || "") : (data.title || "");
+          const titleLength = (data.title || "").trim().length;
+          const rawPrice = isItem ? (data.price || "").trim() : "";
+          const priceLower = rawPrice.toLowerCase();
+          const hasPerson = priceLower.includes("individual");
+          const hasShare = priceLower.includes("compartir");
+          const isComplexPrice = hasPerson || hasShare || rawPrice.includes(";") || rawPrice.includes("/") || rawPrice.includes("\n");
+          const hideDesc = titleLength >= 28 || isComplexPrice;
+          item.dataset.hideDesc = hideDesc ? "true" : "false";
+          desc.textContent = isItem && !hideDesc ? (data.desc || "") : "";
+          if (isItem && isComplexPrice) {
+            const rows = rawPrice.split(";").map((part) => part.trim()).filter(Boolean);
+            const personIcon = '<svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true" style="color: currentColor;"><circle cx="12" cy="7" r="4" fill="currentColor"></circle><path d="M4 21c0-4.2 3.6-7.6 8-7.6s8 3.4 8 7.6" fill="currentColor"></path></svg>';
+            const shareIcon = `${personIcon}${personIcon}`;
+            const markup = rows.length ? rows : [rawPrice];
+            price.innerHTML = markup.map((row) => {
+              const lower = row.toLowerCase();
+              const icon = lower.includes("individual") ? personIcon : (lower.includes("compartir") ? shareIcon : "");
+              const cleaned = row.replace(/(individual|compartir)/gi, "").trim();
+              const match = cleaned.match(/^(.*?)(\d[\d.,]*)\s*$/);
+              const label = match ? match[1].trim() : "";
+              const amount = match ? match[2].trim() : cleaned;
+              const iconGroup = icon
+                ? `<span style="display:inline-flex; align-items:center; gap: 0; color: var(--swatch--light-200);">${icon}</span>`
+                : "";
+              const labelSpan = label
+                ? `<span style="color: var(--swatch--light-200); font-weight: var(--_typography---font--primary-regular);">${label}</span>`
+                : "";
+              const amountSpan = `<span style="color: var(--swatch--brand-500); font-weight: var(--_typography---font--primary-bold);">${amount}</span>`;
+              return `<span style="display:flex; align-items:center; gap: var(--_spacing---space--1); justify-content:flex-end; line-height: 1;">${iconGroup}${labelSpan}${amountSpan}</span>`;
+            }).join("");
+          } else {
+            price.textContent = rawPrice;
+          }
+          item.dataset.slug = isItem ? (data.slug || "") : "";
+          item.dataset.category = isItem ? (data.category || "") : "";
+
+          // Apply category-based border color
+          if (isItem) {
+            item.style.border = `var(--border-width--main) solid ${getItemBorderColor(data.category)}`;
+          } else {
+            item.style.border = "none";
+          }
+
+          const cellSize = this.itemSize + this.gap;
+          const posX = x * cellSize;
+          const posY = y * cellSize;
+          item.style.left = `${posX}px`;
+          item.style.top = `${posY}px`;
+          const spanX = data && data.spanX ? data.spanX : (data && data.size === "large" ? 2 : 1);
+          const spanY = data && data.spanY ? data.spanY : (data && data.size === "large" ? 2 : 1);
+          const tileWidth = this.itemSize * spanX + this.gap * (spanX - 1);
+          const tileHeight = this.itemSize * spanY + this.gap * (spanY - 1);
+          item.style.width = `${tileWidth}px`;
+          item.style.height = `${tileHeight}px`;
+          if (isTitle) {
+            const nextSize = this.getTitleFontSize(data.title || "", tileWidth, tileHeight);
+            if (nextSize) {
+              title.style.fontSize = `${nextSize}px`;
+              item.dataset.titleFontSize = `${nextSize}`;
+            }
+          } else {
+            title.style.fontSize = "";
+            item.dataset.titleFontSize = "";
+          }
+          item.dataset.gridX = x;
+          item.dataset.gridY = y;
+          return item;
+        }
+
+        updateGrid() {
+          if (this.layoutMode === "experimental" && this.allowInfinite && !this.initialFill) {
+            const { cols, rows, viewWidth, viewHeight } = this.getPatternDimensions();
+            const viewportChanged = viewWidth !== this.patternViewportWidth || viewHeight !== this.patternViewportHeight;
+            if (this.patternDirty || viewportChanged || this.patternCols !== cols || this.patternRows !== rows) {
+              this.rebuildPattern(cols, rows);
+            }
+          }
+          if (this.initialFill) {
+            if (this.allowInfinite) {
+              this.renderInitialGrid();
+            } else {
+              this.renderFiniteGrid();
+            }
+            this.applyTransform();
+            return;
+          }
+          const cellSize = this.itemSize + this.gap;
+          const viewWidth = this.viewport.clientWidth / this.scale;
+          const viewHeight = this.viewport.clientHeight / this.scale;
+          const halfWidth = viewWidth / 2;
+          const halfHeight = viewHeight / 2;
+          const startX = Math.floor((this.offsetX - halfWidth - this.itemSize) / cellSize);
+          const endX = Math.ceil((this.offsetX + halfWidth + this.itemSize) / cellSize);
+          const startY = Math.floor((this.offsetY - halfHeight - this.itemSize) / cellSize);
+          const endY = Math.ceil((this.offsetY + halfHeight + this.itemSize) / cellSize);
+
+          const newVisible = new Set();
+          for (let x = startX; x <= endX; x++) {
+            for (let y = startY; y <= endY; y++) {
+              let data = null;
+              let anchorX = x;
+              let anchorY = y;
+              if (this.layoutMode === "experimental") {
+                const { col, row } = this.getPatternCoords(x, y);
+                const cell = this.getPatternCellByCoords(col, row);
+                if (cell && cell.type === "empty") {
+                  continue;
+                }
+                if (cell && cell.type === "occupied" && Number.isFinite(cell._originX) && Number.isFinite(cell._originY)) {
+                  anchorX = x - (col - cell._originX);
+                  anchorY = y - (row - cell._originY);
+                  data = this.getItemData(anchorX, anchorY);
+                } else {
+                  data = this.getItemData(x, y);
+                }
+                if (data && (data.type === "empty" || data.type === "occupied")) {
+                  continue;
+                }
+              }
+
+              const key = `${anchorX},${anchorY}`;
+              if (newVisible.has(key)) {
+                continue;
+              }
+              newVisible.add(key);
+              if (!this.visibleItems.has(key)) {
+                const item = this.createGridItem(anchorX, anchorY, data || null);
+                this.container.appendChild(item);
+                this.visibleItems.set(key, item);
+              } else {
+                const item = this.visibleItems.get(key);
+                this.createGridItem(anchorX, anchorY, data || null, item);
+              }
+            }
+          }
+
+          for (const [key, item] of this.visibleItems) {
+            if (!newVisible.has(key)) {
+              this.container.removeChild(item);
+              this.itemPool.push(item);
+              this.visibleItems.delete(key);
+            }
+          }
+
+          this.applyTransform();
+        }
+
+        buildPatternItems(cols, rows) {
+          const total = cols * rows;
+          if (!this.items.length) return [];
+          if (this.layoutMode !== "experimental") {
+            return Array.from({ length: total }, (_, i) => this.items[i % this.items.length]);
+          }
+
+          const pattern = new Array(total);
+          const occupied = Array.from({ length: rows }, () => Array(cols).fill(false));
+          const stickerLabels = ["NUEVO", "PICANTE", "FAVORITO", "CHEF"];
+          let stickerIndex = 0;
+          const getTileKey = (tile) => {
+            if (!tile) return "";
+            if (tile._key) return tile._key;
+            const base = tile.slug || tile.title || "";
+            return `${tile.type || "item"}:${base}`;
+          };
+          const getCellKey = (cell) => {
+            if (!cell) return "";
+            return cell._key || cell._occupiedKey || "";
+          };
+          const isAdjacentSame = (x, y, spanX, spanY, key) => {
+            if (!key) return false;
+            if (x > 0) {
+              for (let dy = 0; dy < spanY; dy++) {
+                const neighbor = pattern[(y + dy) * cols + (x - 1)];
+                if (getCellKey(neighbor) === key) return true;
+              }
+            }
+            if (y > 0) {
+              for (let dx = 0; dx < spanX; dx++) {
+                const neighbor = pattern[(y - 1) * cols + (x + dx)];
+                if (getCellKey(neighbor) === key) return true;
+              }
+            }
+            return false;
+          };
+
+          const grouped = this.items.reduce((acc, item) => {
+            const key = normalizeCategory(item.category) || "otros";
+            if (!acc[key]) acc[key] = [];
+            acc[key].push(item);
+            return acc;
+          }, {});
+
+          const categoryOrder = [
+            "para-compartir",
+            "platos-principales",
+            "complementos",
+            "bebidas",
+            "postres",
+            "otros"
+          ];
+
+          const baseTiles = [];
+          categoryOrder.forEach((categoryKey) => {
+            const categoryItems = grouped[categoryKey] || [];
+            if (!categoryItems.length) return;
+            baseTiles.push({ type: "title", title: getCategoryLabel(categoryKey), spanY: 1 });
+            categoryItems.forEach((item, index) => {
+              const isLarge = index % 7 === 0;
+              baseTiles.push({ ...item, type: "item", size: isLarge ? "large" : "small" });
+              if ((index + 1) % 6 === 0) {
+                baseTiles.push({ type: "sticker", title: stickerLabels[stickerIndex % stickerLabels.length] });
+                stickerIndex += 1;
+              }
+            });
+          });
+
+          if (!baseTiles.length) {
+            return Array.from({ length: total }, (_, i) => this.items[i % this.items.length]);
+          }
+
+          const canPlaceLarge = (x, y) => {
+            return x < cols - 1
+              && y < rows - 1
+              && !occupied[y][x]
+              && !occupied[y][x + 1]
+              && !occupied[y + 1][x]
+              && !occupied[y + 1][x + 1];
+          };
+
+          const canPlaceWide = (x, y, spanX) => {
+            if (spanX <= 1) return !occupied[y][x];
+            if (x + spanX > cols) return false;
+            for (let dx = 0; dx < spanX; dx++) {
+              if (occupied[y][x + dx]) return false;
+            }
+            return true;
+          };
+
+          const placeTile = (x, y, tile) => {
+            const idx = y * cols + x;
+            const tileKey = getTileKey(tile);
+            pattern[idx] = { ...tile, _key: tileKey };
+            occupied[y][x] = true;
+            if (tile.spanX && tile.spanX > 1) {
+              for (let dx = 1; dx < tile.spanX; dx++) {
+                occupied[y][x + dx] = true;
+                pattern[y * cols + (x + dx)] = { type: "occupied", _occupiedKey: tileKey, _originX: x, _originY: y };
+              }
+            }
+            if (tile.size === "large") {
+              occupied[y][x + 1] = true;
+              occupied[y + 1][x] = true;
+              occupied[y + 1][x + 1] = true;
+              pattern[y * cols + (x + 1)] = { type: "occupied", _occupiedKey: tileKey, _originX: x, _originY: y };
+              pattern[(y + 1) * cols + x] = { type: "occupied", _occupiedKey: tileKey, _originX: x, _originY: y };
+              pattern[(y + 1) * cols + (x + 1)] = { type: "occupied", _occupiedKey: tileKey, _originX: x, _originY: y };
+            }
+          };
+          const placeEmpty = (x, y) => {
+            const idx = y * cols + x;
+            pattern[idx] = { type: "empty" };
+            occupied[y][x] = true;
+          };
+
+          let tileIndex = 0;
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              if (occupied[y][x]) continue;
+              const startIndex = tileIndex % baseTiles.length;
+              let chosenTile = baseTiles[startIndex];
+              let chosenIndex = startIndex;
+              let chosenSpanX = 1;
+              let chosenSpanY = 1;
+
+              for (let attempt = 0; attempt < baseTiles.length; attempt++) {
+                const idx = (startIndex + attempt) % baseTiles.length;
+                const candidate = baseTiles[idx];
+                const key = getTileKey(candidate);
+                if (candidate.type === "title") {
+                  const remaining = cols - x;
+                  const idealSpan = this.getIdealTitleSpan(candidate.title);
+                  const allowedSpans = [4, 2, 1].filter((span) => span <= remaining);
+                  const spanX = allowedSpans.includes(idealSpan)
+                    ? idealSpan
+                    : (allowedSpans[0] || 1);
+                  const spanY = 1;
+                  if (canPlaceWide(x, y, spanX) && !isAdjacentSame(x, y, spanX, spanY, key)) {
+                    chosenTile = { ...candidate, spanX, spanY };
+                    chosenIndex = idx;
+                    chosenSpanX = spanX;
+                    chosenSpanY = spanY;
+                    break;
+                  }
+                  if (!isAdjacentSame(x, y, 1, 1, key)) {
+                    chosenTile = { ...candidate, spanX: 1, spanY: 1 };
+                    chosenIndex = idx;
+                    chosenSpanX = 1;
+                    chosenSpanY = 1;
+                    break;
+                  }
+                } else if (candidate.size === "large" && canPlaceLarge(x, y)) {
+                  if (!isAdjacentSame(x, y, 2, 2, key)) {
+                    chosenTile = candidate;
+                    chosenIndex = idx;
+                    chosenSpanX = 2;
+                    chosenSpanY = 2;
+                    break;
+                  }
+                } else {
+                  if (!isAdjacentSame(x, y, 1, 1, key)) {
+                    chosenTile = { ...candidate, size: "small" };
+                    chosenIndex = idx;
+                    chosenSpanX = 1;
+                    chosenSpanY = 1;
+                    break;
+                  }
+                }
+              }
+
+              const finalKey = getTileKey(chosenTile);
+              if (isAdjacentSame(x, y, chosenSpanX, chosenSpanY, finalKey)) {
+                placeEmpty(x, y);
+              } else {
+                tileIndex = chosenIndex + 1;
+                if (chosenTile.type === "title") {
+                  placeTile(x, y, chosenTile);
+                } else if (chosenTile.size === "large" && canPlaceLarge(x, y)) {
+                  placeTile(x, y, chosenTile);
+                } else {
+                  placeTile(x, y, { ...chosenTile, size: "small" });
+                }
+              }
+            }
+          }
+
+          for (let y = 0; y < rows; y++) {
+            for (let x = 0; x < cols; x++) {
+              if (!occupied[y][x]) {
+                pattern[y * cols + x] = { type: "empty" };
+              }
+            }
+          }
+
+          return pattern;
+        }
+
+        renderInitialGrid() {
+          const { cols, rows } = this.getPatternDimensions();
+          const total = cols * rows;
+          const startX = -Math.floor(cols / 2);
+          const startY = -Math.floor(rows / 2);
+          this.patternStartX = startX;
+          this.patternStartY = startY;
+          const newVisible = new Set();
+
+          if (this.patternDirty || !this.patternItems.length || this.patternCols !== cols || this.patternRows !== rows) {
+            this.rebuildPattern(cols, rows);
+          }
+
+          for (let i = 0; i < total; i++) {
+            const x = startX + (i % cols);
+            const y = startY + Math.floor(i / cols);
+            let data = null;
+            let anchorX = x;
+            let anchorY = y;
+              if (this.layoutMode === "experimental") {
+                const { col, row } = this.getPatternCoords(x, y);
+                const cell = this.getPatternCellByCoords(col, row);
+              if (cell && cell.type === "empty") {
+                continue;
+              }
+              if (cell && cell.type === "occupied" && Number.isFinite(cell._originX) && Number.isFinite(cell._originY)) {
+                  anchorX = x - (col - cell._originX);
+                  anchorY = y - (row - cell._originY);
+                data = this.getItemData(anchorX, anchorY);
+              } else {
+                data = this.getItemData(x, y);
+              }
+              if (!data || data.type === "empty" || data.type === "occupied") {
+                continue;
+              }
+            } else {
+              data = this.patternItems[i];
+              if (!data || data.type === "empty" || data.type === "occupied") {
+                continue;
+              }
+            }
+            const key = `${anchorX},${anchorY}`;
+            if (newVisible.has(key)) {
+              continue;
+            }
+            newVisible.add(key);
+            if (!this.visibleItems.has(key)) {
+              const item = this.createGridItem(anchorX, anchorY, data);
+              this.container.appendChild(item);
+              this.visibleItems.set(key, item);
+            }
+          }
+
+          for (const [key, item] of this.visibleItems) {
+            if (!newVisible.has(key)) {
+              this.container.removeChild(item);
+              this.itemPool.push(item);
+              this.visibleItems.delete(key);
+            }
+          }
+        }
+
+        renderFiniteGrid() {
+          const count = this.items.length;
+          const cols = Math.max(1, Math.ceil(Math.sqrt(count)));
+          const rows = Math.max(1, Math.ceil(count / cols));
+          const startX = -Math.floor(cols / 2);
+          const startY = -Math.floor(rows / 2);
+          this.patternStartX = startX;
+          this.patternStartY = startY;
+          const newVisible = new Set();
+
+          if (this.layoutMode === "experimental") {
+            const total = cols * rows;
+            const patternItems = this.buildPatternItems(cols, rows);
+            this.patternCols = cols;
+            this.patternRows = rows;
+            this.patternItems = patternItems;
+            for (let i = 0; i < total; i++) {
+              const x = startX + (i % cols);
+              const y = startY + Math.floor(i / cols);
+              const key = `finite-${i}`;
+              const data = this.getItemData(x, y);
+              if (!data || data.type === "empty" || data.type === "occupied") {
+                continue;
+              }
+              newVisible.add(key);
+              if (!this.visibleItems.has(key)) {
+                const item = this.createGridItem(x, y, data);
+                this.container.appendChild(item);
+                this.visibleItems.set(key, item);
+              }
+            }
+          } else {
+            for (let i = 0; i < count; i++) {
+              const x = startX + (i % cols);
+              const y = startY + Math.floor(i / cols);
+              const key = `finite-${i}`;
+              newVisible.add(key);
+              if (!this.visibleItems.has(key)) {
+                const item = this.createGridItem(x, y, this.items[i]);
+                this.container.appendChild(item);
+                this.visibleItems.set(key, item);
+              }
+            }
+          }
+
+          for (const [key, item] of this.visibleItems) {
+            if (!newVisible.has(key)) {
+              this.container.removeChild(item);
+              this.itemPool.push(item);
+              this.visibleItems.delete(key);
+            }
+          }
+        }
+
+        applyTransform() {
+          const centerX = this.viewport.clientWidth / 2;
+          const centerY = this.viewport.clientHeight / 2;
+          this.container.style.transformOrigin = "0 0";
+          this.container.style.transform = `translate(${centerX}px, ${centerY}px) scale(${this.scale}) translate(${-this.offsetX}px, ${-this.offsetY}px)`;
+        }
+
+        switchToInfinite() {
+          if (!this.initialFill || !this.allowInfinite) return;
+          this.initialFill = false;
+          const newMap = new Map();
+          for (const item of this.visibleItems.values()) {
+            const gridX = item.dataset.gridX || "0";
+            const gridY = item.dataset.gridY || "0";
+            const key = `${gridX},${gridY}`;
+            if (newMap.has(key)) {
+              this.container.removeChild(item);
+              this.itemPool.push(item);
+            } else {
+              newMap.set(key, item);
+            }
+          }
+          this.visibleItems = newMap;
+        }
+
+        setupEventListeners() {
+          this.viewport.addEventListener("pointerdown", (event) => {
+            this.isDragging = true;
+            this.dragMoved = false;
+            this.justDragged = false;
+            if (this.inertiaId) {
+              cancelAnimationFrame(this.inertiaId);
+              this.inertiaId = null;
+            }
+            this.velocityX = 0;
+            this.velocityY = 0;
+            this.viewport.classList.add("dragging");
+            this.dragStartX = event.clientX;
+            this.dragStartY = event.clientY;
+            this.lastPointerX = event.clientX;
+            this.lastPointerY = event.clientY;
+            this.lastMoveTime = performance.now();
+            event.preventDefault();
+          });
+
+          document.addEventListener("pointermove", (event) => {
+            if (!this.isDragging) return;
+            const now = performance.now();
+            const dt = Math.max(16, now - this.lastMoveTime);
+            const deltaX = event.clientX - this.lastPointerX;
+            const deltaY = event.clientY - this.lastPointerY;
+            this.offsetX -= deltaX / this.scale;
+            this.offsetY -= deltaY / this.scale;
+            this.velocityX = (deltaX / this.scale) / dt;
+            this.velocityY = (deltaY / this.scale) / dt;
+            this.lastPointerX = event.clientX;
+            this.lastPointerY = event.clientY;
+            this.lastMoveTime = now;
+            if (!this.dragMoved) {
+              const distX = Math.abs(event.clientX - this.dragStartX);
+              const distY = Math.abs(event.clientY - this.dragStartY);
+              if (distX > this.dragThreshold || distY > this.dragThreshold) {
+                this.dragMoved = true;
+                this.switchToInfinite();
+              }
+            }
+            this.updateGrid();
+          });
+
+          document.addEventListener("pointerup", () => {
+            if (!this.isDragging) return;
+            this.isDragging = false;
+            this.viewport.classList.remove("dragging");
+            if (this.dragMoved) {
+              this.justDragged = true;
+              setTimeout(() => {
+                this.justDragged = false;
+              }, 0);
+              this.startInertia();
+            }
+          });
+
+          this.viewport.addEventListener("wheel", (event) => {
+            event.preventDefault();
+            if (this.initialFill && this.allowInfinite) {
+              this.switchToInfinite();
+            }
+            const rect = this.viewport.getBoundingClientRect();
+            const mouseX = event.clientX - rect.left;
+            const mouseY = event.clientY - rect.top;
+            const centerX = this.viewport.clientWidth / 2;
+            const centerY = this.viewport.clientHeight / 2;
+            const worldX = this.offsetX + (mouseX - centerX) / this.scale;
+            const worldY = this.offsetY + (mouseY - centerY) / this.scale;
+
+            const delta = -event.deltaY * 0.0015;
+            const desiredScale = this.targetScale + delta;
+            if (desiredScale > this.maxScale) {
+              const over = desiredScale - this.maxScale;
+              this.targetScale = this.maxScale + over * this.zoomResistance;
+              if (delta > 0) {
+                this.zoomOverscroll += delta * 0.8;
+                if (!this.zoomOverscrollStart) {
+                  this.zoomOverscrollStart = performance.now();
+                }
+              }
+            } else if (desiredScale < this.minScale) {
+              this.targetScale = this.minScale;
+              this.zoomOverscroll = 0;
+              this.zoomOverscrollStart = 0;
+              this.openQueued = false;
+            } else {
+              this.targetScale = desiredScale;
+              this.zoomOverscroll = 0;
+              this.zoomOverscrollStart = 0;
+              this.openQueued = false;
+            }
+
+            this.lastZoomMouseX = mouseX;
+            this.lastZoomMouseY = mouseY;
+            this.lastZoomWorldX = worldX;
+            this.lastZoomWorldY = worldY;
+            this.startZoomAnimation();
+
+            const hoverEl = document.elementFromPoint(event.clientX, event.clientY);
+            const hovered = hoverEl ? hoverEl.closest(".grid-item") : null;
+            this.hoveredItem = hovered || null;
+
+            if (this.zoomOverscrollStart) {
+              this.focusIntensity = Math.min(1, Math.max(0, this.zoomOverscroll * 1.2));
+              this.updateFocusEffects(this.focusIntensity);
+            } else if (this.focusIntensity > 0) {
+              this.updateFocusEffects(0);
+              this.focusIntensity = 0;
+            }
+
+            if (this.zoomIdleTimer) {
+              clearTimeout(this.zoomIdleTimer);
+            }
+            this.zoomIdleTimer = setTimeout(() => {
+              this.resetZoomResistance();
+            }, 180);
+
+            if (!this.openQueued && this.zoomOverscrollStart && delta > 0) {
+              const now = performance.now();
+              const overscrollReady = this.zoomOverscroll >= this.zoomCommit && (now - this.zoomOverscrollStart) > 220;
+              if (overscrollReady) {
+                const data = this.getOverscrollTarget(event.clientX, event.clientY, worldX, worldY);
+                if (data && data.slug) {
+                  this.openQueued = true;
+                  this.fadeToItem();
+                  setTimeout(() => {
+                    try {
+                      sessionStorage.setItem("carta:lastSlug", data.slug);
+                    } catch (err) {}
+                    window.location.href = `carta-item.html?slug=${encodeURIComponent(data.slug)}&from=grid`;
+                  }, 380);
+                }
+                return;
+              }
+            }
+
+            if (this.zoomBounceTimer) {
+              clearTimeout(this.zoomBounceTimer);
+            }
+            this.zoomBounceTimer = setTimeout(() => {
+              this.startZoomBounce();
+            }, 120);
+          }, { passive: false });
+
+          window.addEventListener("resize", () => this.updateGrid());
+        }
+
+        updateFocusEffects(intensity) {
+          const dim = Math.min(0.65, intensity * 0.7);
+          for (const item of this.visibleItems.values()) {
+            if (this.hoveredItem === item) {
+              item.style.transform = `scale(${1 + intensity * 0.12})`;
+              item.style.zIndex = "3";
+              item.style.opacity = "1";
+              item.style.transition = "transform 0.25s ease, opacity 0.25s ease";
+            } else {
+              item.style.opacity = `${1 - dim}`;
+              item.style.zIndex = "1";
+              item.style.transition = "opacity 0.25s ease";
+            }
+          }
+        }
+
+        fadeToItem() {
+          if (!this.overlayEl) {
+            const overlay = document.createElement("div");
+            overlay.style.position = "fixed";
+            overlay.style.inset = "0";
+            overlay.style.background = "var(--_theme---background)";
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            overlay.style.transition = "opacity 0.28s ease";
+            overlay.style.zIndex = "9999";
+            document.body.appendChild(overlay);
+            this.overlayEl = overlay;
+          }
+          requestAnimationFrame(() => {
+            this.overlayEl.style.opacity = "1";
+          });
+        }
+
+        startZoomBounce() {
+          if (this.zoomBounceId) {
+            cancelAnimationFrame(this.zoomBounceId);
+            this.zoomBounceId = null;
+          }
+
+          const target = this.scale > this.maxScale ? this.maxScale : (this.scale < this.minScale ? this.minScale : this.scale);
+          if (target === this.scale) return;
+
+          const animate = () => {
+            const diff = target - this.scale;
+            if (Math.abs(diff) < 0.001) {
+              this.scale = target;
+              this.zoomBounceId = null;
+              this.updateGrid();
+              return;
+            }
+            this.scale += diff * 0.08;
+            const centerX = this.viewport.clientWidth / 2;
+            const centerY = this.viewport.clientHeight / 2;
+            this.offsetX = this.lastZoomWorldX - (this.lastZoomMouseX - centerX) / this.scale;
+            this.offsetY = this.lastZoomWorldY - (this.lastZoomMouseY - centerY) / this.scale;
+            this.updateGrid();
+            this.zoomBounceId = requestAnimationFrame(animate);
+          };
+          this.zoomBounceId = requestAnimationFrame(animate);
+        }
+
+        startZoomAnimation() {
+          if (this.zoomAnimId) return;
+          const animate = () => {
+            const diff = this.targetScale - this.scale;
+            if (Math.abs(diff) < 0.001) {
+              this.scale = this.targetScale;
+              this.zoomAnimId = null;
+              this.updateGrid();
+              return;
+            }
+            this.scale += diff * this.zoomLerp;
+            const centerX = this.viewport.clientWidth / 2;
+            const centerY = this.viewport.clientHeight / 2;
+            this.offsetX = this.lastZoomWorldX - (this.lastZoomMouseX - centerX) / this.scale;
+            this.offsetY = this.lastZoomWorldY - (this.lastZoomMouseY - centerY) / this.scale;
+            this.updateGrid();
+            this.zoomAnimId = requestAnimationFrame(animate);
+          };
+          this.zoomAnimId = requestAnimationFrame(animate);
+        }
+
+        resetZoomResistance() {
+          this.zoomOverscroll = 0;
+          this.zoomOverscrollStart = 0;
+          this.openQueued = false;
+          this.focusIntensity = 0;
+          this.updateFocusEffects(0);
+          this.startZoomBounce();
+        }
+
+        findNearestItem(worldX, worldY) {
+          const cellSize = this.itemSize + this.gap;
+          const baseX = Math.round(worldX / cellSize);
+          const baseY = Math.round(worldY / cellSize);
+          let best = null;
+          let bestDist = Infinity;
+          for (let dx = -1; dx <= 1; dx++) {
+            for (let dy = -1; dy <= 1; dy++) {
+              const gx = baseX + dx;
+              const gy = baseY + dy;
+              const centerX = (gx + 0.5) * cellSize;
+              const centerY = (gy + 0.5) * cellSize;
+              const dist = Math.hypot(worldX - centerX, worldY - centerY);
+              if (dist < bestDist) {
+                bestDist = dist;
+                best = this.getItemData(gx, gy);
+              }
+            }
+          }
+          return best;
+        }
+
+        findNearestVisibleItem(worldX, worldY) {
+          const cellSize = this.itemSize + this.gap;
+          let bestSlug = "";
+          let bestDist = Infinity;
+          for (const item of this.visibleItems.values()) {
+            const slug = item.dataset.slug || "";
+            if (!slug) continue;
+            const gx = parseInt(item.dataset.gridX || "0", 10);
+            const gy = parseInt(item.dataset.gridY || "0", 10);
+            const centerX = (gx + 0.5) * cellSize;
+            const centerY = (gy + 0.5) * cellSize;
+            const dist = Math.hypot(worldX - centerX, worldY - centerY);
+            if (dist < bestDist) {
+              bestDist = dist;
+              bestSlug = slug;
+            }
+          }
+          if (bestSlug) return { slug: bestSlug };
+          const fallback = this.findNearestItem(worldX, worldY);
+          if (fallback && fallback.slug) return { slug: fallback.slug };
+          return null;
+        }
+
+        getOverscrollTarget(clientX, clientY, worldX, worldY) {
+          const hoverEl = document.elementFromPoint(clientX, clientY);
+          const hovered = hoverEl ? hoverEl.closest(".grid-item") : null;
+          const hoveredSlug = hovered ? hovered.dataset.slug : "";
+          if (hoveredSlug) return { slug: hoveredSlug };
+          return this.findNearestVisibleItem(worldX, worldY);
+        }
+
+        startInertia() {
+          const damping = 0.92;
+          const minVelocity = 0.002;
+          const step = () => {
+            this.velocityX *= damping;
+            this.velocityY *= damping;
+
+            if (Math.abs(this.velocityX) < minVelocity && Math.abs(this.velocityY) < minVelocity) {
+              this.inertiaId = null;
+              return;
+            }
+
+            this.offsetX -= this.velocityX * 16;
+            this.offsetY -= this.velocityY * 16;
+            this.updateGrid();
+            this.inertiaId = requestAnimationFrame(step);
+          };
+          if (!this.inertiaId) {
+            this.inertiaId = requestAnimationFrame(step);
+          }
+        }
+      }
+
+      setFilter("all");
+      setView("grid");
+    });
+  </script>
+
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js" type="text/javascript"></script>
+  <script>
+    // Lumos Modal Initialization
+    document.addEventListener("DOMContentLoaded", function () {
+      const modalSystem = ((window.lumos ??= {}).modal ??= {
+        list: {},
+        open(id) { this.list[id]?.open?.(); },
+        closeAll() { Object.values(this.list).forEach((m) => m.close?.()); },
+      });
+      function createModals() {
+        document.querySelectorAll(".modal_dialog").forEach(function (modal) {
+          if (modal.dataset.scriptInitialized) return;
+          modal.dataset.scriptInitialized = "true";
+          const modalId = modal.getAttribute("data-modal-target");
+          const variant = modal.getAttribute("data-wf--modal--variant");
+          let lastFocusedElement;
+          if (typeof gsap !== "undefined") {
+            gsap.context(() => {
+              let tl = gsap.timeline({ paused: true, onReverseComplete: resetModal });
+              if (variant === "side-panel") {
+                tl.fromTo(".modal_backdrop", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" });
+                tl.from(".modal_content", { xPercent: 100, duration: 0.3, ease: "power1.out" }, "<");
+              } else if (variant === "full-screen") {
+                tl.set(".modal_backdrop", { opacity: 0 });
+                tl.from(".modal_content", { opacity: 0, duration: 0.2, ease: "power1.out" });
+                tl.from(".modal_slot", { opacity: 0, y: "2rem", duration: 0.2, ease: "power1.out" }, "<0.1");
+              } else {
+                tl.fromTo(".modal_backdrop", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" });
+                tl.from(".modal_content", { opacity: 0, y: "6rem", duration: 0.3, ease: "power1.out" }, "<");
+              }
+              modal.tl = tl;
+            }, modal);
+          }
+          function resetModal() {
+            typeof lenis !== "undefined" && lenis.start ? lenis.start() : (document.body.style.overflow = "");
+            modal.close();
+            if (lastFocusedElement) lastFocusedElement.focus();
+            window.dispatchEvent(new CustomEvent("modal-close", { detail: { modal } }));
+          }
+          function openModal() {
+            typeof lenis !== "undefined" && lenis.stop ? lenis.stop() : (document.body.style.overflow = "hidden");
+            lastFocusedElement = document.activeElement;
+            modal.showModal();
+            if (typeof gsap !== "undefined") modal.tl.play();
+            modal.querySelectorAll("[data-modal-scroll]").forEach((el) => (el.scrollTop = 0));
+            window.dispatchEvent(new CustomEvent("modal-open", { detail: { modal } }));
+          }
+          function closeModal() {
+            typeof gsap !== "undefined" ? modal.tl.reverse() : resetModal();
+          }
+          if (new URLSearchParams(location.search).get("modal-id") === modalId) {
+            openModal();
+            history.replaceState({}, "", ((u) => (u.searchParams.delete("modal-id"), u))(new URL(location.href)));
+          }
+          modal.addEventListener("cancel", (e) => (e.preventDefault(), closeModal()));
+          modal.addEventListener("click", (e) => e.target.closest("[data-modal-close]") && closeModal());
+          document.addEventListener("click", (e) => e.target.closest("[data-modal-trigger='" + modalId + "']") && openModal());
+          modalSystem.list[modalId] = { open: openModal, close: closeModal };
+        });
+      }
+      createModals();
+    });
+  </script>
+</body>
+</html>

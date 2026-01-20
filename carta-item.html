@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Piri Piri - Plato</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
+  <script type="text/javascript">WebFont.load({  google: {    families: ["Manrope:200,300,regular,500,600,700:latin,latin-ext"]  }});</script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/webflow.css">
+  <link rel="stylesheet" href="css/piripiri.css">
+  <link rel="stylesheet" href="css/piripiri-custom.css">
+</head>
+
+<body class="u-theme-dark">
+  <div class="page_wrap">
+    <main class="page_main">
+      <section class="u-min-height-screen u-flex-vertical-nowrap u-theme-dark">
+        <nav class="hero_nav u-flex-horizontal-nowrap u-justify-content-between u-align-items-center u-padding-block-4 u-padding-inline-gutter u-width-full u-position-relative u-zindex-3">
+          <a href="/" class="hero_logo_wrap" aria-label="Ir al inicio" style="width: 8rem;">
+            <img src="resources/logos/piripiri-logotipo_alpha_512.svg" alt="Piri Piri" class="u-width-full u-height-auto">
+          </a>
+          <ul class="hero_nav_links u-flex-horizontal-nowrap u-gap-5 u-list-style-none u-hide-mobile">
+            <li><a href="home.html#inicio" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Inicio</a></li>
+            <li><a href="home.html#historia" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Historia</a></li>
+            <li><a href="home.html#club-secreto" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Club Secreto</a></li>
+            <li><a href="carta.html" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Carta</a></li>
+            <li><a href="home.html#reservas" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Reservas</a></li>
+            <li><a href="home.html#pedidos" class="hero_nav_link u-text-style-small u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">Pedidos</a></li>
+          </ul>
+          <div data-wf--button-main--variant="secondary" class="button_main_wrap u-radius-round" data-trigger="hover focus">
+            <a href="carta.html" class="button_main_element">
+              <div class="button_main_text u-text-style-main">Volver a carta</div>
+            </a>
+          </div>
+        </nav>
+
+        <div class="u-flex-grow u-width-full u-flex-vertical-nowrap u-justify-content-center u-padding-inline-gutter">
+          <div class="u-container">
+            <div class="u-flex-horizontal-nowrap u-gap-6 u-flex-column-mobile u-align-items-stretch">
+              <div class="u-radius-main u-border-main u-align-self-stretch" style="flex: 0 0 48%; overflow: hidden; aspect-ratio: 4 / 3;">
+                <img src="resources/images/lumos-v2.webp" alt="Plato Piri Piri" class="u-width-full u-height-full u-object-fit-cover" data-item-image>
+              </div>
+              <div class="u-flex-vertical-nowrap u-gap-4 u-align-items-start u-justify-content-end u-radius-main u-border-main u-padding-5 u-align-self-stretch" style="flex: 1; background: var(--_theme---background-2);">
+                <div class="u-flex-vertical-nowrap u-gap-2">
+                  <h1 class="u-text-style-h1 u-margin-bottom-0" data-item-title>Nombre del plato</h1>
+                  <div class="u-text-style-h3 u-text-brand" data-item-price>€0,00</div>
+                </div>
+                <p class="u-text-style-main u-opacity-75" data-item-description>Descripción breve del plato para CMS.</p>
+
+                <div class="u-flex-vertical-nowrap u-gap-2" data-item-long-block>
+                  <div class="u-text-style-small u-text-transform-uppercase u-opacity-75">Historia del plato</div>
+                  <p class="u-text-style-main u-opacity-75" data-item-long-description></p>
+                </div>
+
+                <div class="u-flex-vertical-nowrap u-gap-2" data-item-portions-block>
+                  <div class="u-text-style-small u-text-transform-uppercase u-opacity-75">Porciones</div>
+                  <div class="u-text-style-main" data-item-portions></div>
+                </div>
+
+                <div class="u-flex-vertical-nowrap u-gap-2" data-item-dietary-block>
+                  <div class="u-text-style-small u-text-transform-uppercase u-opacity-75">Dietas</div>
+                  <div class="u-text-style-main u-opacity-75" data-item-dietary-text></div>
+                  <div class="u-flex-horizontal-wrap u-gap-2" data-item-dietary></div>
+                </div>
+                <div data-wf--button-main--variant="primary" class="button_main_wrap" data-trigger="hover focus">
+                  <a href="#" class="button_main_element" data-item-order>
+                    <div class="button_main_text u-text-style-main">Pedir ahora</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section_masonry u-width-full u-theme-dark">
+        <div class="masonry-grid u-padding-inline-sitemargin">
+          <div class="masonry-row">
+            <div class="masonry-item masonry-item--half">
+              <img src="https://picsum.photos/seed/coliflor/600/600" alt="Coliflor asada" class="masonry-image">
+            </div>
+            <div class="masonry-item masonry-item--half">
+              <img src="https://picsum.photos/seed/grupo/600/600" alt="Grupo comiendo" class="masonry-image">
+            </div>
+          </div>
+          <div class="masonry-row">
+            <div class="masonry-item masonry-item--wide">
+              <img src="https://picsum.photos/seed/gambas/800/500" alt="Gambas a la brasa" class="masonry-image">
+            </div>
+            <div class="masonry-item masonry-item--narrow">
+              <img src="https://picsum.photos/seed/chica/400/500" alt="Chica con camiseta Piri Piri" class="masonry-image">
+            </div>
+          </div>
+
+          <div data-wf--marquee--style="overflow-hidden" class="marquee_wrap masonry-marquee" data-marquee="component">
+            <div style="--lg: 1" class="marquee_offset">
+              <div class="marquee_element swiper"
+                   data-marquee-hover-ease="true"
+                   data-marquee-direction="false"
+                   data-marquee-mode="true"
+                   data-marquee-respect-prm="true"
+                   data-marquee-hover-pause="true"
+                   data-marquee-speed="60000"
+                   data-marquee-text-width-multiplier="2"
+                   data-marquee-scale-text="true"
+                   data-marquee-draggable="true">
+                <div class="marquee_list swiper-wrapper">
+                  <span class="masonry-marquee-item">
+                    <span class="masonry-marquee-text u-text-style-display">SOMOS FUEGO</span>
+                    <svg class="masonry-marquee-icon" viewBox="0 0 59.522 73.562" fill="currentColor" aria-hidden="true">
+                      <path d="M30.127,22.24l11.9-19.4,16.664-.171.835,32.252-33.563,38.637L0,28.304l4.363-18.958L18.101,0Z"/>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="sandbox/resources/data/menu_items.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+      const storedSlug = (() => {
+        try {
+          return sessionStorage.getItem("carta:lastSlug") || "";
+        } catch (err) {
+          return "";
+        }
+      })();
+      const fromGrid = params.get("from") === "grid";
+      if (fromGrid) {
+        const guardMs = 2500;
+        const endTime = Date.now() + guardMs;
+        const navigateBack = (event) => {
+          if (Date.now() > endTime) {
+            cleanup();
+            return;
+          }
+          if (event && (event.type === "wheel" || event.type === "touchmove")) {
+            event.preventDefault();
+          }
+          window.location.href = "carta.html";
+        };
+        const onWheel = (event) => navigateBack(event);
+        const onTouchMove = () => navigateBack();
+        const onScroll = () => navigateBack();
+        const onKeyDown = (event) => {
+          const keys = ["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "];
+          if (keys.includes(event.key)) {
+            navigateBack();
+          }
+        };
+        const cleanup = () => {
+          window.removeEventListener("wheel", onWheel, { passive: false, capture: true });
+          window.removeEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+          window.removeEventListener("scroll", onScroll, { capture: true });
+          window.removeEventListener("keydown", onKeyDown);
+        };
+        window.addEventListener("wheel", onWheel, { passive: false, capture: true });
+        window.addEventListener("touchmove", onTouchMove, { passive: false, capture: true });
+        window.addEventListener("scroll", onScroll, { capture: true });
+        window.addEventListener("keydown", onKeyDown);
+      }
+
+      const items = Array.isArray(window.MENU_ITEMS) ? window.MENU_ITEMS : [];
+      if (!items.length) return;
+
+      const urlSlug = params.get("slug") || "";
+      let slug = urlSlug || storedSlug || "";
+      let item = slug ? items.find((entry) => entry.slug === slug) : null;
+      if (!item && urlSlug && storedSlug && storedSlug !== urlSlug) {
+        slug = storedSlug;
+        item = items.find((entry) => entry.slug === slug) || null;
+      }
+      if (!item) {
+        if (!slug) {
+          item = items[0] || null;
+        } else {
+          window.location.href = "carta.html";
+          return;
+        }
+      }
+      if (!item) return;
+
+      const defaultImage = "resources/images/lumos-v2.webp";
+      const imageEl = document.querySelector("[data-item-image]");
+      const titleEl = document.querySelector("[data-item-title]");
+      const priceEl = document.querySelector("[data-item-price]");
+      const descEl = document.querySelector("[data-item-description]");
+      const longBlockEl = document.querySelector("[data-item-long-block]");
+      const longDescEl = document.querySelector("[data-item-long-description]");
+      const portionsBlockEl = document.querySelector("[data-item-portions-block]");
+      const portionsEl = document.querySelector("[data-item-portions]");
+      const dietaryBlockEl = document.querySelector("[data-item-dietary-block]");
+      const dietaryTextEl = document.querySelector("[data-item-dietary-text]");
+      const dietaryEl = document.querySelector("[data-item-dietary]");
+      const orderEl = document.querySelector("[data-item-order]");
+
+      if (imageEl) {
+        imageEl.src = item.image || defaultImage;
+        imageEl.alt = item.name || "Plato Piri Piri";
+      }
+      if (titleEl) titleEl.textContent = item.name || "Plato Piri Piri";
+      if (priceEl) priceEl.textContent = item.price || "";
+      if (descEl) descEl.textContent = item.description || "";
+      if (longDescEl) {
+        const longText = item.longDescription || item.long_description || "";
+        if (longBlockEl) {
+          longBlockEl.classList.toggle("u-display-none", !longText);
+        }
+        if (longText) {
+          longDescEl.textContent = longText;
+        }
+      }
+      if (portionsEl) {
+        const portions = item.portions || "";
+        if (portionsBlockEl) {
+          portionsBlockEl.classList.toggle("u-display-none", !portions);
+        }
+        if (portions) {
+          portionsEl.textContent = portions;
+        }
+      }
+      if (orderEl && item.orderUrl) orderEl.href = item.orderUrl;
+
+      if (dietaryEl) {
+        dietaryEl.innerHTML = "";
+        const tags = Array.isArray(item.dietary) ? item.dietary : [];
+        const dietaryText = item.dietaryText || item.dietary_text || "";
+        if (dietaryTextEl) {
+          dietaryTextEl.textContent = dietaryText;
+        }
+        const shouldHide = !tags.length && !dietaryText;
+        if (dietaryBlockEl) {
+          dietaryBlockEl.classList.toggle("u-display-none", shouldHide);
+        }
+        if (tags.length) {
+          tags.forEach((tag) => {
+            const chip = document.createElement("span");
+            chip.className = "u-text-style-small u-opacity-75";
+            chip.textContent = tag;
+            dietaryEl.appendChild(chip);
+          });
+        }
+      }
+    });
+  </script>
+</body>
+</html>

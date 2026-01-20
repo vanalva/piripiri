@@ -1,0 +1,304 @@
+
+# Lumos Documentation
+
+## Overview
+Lumos is a framework for building accessible, responsive Webflow sites.  The documentation is divided into multiple topics such as breakpointless layouts, naming conventions, page structure, typography, color variables, grid and flexbox utilities, spacing, state triggers and a large catalogue of components.  Each section below summarises the key guidance from the Lumos docs.
+
+### Table of Contents
+- [Breakpointless](#breakpointless)
+- [Class Naming](#class-naming)
+- [Page Structure](#page-structure)
+- [Typography](#typography)
+- [Color](#color)
+- [Grid](#grid)
+- [Flexbox](#flexbox)
+- [Sizes & Spacing](#sizes--spacing)
+- [Trigger & State](#trigger--state)
+- [FAQs](#faqs)
+- [Components](#components)
+
+---
+
+## Breakpointless
+
+### Why go breakpointless?
+- Many Webflow layouts break when users enlarge their font size because breakpoints are defined in pixelshttps://lumos.timothyricks.com/docs/breakpointless#:~:text=Most%20Webflow%20Layouts%20Are%20Broken.  If text overflows when a user doubles their preferred font size, the layout isn’t accessiblehttps://lumos.timothyricks.com/docs/breakpointless#:~:text=Most%20Webflow%20Layouts%20Are%20Broken.
+- Building without breakpoints improves accessibility, reduces code and speeds up development, since styles automatically respond to content changeshttps://lumos.timothyricks.com/docs/breakpointless#:~:text=,users%20increase%20their%20font%20size.
+
+### Techniques for breakpoint‑free design
+1. **Enable wrapping on horizontal flexboxes:** let the browser decide when a row should wrap so new links, translations or larger fonts don’t break the layouthttps://lumos.timothyricks.com/docs/breakpointless#:~:text=1,horizontal%20flexboxes.
+2. **Use `autofit` and `autofill` grids:** the number of columns adjusts based on available space and minimum column size; this centralises the column width definition so it can be updated laterhttps://lumos.timothyricks.com/docs/breakpointless#:~:text=2,grids.
+3. **Use flex‑basis:** set grow and shrink values on flex children so elements expand or collapse appropriately as the layout wrapshttps://lumos.timothyricks.com/docs/breakpointless#:~:text=3.
+4. **Use accessible fluid typography:** fluid font sizes avoid overflow by scaling smoothly across screen sizeshttps://lumos.timothyricks.com/docs/breakpointless#:~:text=4.
+5. **Avoid pixel units:** pixel‑based borders, radii and padding don’t scale with user font size and can cause overflowhttps://lumos.timothyricks.com/docs/breakpointless#:~:text=5.
+6. **Use container queries:** apply `container-type: inline-size` to a parent and write CSS that responds to the container’s width rather than viewport widthhttps://lumos.timothyricks.com/docs/breakpointless#:~:text=6,needed.  Combine container queries with JS (e.g., match‑container.js) to trigger JavaScript based on container sizehttps://lumos.timothyricks.com/docs/breakpointless#:~:text=Using%20GSAP%20Or%20JS%20With,Container%20Queries.
+
+---
+
+## Class Naming
+
+### Custom classes
+- Every element must have a custom class so it can be targeted with CSS, clearly labelled in the navigator and updated globallyhttps://lumos.timothyricks.com/docs/class-naming#:~:text=1.
+- Custom class names use underscores (`_`) instead of dashes, never exceed three underscores and are always the first class applied to an elementhttps://lumos.timothyricks.com/docs/class-naming#:~:text=reusable.  A suffix of `_wrap` marks the start of a new componenthttps://lumos.timothyricks.com/docs/class-naming#:~:text=,of%20a%20new%20component.
+- Custom classes follow the pattern `type_variation(optional)_element` (e.g., `hero_secondary_wrap`, `hero_secondary_title`)https://lumos.timothyricks.com/docs/class-naming#:~:text=Three%20parts%3A%20.
+- Child groups are named after the parent group plus `_wrap` to prevent collisions (e.g., `.footer_link_wrap` contains children with `_text` classes)https://lumos.timothyricks.com/docs/class-naming#:~:text=Child%20Group%20.
+
+### Utility classes
+- Utilities start with `u-`, use dashes, and are stacked on top of a custom classhttps://lumos.timothyricks.com/docs/class-naming#:~:text=2.  They should not be over‑stacked; apply margin or flexbox styles to the custom class when possiblehttps://lumos.timothyricks.com/docs/class-naming#:~:text=Utility%20classes%20can%20help%20us,the%20custom%20class%20when%20possible.
+- Utilities can be renamed on a specific element without changing the global utility by renaming the class after it’s stacked on the custom classhttps://lumos.timothyricks.com/docs/class-naming#:~:text=Utility%20Renaming.
+- When creating a new utility: create it on an element with no other classes, start the name with `u-` and choose a broad search term (e.g., `u-text-`)https://lumos.timothyricks.com/docs/class-naming#:~:text=Creating%20New%20Utilities.  Add new utilities to the styleguide page and reorder them above component classes to avoid specificity issueshttps://lumos.timothyricks.com/docs/class-naming#:~:text=,prevent%20removal%20during%20class%20cleanup.
+
+### Component classes and combo classes
+- Component classes are for one‑off use within a single component.  They start with `c-`, use dashes and have lower specificity than utilities so they can be overriddenhttps://lumos.timothyricks.com/docs/class-naming#:~:text=3.
+- Combo classes modify an existing class.  They start with `is-`, use dashes, and should be applied on top of a component class (not utilities)https://lumos.timothyricks.com/docs/class-naming#:~:text=4.
+
+---
+
+## Page Structure
+
+The base page structure is built around a `page_wrap` div with several key slotshttps://lumos.timothyricks.com/docs/page-structure#:~:text=page_wrap:
+
+- **`page_wrap`:** contains all page content, prevents horizontal scroll (overflow clip), has `display: flex` and `min-height: 100svh` so the footer stays anchored at the bottomhttps://lumos.timothyricks.com/docs/page-structure#:~:text=page_wrap.
+- **Global Styles:** component containing CSS used on every pagehttps://lumos.timothyricks.com/docs/page-structure#:~:text=Global%20Styles.
+- **Global Guides:** optional overlay to check element alignment across sections; it is hidden in preview and on the published sitehttps://lumos.timothyricks.com/docs/page-structure#:~:text=Global%20Guides.
+- **Nav:** site‑wide navigation barhttps://lumos.timothyricks.com/docs/page-structure#:~:text=Nav.
+- **Page Slot (`page_main`):** holds section components unique to this page; marked as the Main landmark (for accessibility), has an ID of `main` for skip‑to‑main links and does not include the nav or footerhttps://lumos.timothyricks.com/docs/page-structure#:~:text=Page%20Slot%20.
+- **Footer:** site‑wide footer added at the bottomhttps://lumos.timothyricks.com/docs/page-structure#:~:text=Footer.
+
+---
+
+## Typography
+
+### Preparing fonts
+1. **Upload fonts to Webflow** and record their weightshttps://lumos.timothyricks.com/docs/typography#:~:text=1,Webflow.
+2. In the **Typography variable collection**, define your font families, trim amounts (top/bottom) and weights.  Use tools like the Line Height Trim tool to find the correct trim valueshttps://lumos.timothyricks.com/docs/typography#:~:text=Set%20the%20family%2C%20trim%20top%2C,and%20weights%20for%20each%20family, and set letter‑spacing and line‑height variables; variable names should exactly match their valueshttps://lumos.timothyricks.com/docs/typography#:~:text=Set%20letter.
+3. Use the **Fluid Builder App** to update each font size so that it scales fluidly across screen widthshttps://lumos.timothyricks.com/docs/typography#:~:text=Update%20each%20font%20size%20using,the%20Fluid%20Builder%20App.
+
+### Text style variables
+- In the **Text Style variable collection**, define font size, line height, letter spacing, text transform, margin, font family, weight, trim and text wrap for each heading and paragraph sizehttps://lumos.timothyricks.com/docs/typography#:~:text=3.
+- Apply **line‑height trim** globally to remove extra space at the top and bottom of text boxes; this helps align text with other elementshttps://lumos.timothyricks.com/docs/typography#:~:text=Line%20height%20trim%20removes%20the,trim%20amount%20set%20in%20the.  Each font family needs its own trim amounthttps://lumos.timothyricks.com/docs/typography#:~:text=Line%20height%20trim%20removes%20the,tool%20to%20find%20your%20values.
+- Set each `u-text-style-` class to `display: flow-root` to ensure the text box hugs the characters when using line‑height trimhttps://lumos.timothyricks.com/docs/typography#:~:text=Display%3A%20flow.
+- You can replicate the text‑trim effect in Figma under “Type settings > Vertical trim”https://lumos.timothyricks.com/docs/typography#:~:text=Figma%20Text%20Trim.
+
+### Adding a new font size
+1. Add a new size variable in the **Typography collection** and set its value (edit with the Fluid Builder App if needed)https://lumos.timothyricks.com/docs/typography#:~:text=Adding%20A%20New%20Font%20Size.
+2. In the **Text Style collection**, create a new mode for this font sizehttps://lumos.timothyricks.com/docs/typography#:~:text=2,for%20the%20new%20font%20size.
+3. Apply the corresponding font size, line height and letter spacinghttps://lumos.timothyricks.com/docs/typography#:~:text=3,and%20any%20other%20styles%20needed.
+4. Duplicate an existing text‑style class and connect it to the new modehttps://lumos.timothyricks.com/docs/typography#:~:text=4.%20Duplicate%20an%20existing%20text,the%20new%20Text%20Style%20mode.
+5. In the heading and paragraph components, create a variant for the new size and connect it to the new modehttps://lumos.timothyricks.com/docs/typography#:~:text=5,it%20to%20the%20new%20mode.
+
+---
+
+## Color
+
+Lumos uses variables to manage swatches, themes and button styleshttps://lumos.timothyricks.com/docs/color#:~:text=Color.
+
+- **Swatches:** define core color swatches and extra variables (e.g., `brand-secondary-500`, `brand-secondary-text`).  When a swatch such as `--swatch--brand-500` is used as a background, a companion variable like `--swatch--brand-text` supplies the appropriate text color so the brand color can be changed from one placehttps://lumos.timothyricks.com/docs/color#:~:text=Swatches.
+- **Theme variables:** set section background, text and border colors across all modes; set primary (solid) and secondary (outlined) button styles; add folders for additional styles like card backgrounds or input stateshttps://lumos.timothyricks.com/docs/color#:~:text=Theme%20variable%20collection.
+- **Button style variables:** reference the button styles defined in the theme collection so each button automatically updates for light and dark modeshttps://lumos.timothyricks.com/docs/color#:~:text=Button%20Style%20variable%20collection.
+
+### Connecting variables to components
+1. **Connect button styles:** create component variants for each button style (e.g., secondary) and switch their mode to the corresponding stylehttps://lumos.timothyricks.com/docs/color#:~:text=Connecting%20Button%20Style%20to%20Component,Props.
+2. **Connect themes:** create component variants for inherit, light, dark and other themes.  The inherit variant should have no theme applied so it inherits the page’s themehttps://lumos.timothyricks.com/docs/color#:~:text=1,Dark%2C%20and%20any%20other%20themes.  Then apply the text and background variables to the base varianthttps://lumos.timothyricks.com/docs/color#:~:text=2,variable%20to%20the%20base%20variant and set the related theme on each varianthttps://lumos.timothyricks.com/docs/color#:~:text=3,to%20each%20variant.
+
+### Animating themes
+- A script (theme‑collector.js) collects all variables starting with `u-theme-` (themes) and `u-brand-` (brands).  Use GSAP to animate between themes by passing the desired mode (e.g., dark) and brand as argumentshttps://lumos.timothyricks.com/docs/color#:~:text=Animating%20between%20themes%20with%20GSAP.  This script works with or without Per Page CSShttps://lumos.timothyricks.com/docs/color#:~:text=With%20Per%20Page%20CSS.
+
+---
+
+## Grid
+
+### Setup
+1. **Set the global column count:** adjust the `site/column-count` variable to match your design (default 12).  This value is used by grid utilities and guideshttps://lumos.timothyricks.com/docs/grid#:~:text=1,count.
+2. **Adjust the gutter:** the `site/gutter` variable controls the default gap between columns.  It can be made fluid via the Fluid Builder Apphttps://lumos.timothyricks.com/docs/grid#:~:text=2.%20Adjust%20the%20.
+
+### Grid utilities
+- **u-grid-autofit / u-grid-autofill:** these classes create grids that automatically fit or fill columns based on available space.  `u-grid-autofit` stretches cards to use extra space, while `u-grid-autofill` leaves empty space when there are fewer cards (useful for filterable lists)https://lumos.timothyricks.com/docs/grid#:~:text=u.  Modes allow you to set a maximum column count, gap and minimum column widthhttps://lumos.timothyricks.com/docs/grid#:~:text=Column%20Count%20.
+- **u-grid-above:** a 12‑column grid above the breakpoint that becomes a vertical flexbox below the breakpoint.  The `container-name` custom property sets the wrap point (e.g., `threshold-small`, `threshold-medium`, `threshold-large`)https://lumos.timothyricks.com/docs/grid#:~:text=u.
+- **u-grid-below:** opposite of `u-grid-above`: 12‑column grid below the breakpoint and flexbox abovehttps://lumos.timothyricks.com/docs/grid#:~:text=u.
+- **u-grid-custom:** 12‑column grid by default that can be overridden to any column count; you can reduce the column count at different container sizes using container querieshttps://lumos.timothyricks.com/docs/grid#:~:text=u.
+- **u-grid-breakout:** adds an extra column on both sides so elements can break out of the container and reach the viewport edges.  Custom properties allow you to start/end at `full` or `content`https://lumos.timothyricks.com/docs/grid#:~:text=u.
+- **u-grid-subgrid:** creates a subgrid inside a parent grid.  If the element spans more than eight parent columns, it automatically becomes an 8‑column gridhttps://lumos.timothyricks.com/docs/grid#:~:text=u.
+
+### Column utilities
+- **u-column-custom:** sets a custom start and end point across breakpoints (starts in its auto position and spans one column by default)https://lumos.timothyricks.com/docs/grid#:~:text=Column%20Utilities.
+- **u-column-full:** spans all columns of the parent grid (uses `grid-column-start: 1; grid-column-end: -1`)https://lumos.timothyricks.com/docs/grid#:~:text=u.
+
+### Order utilities
+- **u-order-first / u-order-last:** change the order of grid items within the grid (not fully listed but referenced in the docs).  Use these utilities to rearrange content on different screen sizeshttps://lumos.timothyricks.com/docs/grid#:~:text=,last.
+
+---
+
+## Flexbox
+
+### Alignment variable collection
+- Lumos defines **alignment variable modes** that control both horizontal alignment of flex children and text alignment of their children from a single variable.  This allows sections to match child alignment across breakpoints without manually adjusting each childhttps://lumos.timothyricks.com/docs/flexbox#:~:text=Alignment%20Variable%20Collection.
+- To apply the alignment mode, add one of the classes `u-alignment-start`, `u-alignment-center` or `u-alignment-end` to the parenthttps://lumos.timothyricks.com/docs/flexbox#:~:text=Apply%20classes%20of%20u,text%20alignment%20and%20alignment%20mode.
+
+### Display flex utilities
+- Use classes such as `u-flex-horizontal-wrap`, `u-flex-vertical-nowrap`, `u-flex-horizontal-nowrap` and `u-flex-vertical-wrap` to apply `display: flex` and link horizontal alignment to the alignment modehttps://lumos.timothyricks.com/docs/flexbox#:~:text=Display%20Flex.
+
+### Align self
+- Apply `u-align-self-variable` (connected to the alignment mode), `u-align-self-start`, `u-align-self-center`, `u-align-self-end` or `u-align-self-stretch` to children to control their alignmenthttps://lumos.timothyricks.com/docs/flexbox#:~:text=Align%20Self.
+
+### Align items and justify content
+- **u-align-items-variable, u-align-items-start, u-align-items-center, u-align-items-end, u-align-items-stretch:** align flex children vertically when flexbox is horizontalhttps://lumos.timothyricks.com/docs/flexbox#:~:text=Align%20Items.
+- **u-justify-content-variable, u-justify-content-start, u-justify-content-center, u-justify-content-end, u-justify-content-between, u-justify-content-around:** align children horizontally when flexbox is verticalhttps://lumos.timothyricks.com/docs/flexbox#:~:text=Justify%20Content.
+
+### Flex basis utilities
+- Use `u-flex-shrink`, `u-flex-grow` and `u-flex-noshrink` to control how flex items grow and shrinkhttps://lumos.timothyricks.com/docs/flexbox#:~:text=Flex%20Basis%20Utilities.
+
+---
+
+## Sizes & Spacing
+
+### Size variables
+Lumos defines several global size variables.  These variables scale fluidly, provide consistent spacing and improve behaviour when users zoomhttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Size%20Variables.  Key variables include:
+- **`site/viewport-max`** – maximum screen width for fluid scaling (default 90 rem)https://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fviewport.
+- **`site/viewport-min`** – minimum screen width for fluid scaling (default 20 rem)https://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fviewport.
+- **`site/margin`** – left/right margin that keeps the container away from the viewport edgeshttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fmargin.
+- **`site/gutter`** – default gap between grid columns; can be made fluidhttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fgutter.
+- **`site/column-count`** – main column count used in designs (usually 12)https://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fcolumn.
+- **`site/column-width`** – used for breakout grid classes; should not be adjusted directlyhttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=site%2Fcolumn.
+
+### Space variable folders
+- The **Space** folder provides generic spacing values for separating elements within a section.  These values ensure that spacing never looks like a new section and can be edited via the Fluid Builder Apphttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Space%20Variable%20Folder.
+- The **Section Space** folder defines top and bottom spacing for sections.  The `page-top` variable adds extra space when a section is at the top of a page (for the nav)https://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Section%20Space%20Variable%20Folder.
+
+### Margin vs gap
+- Gaps are useful for spacing lists or grid columns, but margins are more flexible for text because they allow unique spacing between different element types without extra wrapper divshttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Margin%20vs%20Gap.
+
+### Margin trim and collapsing margins
+- Add the class `u-margin-trim` to a parent to remove the top margin from its first child and the bottom margin from its last childhttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Margin%20Trim.
+- When margins collide (e.g., a heading has `margin-bottom: 2rem` and the following paragraph has `margin-top: 1rem`), the bigger margin wins (2rem).  Collapsing margins only affect vertical margins on block-level parents and do not occur inside flex or grid containershttps://lumos.timothyricks.com/docs/sizes-and-spacing#:~:text=Collapsing%20Margins.
+
+---
+
+## Trigger & State
+
+The trigger & state system allows styles to change based on component state or user interactionhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Benefits.
+
+### Benefits
+- You can rename classes/variables without breaking custom code, keep all styles visible for no‑coders and override states using component variantshttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Benefits.
+
+### States
+Add a `data-state` attribute to an element to mark it active when a condition is methttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=State:
+- **data-state="checked":** element (or ancestor) contains a checked checkbox/radiohttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-state="current":** element (or ancestor) is a link pointing to the current page or anchorhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-state="open":** element (or ancestor) contains an open menu or dropdownhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-state="expanded":** element (or ancestor) contains a child with `aria-expanded="true"`https://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-state="external":** element (or ancestor) is a link that opens in a new tabhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **is-active:** apply class `is-active` directly to mark element as activehttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=is.
+
+### Triggers
+Add a `data-trigger` attribute to activate the element when a user interactshttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Trigger:
+- **data-trigger="focus":** active while the element (or a descendant) is focusedhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-trigger="hover":** active while hoveredhttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-trigger="mobile":** active on touch deviceshttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-trigger="preview":** active inside the Webflow designer but not on the live sitehttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+- **data-trigger="group":** apply to a parent to affect siblings of the hovered/focused element; combine with `hover-other` or `focus-other` on siblingshttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=data.
+
+### Applying in the style panel
+Use custom properties to alter CSS properties when the trigger or state is active:
+- **Opacity:** compute the opacity with `calc(1 - 0.4 * var(--_trigger---on))` to lower opacity to 0.6 when activehttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Opacity.
+- **Color:** mix colors using `color-mix()` with variables for active and inactive stateshttps://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Color.
+- **Transform:** scale or translate elements by multiplying the active state variable (e.g., `scale(calc(1 + 0.2 * var(--_trigger---on)))`)https://lumos.timothyricks.com/docs/trigger-and-state#:~:text=Transform.
+- **Trigger OR state:** use `min(var(--_trigger---off) + var(--_state---false), 1)` to combine triggers and states (e.g., move an element vertically when either is active)https://lumos.timothyricks.com/docs/trigger-and-state#:~:text=If%20trigger%20OR%20state%20is,active.
+
+---
+
+## FAQs
+
+Lumos answers several common questions in its FAQ section:
+
+- **Where should custom CSS be added?**  Add CSS in an embed on the page to see changes instantly.  If the CSS should run only on the published site, place it in the page or site settings head code.  For CSS that runs in preview and across every page, place it inside the Global Styles componenthttps://lumos.timothyricks.com/docs/faqs#:~:text=Where%20should%20custom%20css%20be,added.  For CSS targeting a specific section or component, store it inside an embed within that component (use the *Starter / CSS* component as a starting point)https://lumos.timothyricks.com/docs/faqs#:~:text=component.%20,before%20adding%20your%20own%20code.
+- **Where should custom JavaScript be added?**  Global JS (e.g., GSAP, Swiper) should go in the site settings footer code.  Component‑specific JS should be stored in an embed at the end of the section component.  Before unlinking a section, convert the embed into its own component so it can still be updated globallyhttps://lumos.timothyricks.com/docs/faqs#:~:text=Where%20should%20custom%20javascript%20be,added.
+- **Working with inconsistent designs:** Lumos works with most designs, but consistent grids, planned themes (light/dark), defined section spacing and use of the Figma file make development easierhttps://lumos.timothyricks.com/docs/faqs#:~:text=Lumos%20can%20work%20with%20nearly,site%20to%20build%20with%20Lumos.
+- **Updating Lumos to a new version:** There is no automatic upgrade path.  Compare versions using the changelog, then copy new classes from a current cloneable project into your existing projecthttps://lumos.timothyricks.com/docs/faqs#:~:text=How%20can%20I%20update%20from,the%20latest%20version%20of%20Lumos.
+- **Adding Lumos to an existing project:** Use Webflow’s libraries feature to import components, variables and classeshttps://lumos.timothyricks.com/docs/faqs#:~:text=How%20to%20add%20Lumos%20into,was%20not%20created%20with%20Lumos.
+- **Are IDs auto‑generated on Lumos grids?**  No.  Webflow only generates IDs for children if the parent has `display: grid`.  Stacking a grid utility on a component class prevents Webflow from auto‑generating IDshttps://lumos.timothyricks.com/docs/faqs#:~:text=Are%20IDs%20auto%20generated%20on,Lumos%20Grids.
+- **Why aren’t my videos showing?**  Ensure the `src` attribute points to a direct video file (e.g., from AWS, paid Vimeo or Bunny.net).  YouTube or Vimeo player links don’t work, and low‑power mode on phones can disable autoplayhttps://lumos.timothyricks.com/docs/faqs#:~:text=Why%20aren%27t%20my%20videos%20showing,the%20Global%20%2F%20Visual%20component.
+- **How to add an SVG?**  Use the SVG Import App to import SVGs quickly.  For outlined SVGs, set `stroke-width="var(--border-width--main)"` and `vector-effect="non-scaling-stroke"`, give the SVG a class of `u-svg` and convert it into a component for global reusehttps://lumos.timothyricks.com/docs/faqs#:~:text=How%20to%20add%20an%20SVG%3F.
+
+---
+
+## Components
+
+Lumos ships with a large library of Webflow components.  Components are either **open** (easy to modify but require manual updates for global changes) or **closed** (require setup but allow global updates via props).  You can convert an open component into a closed component by wrapping it in a div and exposing only the desired props while keeping other attributes global.  Duplicating a component duplicates all of its props, making it easy to create similar components.
+
+### Naming and organizing components
+- Start names with broad terms like “Section” or “Button” so they’re easy to search.  The *Section* folder should come first and contain styles/props for the section, followed by element folders in the order they appear.  Within each group, visibility options come first and fields are ordered by frequency of use.
+- Component slot names should match the name of the child component so clients know what to insert into each slot.
+
+### Default components by group
+
+#### Section group
+- **Section Custom:** A custom section wrapper with top/bottom padding variants and theme switching.  Use the section as the parent for other components.
+
+#### Button group
+- **Button Main:** The primary clickable button.  Contains a global clickable component; the button text has `aria-hidden="true"` and is replaced with a slot for the button text.  Use global styles to set typography, spacing and backgrounds.
+- **Button Play:** A button that toggles between play and pause icons via JS or CSS.
+- **Button Arrow:** A button with an arrow icon (commonly used for slider controls).
+- **Button Close:** A button for closing modals or overlays.
+- **Button Text Link:** A button styled like a text link.
+
+#### Card group
+- **Card Primary:** A prebuilt card with slots for an image, heading, paragraph and button.
+
+#### Form group
+- **Form:** Wrapper for forms with slots for label, inputs and buttons.  Adds accessibility attributes and global styling.
+- **Form Checkbox / Form Radio:** Inputs for checkboxes and radio buttons.  Use label and input slots for accessible forms.
+- **Form Fieldset:** Groups related inputs with a legend for accessibility.
+- **Form Label Text:** Text label for inputs.
+- **Form Input / Form Textarea:** Standard inputs and multi‑line text fields.
+- **Form Select / Form Select Option:** Custom select menu and option; include the select options within the select component.
+- **Form Recaptcha:** Adds a reCAPTCHA; requires the site key to be set in component settings.
+
+#### Global group
+- **Global Guides:** Visual guides to check alignment and spacing across the page; hidden on published sites.
+- **Global Styles:** Houses global CSS such as resets, typography and color variables.
+- **Nav / Footer:** Site‑wide navigation and footer components.
+
+#### Miscellaneous group
+- **Nav Banner:** A top bar used to display announcements or notifications.
+- **Menu:** Holds menu content; variants for desktop and mobile.
+
+#### Interactive group
+- **Slider:** A Swiper.js slider component with props for responsiveness, overflow and slider settings; includes instructions for connecting external controls using `data-slider` attributes.
+- **Accordion List / Accordion Item:** Collapsible accordion components for FAQs and multi‑section content.
+- **Modal:** A modal window requiring a unique ID.  Connect buttons to open/close the modal using `data-modal-trigger` attributes or JS functions (`lumos.modal.open('id')`, `lumos.modal.closeAll()`); event listeners allow hooking into open/close events.
+- **Tab:** An interactive tab component with support for CMS and cross‑page linking via query parameters; Tab Link is used inside Tab to switch panels.
+
+#### Layout group
+- **Button Wrapper:** Horizontal flex container for stacking buttons; inherits alignment and supports custom gap/margin.
+- **Content Wrapper:** Holds headings, paragraphs and buttons; variant for horizontal alignment.
+- **Grid:** Wrapper that uses grid utilities; supports custom max column count, auto‑fit/fill, subgrids and breakout.
+- **Block:** Basic div container with slot for nested elements.
+- **Section:** Section wrapper with variants for theme (color mode) and spacing.
+
+#### SVG group
+- Includes icons such as **Icon Arrow**, **Icon Arrow Full**, **Icon X**, **Icon Search**, **Logo** (site‑wide logo), and **Stroke Path** (for outline SVG paths; stroke width matches border width across the site).
+
+#### Typography group
+- **Typography Eyebrow:** Small subheading used site‑wide.
+- **Typography Heading:** Rich‑text heading component; plain text headings can’t include bold/italic/subscript characters when connected to a component prop, so rich text is the default for headings.  Use `u-child-contain` and `u-max-width` when headings need a max width while respecting parent alignment.  Includes a font size variant and a class attribute for other styles.
+- **Typography Paragraph:** Rich‑text paragraph component; plain text paragraphs cannot include bold/italic/subscript when connected to a prop, so rich text is default.  Paragraphs are separate from headings so font sizes and spacing can be controlled independently.  Includes a font size variant and class attribute; use `u-child-contain` and `u-max-width` for max width.
+- **Typography Plain:** Plain text element used when connecting text to a CMS field.
+- **Typography Tag:** Card‑like tag used as a subheading or callout.
+
+#### Utility group
+- Holds components that aren’t intended for direct use by clients.  These are placed inside parent components.
+- **Background Color:** Absolute‑positioned div covering a section’s background; variants switch between lighter and darker shades within each theme.
+- **Clickable:** Absolute link block/button that sits inside cards or buttons to make them fully clickable; if no URL is set, the link block is hidden and a button tag is used.
+- **Spacer:** Adds top/bottom space within a section; variants adjust spacer size.
+- **Starter / CSS:** Embed component with `<style>` tags.  Unlink it before use; place it at the top of a section to add CSS inside any section component.
+- **Starter / JS:** Embed component with `<script>` tags for adding JavaScript inside a section.  Should be the last child of the section and includes example code.  Contains a DOMContentLoaded listener that loops through each instance of your section and runs the script only once; a `script-initialized` dataset attribute prevents duplicate execution.  A jQuery version is also provided.
+
+#### Visual group
+- **Media Overlay:** Absolute div with a black background and a prop controlling opacity; place over images or videos to darken them when text sits on top.
+- **Visual Image:** Image with an aspect ratio and faded background color placeholder.  Use as a section background by adding classes `u-cover-absolute` and `u-zindex-negative` and placing the image in the container.
+- **Visual Video:** HTML video element.  Requires a direct link to the video (e.g., Bunny.net or paid Vimeo).  The component includes props for autoplay, loop, muted and ratio.  Use as a section background by adding `u-cover-absolute` and `u-zindex-negative` to the video and placing it in the container.
+
+---
+
+This document summarises the Lumos documentation in a single, LLM‑readable format.  It captures the structure, conventions and components of Lumos and can be used for AI models or as an offline reference.
