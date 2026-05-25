@@ -526,6 +526,109 @@
     [data-grid-collapse]:hover { opacity: 1; }
     [data-grid-collapse].is-collapsed { transform: rotate(180deg); }
 
+    /* Sort dropdown (list view header) — chip styling matches view toggle */
+    .sort-dropdown {
+      position: relative;
+      display: inline-flex;
+      flex: 0 0 auto;
+    }
+
+    .sort-trigger {
+      appearance: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.4rem 0.7rem;
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      background: color-mix(in srgb, var(--_theme---background) 92%, transparent);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      color: var(--_theme---text);
+      font-family: var(--_typography---font--secondary-family);
+      font-size: 0.8rem;
+      line-height: 1;
+      cursor: pointer;
+      white-space: nowrap;
+      opacity: 0.7;
+      transition: opacity 0.15s ease;
+      height: 34px;
+    }
+
+    .sort-trigger:hover,
+    .sort-trigger[aria-expanded="true"] {
+      opacity: 1;
+    }
+
+    .sort-trigger svg {
+      width: 0.9rem;
+      height: 0.9rem;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .sort-trigger .sort-chevron {
+      transition: transform 0.15s ease;
+    }
+
+    .sort-trigger[aria-expanded="true"] .sort-chevron {
+      transform: rotate(180deg);
+    }
+
+    .sort-menu {
+      position: absolute;
+      top: calc(100% + 0.4rem);
+      right: 0;
+      list-style: none;
+      padding: 0.25rem;
+      margin: 0;
+      background: var(--_theme---background-2);
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      min-width: 14rem;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+      z-index: 5;
+    }
+
+    .sort-menu[hidden] { display: none; }
+
+    .sort-menu li {
+      padding: 0.55rem 0.8rem;
+      cursor: pointer;
+      border-radius: calc(var(--radius--main) - 0.2rem);
+      color: var(--_theme---text);
+      font-family: var(--_typography---font--secondary-family);
+      font-size: 0.85rem;
+      transition: background 0.12s ease;
+    }
+
+    .sort-menu li:hover {
+      background: var(--_theme---background);
+    }
+
+    .sort-menu li[aria-selected="true"] {
+      background: var(--_theme---background);
+      font-weight: 600;
+    }
+
+    /* List-view section headers injected between category groups */
+    .list-section-title {
+      font-family: var(--_typography---font--primary-family);
+      font-weight: 900;
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--_theme---text);
+      margin: var(--_spacing---space--6) 0 var(--_spacing---space--2);
+      padding-top: var(--_spacing---space--4);
+    }
+
+    .list-section-title:first-child {
+      margin-top: 0;
+      padding-top: 0;
+    }
+
   </style>
 </head>
 
@@ -674,8 +777,28 @@
             </div>
 
             <div class="u-flex-vertical-nowrap u-gap-3 u-align-items-start">
-              <!-- Compact icon toggle, right-aligned above the filter pills -->
-              <div class="u-flex-horizontal-nowrap u-justify-content-end" style="width: 100%;">
+              <!-- Sort dropdown + compact toggle, right-aligned above the filter pills -->
+              <div class="u-flex-horizontal-nowrap u-justify-content-end u-align-items-center u-gap-3" style="width: 100%;">
+
+                <!-- Sort dropdown (list view only) -->
+                <div class="sort-dropdown" data-sort-dropdown>
+                  <button type="button" class="sort-trigger" aria-haspopup="listbox" aria-expanded="false" aria-label="Ordenar">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M3 6h12v2H3V6zm0 5h9v2H3v-2zm0 5h6v2H3v-2zm14-9v9.586l-2.293-2.293-1.414 1.414L18 20.414l4.707-4.707-1.414-1.414L19 16.586V7h-2z"/>
+                    </svg>
+                    <span class="sort-current-label">Categoría</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="sort-chevron">
+                      <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                  </button>
+                  <ul class="sort-menu" role="listbox" hidden>
+                    <li role="option" data-sort="category" aria-selected="true">Por categoría</li>
+                    <li role="option" data-sort="price-asc" aria-selected="false">Precio: menor a mayor</li>
+                    <li role="option" data-sort="price-desc" aria-selected="false">Precio: mayor a menor</li>
+                    <li role="option" data-sort="name" aria-selected="false">Nombre: A → Z</li>
+                  </ul>
+                </div>
+
                 <div class="view-toggle-compact" data-view-toggle>
                   <button type="button" data-view-btn="grid" aria-pressed="false" aria-label="Vista de grilla" title="Vista de grilla">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -838,11 +961,28 @@
             category: node.dataset.category || ""
           }));
       let activeFilter = "all";
+      let activeSort = "category";
       let gridInstance = null;
       let categoryToggleOn = false;
       let hoveredFilterCategory = null;
       let listItemRefs = [];
       let currentGridItems = [];
+
+      const sortLabels = {
+        "category": "Categoría",
+        "price-asc": "Precio ↑",
+        "price-desc": "Precio ↓",
+        "name": "A → Z",
+      };
+
+      const parsePrice = (priceStr) => {
+        if (!priceStr) return Number.POSITIVE_INFINITY;
+        // First numeric value with comma or period decimal — covers "10,00",
+        // "Individual 4,50; Compartir 6,50" (takes the first/individual price).
+        const match = String(priceStr).match(/(\d+[,.]\d+)|(\d+)/);
+        if (!match) return Number.POSITIVE_INFINITY;
+        return parseFloat(match[0].replace(",", "."));
+      };
 
       const normalizeCategory = (value) => {
         return (value || "")
@@ -994,7 +1134,21 @@
       const buildList = (items) => {
         listContainer.innerHTML = "";
         listItemRefs = [];
+        // Section headers only make sense when sorting by category
+        const showSectionHeaders = activeSort === "category";
+        let currentSectionCategory = null;
         items.forEach((item) => {
+          if (showSectionHeaders) {
+            const itemCategory = normalizeCategory(item.category);
+            if (itemCategory !== currentSectionCategory) {
+              const heading = document.createElement("h2");
+              heading.className = "list-section-title";
+              heading.textContent = getCategoryLabel(item.category);
+              listContainer.appendChild(heading);
+              currentSectionCategory = itemCategory;
+            }
+          }
+
           const card = document.createElement("a");
           const itemUrl = item.slug ? `carta-item.html?slug=${encodeURIComponent(item.slug)}` : "#";
           card.href = itemUrl;
@@ -1092,6 +1246,16 @@
           return index === -1 ? categoryOrder.length : index;
         };
         listItems.sort((a, b) => {
+          if (activeSort === "price-asc") {
+            return parsePrice(a.price) - parsePrice(b.price);
+          }
+          if (activeSort === "price-desc") {
+            return parsePrice(b.price) - parsePrice(a.price);
+          }
+          if (activeSort === "name") {
+            return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
+          }
+          // default: category order, then alphabetical within
           const rankA = getCategoryRank(a.category);
           const rankB = getCategoryRank(b.category);
           if (rankA !== rankB) return rankA - rankB;
@@ -1179,6 +1343,55 @@
           });
         }
       });
+
+      // ─── Sort dropdown ────────────────────────────────────────────────────
+      const sortDropdowns = Array.from(document.querySelectorAll("[data-sort-dropdown]"));
+
+      const closeAllSortMenus = () => {
+        sortDropdowns.forEach((dd) => {
+          const m = dd.querySelector(".sort-menu");
+          const t = dd.querySelector(".sort-trigger");
+          if (m) m.hidden = true;
+          if (t) t.setAttribute("aria-expanded", "false");
+        });
+      };
+
+      const setSort = (sortKey) => {
+        activeSort = sortKey;
+        sortDropdowns.forEach((dd) => {
+          const label = dd.querySelector(".sort-current-label");
+          if (label) label.textContent = sortLabels[sortKey] || sortKey;
+          dd.querySelectorAll("[data-sort]").forEach((li) => {
+            li.setAttribute("aria-selected", String(li.dataset.sort === sortKey));
+          });
+        });
+        closeAllSortMenus();
+        applyFilter();
+      };
+
+      sortDropdowns.forEach((dd) => {
+        const trigger = dd.querySelector(".sort-trigger");
+        const menu = dd.querySelector(".sort-menu");
+        if (!trigger || !menu) return;
+        trigger.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const wasOpen = trigger.getAttribute("aria-expanded") === "true";
+          closeAllSortMenus();
+          if (!wasOpen) {
+            menu.hidden = false;
+            trigger.setAttribute("aria-expanded", "true");
+          }
+        });
+        dd.querySelectorAll("[data-sort]").forEach((li) => {
+          li.addEventListener("click", (e) => {
+            e.stopPropagation();
+            setSort(li.dataset.sort);
+          });
+        });
+      });
+
+      // Click anywhere else closes open sort menus
+      document.addEventListener("click", closeAllSortMenus);
 
       const legendToggle = document.querySelector("[data-legend-toggle]");
       if (legendToggle) {
