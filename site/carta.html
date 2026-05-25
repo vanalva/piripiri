@@ -348,16 +348,54 @@
       transition: opacity 0.2s ease;
     }
 
-    [data-view-toggle] {
-      flex-wrap: wrap;
-      align-items: stretch;
-      width: 100%;
-      max-width: 100%;
+    /* Compact icon-only view toggle (grid / list) */
+    .view-toggle-compact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0;
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      overflow: hidden;
+      background: color-mix(in srgb, var(--_theme---background) 92%, transparent);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      flex: 0 0 auto;
+      width: auto;
+      align-self: flex-start;
     }
 
-    [data-view-toggle] .button_main_wrap {
-      flex: 0 0 auto;
+    .view-toggle-compact button {
+      appearance: none;
+      border: none;
+      background: transparent;
+      padding: 0.4rem 0.6rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--_theme---text);
+      opacity: 0.5;
+      transition: opacity 0.15s ease, background 0.15s ease;
     }
+
+    .view-toggle-compact button:hover { opacity: 1; }
+
+    .view-toggle-compact button[aria-pressed="true"] {
+      opacity: 1;
+      background: var(--_theme---background);
+    }
+
+    .view-toggle-compact button + button {
+      border-left: var(--border-width--main) solid var(--_theme---border);
+    }
+
+    .view-toggle-compact svg,
+    .view-toggle-compact img {
+      width: 1.05rem;
+      height: 1.05rem;
+      display: block;
+    }
+
 
     [data-filter-group] .button_main_text {
       font-weight: 400 !important;
@@ -365,6 +403,97 @@
       text-transform: none !important;
       font-size: 0.875rem !important;
       font-family: var(--_typography---font--secondary-family) !important;
+    }
+
+    /* Grid view: overlay layer (fog + chips) — sibling of <main> so it sits
+       above the fixed nav stacking context. The wrapper is fixed/inset:0 with
+       pointer-events:none so the underlying grid stays draggable. */
+    .grid-overlay-layer {
+      position: fixed;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    /* Soft dark fog from the top-left — fills viewport so no hard edges,
+       sized gradient controls how far the darkness reaches. */
+    .grid-fog {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 75vw 55vh at top left,
+        color-mix(in srgb, var(--_theme---background) 80%, transparent) 0%,
+        color-mix(in srgb, var(--_theme---background) 50%, transparent) 28%,
+        color-mix(in srgb, var(--_theme---background) 20%, transparent) 60%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    /* Minimal floating control bar — aligned with the nav button on the right */
+    .grid-floating-controls {
+      position: absolute;
+      top: var(--_spacing---space--4);
+      left: var(--_spacing---space--4);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+      max-width: calc(100vw - var(--_spacing---space--4) * 2 - 12rem);
+    }
+
+    .grid-floating-controls > * {
+      pointer-events: auto;
+    }
+
+    .grid-floating-controls > * {
+      pointer-events: auto;
+    }
+
+    .grid-filter-chips {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    /* Filter chip = mini pill that matches the view-toggle styling:
+       same border, bg, blur, dim/active opacity behavior. */
+    .grid-filter-chips .button_main_wrap {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      border: var(--border-width--main) solid var(--_theme---border);
+      border-radius: var(--radius--main);
+      overflow: hidden;
+      background: color-mix(in srgb, var(--_theme---background) 92%, transparent);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      opacity: 0.5;
+      transition: opacity 0.15s ease;
+    }
+
+    .grid-filter-chips .button_main_wrap:hover { opacity: 1; }
+    .grid-filter-chips .button_main_wrap[aria-pressed="true"] { opacity: 1; }
+    .grid-filter-chips .button_main_wrap[aria-pressed="true"] .button_main_element {
+      background: var(--_theme---background) !important;
+    }
+
+    .grid-filter-chips .button_main_element {
+      appearance: none !important;
+      border: none !important;
+      background: transparent !important;
+      padding: 0.4rem 0.8rem !important;
+      box-shadow: none !important;
+      color: var(--_theme---text) !important;
+      font-family: var(--_typography---font--secondary-family) !important;
+      font-weight: 400 !important;
+      font-size: 0.8rem !important;
+      font-style: normal !important;
+      text-transform: none !important;
+      letter-spacing: normal !important;
+      cursor: pointer !important;
+      transition: background 0.15s ease !important;
     }
 
     [data-grid-panel-body] {
@@ -543,27 +672,25 @@
               <h1 class="u-text-style-h1 u-margin-bottom-2">Carta</h1>
               <p class="u-text-style-main u-opacity-75">Explora el menú con imágenes o cambia a vista en lista para ver descripción, precio y dieta.</p>
             </div>
+
             <div class="u-flex-vertical-nowrap u-gap-3 u-align-items-start">
-              <div class="u-flex-horizontal-nowrap u-gap-3 u-align-items-start" data-view-toggle style="justify-content: flex-start;">
-                <div class="button_main_wrap" data-view-btn="grid" data-trigger="hover focus" aria-pressed="true">
-                  <button type="button" class="button_main_element">
-                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                      <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
-                        <rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
-                      </svg>
-                      <span>Grilla</span>
-                    </div>
+              <!-- Compact icon toggle, right-aligned above the filter pills -->
+              <div class="u-flex-horizontal-nowrap u-justify-content-end" style="width: 100%;">
+                <div class="view-toggle-compact" data-view-toggle>
+                  <button type="button" data-view-btn="grid" aria-pressed="false" aria-label="Vista de grilla" title="Vista de grilla">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <rect x="3" y="3" width="8" height="8" rx="2"/>
+                      <rect x="13" y="3" width="8" height="8" rx="2"/>
+                      <rect x="3" y="13" width="8" height="8" rx="2"/>
+                      <rect x="13" y="13" width="8" height="8" rx="2"/>
+                    </svg>
                   </button>
-                </div>
-                <div class="button_main_wrap" data-view-btn="list" data-trigger="hover focus" aria-pressed="false">
-                  <button type="button" class="button_main_element">
-                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                      <img src="resources/icons/hamburger-icon_alpha_512.svg" alt="" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
-                      <span>LISTA</span>
-                    </div>
+                  <button type="button" data-view-btn="list" aria-pressed="true" aria-label="Vista de lista" title="Vista de lista">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <rect x="3" y="5" width="18" height="2"/>
+                      <rect x="3" y="11" width="18" height="2"/>
+                      <rect x="3" y="17" width="18" height="2"/>
+                    </svg>
                   </button>
                 </div>
               </div>
@@ -609,88 +736,8 @@
             Agrega tus platos en el bloque `data-menu-items` para activar la carta.
           </div>
 
-          <!-- Grid View -->
+          <!-- Grid View (viewport only; controls + fog are page_wrap-level siblings below) -->
           <div class="carta-grid u-width-full u-display-none" data-view-panel="grid">
-            <div class="u-radius-main u-padding-5 u-flex-vertical-nowrap u-gap-4 u-position-fixed" style="top: var(--site--margin); left: var(--site--margin); right: auto; width: calc(100% - var(--site--margin) * 2); max-width: 36rem; background: var(--_theme---background-2); border: var(--border-width--main) solid var(--_theme---border); z-index: 2;">
-              <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-center">
-                <div class="u-flex-vertical-nowrap u-gap-2">
-                  <h1 class="u-text-style-h1 u-margin-bottom-0">Carta</h1>
-                  <p class="u-text-style-small u-opacity-75 u-margin-bottom-0">Explora el menú con imágenes o cambia a vista en lista.</p>
-                </div>
-                <button type="button" data-grid-collapse aria-label="Ocultar panel" title="Ocultar panel">
-                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg>
-                </button>
-              </div>
-            <div class="u-flex-vertical-nowrap u-gap-4 u-align-items-start" data-grid-panel-body>
-              <div class="u-flex-horizontal-nowrap u-gap-3 u-flex-column-mobile u-justify-content-start u-align-items-start" data-view-toggle>
-                <div class="button_main_wrap" data-view-btn="grid" data-trigger="hover focus" aria-pressed="true">
-                  <button type="button" class="button_main_element">
-                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                      <svg viewBox="0 0 24 24" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
-                        <rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
-                        <rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor"></rect>
-                      </svg>
-                      <span>Grilla</span>
-                    </div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-view-btn="list" data-trigger="hover focus" aria-pressed="false">
-                  <button type="button" class="button_main_element">
-                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                      <img src="resources/icons/hamburger-icon_alpha_512.svg" alt="" aria-hidden="true" style="width: 1em; height: 1em; display: block;">
-                      <span>LISTA</span>
-                    </div>
-                  </button>
-                </div>
-                <div class="button_main_wrap legend-toggle" data-wf--button-main--variant="secondary" data-trigger="hover focus" aria-pressed="false" data-legend-toggle>
-                  <button type="button" class="button_main_element" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                    <div class="button_main_text u-text-style-main" style="display: inline-flex; align-items: center; gap: 0.5rem;">
-                      <span>Leyenda</span>
-                      <span class="legend-circle" data-legend-circle style="position: relative; width: 1em; height: 1em; border-radius: 50%; border: 2px solid; background: transparent; transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                        <svg data-legend-check width="10" height="10" viewBox="0 0 39.276 32.661" aria-hidden="true" style="opacity: 0; transition: opacity 0.2s ease;">
-                          <path d="M3 18 L8 13 L16 21 L32 5 L36 9 L16 29 Z" fill="currentColor"></path>
-                        </svg>
-                      </span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-              <div class="u-flex-horizontal-wrap u-gap-2" data-filter-group>
-                <div class="button_main_wrap" data-filter-btn="all" data-trigger="hover focus" aria-pressed="true" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Todos</div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-filter-btn="platos-principales" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Principales</div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-filter-btn="complementos" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Acompañamientos</div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Abrebocas</div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Postres</div>
-                  </button>
-                </div>
-                <div class="button_main_wrap" data-filter-btn="bebidas" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
-                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
-                    <div class="button_main_text">Bebidas</div>
-                  </button>
-                </div>
-              </div>
-            </div>
-            </div>
             <div class="viewport">
               <div class="grid-container"></div>
             </div>
@@ -703,6 +750,59 @@
         </div>
       </section>
     </main>
+
+    <!-- Grid-view floating overlay layer (sibling of <main> so it escapes
+         the .u-container stacking context and sits above the fixed nav). -->
+    <div data-view-panel="grid" class="grid-overlay-layer u-display-none">
+      <!-- Soft top-left fog so the chips stay legible over bright food images -->
+      <div class="grid-fog" aria-hidden="true"></div>
+
+      <!-- Floating chip bar: compact view toggle + filter chips. No bg, no panel chrome. -->
+      <div class="grid-floating-controls">
+
+        <!-- Compact icon toggle -->
+        <div class="view-toggle-compact" data-view-toggle>
+          <button type="button" data-view-btn="grid" aria-pressed="true" aria-label="Vista de grilla" title="Vista de grilla">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="3" y="3" width="8" height="8" rx="2"/>
+              <rect x="13" y="3" width="8" height="8" rx="2"/>
+              <rect x="3" y="13" width="8" height="8" rx="2"/>
+              <rect x="13" y="13" width="8" height="8" rx="2"/>
+            </svg>
+          </button>
+          <button type="button" data-view-btn="list" aria-pressed="false" aria-label="Vista de lista" title="Vista de lista">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="2"/>
+              <rect x="3" y="11" width="18" height="2"/>
+              <rect x="3" y="17" width="18" height="2"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filter chips (natural width, not panel-stretched) -->
+        <div class="grid-filter-chips" data-filter-group>
+          <div class="button_main_wrap" data-filter-btn="all" data-trigger="hover focus" aria-pressed="true">
+            <button type="button" class="button_main_element"><div class="button_main_text">Todos</div></button>
+          </div>
+          <div class="button_main_wrap" data-filter-btn="platos-principales" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Principales</div></button>
+          </div>
+          <div class="button_main_wrap" data-filter-btn="complementos" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Acompañamientos</div></button>
+          </div>
+          <div class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Abrebocas</div></button>
+          </div>
+          <div class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Postres</div></button>
+          </div>
+          <div class="button_main_wrap" data-filter-btn="bebidas" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Bebidas</div></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <script src="sandbox/resources/data/menu_items.js"></script>

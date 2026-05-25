@@ -4347,13 +4347,6 @@ button { color: inherit; }
 
 
 
-/* ─── Sticky nav backdrop (for fixed navs without a theme class) ─── */
-nav.hero_nav.u-position-fixed:not([class*="u-theme-"]) {
-  background: rgba(29, 29, 27, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
 /* ─── u-text-style-tiny utility ─── */
 .u-text-style-tiny {
   font-family: var(--_text-style---font-family);
