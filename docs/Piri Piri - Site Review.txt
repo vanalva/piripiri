@@ -1,0 +1,508 @@
+# Piri Piri - Site
+
+  Meeting started: 3/11/2026, 9:00:37 PM
+  Duration: 73 minutes
+  Participants: Juan Carlos Vannini, Luis Figueira
+
+  [View original transcript](https://app.tactiq.io/api/2/u/m/r/VpsBemEJKcbyup6webPp?o=txt)
+
+    ## Detailed summary with citation
+
+Resumen detallado por temas
+
+1) Impacto del rebranding 2025 y situación comercial
+- Explicación de la apuesta por un rebranding (de “pollo asado portugués” a enfoque en carbón y salseo) y su implementación (cambio de carta y ampliación de oferta) [02:01][02:31].
+- Resultado: caída importante en sala y para llevar entre mayo y diciembre 2025; la nueva orientación no produjo el crecimiento esperado y la inversión (~30–35.000 €) no se recuperó [02:01][05:04].
+- Conclusión estratégica: si no se hubiera rebrandado habrían caído igual, pero la inversión no dio resultados; se decidió reducir estructuras centrales y priorizar lo rentable en 2026 (concentrar energía en lo que funciona) [03:18][04:13][04:31].
+
+2) Reestructuración del equipo y efectos operativos
+- Salida de miembros de central (administración y operaciones) y reducción del gasto central; Alejandro estará hasta la semana siguiente pero se marchará; falta alguien que coordine diseños y producción tras su salida [04:13][04:31][08:57].
+- Luis pide a Juan encargarse de la ejecución de piezas básicas (afiches calle, packaging, fichas de producto, carta de verano, QR, uniformes) porque Juan ya conoce la marca y sería más eficiente [05:04][06:35][08:43].
+
+3) Lista concreta de piezas y prioridades creativas
+- Piezas solicitadas: afiches calle, menú del día, carta de mesa/tarjetón de mesa, piezas para la nueva burger y bebidas de verano, tarjeta QR para reseñas con espacio para nombre del empleado, uniformes de verano, newsletter y piezas para Club Secreto [13:55][15:12][15:35][53:05].
+- Luis indica que marzo y abril están resueltos y estima que mensualmente pediría pocas piezas (newsletter + una ficha calle), con otras piezas cada 2–4 meses; pide cotización por paquete/retainer porque facturación por pieza podría resultar más cara [49:37][53:49][07:25].
+
+4) Coordinación, entregables y flujo de trabajo
+- Propuesta de organización de archivos: usar un drive/documentos con carpetas por pieza y textos/precios para evitar caos por WhatsApp/email; Juan acepta trabajar con ese flujo [51:47][52:14][52:24].
+- Luis solicita que Juan coordine cambios con Alejandro sobre la web y que acuerden en equipo cómo quedan los botones (reserva/pedir) visibles en la home [39:18][39:30][31:21].
+
+5) Web (Webflow) — diseño, UX y ajustes pendientes
+- Revisión de la web: Juan mostró prototipos en Webflow y explicó funcionalidades (lista/grilla, CMS, publicación instantánea, pedidos, comanda, reembolsos, analíticas, pagos RS/Stripe) [19:03][19:50][28:31].
+- Problemas detectados por Luis: navegación confusa, exceso de elementos/mosaico, jerarquía de textos y botones, fotos no coherentes con identidad del local, botones de reserva/pedir deben permanecer visibles, optimización responsive y tamaño/jerarquía de titulares [18:25][24:47][30:11][31:21][32:32].
+- Propuestas de Juan: incluir botones de lista/grilla, PDF de carta, filtros y quiebres por categoría, CMS para publicar platos fácilmente, bordes de color por categoría y ajustes responsive; Juan hará cambios y reemplazará fotos por las reales o generadas a partir de las fotos enviadas por Luis [25:36][29:10][28:31][23:26][38:48].
+
+6) Fotografía y estilo visual
+- Discusión sobre fotos: muchas de las fotos mostradas fueron generadas por Juan y no coinciden con la vajilla/ambientación real de los locales; Luis pide fotos reales de locales y platos para generar imágenes coherentes con la nueva identidad (cerámica negra, contextos de mesa) [22:51][23:26][36:12][36:33][39:03].
+- Juan propone editar las fotos existentes cambiando fondo/plato para acelerar el trabajo; Luis está de acuerdo y sugiere hacer sesiones en Prosperidad y Lavapiés para nuevas tomas [38:48][36:54].
+
+7) SEO, IA y posicionamiento (búsquedas, semántica y keywords)
+- Importancia de estructurar la web para SEO/IA: Juan explica que la IA y los motores de búsqueda requieren contenido semántico (H1, meta, texto real, ALT en imágenes) para aparecer en respuestas de IA y búsquedas (por ejemplo: “pollo a domicilio”, “pollo al carbón delivery”) [40:15][42:04][44:33][45:06].
+- Luis quiere aparecer en sugerencias de asistentes IA cuando los usuarios pregunten “qué pedir hoy” o “dónde pedir pollo a domicilio” y se propone trabajar keywords y estructura SEO; Juan sugiere contratar una agencia SEO local barata (Venezuela) o equipos jóvenes que ya trabajan con él [43:31][44:33][49:06].
+
+8) Plataformas y productos tecnológicos
+- Plataformas discutidas: “Chire/Chirrify” (gestión de la base de datos y envíos de newsletter), sistema de booking/venta de Juan que se publica en Webflow, integraciones con Redsys/Stripe, analíticas y gestión de pedidos/reembolsos [16:03][17:15][19:50].
+- Debate comercial sobre modelo de negocio para la plataforma: pago único vs. suscripción mensual; Luis dice que el mercado prefiere suscripción mensual (modelo SaaS) y prefiere amortizar mensualmente; Juan evalúa opciones [20:19][20:42][21:09].
+
+9) Marketing digital, contenido y community management
+- Problema con agencias y terceros: mala experiencia con agencias y freelancers (ej. rebranding mal ejecutado por una diseñadora externa) que generó frustración y pérdidas; necesidad de una agencia/social team que entienda TikTok/Instagram y la operación del local [01:01:08][01:04:27][54:18].
+- Necesidad de perfil interno o retainer: Luis y Juan discuten contratar a una persona (500 €/mes aprox.) o un paquete con deliverables regulares; Luis necesita un director de contenido que marque la pauta de qué grabar y cómo grabarlo (brief para el camarógrafo Mario) y alguien que edite y ejecute; Juan propone su equipo (diseñadora Victoria y otros) y ofrece cotizar un retainer/paquete [55:47][56:11][57:20][58:24][59:11].
+- Contenido que funciona: fotos de producto (pollo al carbón) generan más engagement que contenido conceptual; es preferible priorizar producto y comunicaciones que resuelvan la necesidad del cliente (delivery, qué pedir hoy) [01:12:10][01:12:54][01:13:09].
+
+10) Experiencias previas y aprendizajes
+- Experiencias negativas con proveedores (ej. transición con la diseñadora/clara Mónico) y el riesgo de trabajar con perfiles que curan portafolios sin ejecutar el trabajo real; Luis y Juan coinciden en ser cautelosos y preferir equipos con track record [01:04:27][01:06:37][01:08:34].
+- Aprendizaje estratégico: priorizar lo rentable, simplificar comunicación de marca para resolver problemas concretos del cliente (delivery y producto), y ser disciplinados en ejecución y control del gasto [03:54][46:52][49:37].
+
+11) Acuerdos y siguientes pasos
+- Luis enviará por WhatsApp la lista priorizada de piezas y textos para que Juan cotice y organice el paquete/retainer; Juan cotizará y propondrá un plan de trabajo para presentarlo a Alejandro y arrancar [15:12][52:14][49:37].
+- Juan hará ajustes a la web (jerarquía, botones de reserva/pedir, responsive, fotos); coordinará con Alejandro y con Luis para validar cambios [39:18][39:30][07:25].
+- Organización del trabajo: acordaron usar un drive/carpeta compartida para subir materiales (fotos, textos, precios) y evitar comunicación dispersa por WhatsApp/email; proponen reuniones semanales (2 horas semanales) para seguimiento [51:47][52:24][01:09:17].
+- Juan contactará/agendará agencias SEO y cotizará retainer y producción de piezas; Luis espera la cotización y decidir si contrata paquete mensual o pago por proyecto [49:06][49:37][07:25].
+
+Notas finales
+- Priorización clara: piezas básicas y funcionales que impulsen ventas (fotos de producto, menús de mesa, afiches promocionales, QR para reseñas, botones de pedido y reserva visibles) y ajustes web con foco en SEO/IA.
+- Volumen estimado: Luis cree que no pedirá más de ~3 piezas/mes en promedio, con picos puntuales (meses con más demanda) [49:37][53:49].
+
+  
+
+  
+    ## Highlights
+
+    > 00:44 Juan Carlos Vannini: Sí, yo siento que sí, pero pero es que para mí fue malo fue mal fue maltrato, entonces no no, no, yo no quería ni yo ni cobré no era una cuestión de dinero, pero se suponía que era como que exposición para mí y tal y eran un poco de Dueñas que sabes ni siquiera que me va a salir un cliente de ahí. Entonces mi cliente ni porque yo le dije yo dije. Bueno, por lo menos me saldrá
+
+  ## Transcript
+
+  00:00 Luis Figueira: en la cueva Está todo oscuro ahí.
+00:05 Juan Carlos Vannini: Tengo esta luz que lo aprovecho porque si no es que no se me ve nada. Bueno, tengo luz aquí encima.
+00:11 Luis Figueira: Pero bueno, también depende si te gusta trabajar, así hay gente que le gusta trabajar a oscuras. Yo no sirvo me vuelvo un
+00:18 Juan Carlos Vannini: Sí, yo trabajo oscuras todo el día no es que yo trabajo de noche puede pasar en las reuniones como no tengo lámpara aquí se me ve más oscuro todavía con esto es más que tengo aquí es que estaba haciéndolo el curso este de Alejandra que yo fui ponente cómo se dice profesor y y no yo un mes es una
+00:32 Luis Figueira: Claro, aceite y te tocó hoy.
+00:39 Juan Carlos Vannini: locura, verdad la pérdida de tiempo?
+00:40 Luis Figueira: Pero funciona la gente aprende.
+00:44 Juan Carlos Vannini: Sí, yo siento que sí, pero pero es que para mí fue malo fue mal fue maltrato, entonces no no, no, yo no quería ni yo ni cobré no era una cuestión de dinero, pero se suponía que era como que exposición para mí y tal y eran un poco de Dueñas que sabes ni siquiera que me va a salir un cliente de ahí. Entonces mi cliente ni porque yo le dije yo dije. Bueno, por lo menos me saldrá
+01:01 Luis Figueira: Ya, ya, ya, ya, ya, ya.
+01:06 Juan Carlos Vannini: un cliente de ahí o por lo menos que Alejandra memonte y tal, pero no está montando a nadie, anda como que chupe un séquito nada nada nada.
+01:15 Luis Figueira: Hay varios temas varios no temas varios.
+01:18 Juan Carlos Vannini: Son muchos vainas Brother y y mi mamá se ha estado encargando de toda esa vaina
+01:45 Juan Carlos Vannini: porque ellos viven en mi casa, pues en mi casa en la casa de mi mamá en en pueblo que se llama San Fernando entonces han pasado demasiadas vainas y y después entonces todo esto de Alejandra me metí en ese paquete que no me debía obviamente entonces estos últimos meses de verdad, han sido un desastre.
+02:01 Luis Figueira: bien, igual te resumo bastante rápido y para nosotros el último semestre del 2025 fue un año como de Revolución Francesa en muchos aspectos organizativos, básicamente el cierre del 2024 nosotros hicimos un plan para el 2025 y apostamos mucho como a este rebranding y a este nuevo posicionamiento de piri, piri, saliéndonos de el pollo asado estilo portugués que era lo que comunicábamos y lo que mascólogo decía y lo que nuestras comunicaciones siempre apoyaban y nos enfocamos en carbón y salseo, carbón y salsa de carbón y Salcedo tanto la estrategia de marketing como Opera Nos adaptamos a eso, pues la carta cambió a una experiencia mucho más grande en el restaurante ampliamos mucho. La carta los productos tal, o sea, hicimos una adaptación completa que estuvo al 100% lista en mayo del 2025 y lo que ocurrió entre mayo del 2025 y diciembre del 2025 es que tuvimos una caída importante precisamente en la sala y en el para llevar este por varios aspectos, pues no solamente por el tema del rebranding el posicionamiento sino también porque el mercado se estaba comportando así creemos inclusive.
+03:18 Juan Carlos Vannini: de verdad fue por el cambio de
+03:20 Luis Figueira: No, no lo podemos medir es muy j*****, pero todo pasó a la vez o sea, ocurrieron muchas cosas a la vez. Entonces lo que debió ocurrir. Era haber crecido en Sala y no crecimos en salsa invertimos todo este dinero invertimos este tiempo toda mi orientación 2025 estuvo ahí está nueva posicionamiento esta nueva manera de operar y no dio resultados, o sea que te digo que que que que no es que caímos, por eso es que caímos porque el mercado cayó, pero esto no funcionó en términos de nuevo posicionamiento en el restaurante entiende, o sea.
+03:54 Juan Carlos Vannini: Medirlo porque fueron todos para abajo, entonces ni siquiera pudiste, no viste impacto.
+03:59 Luis Figueira: Tal cual inclusive en la siguiente pregunta es que hubiese pasado, si no lo hubiésemos hecho hubiésemos caído más. Entonces eso entonces ese es el análisis hoy por lo que al cierre del 2025 dijimos reducción de estructuras no tiene sentido la estructura que nosotros tenemos en la central entre de cocina de un director de marketing y de un Director de Administración cuando los locales están cayendo en ventas entonces lo primero que hacemos en recortar es el gasto de central. Entonces por eso es reestructuramos en febrero y hasta esta semana y la semana que viene el equipo
+04:31 Juan Carlos Vannini: claro
+04:38 Luis Figueira: de central, que básicamente Alejandro Rafael de administración y una persona más de operaciones en la central se van y nosotros concentraremos la energía en lo que funciona y en reducir esta idea 2025 de profesionalizar el negocio y crecer este año el 2026 es al revés es dejar lo que es rentable OK y no invertir más en esa idea de crecimiento.
+05:04 Juan Carlos Vannini: claro, se van a rescatar para
+05:05 Luis Figueira: El cual porque además invertimos mucha plata, o sea, la verdad es que adaptar el negocio a este nuevo posicionamiento esta nueva orientación nos costó billete, o sea, metimos un 30.000 euros en en adaptación, porque hubo que hacer adaptación a los locales hubo que cambiarla ya o tuvo que invertir en las botellas en el salseo en el marketing y el rebranding tengo la página web. O sea, m******, no me comí 35.000 euros y no produce esos 35.000 euros, ni siquiera con con lo que hicimos entonces en eso, por qué te cuento todo esto? Bueno, porque Alejandro no va a estar y pero al final yo te necesito, o sea, en qué sentido Alejandro se ocupaba de la comunicación con el con el diseñador para hacer un afiche de portada se comunicaba con el diseñador o con la diseñadora para hacer el cambio de la bolsa para hacer el uniforme de verano, o sea, él hacía básicamente ese enlace y coordinaba al diseñador. Yo hoy tengo que ser el que coordina ese trabajo 1 y 2 para mí es mucho más sencillo, que ese trabajo de producción lo hagas tú primero porque ya conoces la marca. Yo no te tengo que echar ningún cuento. Ya está ya hecho el packaging y tal y yo necesito alguien que me ejecute en la ficha de portada de la calle para la nueva Burger en la nueva carta que viene ahora para las bebidas de verano, o sea, tengo piezas, que siempre se hacen que van a estar haciéndose que son diseños básicos. No es una vaina compleja, no es una página web, es un diseño, puede ser online o offline? Que te necesito, pues, o sea yo ahorita.
+06:35 Luis Figueira: No voy a tener tiempo ni tampoco paciencia para ponerme con una persona explicarle nuestra identidad y más o menos lo que hacemos entonces la reunión
+06:43 Juan Carlos Vannini: obvio
+06:44 Luis Figueira: de hoy es pachate ese cuento básicamente porque ya tengo una lista de cosas que necesito hacer.
+06:50 Juan Carlos Vannini: Yo te tienes varias opciones, pero y bueno, al final obviamente que yo no esté en tu nómina, te ahorras un billete, pero lo que tienes que pensar bien es que tanto vas a necesitar para yo hacerte un paquete personalizado porque yo sé que están pasando por un mal momento y tampoco te quiero clavar, pero te va a salir más rentable lo de tener algún tipo de pago fijo conmigo, porque si yo te voy facturando por cada cosa que necesites al final te lo prometo brother, que te va a salir más caro dependiendo de qué tanto tengas, o sea, me tienes que mandar saliste y yo trata de hacerte un paquete lo más perfecto posible y yo te mando
+07:25 Luis Figueira: Vale.
+07:25 Juan Carlos Vannini: que una factura todos los meses y eso te incluye tantas vainas al mes de todo esto que hay un mes que se necesita mucho más esfuerzo, pero hay otro mes más relajado. Bueno, justamente como estás pagando una cuota fija no te va a variar. Entiende entonces, pero claro, yo tengo un tope también, o sea, tú no me puedes pedir que mira, necesito tres Landing Page un mes que obviamente yo sé que no va a ser así, pero por darte un ejemplo, entiendes yo yo lo que hago con los yo tengo tres clientes que me están trabajando así ahora y está funcionando súper bien porque yo tengo mi diseñadora. Además que todo lo que yo no puedo abarcar lo refiero con ella y lo hace ella y y hay uno que otro que no usan mucho el retainer, por ejemplo, el banco los años 58 no lo usan mucho, lo usan más para que yo les mantenga la web y me piden cambios y tal, pero claro son un banco les da igual y pero después tengo yo iba mucho y por ejemplo que son los de yoga que los tipos me piden de esto, o sea, lo aprovechan al máximo. Entonces, por eso te digo, va a depender que tanto necesitas y yo
+08:23 Luis Figueira: Vale.
+08:23 Juan Carlos Vannini: trataré de hacerte el mejor paquete posible.
+08:26 Luis Figueira: este Bien.
+08:31 Juan Carlos Vannini: Si no, a una meto lo que necesitas hacer ya y te hago un presupuesto por todo
+08:35 Luis Figueira: bueno, estas son las cosas que
+08:36 Juan Carlos Vannini: eso.
+08:43 Luis Figueira: estas son las cosas que
+08:45 Juan Carlos Vannini: Que vas a compartir la pantalla, me lo estás dando por whatsapp.
+08:47 Luis Figueira: Te lo voy a escribir por vosotros estas son las cosas que necesito déjame escribirte al lado.
+08:54 Juan Carlos Vannini: Y ya y ya Alejandro está afuera.
+08:57 Luis Figueira: Sí, o sea, él está hasta la semana que viene pero pero no ya ha estado, pues yo no lo estoy pidiendo nada porque él fue la relación es estupenda y Alejandro de mami pana, pero yo no le estoy pidiendo nada porque para que se va a poner en contacto contigo, porque ahí te vayas. Aplicaste esto si la semana que viene se va.
+09:11 Juan Carlos Vannini: Sí, obvio, no, pero está bien, no te va a decir que está bien que Alejandro
+09:14 Luis Figueira: Sí, sí, sí, no, no, la web. Él me dijo. Mira Luis yo cierro la web, o sea, Juan me reuniré con la semana que viene así yo no esté activo y lo veré y yo lo cerraré porque además te digo una vaina, si yo me pongo contigo a intentar entender los cambios que él te pidió pasa de qué es lo que hiciste lo que no hiciste lo que me gusta, te voy a poner a trabajar a ti también.
+09:36 Juan Carlos Vannini: este fuera porque obviamente no, pero hay un par de cosas de las que yo no estoy muy de acuerdo y prefiero hablarlas contigo, a ver si si la si las pensamos bien, aunque aunque en verdad lo que me mandó a cambiar fue más temas leía, o
+09:44 Luis Figueira: Vale.
+09:47 Juan Carlos Vannini: sea nada y yo no me voy a meter temas de marca y copy, porque eso todos ustedes, pues yo eso sí, no lo manejo para nada, o sea, yo lo puedo manejar si me si me meto en la marca, entiendes, pero de externo yo copie todo eso no, no pongo reproche, pero es más que todo unos temas de diseño que c*** me pareció que podremos mantener y él me mandó a sacarlo, pero bueno, vas a tener chance de ver la página, no tú?
+10:14 Luis Figueira: No, no te vas a censar o no? Hoy no he parado marico. Estoy seco de todo lo que ha hablado y todo el día y bien que me dijiste a las nueve porque en esta media hora entre las 8 me bañé para terminar contigo zona de acostumbrarme.
+10:24 Juan Carlos Vannini: No quieres?
+10:27 Luis Figueira: Bueno, puede ser sí, pero estoy de las nueve y media de la mañana hablando paja, o sea.
+10:32 Juan Carlos Vannini: Sí, sí, obvio, me imagino quién te manda está emprendiendo montando.
+10:36 Luis Figueira: cero emprendimientos comerciales en todos los huecos no importa no haya gasolina
+10:42 Juan Carlos Vannini: qué asco cómo se está poniendo España Qué asco, verdad que que es Grace que tú no da aquí echándole bola emprendiendo pagando.
+11:01 Luis Figueira: pero usted tenga real y plata y haga su vida feliz y agarró un avión privado todos los fines de semana voy sepan los Roques
+11:07 Juan Carlos Vannini: Sí, y puedes montarte.
+11:09 Luis Figueira: totalmente Claro, claro, yo no seré el primero brother, te digo, o sea, yo tampoco tan loco como hay gente que escucho que digo más allá quiero que ya hay agarrar.
+11:20 Juan Carlos Vannini: y además que es volver a migrar cuánto
+11:24 Luis Figueira: No es ahora no seremos los primeros, pero yo sí quiero vivir en Venezuela marico, o sea, yo quiero la montaña de frente. Yo creo naranjo, o sea, yo lo
+11:30 Juan Carlos Vannini: Yo también. Está obvio obvio. Nosotros estamos comprando el apartamento de mi tía en Los
+11:35 Luis Figueira: tengo.
+11:38 Juan Carlos Vannini: Naranjos otra vez porque nosotros no tenemos casa ya y mi mamá comprando entonces ya voy por lo menos a tener casas y vuelvo si me da la nota.
+11:46 Luis Figueira: Y esa es otro pedo, o sea, me busca tener un apartamento en Los Palos Grandes carísimos un apartamento viejo de estos arrechísimos Los Palos Grandes 4 o 5 habitaciones el 8 menor carísimo 120.000 140.000 carísimos.
+12:05 Juan Carlos Vannini: Un terreno Margarita nada dijo que la vaina era el 30 mil dólares nada más. Pero están subiendo.
+12:20 Luis Figueira: Y para estar pagando impuestos acá seis mil euros que no tengo para pagarle, o
+12:25 Juan Carlos Vannini: Yo yo estoy esperando que me caigan en algún momento alguna Inspección de
+12:34 Luis Figueira: sea, una vaina marico de locos. Esto es un país socialista, no?
+12:44 Juan Carlos Vannini: Hacienda o algo porque hay demasiado que no ha declarado bien, pero pero porque es que no puedo, o sea, no me da el dinero entiende si si me van a darme como autónomo me quitan el 45% entonces loco.
+12:54 Luis Figueira: se llama estos menús que van en la mesa tipo, los que utilizaba el VIPS que por un lado tiene Manuel día y por el otro lado tiene postres, cómo se llama esa pieza es un poco más grande que carta, pero es así alargado, pues imagínate es una
+13:11 Juan Carlos Vannini: c***, es que eso es el tamaño, no sé.
+13:14 Luis Figueira: Vaina no se deja en la mesa que por un lado tiene por el otro lado.
+13:19 Juan Carlos Vannini: Siempre es una carta el tamaño aquí en el extractor tengo varios perfiles.
+13:24 Luis Figueira: Bueno, le voy a poner carta de mesa para que cuando veas eso sepas que no es una carta entiende sino que es como esta especie de flyer de mesa.
+13:32 Juan Carlos Vannini: me ha venido malo yo cuando cuando no he venido frío o cualquier cosa te he
+13:37 Luis Figueira: No, no, pero ese sí cambia, o sea, hay una vaina que de cada cierto tiempo ponemos en la mesa que si con postres y menú del día postres y no sé qué sabes.
+13:55 Juan Carlos Vannini: dicho pero
+13:56 Luis Figueira: Si no, no nosotros tenemos un producto así un modelo de negocio bien, hay que tener paciencia y ya está, pues, o sea, yo estoy claro que que el 2025 fue un año en que nos pusimos fantasiosos y que si no. Marico, hablando de plan de expansión y de inversores y le mostramos el proyecto varios inversores y no sé que no estamos todavía para eso, o sea, nos falta para eso es un momento llegará, pero no es ahorita bueno y probablemente tampoco este es el país, o sea, de repente un puerto Rico y me hago millonario.
+14:26 Juan Carlos Vannini: No sale el socialismo, no? Pero bueno, yo no sé qué c*** va a pasar todo claro con la guerra y unidad, dónde está? Déjame buscar aquí tú. preguntarle
+15:12 Luis Figueira: Mira, eso es realmente lo que yo necesito ahora te lo vas por whatsapp este y
+15:16 Juan Carlos Vannini: retiro más nada tarjetas de mesa carta de mesa no tiene como
+15:19 Luis Figueira: sin embargo hay dos cositas ahí que que las puse como para sincera realmente en la lista de deseos, pero si las tengo. Vamos a llamarle tarjetón de mesa.
+15:35 Juan Carlos Vannini: Afiches calle menú del día pollo y patatas cartas de mesa y y tú tienes tu proveedor y tu vaina me mandan.
+15:44 Luis Figueira: Que solamente haces diseño, yo te paso la foto tal no sé qué ya está.
+15:48 Juan Carlos Vannini: Parte de mesa carta de mesa de día de verano tarjeta QR en seña colocar uniforme de verano y 2026 el newsletter, dónde lo mandan melchimp?
+15:58 Luis Figueira: Tenemos una plataforma. Bueno, te quiero mostrar porque tenemos una plataforma que se llama Chire que es donde está toda la base de datos y
+16:03 Juan Carlos Vannini: ahora
+16:06 Luis Figueira: Demás, pero yo recibo correos desde chip file el de El de Grosso napolitano, sales de cheerfa y el de nomoto que es una vaina letras una real c***** porque nosotros escribimos en el cuerpo de correo y le ponemos un cintillo. En los bichos no se hacen una persona esa entran en la plataforma y meten imágenes arriba abajo tal no sé qué poner y listo, o sea, son diseños
+16:28 Juan Carlos Vannini: como quieras, eso tiene para para
+16:33 Luis Figueira: imágenes que la tipa siempre del chico me dice c*** Luis pero eso es muy sencillo. Lo puedes hacer tú en canvas y lo importas y tal no necesitas un diseñador y yo verga, mi peor no es que si me pongo y quiero ser recursivo de repente lo consigo, pero yo ando tiempo me pone eso.
+16:45 Juan Carlos Vannini: El tiempo no, pero si eso tiene para incrustar HTML se puede hacer lo que tú quieras.
+16:49 Luis Figueira: No, no sé si tiene.
+16:52 Juan Carlos Vannini: Yo estoy haciendo una plataforma Brother y pronto te lo va a ofrecer por cierto, estás en mi lista para ofrecértelo para que va a compartir porque ya la ya la
+17:02 Luis Figueira: pero para
+17:04 Juan Carlos Vannini: tengo lista y va a salir con un pana, que no sé si tú los conoces a ellos se llama Carlos dacorte, está abriendo una academia de cocina que se llama Presente entropía, que yo le hice todo y le hice su propio sistema.
+17:15 Luis Figueira: me encantó el mensaje el mensaje de rechino que pusiste en
+17:19 Juan Carlos Vannini: Le hice su su propio sistema de booking brother, le dice toda su plataforma
+17:20 Luis Figueira: Y te escribí.
+17:26 Juan Carlos Vannini: propia de él y entonces paga directamente con redsys no tiene una suscripción que tiene que pagarle mensual la chirrify no tiene, no tiene nada brother, es directamente él le compran le hacen el booking y le cae su dinero en su cuenta a través en su banco.
+17:44 Luis Figueira: Vale, pero vende comida.
+17:46 Juan Carlos Vannini: No, él va a tener las dos cosas uno son los talleres OK y otro si va a tener como que unos chef tablets que son una cena, sabes una vez a la semana dos
+17:55 Luis Figueira: eso es diferente, eso es diferente un pedido en tiempo real o un pedido
+17:57 Juan Carlos Vannini: veces.
+17:59 Luis Figueira: programado, que luego necesito poder hacer reembolso que luego sabes, o sea que
+18:04 Juan Carlos Vannini: Claro, no, no, pero por eso es que no te lo ofrecido porque lo estoy agrandando,
+18:06 Luis Figueira: te
+18:07 Juan Carlos Vannini: pero va a ser así, pero va a ser poderoso. Ya vas a ver ahora la era de la de
+18:10 Luis Figueira: Ya, vale, vale, tiene demasiado, feo. Te digo, ha crecido demasiado, le han dado
+18:13 Juan Carlos Vannini: la
+18:17 Luis Figueira: un poco de plata en estas vainas de desarrollo de vainas de tecnologías han dado un realero y tiene demasiados feos tiene.
+18:25 Juan Carlos Vannini: Bueno, que tú me tienes que decir qué pedos tiene para yo poder mejorarlo, sabes?
+18:31 Luis Figueira: La navegación y la el setting marico es para pegarse cuatro tiros no es nada intuitivos. Bueno Alejandro le costó el club de los devoradores nos costó demasiado terminarlo de sacar en su momento porque Sí, sí, está activo, pero esa es otra cosa que tengo súper abandonada, necesito crearle algunas piezas a ver qué nos inventamos online para para impulsar lo que sabes que comunicaciones y en dónde hay que como tocamos el cliente, o sea hay que pensar algunas estrategias para para levantar eso, marico, más nunca más nunca comunique el club secreto.
+19:03 Juan Carlos Vannini: Mira, esto está en Tropical esta es la aplicación que lo estoy haciendo y lo arrecho es que cuando publicas cualquier cosa aquí la como yo la pensé solo para WebFlow se publica todo en WebFlow si montas un producto los montas aquí y se le publica directamente en su web flow para que la gente ya esté en el y ya pueden pedir a través de eso, entonces también tienes para tu montar tus pedidos en tu web. La gente te compra trabaja en la web y a ti te cae aquí el pedido y tú tienes tu propia orden y tú tienes tu propia comanda y tú tienes tu propio todo estudio entiendes? Y aquí puedes hacer reembolsos, puedes poner diferentes tipos de pagos tienes redsy stripe por ahora es el que te va a servir a ti, porque estos pagos online es perfecto porque eso va directamente con tu banco y tienes aquí tus pagos, tienes aquí analíticas. Tengo analíticas.
+19:50 Luis Figueira: y es el que usamos el que usamos hoy, o sea que
+19:56 Juan Carlos Vannini: Tienes para poner esto también lo pensé para él incluso tenerlo en el local y que él pueda cobrar en el local y tener botones como que directamente, pero lo estoy agrandando y cuando lo tenga alrededor todavía no sé cómo lo voy a monetizar, pero yo sin duda quiero entregarlo entiendes como que un único pago y que mira esto es tuyo, úsalo y ya me da igual si ya lo hice.
+20:19 Luis Figueira: Ya nadie comercialmente en mi sector ya nadie quiere eso, marico, todo el mundo se ha salido de los TPU y de todos los sistemas que es un único pago. La gente quiere, eh? El gasto mensual amortizarlo mensualmente y quiere poder salirse en un dos meses.
+20:35 Juan Carlos Vannini: Claro, bueno, tengo que pensarlo todo, pero sin duda lo voy a lo voy a ofrecer, pues así que cuando lo tenga pensado, ya te diré.
+20:42 Luis Figueira: bueno, al final ahora la tecnología se ha desarrollado tanto que tú para vender eso no necesitas gran estructura y luego es mejor tener 500 clientes o mil clientes a 129 euros al mes o 175 euros al mes, sabes que
+20:57 Juan Carlos Vannini: Si no, pero justamente a mí me parece el pago de chifla y demasiado caro, pero bueno, cuántos son 100 no?
+21:03 Luis Figueira: 120 marisco 19
+21:04 Juan Carlos Vannini: ahora con un sistema
+21:09 Luis Figueira: Bueno tú porque estás en el área, pero a nosotros no, no, o sea, uno lo ve como algo este que te es un canal de venta mariposa. Yo puedo producir con Chilpa y 6000 7000 euros al mes por 120 que me cuesta.
+21:20 Juan Carlos Vannini: O sea, ellos también posicionados y tal hay que ver yo yo me lo estoy ideando, pero por ejemplo para este para que tenga su propio sistema de booking que además se publica todo en su página web al instante un número y déjame mostrarte esto rápido y eso que está te quieres y ya. Bueno, lo primero que hice fue que él me dijo que la propuesta era todo mucho más grande y todo estaba como que más había menos espacio y tal y bueno, lo hice así más máximo lista, pues hay menos.
+21:50 Juan Carlos Vannini: respirar este botón, por ejemplo el tipo de cosas que que el que yo quería hablar con él porque me dijo que lo quitara pero a mí me parece que apenas cargas lo primero que deberías es ver la carta, pues sobre todo si hay alguien que está entrando no te parece Ver la carta me parece que es importante, no sé el tipo veneno que quería que habláramos pues apenas cargas. La página sale este botón Ver carta y deja la carta que te puse la lista de una vez en lugar de la otra que era el menú infinito. Mira, viste el fuego.
+22:24 Juan Carlos Vannini: Y esto y esto esto está brutal también se el solo bruto y cambio y ahora dice carbón lo bestia, déjame aceptar esto aquí. Bueno, todo esto interactivo obviamente estas fotos, brother, yo me fajé días haciendo de esta foto y me dijo no, no hay que quitarlas todas que obviamente yo entiendo porque ustedes tienen sus propias fotos estos no son sus platos, pero porque no las quieres editar mejor que no me gustan cenital cenital. Me parece espectacular.
+22:51 Luis Figueira: este a mí a mí también me gusta, te voy a explicar por qué esto lo hablamos el Po es que realmente nuestros platos no salen así es lo que nos preocupaba más que el cenital el arroz especial puede ser pero nosotros no usamos esa
+23:03 Juan Carlos Vannini: claro
+23:05 Luis Figueira: vajilla y el local no tiene esa identidad cuando tú estás en el local se parece más a lo que tienes arriba entiendes en términos de esto es muy Saona Sabes?
+23:18 Juan Carlos Vannini: Ok, pero es cuestión de que me mandes las fotos reales de los platos y ya y yo las vuelvo a generar de la misma vista.
+23:26 Luis Figueira: Lo que me parece es que el contexto de estos platos son muy y los platos, la vajilla es muy orgánica, o sea, una identidad súper soft y clean la identidad nueva marico, es lo que nos propusiste es con la página inicial donde eran unos negros y la gente chupándose las manos las fotos está comunicando algo, jeva,
+23:47 Juan Carlos Vannini: Claro, claro.
+23:54 Luis Figueira: si esto fuera Franco al carbón perfectamente. Muy guapo, pero no es el posicionamiento que queremos.
+24:05 Juan Carlos Vannini: Esta es la vista, o sea, cuando carga la carta, si tú estás en el inicio, no?
+24:12 Luis Figueira: Muy arrecho, pero es confuso también.
+24:21 Juan Carlos Vannini: Y tú le das aquí a carta en donde sea, o sea, bueno pide ya tienes esto y la carta te carga aquí o en el menú, pues aquí a carta o arriba en el menú también, o sea, aquí en el inicio tienes ya descarta aquí no falta y entonces la carta te carga en lista y si le das clic puedes ver el detalle, pues que aquí no he puesto fotos pero la idea.
+24:47 Juan Carlos Vannini: Más fotos de la de ese producto en específico entiendes? Este es el que va a cargar, pero que tengas esto esto no te carga nada en la página y esté ahí a mí no me molesta. Me parece muy culpa.
+25:00 Luis Figueira: Porque evidentemente este tú eres el friki, que el desarrollo que este. Pero pues confuso Juan eso puede ser confuso para el cliente, pues, o sea, la
+25:14 Juan Carlos Vannini: ble
+25:17 Luis Figueira: gente es mongólica marico, mientras menos.
+25:21 Juan Carlos Vannini: Si tú cargas la página verdad y la gente dice a la carta y le da la carta, no acá está y te carga así en lista y ya lo tienen tú te parece que es confuso si hay otro botón?
+25:31 Luis Figueira: No, bueno, en ese caso no, pero luego eso es mosaico leyenda. Tal no sé qué.
+25:36 Juan Carlos Vannini: Este mosaico era porque yo estaba probando que de verdad sea como una carta entiendes, sabes? Sabes que de verdad esto esto es una prueba esto era mío esto
+25:43 Luis Figueira: sí
+25:47 Juan Carlos Vannini: ni siquiera la idea, era que ustedes lo vieran, era yo tratando de darle como que estética de carta carta, que sabes como que contra categorías abrebocas, pero esto no lo logré la idea, sería simplemente que sea lista y grilla y es más, si te preocupa que la grilla vaya a estar aquí y que la gente le vaya a dar clic. Yo incluso puedo poner un cuadradito aquí con el símbolo de grilla y ya entiendes para que ni siquiera.
+26:11 Luis Figueira: Bonito como esto es como mundo, piri, piri como este.
+26:19 Juan Carlos Vannini: Pero me parece que está demasiado Rocha y además puedes hacer desde hace suma aquí pack y entras al plato aquí las alitas asiáticas. Pero carga así y lo que hago es que este botón que no esté aquí como para que la gente no le vaya a dar sin querer entiendes y lo pongo en pequeñito, aquí van a pagar el que lo descubra lo descubrió entiende y ya.
+26:45 Luis Figueira: ahora podemos hacer estas fotos, puedes generar esto con el tono con la identidad malandra y no
+26:50 Juan Carlos Vannini: Claro, tú tienes la foto yo las vi, pero no eran todas. Yo esto lo agarré, o sea, yo genere todas estas fotos, por eso hay unos que no tienen nada que ver porque yo la genere todas de lo que decía escrito en la Carta se parecen
+27:03 Luis Figueira: Bastante no, ya no está, se parece.
+27:07 Juan Carlos Vannini: algunos, verdad? una ranchera el otro día tan bueno que no te lo
+27:17 Luis Figueira: Se no salía tanto, pero es que te digo que lo que ocurrió de la revolución del 2025 fue tan raro, que esa carta salió en abril y en septiembre octubre, o sea, las salas estaban vacías, no vendíamos nada y entonces y el delivery eso platos sustituyeron cosas que sí, se vendían mucho entonces entramos en una crisis dijimos, marico. La gente quiere comer lo de toda la vida, la gente no quiere los cogollos al fuego la gente no quiere un coliflow, la gente lo quiere unos cambuenazos en términos de de curaduría de carta era espectacular.
+27:48 Juan Carlos Vannini: Y los cogollos son buenísimos también los quitaste.
+27:51 Luis Figueira: también Los cogollos y los y los y los gambones también, o sea, los gambonazos el coliflor la berenjena, las cosas raras las quitamos porque sustituyeron el chorizo sustituyeron no sé qué y entonces las categorías cayeron.
+28:09 Juan Carlos Vannini: Ya te entiendo bueno.
+28:09 Luis Figueira: Entonces ahora va a pasar como esos platos esas cosas no es que se van a ir de piri piri, pero no van a ser la base esas cosas van a entrar y van a salir, o sea, entonces de repente en mayo, nos lanzamos el coliflow de temporada y vas a poder pedir el coliflor durante mayo y en junio nos lanzamos la berenjena y luego vuelven los gambones en octubre entiendes? Pero no son nuestro CORE pues.
+28:31 Juan Carlos Vannini: Si bueno, pero esto va a ser cms, acuérdate, tú vas a poder hasta tú vas a poder entrar agregas un nuevo plato y se publica ya, o sea, y se va a publicar aquí, no tienes que no tienes que crear una nueva página Crear un nuevo plato no va a ser súper sencillo después por eso yo te lo muestro, pero pero bueno, estos son esto te parece confuso también los ahora no está funcionando postres, me da error porque no hay postres, pero te parece confuso.
+28:57 Juan Carlos Vannini: en
+28:59 Luis Figueira: Me parece innecesario suena Chimbo pero tiene que ser demasiado simple todo en términos de cantidad de información y cantidad de cosas. vuelve a
+29:10 Juan Carlos Vannini: ok, pero pero pero un filtro literal el principal es acompañante de verdad te
+29:14 Luis Figueira: Claro, claro, claro, o sea, ahora ahora ha puesto así en la lista, puede tener
+29:14 Juan Carlos Vannini: parece que
+29:18 Luis Figueira: sentido en lo que se desaparezca mosaico y en lo que brilla pase a la derecha como un cuadrito e interactivo o algo diferente tiene sentido tiene de hecho, no sé si a los platos les puedes poner el borde del color acompañamiento, le pones el borde morado a todos los platos.
+29:35 Juan Carlos Vannini: Sí, sí, era así, pero sabes que no sé por qué no me está cargando ahora porque así era de hecho fíjate que sale por un momento estás viendo y se quita.
+29:42 Luis Figueira: Ya vale, pero cuando estás en lista, lo exacto entonces o que tenga el nombre
+29:46 Juan Carlos Vannini: Debería ser igual.
+29:49 Luis Figueira: de la categoría de un lado, porque si es verdad que cuando estás en listo y vas bajando está todo como mezclado todo con todo.
+29:54 Juan Carlos Vannini: Claro, no, no listas también tiene categoría ya, pero bueno, solo arreglo fácil ya si le doy a todo.
+30:01 Luis Figueira: Sí, pero no, no, no, no está como sí. Sí está en orden, pero no sé si es
+30:03 Juan Carlos Vannini: no
+30:08 Luis Figueira: necesario que esté.
+30:11 Juan Carlos Vannini: Todo lo que pongo aquí en cada uno le pongo la categoría principal, sabes qué sé, yo también voy a poner como que unos quiebres de línea para que haya un título grande que diga principales entiendes? Si lo entiendes, o sea de modo que no sea como que un scroll infinito es que la razón de yo haberlo puesto así, porque claro, ojo también podemos incluso la razón de esto era como para que pudieses ver todo de una vez, pero lo que se podría hacer también es que aquí estén los dos botones de lista y grilla aquí sin molestar que la gente si lo descubra lo descubrieron bien, pero aquí podemos darle un botón grande que diga PDF y si le abras ahora el PDF y ya pues también también puede ser eso.
+30:57 Juan Carlos Vannini: Si si te da miedo que la gente esto puede hacer como que demasiado complejo pero por algún motivo.
+31:01 Luis Figueira: No no no no no no no no no no no no no no no no hace falta lo de PDF está perfecto así sí agregándole lo de los nombres pero eh Juan esto de saber que con con Alejandro echa para atrás y vete a al inicio. Este cuando bajas estos botones de reserva y pedir tienen que venirse siempre contigo.
+31:21 Juan Carlos Vannini: sí, eso ahora sólo se está vendiendo el menú, pero se va a venir también esos dos sí se van a venir aquí también lo que pasa es que tengo que
+31:26 Luis Figueira: Todavía me parece que la propuesta inicial lo que te decía Alejandro todavía en en aquí está modificado ya o tú todavía no has modificado.
+31:35 Juan Carlos Vannini: Ver sí está modificado claro, antes era completamente distinta, mira.
+31:38 Luis Figueira: Vale, pero es que yo siento ves, mira, estas letras de arriba inicio historia club secreto carta, vete al otro.
+31:44 Juan Carlos Vannini: ya
+31:46 Luis Figueira: ves
+31:46 Juan Carlos Vannini: Porque mi pantalla gigante es que acuérdate que el responsable de una página web es complicado, o sea, a ver, esto se puede hacer así porque esta pantalla nunca es variable, entiendes? Pero en el momento en el que tú tienes pantallas de todos los tamaños. Esto te va a cambiar demasiado, por ejemplo, mi pantalla es muy grande y por eso lo es así en una pantalla más más pequeña se va a ver así entonces se me empieza a montar las cosas, entonces todavía tengo que optimizar, pero en una pantalla pequeña se te va a ver mucho más junto todo.
+32:16 Juan Carlos Vannini: Pues pero te digo de uno, o sea, el responsable es una página para tú tener, o sea, nunca una página se va a ver siempre así imposible va a depender demasiado la
+32:26 Luis Figueira: Ya vale, pero igual o qué? Pero igual en proporción a tu paz a tu pantalla
+32:26 Juan Carlos Vannini: de la Sí, sí, son más grandes todavía.
+32:32 Luis Figueira: exacto en proporción a tu pantalla, el inicio historial tiene que ser más más más grande exactamente por ejemplo y ahora esa foto exactamente mínimo mínimo
+32:37 Juan Carlos Vannini: esto el texto
+32:44 Luis Figueira: porque velo en proporción al anterior en proporción al anterior todavía es más grande tiene como mayor jerarquía es la palabra que quería buscar.
+32:51 Juan Carlos Vannini: Sí, lo que pasa es que en Web yo estoy usando aquí los tamaños que en teoría son los de web esto aquí estoy diseñando ojo, entonces, claro, aquí yo puedo hacer lo que me dio la gana, pero yo le yo le yo le meto más más power a que se vea todo más grande.
+33:02 Luis Figueira: y esa foto iba ahí a la izquierda esa sala de
+33:06 Juan Carlos Vannini: Estas dos fotos olvídate que en fotos lo último que va a cambiar, pues yo me
+33:10 Luis Figueira: Ah, vale, ok diagramación, no, yo no sabía sin derivación esa fotico estaba y
+33:10 Juan Carlos Vannini: pongo ahora a cambiar todas las fotos.
+33:15 Luis Figueira: ahora la veo como un parche extraño claro, pero ves se ve más grande.
+33:16 Juan Carlos Vannini: Está detrás de él, pero porque yo no puedo garantizar que siempre vaya a estar detrás, o sea, una vaina los tamaños de pantallas demasiado complicado de que yo poder decirle, no siempre va a estar solo la esquinita detrás de la foto, no importa el tamaño de pantalla que hayan tienes lo que te digo, o sea, yo lo tengo anclada, a que siempre esté montada encima de esta pero que siempre esté montada encima de esta es imposible porque si ya de por sí este tú estás viendo está anclado encima esto si yo de por si la meto que se ancla también encima de esta se me va a montar encima del texto, entonces tendría que mandar el texto para arriba, pero en estas pantallas grandes del texto.
+33:52 Luis Figueira: Entonces hay un hueco raro feo ahí a la derecha y entonces tenemos que meter otra foto, métele ahí.
+33:58 Juan Carlos Vannini: Dónde te parece otra foto aquí?
+34:00 Luis Figueira: Sí o quitamos esa primera para que todo suba y él somos privile y se monte o
+34:06 Juan Carlos Vannini: Bueno, déjame buscarme a ver qué puedo poner aquí.
+34:13 Luis Figueira: ponemos y lo que yo creo que Alejandro y yo estamos alineados con eso de esto es que mira esta verga es como y fue la lo que tú nos vendiste de hecho como el brutalismo.
+34:25 Juan Carlos Vannini: es es muy diferente en en plano a la página de
+34:29 Luis Figueira: Porque me enamoraste con aquello y luego me dicen.
+34:35 Juan Carlos Vannini: aquí lo que pasa es que el responsable es demasiado j*****, pues o sea, yo ojo voy a hacer lo posible por acercarlo más todavía a eso pero pero si antes era completamente distinto, sabes los comentarios de Alejandro
+34:50 Luis Figueira: Mira, vete un momento, vete un momento a la inicial a esa.
+34:53 Juan Carlos Vannini: Ya repito la página era antes, yo la tenía así ves.
+34:58 Luis Figueira: Claro, esas vainas nos encantaba.
+35:00 Juan Carlos Vannini: No, no, no, que este es como lo tenía cuando me dicen los comentarios y ahora
+35:02 Luis Figueira: ah, ok ok
+35:06 Juan Carlos Vannini: está, así que es esta misma versión solo que todavía bueno, le falta le falta más power, pues pero ya hay animaciones, o sea, todo a medida que vas haciendo scroll EPA y porque esto se esto no debería estar así. Estas otras ilustraciones que te dice.
+35:25 Luis Figueira: No, eso ya las teníamos.
+35:28 Juan Carlos Vannini: pero esto no
+35:30 Luis Figueira: no, las de abajo son nuestras las de arriba son tuyas exacto las de las
+35:35 Juan Carlos Vannini: Esta transformación de mariposa se convirtió en una ala de pollo estos dos
+35:37 Luis Figueira: Está brutal.
+35:39 Juan Carlos Vannini: aquí bailando el salseo falsa.
+35:41 Luis Figueira: Bueno, por ejemplo, mira en la lista de cosas que tengo para para la petición, tengo uniforme esa boca esa lengua así ese gallo o esa salsa es perfectamente ya el uniforme que podemos sacar para verano entiende, estamos como quiero que en el diseño que te estoy pidiendo en las cosas que te estoy diciendo este tengamos que hacer un brainstorming y un desarrollo de ideas para no, el uniforme marico, agarran los dos muñecos esos bailando nos lo ponemos en la espalda adelante. Ya está porque tenemos suficiente base de cosas buenas.
+36:12 Juan Carlos Vannini: Dale está bien, necesito fotos. Yo tengo unas fotos de los locales, pero esta es la única que verdad es buena. Tú tienes fotos de cada local.
+36:20 Luis Figueira: No, lo que vamos a hacer es inventarnos en prosperidad y en las tablas, perdón, en prosperidad y en Lavapiés otros ángulos de Lavapiés entiende de las tablas de esa tienda que es la tienda que está buena.
+36:33 Juan Carlos Vannini: No, yo me puedes mandar, me puedes mandar algunas fotos que este medio Chimbas y yo le meto con ella.
+36:40 Luis Figueira: Entidad es totalmente diferente ahora es que vamos a empezar a pintar los locales y arreglar los envases esta identidad, entonces no me importa agarramos para prosperidad y ponemos una mesa una esquina de Las Tablas de adentro hay bastante fotos guapas.
+36:54 Juan Carlos Vannini: Exacto perfecto, una mesa y una pared.
+36:57 Luis Figueira: Te pones diferentes ángulos y se acabó.
+37:00 Juan Carlos Vannini: Dale perfecto, todo está mucho más grande, pues, o sea, esto está grande. Esto está mucho más grande. Esto está duro de culminará.
+37:08 Luis Figueira: nada
+37:11 Juan Carlos Vannini: Citos y a medida que va pasando el solito también van saliendo corazones. Quité el la altura de la línea porque él quería que como que se monte uno con la otra en la de salsita, lo hice, no me encanta, te hablo claro. Aquí lo puse más grande, pero claro, lo quieres más grande?
+37:27 Luis Figueira: Que igual es más grande, o sea, yo lo entiendo perfectamente esto aquí es brutal como todo se monta.
+37:41 Juan Carlos Vannini: Más grande aún sí. Bueno, claro.
+37:42 Luis Figueira: mágico como hasta aquí hay O sea, así así y ves y ver carta y a la derecha y quemamos pollo y tal así de brutalista, pues, o sea, esto era algo todo cambió cuando tú presentaste esto porque ahora todo lo que es lo poco que hacíamos Alejandro y yo veíamos esta presentación.
+38:06 Juan Carlos Vannini: voy a voy a meterle para que quede lo más parecido a
+38:10 Luis Figueira: Está riquísima de contacto así de grande que te abofetean las jetas, o sea.
+38:13 Juan Carlos Vannini: También lo hice, pero pero todavía no está tan grande. Aquí está, perdón, tengo que ponerlo del tamaño completo esta foto todas las fotos las voy a cambiar.
+38:22 Luis Figueira: Es ese, pero esas fotos corresponden más con con lo que debería ser la carta
+38:27 Juan Carlos Vannini: Sí, con el estilo.
+38:29 Luis Figueira: en la carta está burda de soft cuando en teoría somos más así.
+38:33 Juan Carlos Vannini: Te entiendo, te entiendo ajá, y qué pasa si agarro las fotos que ya están generadas, pero les cambio el plato y el fondo y meto que si hay más miedo que los platos no sean exactamente los que son.
+38:48 Luis Figueira: No, no me importa, no me importa.
+38:51 Juan Carlos Vannini: O sea, creo que porque me voy a tardar mucho más como que generando cada una otra vez con la referencia de las fotos que me mandan a que yo ya agarré estas les cambia el plato les cambio el fondo y les pongo salsa por ahí regada, sabes?
+39:03 Luis Figueira: Total total, sí o la cerámica negra, puedes poner fondo de la cerámica negra?
+39:07 Juan Carlos Vannini: Sí, sí, le pongo la cerámica directamente una una bandeja un cerámica otros estoy montando. Bueno, entonces voy a hacer eso.
+39:18 Luis Figueira: Vale, planifícate para que te veas con Alejandro y los botones que se muevan la vaina este y lo de reserva en la página inicial, lo tenías como grande y aquí
+39:30 Juan Carlos Vannini: De la historia, pero él como que no le convencía porque ustedes no tienen
+39:31 Luis Figueira: otra vez vuelve a ser como discreto. Esa palabra me gustó discreto.
+39:41 Juan Carlos Vannini: suficientes años de trayectoria, pero a mí me parece que siempre es importante en una página de poner algo de historia.
+39:48 Luis Figueira: Yo lo que la siguiente pregunta que te voy a hacer en términos del desarrollo de tecnología y lo que está ocurriendo con todo el tema de la inteligencia artificial. Esta página nos va a ayudar a existir dentro de todos los motores de la de la inteligencia artificial, porque lo poco que he leído marico, es que ahora cada vez menos importa la página web, porque la gente va a buscar todo a encontrar todo y a vivir a través de El la propia inteligencia artificial el chatgiptiva, el Jimmy o el Brock el que tengo.
+40:15 Juan Carlos Vannini: te explico antes había algo que se llamaba lo que te hacían las agencias, es
+40:18 Luis Figueira: también
+40:24 Juan Carlos Vannini: que agarraban tu página web y le metían un coñazo y tal para que tú aparezcas en las búsquedas por relevancia, eso lleva mucho tiempo muriendo porque Que es invasivo y Google lo penaliza la inteligencia artificial es semántica la inteligencia artificial lo que le interesa es que la página diga lo que es que se entienda porque la inteligencia artificial navega las páginas web ok tal cual como la maneja, una persona entonces si tú tienes una página web que tiene muchas imágenes con texto, por ejemplo, esto esto se está viendo aquí que dice somos piri piri, al esto no ser texto, sino una imagen esto en teoría no es bueno para la inteligencia artificial porque la inteligencia artificial no va a tomar una captura de pantalla esto para analizar, que aquí dice eso la inteligencia artificial lea aquí, carbón, a la bestias al suelo bruto somos Piri Piru un eje picante. Esto está bien porque directamente explica qué es lo que son de entrada, entonces en teoría la inteligencia artificial y su búsqueda lo más importante es que sea semántico que sea descriptivo que diga que es lo que es, entiendes y con eso ya apareces en los motores de búsqueda, pero no eres tú el que o sea la inteligencia artificial igual, busca con Google entiendes la intersección oficial no tiene su propio search engine del trabajo igual con Google con Yahoo con Bing con todo lo importante es posicionarte las páginas de webfront, son súper buenas con SEO súper buenas consejos y si tu página web tiene la estructura específica para que aparezcas y entre los primeros o por lo menos los primeros 10 si buscas pollo al carbón o si buscas pollo o pollo restaurante o lo que sea.
+42:04 Juan Carlos Vannini: pero para eso necesitas posicionarte pues va a posicionarte tienes que contratar una agencia esa es la vaina hoy yo te pongo la página bella y es súper buena para SEO y yo te pongo que vas a tener el 100% de SEO 100% deseo es que todos los tags tienen que ser H1 tienes que poner una jerarquía de los tags tienes que poner toda la metadata todas las imágenes todas las imágenes tienen que tener metas descripciones todo eso yo lo dejo organizado pero después para posicionar la página tienes que contratar una agencia de SEO
+42:32 Luis Figueira: Pero yo digo para posicionar no me da igual en Internet yo lo digo es para que cuando la gente esté chateando con la con la con la inteligencia artificial que uso.
+42:39 Juan Carlos Vannini: la inteligencia artificial da las primeras te muestran las primeras resultados de Google la inteligencia artificial no tiene
+42:44 Luis Figueira: Vale, o sea que igual igual tenemos que tener que ser una buena página para SEO para que esto funcione.
+42:50 Juan Carlos Vannini: Sí, y webflo es muy bueno para SEO ejecute lo mejor ahora.
+42:52 Luis Figueira: Vale, ok, o sea que quiere decir que lo tendríamos porque es marico, la penetración tal y como va de la inteligencia artificial, me refiero a la penetración en el uso cotidiano, mi mamá que es una señora de mariscos, 66 años. Lo que hace es estar preguntándole todo el día a charitito, no lo
+43:10 Juan Carlos Vannini: Todo el día todo el día.
+43:11 Luis Figueira: hacen, o sea, todo absolutamente todo, o sea, ya la señora no lee páginas web.
+43:16 Juan Carlos Vannini: Obvio tú lo que tú lo que tienes que tratar de posicionarte es en google y para posicionarte en Google tienes que ser buen SEO la página web. Yo te la voy preparada para un buen SEO pero deberíamos deberíamos, o sea mínimo hay gente
+43:27 Luis Figueira: Vale.
+43:31 Juan Carlos Vannini: que tú hiciste el digital que eso es medio valoro.
+43:34 Luis Figueira: Sí, es medio valor 12.
+43:36 Juan Carlos Vannini: No es ultrabalurdo. Es que el peor es que por lo menos tienes 2.000 euros para SEO si lo aprovechas solo para SEO sabes, puede que te que te venga bien porque
+43:46 Luis Figueira: Igual a partir de de lo que ocurra yo este por ahora Marzo Abril Samo haré pocas cosas, pero yo.
+43:52 Juan Carlos Vannini: yo tengo que son unos huevos pelados en SEO cuando tengas el tiempo, pero lo bueno es que son demasiado baratos porque están en Venezuela echamos Burdeos
+44:01 Luis Figueira: Tengo yo lo que quiero es que la gente le pregunta a chachi Pitti dónde comprar pollo o qué almorzar hoy o qué comer hoy o donde pedido delivery? Qué pido para comer hoy a casa y aparezcamos entonces eso es lo que yo necesito la gente
+44:12 Juan Carlos Vannini: Yo voy a yo voy a voy a tratar de hacerme una investigación de qué palabras
+44:13 Luis Figueira: hacía en Google pues.
+44:20 Juan Carlos Vannini: específicas y qué estructura específica deberíamos tener para que Chaji te considere más, pero yo sé que busca en searchings entonces en verdad, tú te tienes que posicionar en el searching.
+44:33 Luis Figueira: Vale, vale, pero entonces entonces pongamos las palabras que necesitamos para pedida comida pedida a domicilio de libre y pollo al carbón pollo en tu casa pollo asado.
+44:42 Juan Carlos Vannini: Yo soy muy organizado con todo eso, o sea, esto es todo. Esto es relevante. Esto es un H1 el H1 es lo primero que le dé la página es por ejemplo en realidad esto no debería ser un H1 por qué? Porque el H1 es lo más relevante que lee el searching, el H1 debería ser esto, aunque el H1 en estilo sea más pequeño, entonces lo que te digo no debería.
+45:06 Luis Figueira: Total también entonces en el H1 deberíamos poner carbón de pollo al carbón, esas vainas, no? O sea
+45:13 Juan Carlos Vannini: Por ejemplo, sí, pero carboncito pones a pensar, por eso es que esas son las vainas de la gente deseo que ellos de pana hacen la búsqueda de las palabras claves de todo lo que se está buscando en el momento por región por código postal por vaina por idioma, o sea, en la búsqueda de todos estos bichos, por ejemplo que te digo es uno juego y te dicen c***, la gente no está buscando pollo al carbón. La gente está buscando pollo a domicilio entiende entonces tú sabes que en tu H1 tienes que meter pollo a domicilio de alguna forma, qué es lo que hacían antes los expertos deseos que te ponían entonces la página que he podido domicilio saliera 752 veces y la vaina ahora Google penaliza eso porque eso SEO invasivo pero con tal de que esté organizado de modo que tú sepas, cuáles son los keywords? Si lo pones en tu H1 sabes que tu H2 diga el H1 dice pollo al carbón delivery y tu H2 dice que sé yo barato, no obviamente no es positivo un restaurante, pero bueno, una cosa relevante, o sea algo que algo algo que especifique más tu restaurante y tu competencia y a medida que tú vas bajando en jerarquía de H1 hasta H6 vas como como filtrando entiendes y así es que tú haces organización SEO para que una inteligencia artificial pueda entrar y entender de qué va la página.
+46:29 Luis Figueira: Y en términos comerciales mérito también lo inteligente es que nosotros hablemos aquí el dialecto de que resolvemos, o sea, más allá de las cosas que aprendí de este año es que más allá de que si carbón a lo bestia y Salceda lo bruto para la gente esos conceptos todavía son muy conceptos, o sea, eso está cool cuando ya de repente eres una marca demasiado consolidada. Yo necesito hablar de lo que yo resuelvo y de lo que yo posibilito yo posibilito es una cosa en casa.
+46:52 Juan Carlos Vannini: Eso es lo que te digo es semántico para la inteligencia artificial la inteligencia artificial le da igual el carbón al oeste es el celoruto la intersecto oficial lo que le interesa es eso que estás resolviendo para poder decirle a la persona que está buscando. Mira aquí tienes pollo barato cerca de ti en Sanchinarro locación importante.
+47:11 Luis Figueira: tal cual tal cual entonces Vale, vale, bueno, ok.
+47:18 Juan Carlos Vannini: o por ejemplo algo algo tipo, los sitios en donde repartes, sabes si tienes tú tú tienes globo y
+47:27 Luis Figueira: Este canal propio lo que pasa que aquí acuérdate, que siempre mandamos a la gente del canal propio.
+47:32 Juan Carlos Vannini: por ejemplo piensa eso ojo esto yo pensándome la hora pero yo podría perfectamente me da la y ya meterme en globo o estoy hablando con la inteligencia de cualquier cosa ahí hay pollos delivery en uber y si tú que te apuesto que nadie nadie está poniendo pollo de leer y a través de uber en su página web YouTube esto esto por ejemplo ya es algo que filtra porque si alguien le pregunta Chitty mira hay pollo delivery en Madrid A través de uber y si tú eres el único que tienes de verdad un H1 o un H2 que diga apoyo de libre a través de Google vas a salir el primero entonces lo que te digo.
+48:10 Juan Carlos Vannini: O sea, eso es lo que tienes que para eso son los expertos de acción, porque ellos saben precisamente cuáles son las combinaciones de palabras que las
+48:16 Luis Figueira: Sí, y estos chamos si están en Venezuela evidentemente aplican la misma
+48:16 Juan Carlos Vannini: personas están buscando en tendencias.
+48:21 Luis Figueira: metodología para nosotros estando aquí, da igual.
+48:23 Juan Carlos Vannini: No mucho mejor porque ellos son como a mí me gusta, acuérdate. Yo sí señor web. A mí me gusta el tema no invasivo porque c***, yo soy prueba de la experiencia de usuario, o sea, la página web. Sí, es verdad, te tiene que resolver un problema. Te tiene que hablar claro y tal, pero también c*** tiene tiene tiene que hablar bien de la marca y posicionarte con una marca consolidada y buena entienda la mayoría de las agencias de deseos son un desastre que tienes que montar un blog y el blog tiene que tener esta estructura y tiene que decir todas estas cosas todos los meses de eso es invasivo. Entiendes yo a mí no me parece que que esa es la forma correcta de hacerlo como la gente que spamea los posts de Instagram todo el día con publicidad entienden entonces estos chavos tienen esa visión también y además también le meten a la inteligencia artificial son buenos, son los que están trabajando con el banco.
+49:05 Juan Carlos Vannini: Yo trabajo con ellos a través de ellos y te lo pongo en contacto porque además
+49:06 Luis Figueira: Vale, bueno.
+49:08 Juan Carlos Vannini: son baratos son equipos un poco más de siete personas, puros chamos tienen 22 años y son Burdeos de pana, son buenos.
+49:15 Luis Figueira: Bien, bueno, luego hablaremos con ellos, pues, o sea, igual, háblale ya de nosotros. Me vas haciendo lobby y cotiza mi mariposa, dime para estas piezas o cómo lo ves, o sea, yo no creo que yo te pida al mes marico más de tres piezas, no lo creo, sinceramente es viendo ahorita la media y analizando lo que te escribí yo con lo que te escribió ahorita en esa lista. Yo tengo resuelto marzo y abril, por ejemplo.
+49:37 Juan Carlos Vannini: claro
+49:39 Luis Figueira: Pero bueno, necesito resolverlo.
+49:40 Juan Carlos Vannini: Déjame cotizar, déjame pensar bien, déjame meterle más caña esta página para mostrárselo en Alejandro y poder salir.
+49:46 Luis Figueira: En las palabras sean más grandes, pues vamos eso que dice que goza lo picante transformación salga más grande arriba arriba en las de los la de sube sube ahí eso mismo lo tenías inmenso en lo otro que ocupaba todo de punta.
+50:01 Juan Carlos Vannini: A la tarjeta.
+50:05 Luis Figueira: Claro, las tarjetas de colores.
+50:09 Juan Carlos Vannini: Tú quieres que se vean así de grande?
+50:21 Luis Figueira: Sí, pero fíjate que en la proporción ahí de todo ese texto solo aparecían dos tarjetas ahorita, estás mostrando mucho más. Verga, esto me parece brutal.
+50:35 Juan Carlos Vannini: Bueno, déjame meterle.
+50:36 Luis Figueira: Sí, también esto me parece brutal, o sea, mira la proporción de lo de arriba, pero solo de abajo solo había mostrado dos. Ahora estás mostrando, vete a la nueva. 3 y como flaquitas
+50:48 Juan Carlos Vannini: Es por el responsive es que es que después se va a haber demasiado grande, te lo digo, me va a haber demasiado grande, se va a ver la tarjeta.
+50:51 Luis Figueira: del título y de las tarjetas y lo
+51:00 Juan Carlos Vannini: Voy a hacerlas más altas en general, ok que no aquí me están ocupando tú cuando trabajas en Web trabajas con porcentajes, esto es un 30% del de la altura de la vaina. Entonces yo aquí le voy a decir que no son 30, sino le voy a mentir como un 50 y voy en general a toda la a todos los textos, lo voy a poner más grandes para que crezcan los botones crece todo, pues y te gustó esto no
+51:22 Luis Figueira: Vale.
+51:26 Juan Carlos Vannini: viste los botoncitos.
+51:27 Luis Figueira: Ese es está guapo esos dos botones de reserva y pie, ya tiene que ser una bestialidad que te apetece siempre para abajo.
+51:33 Juan Carlos Vannini: Ok ok está bien, está bien.
+51:36 Luis Figueira: M pum pum lo otro porque necesito si nos cuadra y empezar mandate cosas, pues a ver cómo nos ordenamos de yo no sé si hacemos una especie. Yo creo que tuvo días trelos no para el seguimiento de
+51:47 Juan Carlos Vannini: Un sitio donde podemos subir todo un drive y o un driver y te aviso por
+51:49 Luis Figueira: Porque podemos tener un trailer y una tarjeta para cada diseño y sobre ahí tú vas poniendo las modificaciones y lo que sea para no está correo para allá correo para acá con ropa ya.
+52:03 Juan Carlos Vannini: whatsapp.
+52:05 Luis Figueira: Sí, pero las indicaciones de los textos te digo afiche, calle pollos más
+52:08 Juan Carlos Vannini: bueno en documentos
+52:14 Luis Figueira: patatas, te cargo la referencia. Te cargo el texto la jerarquía del texto el precio te cargo toda la estructura y ya tú tienes todo en un solo sitio, hay cargas el modelo y se acabó.
+52:24 Juan Carlos Vannini: Sí, perfecto, vale? Sí.
+52:26 Luis Figueira: Pero bueno, este me cotiza y arrancamos para mí, chamo, de verdad sería una bendición hacerlo contigo porque ya tú lo tienes, o sea, yo no tengo que explicarle nada y estas piezas son una estupidez. O sea, es una es una ficha del pollo negro que diga p**** más patatas es un promocional es de pus de venta es un flyer para impulsar el verano, es la carta de, o sea, son vainas, creo que bastante básicas y tú con los con las ilustraciones y lo que ya tienes.
+52:51 Luis Figueira: Tú me dices que en el uniforme va a ir en la manga esta verga y en la espalda el gallo y tal y ya está listo, le damos o sea.
+52:57 Juan Carlos Vannini: con lo que tú me mandaste aquí esto es lo que necesitas ya y tú me dices que ya tienes resuelto la franela por porque
+53:05 Luis Figueira: no, no no no, no, de ahí no tengo nada resuelto, o sea, de ahí lo que pudiese dejar de hacer en términos de tiempo de trabajo es la tarjeta QR de reseñas de local, que básicamente es una tarjeta de presentación que necesito que tenga el QR de cada local para que ellos cuando van a la mesa, tengo un espacio en blanco escriban su nombre y le piden a la gente la reseña, sabes con el QR el
+53:28 Juan Carlos Vannini: Ya y la residencia.
+53:30 Luis Figueira: no Google eso es pero ellos escriben en la tarjeta su nombre donde Alejandro hola, mira si yo soy alejandro, te tendría hoy te dejo mi tarjeta para que nos dejes una receta ya está el cliente la deja no la deja el 1% lo hace, pero necesito que ellos tengan un instrumento para el push.
+53:46 Juan Carlos Vannini: Ok, pero eso no es mensual, eso lo necesitas.
+53:49 Luis Figueira: Oh, no, no, por eso te digo que aquí hay dos meses de cosas realmente si yo te tengo que decir cuántas cosas vamos a hacer al mes, seguro, seguro va a ser ponte el newsletter y alguna ficha de calle eso con seguridad lo que yo voy a hacer mensual más nada todo lo demás cambia, no sé cada tres cuatro meses o dos veces al año, por ejemplo, las tarjetas de mesa, eso va a cambiar marico, dos veces al año nada más.
+54:18 Juan Carlos Vannini: Y las vainas las estás haciendo con una con una agencia.
+54:20 Luis Figueira: Con nadie necesito una agencia es otro pedo que me tengo que mamar ahora después, o sea, necesito una agencia marico de de pero que sea social de verdad, o sea, hemos trabajado con unas asquerosidades huevos. Nos ha pasado unas vainas, se fue otra cosa del trauma del 2025 que al final Alejandro lleva la dirección de marketing, pero c*** él no es tan recursivo en tecnología y es un tipo que ya no está marico montado en la ola de TikTok Instagram verga, entonces lo que a él le presenta en Versus lo que ejecuten marico, había una brecha demasiado arrecha.
+54:52 Luis Figueira: yo necesito alguien con
+54:52 Juan Carlos Vannini: Yo tengo claro, yo tengo que sacar mis paquetes de social. Yo los tenía brother, pero los quite porque es demasiado trabajo es demasiado trabajo, vale? La pena porque la gente no lo paga. Entonces yo estaba todo el tiempo. Tú
+55:03 Luis Figueira: Totalmente totalmente esa el crear contenido y el socializar tiene que ser un
+55:04 Juan Carlos Vannini: estás corriendo con Lo que me pasaba aquí, pero a mí me ha pasado al revés que yo le metía demasiado esfuerzo porque yo tengo gusto, pues y a mí me gusta hacer las vainas bien y después los clientes, el que no, pero esto es demasiado, sabes como que les parecía tu Moche yo no puedo tampoco así, pues y por el otro lado no puede ser un pirata. Entonces como que no hay un punto medio, por eso yo creo que la mayoría de gente que termina haciéndolo bien es porque tiene gente interna brother, que les hace la vaina.
+55:47 Luis Figueira: interno m******, pero yo ahorita no.
+55:48 Juan Carlos Vannini: yo se lo digo brother, contrata a alguien que te le pagues 500 euros al mes y lo haces y nada más dos veces a la semana dos veces a la semana que te grabe contenido bien, alguien que tenga gusto ese perfil de Community no existe tanto porque la gente busca como que alguien fijo que esté todo el día ahí metido, no tú puedes tener a alguien que
+56:05 Luis Figueira: Emplear por eso que le haces un contrato fijo de 30 horas a la semana 20 horas a la semana y le pagas 500.
+56:11 Juan Carlos Vannini: a un autónomo
+56:12 Luis Figueira: Marico, pero no lo hacen bien, pasamos por ahí también. Ya pasamos por
+56:15 Juan Carlos Vannini: No vale, alguien tiene que haber alguien tiene que existir ese perfil brother.
+56:19 Luis Figueira: Él me dijo, mira solo una cajita venezolana. Es una chamita como de 22 23 años súper dedicada a la caraja y como el mes y medio era la que generaba, o sea, creaba contenido realmente se iba el local entendía la dinámica del local grababa. Ejecutaba le dimos un un productor, o sea, yo tengo a Mario que es el que hace las fotos marico, que el tipo es muy bueno y graba vídeos muy buenos, pero él no no tiene el swing digital de cómo se consume el contenido. Estás Eva tenía el swing digital y se lo dijimos. Mira ella es tu directora. Tú le vas a producir todo lo que estás Eva quiere maricolar match perfecto. La echamos un mes y medio, no mira, me voy para no sé dónde están. Me voy a trabajar más porque son carajitos, me entiendes entonces.
+57:05 Juan Carlos Vannini: Si tú tienes el tipo que te graba a mí lo que más me jode y lo que yo no puedo, porque yo soy muy caro, si yo tengo que usar de mi tiempo para ir para allá grabar y tal entiende, pero si tú lo que necesitas es que te edite las vainas y tienes este dolor que te grabas fotos y te tomas vídeos puedes, pensártelo también. Mételo en el paquete de
+57:20 Luis Figueira: no, no, solamente eso el el edita, yo necesito el director, pero este director tiene que
+57:28 Juan Carlos Vannini: Mira, esto es lo que vamos a hacer este mes vamos a hacer.
+57:29 Luis Figueira: Ser le distinguen el thinking del consumo de contenidos, el que sepa que se está usando en TikTok se está usando en Instagram y dirija, este tipo y le diga, vas a grabar así así así vas a hacer esto y me va a entregar esto y esto y esto.
+57:41 Juan Carlos Vannini: Lo demás por nada, te lo juro que no es por nada, pero yo yo sí lo tengo, pero es que no sé, es que yo no, aquí estoy metiendo demasiadas vainas, pero yo que
+57:47 Luis Figueira: no
+57:52 Juan Carlos Vannini: uno debería ser un huevo pelado de Community Manager y no lo hago porque es que paga muy mal entiendo.
+57:58 Luis Figueira: no consumes full contenido tú de verdad estás metido en texto que en Instagram
+58:05 Juan Carlos Vannini: Es que yo estoy muy metido en la computadora. Ahora estoy todo el día en el mundo digital. Estoy todo el día del Social Media estoy viendo lo que yo necesito es terminar de montar mi agencia. Eso es lo que yo tengo que hacer y que la estoy montando cuando yo tengo mi agencia, porque la única empleada que yo tengo ahora está en Venezuela pero si yo tengo alguien aquí que va a llegar esas vainas y que yo lo dirija, entiendes eso ya es otra cosa.
+58:24 Luis Figueira: Tienes que asociarte con Mario con esta hermana que yo te digo que te he dicho lo que hace es producir él es un huevo pelón iluminación.
+58:30 Juan Carlos Vannini: Una película de Hollywood yo tengo cámaras tengo rieles, pero seguro el tuyo también tengo todo lo que pasa es que no paga no paga no paga, o sea yo ir, por
+58:38 Luis Figueira: no
+58:40 Juan Carlos Vannini: ejemplo este brother de que te dije de presión de antropía. Ahora sí le voy a grabar un vídeo pero son tres días de contenido son 2.500 euros que la verdad es que no está mal porque va a estar todo el día ahí metido pero no todo el mundo tiene para pagar eso y es porque le voy a hacer el vídeo de la marca que va a ir arriba, o sea es como que entiendes no es para grabar contenido para tener pero de ahí a él le va a salir contenido entiendes porque vamos a grabar como que los talleres y bueno, pero lo pongo más caro que eso no me lo pagan lo poco más barato y a mí no me vale la pena entiendes entonces es muy común medio muy ladilla.
+59:11 Luis Figueira: Con eso sin duda, eso es otro pedo también lo intentamos. Bueno, que todavía trabajamos con él tenemos un bicho que es un español que es súper cómico que es un cómico y el bicho. Bueno, sale a la calle entrevista, gente va al local, no sé qué hace presentaciones de productos, o sea, él era nuestra cara y eso funciona le da como cierta respaldo y le da credibilidad a todo lo demás de
+59:36 Juan Carlos Vannini: un poco de Sabes que sabes qué es lo que necesitas donde hablo, claro o alguien interno o tú mismo? No, no no no no no no, no de que las marcas no de verdad si necesitan a una cara de alguien entiendes que impulse los negocios entiendes? Ah, sí, yo lo he visto, sí.
+01:00:26 Luis Figueira: contenido que hacemos y lleva un hilo conductor inteligente.
+01:00:28 Juan Carlos Vannini: Pasa de las cosas corporativas en cambio cuando ya ven a alguien haciendo comedia o algo o lo que sea la gente se queda.
+01:00:34 Luis Figueira: Tal cual pero entonces yo necesito la persona que dirija, que es el contenido que tiene que hacer este tipo que es el contenido que tiene que grabar Mario o simplemente cuál es la plantilla de Capcom que se va a utilizar para hasta eso organico. Entiendes? Mira, esto es lo que está sirviendo. Agarremos Capcom subamos la verga y subamos lo ya sabes porque es tendencia yo no.
+01:00:51 Juan Carlos Vannini: Sí, porque hay velocidades velocidad además.
+01:00:53 Luis Figueira: Eso es j*****, marico, es marico. Te lo juro que pasamos por lo menos por cuatro o cinco entre agencias y autónomos es muy j*****, es muy
+01:01:04 Juan Carlos Vannini: De primera categoría de las agencias son las más piratas que existen yo
+01:01:06 Luis Figueira: bueno, yo no sé si
+01:01:08 Juan Carlos Vannini: también he dejado hacer todos esas vainas porque también me da miedo la piratería.
+01:01:11 Luis Figueira: Yo no sé si Alejandro te mostró una jeva que contratamos por el rebranding en su momento a nosotros teníamos bueno cuando teníamos como que dos presupuestos para el rebranding para pasar del pollo al piripire arqueado, teníamos ya la idea de que era texto, no sé qué tatata y que me estamos hacer esta esta aterrizar este este rebranding en términos de diseño porque digamos que la dirección de arte y la idea creativa la tenía de Alejandro yo mira, yo lo me lo imagino. Sí, yo creo que y es carbón, es salseos. Estos son los colores. La paleta tiene que crecer tal malico latín nos presentó una vaina cuando digo que yo siempre estaba involucrado en mis negocios ha estado muy activo en términos de marketing y de comunicación porque es una vaina que a mí me gusta ha sido la vida más pirata, que yo he visto en mi vida brother, o sea, en en no sé en nueve años o diez años que tengo.
+01:01:58 Juan Carlos Vannini: la más profesional del mundo
+01:01:59 Luis Figueira: Profesionalizando mi negocio una vaina, pero era era una española de no sé dónde c*** de Valencia qué c*** marico tienes que ver el Instagram de la jeva, te lo voy a mandar. Voy a buscar. Una vaina riquísima, el perfil es una vaina riquísima creativa de marcas de sushi de de cacao yo no sé qué es una vaina cuarto bate que tú dices esta es la jefa.
+01:02:20 Juan Carlos Vannini: A mí a mí a mí me pasa al revés, digo que no, yo sé yo sé lo que el valor que yo tengo y ese las venas, que yo hago yo sé que yo sí. Bueno, porque no, porque lo dice mi trabajo y mis clientes punto y a mí después entonces me da pánico brother, posicionarme como que él sabes, yo tengo demasiado como que se llama.
+01:02:37 Luis Figueira: Que eres un si sientes que estás mintiendo solo tú exactamente.
+01:02:41 Juan Carlos Vannini: Sabes? Yo tengo demasiado síndrome de impostor porque me da demasiado miedo
+01:02:43 Luis Figueira: bueno
+01:02:44 Juan Carlos Vannini: como que yo sí y después hay cada pirata ahora que es un valor y se venden
+01:02:47 Luis Figueira: Tal cual me está pasando ahorita porque yo además de Piri yo hace solo
+01:02:49 Juan Carlos Vannini: como si fuesen los mejores.
+01:02:54 Luis Figueira: restaurantes en términos operativos sobre todo en plantación de delirio, yo te estoy poniendo dos delivery y ayer estuve en una reunión defendiendo el presupuesto con una gente y salí de ahí con la sensación de que m***** les estás mintiendo porque pero porque evidentemente les conté todo lo que yo hago mi día a día y lo que se necesita para que esto funcione y sale con la sensación de como c***** de que marisco este y después me monté en el cardio
+01:03:13 Juan Carlos Vannini: claro
+01:03:17 Luis Figueira: siempre. Bueno es realmente. Eso es lo que haces todo el día y es lo que estás
+01:03:20 Juan Carlos Vannini: claro
+01:03:22 Luis Figueira: haciendo con este otro tipo, cuál es el peo? O sea, tú no?
+01:03:26 Juan Carlos Vannini: Eso es impostor síndrome al 100% Yo sufro de todo el tiempo, pero después vienen estos piratas y se venden como los mejores y vienen y te estafan a ti eso es lo que a mí me arrucheran.
+01:03:36 Luis Figueira: Porque cuando hace el primer entregable Alejandro le corrige y le dice como que mira no, olvídate de esta m*****. Esto no tiene nada que ver esto no es profesional. Esto no sé qué, o sea, mal todo mal relativa. Bueno, voy a intentar una segunda vez y pero hay algo salvable, no, no, no me tienes que presentar algo totalmente diferente.
+01:03:53 Juan Carlos Vannini: Que te quería volar. Te quiso colorear otra vez no?
+01:03:56 Luis Figueira: Ah, no, ya habíamos dado la inicial del 30% del presupuesto, no sé el presupuesto eran cuatro mil euros o 3.500 euros y habíamos dado, no sé 1100 1200 euros cuando le pasa al segundo le dice Alejandro mata esto no pierdas tiempo ni corrigiendo ni pidiendo más nada porque esto no va para ningún lado. Busquemos qué cláusula del contrato nos permite cancelar esta verga y es mejor salvar o la mitad o no salvar nada, pero ni perder más plata ni perder más tiempo, o sea, esto no tiene pompón.
+01:04:27 Juan Carlos Vannini: Ni siquiera quisiste que te haga una segunda propuesta.
+01:04:29 Luis Figueira: No, no era la segunda cuando llegó la segunda fue cuando dije no pierdas ni corrija, o sea, escríbele un correo diciéndole que esto está muy alejado de un de una vaina profesional y que está de más muy alejado del brief, o sea que no tiene nada que ver con el brillo. Te la voy a buscar, se llama iCloud la tipa se llama Claudia Mónico estafadora, es una estafadora y además Alejandro me decía Luis yo también me siento mal porque yo no sé si es que ahora las vainas se manejan así y yo estoy mintiendo, será que está activa lo que nos está proponiendo y yo manejo, estás loco, o sea que está totalmente mal lo que nos estamos.
+01:05:06 Luis Figueira: si me suena que era como que iCloud
+01:05:07 Juan Carlos Vannini: No, no, esto no creo. claudimar Orozco no y dice, ay Claudia así como de Cloud Studio ah pero claro de Cloud Studio
+01:05:25 Luis Figueira: Aquí está de Cloud escucha la página esto mira de Cloud Studio ver lo que la pantalla.
+01:05:46 Juan Carlos Vannini: No me sale ni siquiera.
+01:05:49 Luis Figueira: te bloqueo
+01:05:50 Juan Carlos Vannini: o XF
+01:05:51 Luis Figueira: no, no de Cloud porque estudio
+01:05:57 Juan Carlos Vannini: a español
+01:05:59 Luis Figueira: o sea, es que no entiendo ahora que lo veo tan pirata que en su descrito exacto
+01:06:03 Juan Carlos Vannini: Estos trabajos no son de ella.
+01:06:05 Luis Figueira: escribió estudio en español pero Exacto y el estudio en español por eso en el en el username, pero si ves su logo está estudio en español. Bueno, evidentemente eso ya hoy yo lo tengo clarísimo.
+01:06:26 Juan Carlos Vannini: Estos trabajos no son de ella. Ella está curando el contenido aquí porque este logo ese logo de ella es muy valudo para tener este nivel de curación de todos estos trabajos son arrecho o los hace como ella hay o se los
+01:06:37 Luis Figueira: ves Eso lo hace.
+01:06:47 Juan Carlos Vannini: Hace de otras personas.
+01:06:51 Luis Figueira: Mira la marca de miso marico es bellísima la marca que hizo.
+01:06:54 Juan Carlos Vannini: Y aceptéis una valudez.
+01:06:56 Luis Figueira: Marie, una recontra valoró de eso, o sea, es que yo es para que haga sea la risa lo que nos hizo es una vaina para reírse.
+01:07:04 Juan Carlos Vannini: Qué raro, verdad?
+01:07:06 Luis Figueira: Estos potos helados que arrecho.
+01:07:13 Juan Carlos Vannini: Cualquiera la contrata.
+01:07:16 Luis Figueira: Esto es para meternos el huevo pelado cualquiera la contrata. O sea, es que estaba tan mal hecho el diseño tan mal hecho que sabes claro, o sea, cuando las diagramaciones ni siquiera maridan, no sé cómo se dice, o sea que no, no las degradaciones no tienen, no, no hay horrible estas eva, nos estaba cobrando. Entonces además en precio estaba relativamente bien, por eso nos llamó la atención porque vimos c***, no nos está violando porque al final bueno todo el mundo no solo hablamos claro en relación a la capacidad de la marca cuando Ya nos digan 150 algo así no llegaba a 4000, estaba cerca.
+01:07:53 Luis Figueira: De cuatro verga, dijimos que sí, porque marico nos estaban cobrando, siete mil ocho mil yo no sé si tú cotizaste en ese momento para eso.
+01:08:01 Juan Carlos Vannini: No, a mí no me pediste, me tuviste miedo me tuviste miedo yo soy más barato.
+01:08:05 Luis Figueira: Yo creo que sí, cotizaste y yo creo que tú cotizaste.
+01:08:07 Juan Carlos Vannini: Yo cobro ahora el mío el básico es 4500.
+01:08:10 Luis Figueira: Vale, yo creo que tú cotizaste como 8000 no hay nadie así me suena.
+01:08:13 Juan Carlos Vannini: pero con páginas duro incluidas
+01:08:15 Luis Figueira: Yo soy creo que era tu presupuesto era era.
+01:08:18 Juan Carlos Vannini: Quiero mi presupuesto mi presupuesto de 8000 tiene la página web incluida.
+01:08:23 Luis Figueira: Bueno, al final estás eva, nos metió el huevo y perdimos, no sé logramos rescatar la mitad de la inicial y perdimos como 600 euros. Mira, mira esta marca de santo.
+01:08:34 Juan Carlos Vannini: Sí, sí, no entiendo de otras personas o es colaborativo o lo hace con una
+01:08:34 Luis Figueira: Muy cool tiene cosas muy cool.
+01:08:43 Juan Carlos Vannini: agencia, no sé, me parece raro que te haya pirateado tanto y el logo de ella es una m***** entonces que es muy raro, sabes? O sea un diseñador con el nivel de curación que tiene aquí abajo, jamás tendría hacerlo entonces lo que te digo.
+01:08:55 Luis Figueira: total
+01:08:57 Juan Carlos Vannini: Como muy raro, no sé capaz una estafador a capas, no?
+01:09:00 Luis Figueira: Es ese el logo es como medio Camba no.
+01:09:03 Juan Carlos Vannini: Sí, no sé o sea, jamás en la vida, hay vainas muy garrachas aquí muy raro. Bueno, no sé qué locura la cantidad de veces que monte yo no monto nada, pero eso sí me da richera a mí ver la gente haciendo los bailes que uno tiene que ser yo no lo hago.
+01:09:17 Luis Figueira: Bueno, tienes que dedicarle dos horas al dos horas.
+01:09:21 Juan Carlos Vannini: Pero lo tendré bueno nada.
+01:09:23 Luis Figueira: Semanales médicos dos horas semanales dos horas semanales o sea lo que tienes que planificar son dos horas a la semana todos los jueves entre las tal y las tardes se acabó ya está.
+01:09:34 Juan Carlos Vannini: Es que es que es que tú no tienes hijos. Cuando tengo tiempo es para trabajar entiendes? O sea, yo yo he dejado a un lado todo lo que me involucró a mí mismo y pero pero para eso tengo la diseñadora. Yo lo voy a poner a montarme para buscarte la vida ella para que sepas también con qué equipo estás trabajando. Ella se llama Victoria ya que no me recuerdo cómo es que su Instagram la echamos una hueva para no al nivel de esto que me acaba de mostrar porque esta chama si es así.
+01:10:08 Luis Figueira: Claro, pero ves como como al final crees que que que que eso es lo que estás contratando y no es m******, no es o sea.
+01:10:18 Juan Carlos Vannini: Ella es mi señor, c***, creo que no es.
+01:10:21 Luis Figueira: No se ve nada echa para atrás un pelo ahí.
+01:10:26 Juan Carlos Vannini: big desenco es burdeo buena es una chama muy buena y la tengo en Venezuela
+01:10:37 Luis Figueira: Verga tiene una estética aquí una vaina que se llama de cócteles.
+01:10:41 Juan Carlos Vannini: es big Design es No, la gente si se pone también unos handles más locos. el miedo Ella es tu equipo, pues si trabajas conmigo, ella también es parte de tu equipo. Es bueno, es bueno bueno y ella seguramente se la voy a poner, te la voy a poner
+01:11:16 Luis Figueira: este
+01:11:19 Juan Carlos Vannini: aceite de todo lo tuyo, chau, obviamente con mi dirección no, pero para que me valga la pena, tengo que tengo que hacerlo compartido, vamos a ver, te voy a hacer trata de hacer un buen presupuesto. Tú me dirás, vas a tratar de consentirse para ver si sacamos esa marca para adelante.
+01:11:37 Luis Figueira: Vale, luego.
+01:11:38 Juan Carlos Vannini: A ver si no, porque si te empieza ahí bien y las cosas que van saliendo, te valen la pena y yo de verdad me organizo para montar el equipo que quiero montar. Yo yo te puedo ofrecer. Tú busca tu tu agencia obviamente tú haz lo que quieras hacer, pero yo en algún momento te voy a ofrecer ese paquete también. A ver si hacemos algo bien cool capaz de hacer el primero.
+01:11:59 Luis Figueira: Vale.
+01:11:59 Juan Carlos Vannini: Pero lo puedo volver a retomar, vamos a ver y además las colaboraciones.
+01:12:10 Luis Figueira: Es que la gente ya pasó la fiebre de consumir lo que el Influencer recomienda,
+01:12:11 Juan Carlos Vannini: Ya han bajado también.
+01:12:18 Luis Figueira: o sea, ya la gente sabe que todo ya no hay confianza sobre la recomendación de
+01:12:19 Juan Carlos Vannini: no
+01:12:24 Luis Figueira: producto si eres servicio, o sea, más sobre sobre ahorita el boom es más, o sea las empresas de servicios, están invirtiendo más en influencers, pero lo que es comida producto, ropita vaina y tal, o sea, ya la gente no le compra la vida.
+01:12:39 Juan Carlos Vannini: No está volviendo a querer ver qué es lo que el restaurante ofrece, ya sabes, por ejemplo las páginas web antes era todo como que eso pónmelo súper humanos, muestralo en la cara. Muéstrame esto y lo otro ahora todo el mundo como que más bien no, no, no, dime qué es lo que vendes que lo quiero saber ya.
+01:12:54 Luis Figueira: Y nos está pasando con nos está pasando con con el Instagram con producto cuando ponemos producto marico, la venga, se revienta se explota los likes y tal, o sea, pollo al carbón, la vaina se revienta ponemos el huevón, este hablar del concepto, no sé qué cuando quieras pedir llama al final nada, o sea
+01:13:09 Juan Carlos Vannini: claro y
+01:13:12 Luis Figueira: la gente manico. Si ya lo que te pasa por alguna foto producto y vídeo producto y se acabó.
+01:13:17 Juan Carlos Vannini: Demasiado cíclico bueno no haber nada, te mando eso y lo hablamos ok.
+01:13:22 Luis Figueira: Dale cuadra con Alejandro lo de la web, porfa.
+01:13:24 Juan Carlos Vannini: dale Señor
+  

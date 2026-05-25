@@ -1,0 +1,13 @@
+# Node
+node_modules/
+
+# Large site snapshot (regenerable, not source)
+site/piripiri-site.zip
+
+# Adobe temp files
+~*.tmp
+
+# OS
+.DS_Store
+Thumbs.db
+nul
