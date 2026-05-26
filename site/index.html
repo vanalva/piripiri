@@ -1312,7 +1312,8 @@
         padding-inline: calc(var(--_spacing---space--1) / 2);
         width: calc(100% / 2.5) !important;
         flex-shrink: 0;
-        transition: opacity 0.5s ease;
+        transition: opacity 0.5s ease, transform 0.5s ease;
+        transform-origin: center center;
       }
       /* Card inner styling */
       .reviews_slider .review-card-inner {
@@ -1333,16 +1334,45 @@
         width: 1.5rem;
         height: auto;
       }
-      /* Fade left */
+      /* Soft edge fade — slider masks at the left + right edges so
+         cards entering AND leaving fade smoothly without affecting the
+         center. Horizontal linear gradient since this is a horizontal
+         carousel. */
+      .reviews_slider .slider_element,
+      .reviews_slider .slider_list {
+        overflow: visible;
+      }
+      .reviews_slider .slider_wrap {
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 8%,
+          black 92%,
+          transparent 100%
+        );
+      }
+      /* Slide states: previous (exiting left) fades + shrinks,
+         active (centered, partially exiting on the left) dims + shrinks,
+         next + further ahead are fully visible at full size. */
       .reviews_slider .slider_list > .swiper-slide-prev {
         opacity: 0;
+        transform: scale(0.8);
       }
       .reviews_slider .slider_list > .swiper-slide-active {
         opacity: 0.6;
+        transform: scale(0.92);
       }
       .reviews_slider .slider_list > .swiper-slide-next,
       .reviews_slider .slider_list > .swiper-slide-next ~ .swiper-slide {
         opacity: 1;
+        transform: scale(1);
       }
       @media (max-width: 991px) {
         .reviews_slider .slider_list > .swiper-slide {
