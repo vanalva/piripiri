@@ -3316,6 +3316,14 @@ button { color: inherit; }
 /* =====================================================================
    SCROLL BEHAVIOR
    ===================================================================== */
+
+/* Global smooth scroll — applies to anchor link navigation
+   (href="#section") and window.scrollTo() calls. Browsers automatically
+   fall back to instant if the user has prefers-reduced-motion set. */
+html {
+  scroll-behavior: smooth;
+}
+
 .u-scroll-smooth {
   scroll-behavior: smooth;
 }
