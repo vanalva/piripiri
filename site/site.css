@@ -4347,6 +4347,17 @@ button { color: inherit; }
 
 
 
+/* ─── Hide native scrollbar on textareas (form messages)
+   Keeps the field scrollable via keyboard/wheel/touch but removes the
+   browser-default scrollbar chrome. */
+textarea.form_field {
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE / legacy Edge */
+}
+textarea.form_field::-webkit-scrollbar {
+  display: none;                  /* Chrome / Safari / new Edge */
+}
+
 /* ─── Persistent floating CTAs (RESERVA + PIDE YA) ─────────────────────────
    Sit at bottom-right of every page so the primary actions follow the user
    as they scroll. Uses the standard LUMOS button_main_* components so they
