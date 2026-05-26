@@ -434,9 +434,9 @@
       <div class="hero_graphic_col u-hide-mobile" style="position: relative; height: 100%; z-index: 2; display: flex; align-items: center;">
 
         <!-- SOMOS PIRI PIRI graphic wrapped in semantic <h2> for SEO/screen readers.
-             Visually the SVG renders as-is; the heading just gives search engines
-             a real text hook tied to the alt attribute. -->
-        <h2 class="u-margin-bottom-0" style="margin: 0; padding: 0; line-height: 0;">
+             display: contents removes the h2 from the layout box tree so the
+             SVG sizes against its flex parent exactly as before. -->
+        <h2 style="display: contents; margin: 0; padding: 0;">
           <img src="resources/graphics/graphic_somos-piripiri.svg" alt="SOMOS PIRI PIRI" style="position: relative; z-index: 3; width: 95%; height: auto; display: block; margin-left: -8%;">
         </h2>
 
