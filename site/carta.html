@@ -2527,6 +2527,16 @@
         }
       }
 
+      // Hide filter buttons for categories that have no items in the data
+      // (e.g., Postres when no postres dishes exist yet)
+      const categoriesWithData = new Set(menuItems.map(i => normalizeCategory(i.category)).filter(Boolean));
+      filterButtons.forEach((btn) => {
+        const cat = btn.dataset.filterBtn;
+        if (cat && cat !== "all" && !categoriesWithData.has(cat)) {
+          btn.style.display = "none";
+        }
+      });
+
       setFilter("all");
       const savedView = (() => { try { return sessionStorage.getItem("carta:view"); } catch(e) { return null; } })();
       const validView = (savedView === "grid" || savedView === "list") ? savedView : "list";

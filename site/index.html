@@ -371,8 +371,12 @@
       <!-- Right: Graphic + images absolutely positioned -->
       <div class="hero_graphic_col u-hide-mobile" style="position: relative; height: 100%; z-index: 2; display: flex; align-items: center;">
 
-        <!-- SOMOS PIRIPIRI SVG graphic — shifted left -->
-        <img src="resources/graphics/graphic_somos-piripiri.svg" alt="SOMOS PIRIPIRI" style="position: relative; z-index: 3; width: 95%; height: auto; display: block; margin-left: -8%;">
+        <!-- SOMOS PIRI PIRI graphic wrapped in semantic <h2> for SEO/screen readers.
+             Visually the SVG renders as-is; the heading just gives search engines
+             a real text hook tied to the alt attribute. -->
+        <h2 class="u-margin-bottom-0" style="margin: 0; padding: 0; line-height: 0;">
+          <img src="resources/graphics/graphic_somos-piripiri.svg" alt="SOMOS PIRI PIRI" style="position: relative; z-index: 3; width: 95%; height: auto; display: block; margin-left: -8%;">
+        </h2>
 
       </div>
     </div>
@@ -465,23 +469,29 @@
           overflow: hidden;
           touch-action: pan-y;
         }
-        /* Brand card specific styles */
+        /* Brand card specific styles — Luis: bigger cards, much bigger titles */
         .brand_card .card_primary_element {
-          min-height: clamp(400px, 50vh, 500px);
+          min-height: clamp(550px, 75vh, 800px);
+        }
+        .brand_card .card_primary_title {
+          font-size: clamp(3rem, 7.5vw, 5.5rem) !important;
+          line-height: 0.95 !important;
+          letter-spacing: -0.01em !important;
+          margin-bottom: var(--_spacing---space--4) !important;
         }
         .brand_card_icon {
           position: absolute;
           top: var(--_spacing---space--5);
           right: var(--_spacing---space--5);
-          width: clamp(60px, 10vw, 100px);
-          height: clamp(60px, 10vw, 100px);
+          width: clamp(80px, 12vw, 140px);
+          height: clamp(80px, 12vw, 140px);
           object-fit: contain;
         }
         .brand_card_arrow {
           position: absolute;
           bottom: var(--_spacing---space--5);
           right: var(--_spacing---space--5);
-          width: clamp(24px, 4vw, 36px);
+          width: clamp(28px, 5vw, 48px);
           height: auto;
         }
         .brand_card_body {
