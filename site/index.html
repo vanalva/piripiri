@@ -1334,10 +1334,10 @@
         width: 1.5rem;
         height: auto;
       }
-      /* Soft edge fade — slider masks at the left + right edges so
-         cards entering AND leaving fade smoothly without affecting the
-         center. Horizontal linear gradient since this is a horizontal
-         carousel. */
+      /* Soft edge fade — only the very edges of the slider mask out,
+         so cards animating through those edges (entering or leaving)
+         fade smoothly. Cards at their resting positions are fully
+         opaque and untouched. */
       .reviews_slider .slider_element,
       .reviews_slider .slider_list {
         overflow: visible;
@@ -1346,29 +1346,25 @@
         -webkit-mask-image: linear-gradient(
           to right,
           transparent 0%,
-          black 8%,
-          black 92%,
+          black 3%,
+          black 97%,
           transparent 100%
         );
         mask-image: linear-gradient(
           to right,
           transparent 0%,
-          black 8%,
-          black 92%,
+          black 3%,
+          black 97%,
           transparent 100%
         );
       }
-      /* Slide states: previous (exiting left) fades + shrinks,
-         active (centered, partially exiting on the left) dims + shrinks,
-         next + further ahead are fully visible at full size. */
+      /* Slide states: previous slide (off-screen, exiting) fades out and
+         shrinks. Active and following slides stay at full opacity + size. */
       .reviews_slider .slider_list > .swiper-slide-prev {
         opacity: 0;
         transform: scale(0.8);
       }
-      .reviews_slider .slider_list > .swiper-slide-active {
-        opacity: 0.6;
-        transform: scale(0.92);
-      }
+      .reviews_slider .slider_list > .swiper-slide-active,
       .reviews_slider .slider_list > .swiper-slide-next,
       .reviews_slider .slider_list > .swiper-slide-next ~ .swiper-slide {
         opacity: 1;
