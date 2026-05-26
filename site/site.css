@@ -3848,8 +3848,8 @@ html {
 }
 
 .values-tab svg {
-  width: clamp(4rem, 8vw, 6rem);
-  height: clamp(4rem, 8vw, 6rem);
+  width: clamp(5rem, 12vw, 9rem);
+  height: clamp(5rem, 12vw, 9rem);
 }
 
 .values-tab:hover {
