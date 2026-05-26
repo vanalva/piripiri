@@ -3,7 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Piri Piri - Plato</title>
+
+  <!-- SEO (title + description get updated by JS once the dish slug loads) -->
+  <title>Plato | Piri Piri - Pollo al carbón en Madrid</title>
+  <meta name="description" content="Pollo al carbón en horno Josper. Detalle del plato, ingredientes, precio y opciones a domicilio. Piri Piri Madrid.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Piri Piri">
+  <meta property="og:title" content="Plato | Piri Piri">
+  <meta property="og:description" content="Detalle del plato, ingredientes, precio y opciones a domicilio. Piri Piri Madrid.">
+  <meta property="og:locale" content="es_ES">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Plato | Piri Piri">
+  <meta name="twitter:description" content="Pollo al carbón en horno Josper. Piri Piri Madrid.">
+  <meta name="twitter:image" content="">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -209,6 +226,32 @@
         imageEl.alt = item.name || "Plato Piri Piri";
       }
       if (titleEl) titleEl.textContent = item.name || "Plato Piri Piri";
+
+      // Update <title>, meta description, and OG tags with the loaded dish
+      if (item.name) {
+        const dishName = item.name;
+        const seoDesc = item.description
+          ? `${item.description.slice(0, 155)}${item.description.length > 155 ? '…' : ''}`
+          : `Detalle de ${dishName} — pollo al carbón en horno Josper. Piri Piri Madrid.`;
+        document.title = `${dishName} | Piri Piri - Pollo al carbón en Madrid`;
+        const setMeta = (selector, value) => {
+          const el = document.querySelector(selector);
+          if (el) el.setAttribute("content", value);
+        };
+        setMeta('meta[name="description"]', seoDesc);
+        setMeta('meta[property="og:title"]', `${dishName} | Piri Piri`);
+        setMeta('meta[property="og:description"]', seoDesc);
+        setMeta('meta[name="twitter:title"]', `${dishName} | Piri Piri`);
+        setMeta('meta[name="twitter:description"]', seoDesc);
+        if (item.image) {
+          const absImage = item.image.startsWith("http")
+            ? item.image
+            : `https://somospiripiri.com/${item.image}`;
+          setMeta('meta[property="og:image"]', absImage);
+          setMeta('meta[name="twitter:image"]', absImage);
+        }
+      }
+
       if (priceEl) priceEl.textContent = item.price || "";
       if (descEl) descEl.textContent = item.description || "";
       if (longDescEl) {
