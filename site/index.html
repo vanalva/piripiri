@@ -2283,8 +2283,9 @@
   <section id="contacto" class="u-section u-padding-block-12 u-theme-dark">
     <div class="u-container">
       <div class="u-flex-vertical-nowrap u-gap-8">
-        <!-- Heading -->
-        <h2 class="u-text-transform-uppercase u-margin-0" style="font-family: var(--_typography---font--primary-family); font-weight: 900; font-size: clamp(4rem, 14.5vw, 14.5rem); line-height: 1; width: 100%;">CONTACTO</h2>
+        <!-- Heading — font-size is fit-to-container by JS at the bottom of <body>.
+             clamp() acts as the fallback before the script runs. -->
+        <h2 data-fit-text class="u-text-transform-uppercase u-margin-0" style="font-family: var(--_typography---font--primary-family); font-weight: 900; font-size: clamp(4rem, 14.5vw, 14.5rem); line-height: 1; width: 100%; white-space: nowrap;">CONTACTO</h2>
 
         <!-- Contact Form -->
         <div class="contact_form_wrap">
@@ -2956,6 +2957,58 @@
   })();
   </script>
 
+
+  <!-- Fit-to-container heading sizer.
+       Any element with [data-fit-text] will have its font-size scaled so the
+       text fills its parent's width exactly. Adapted from the marquee
+       setupSmartText() routine; clones the element off-screen to measure
+       intrinsic text width at a known font size, then scales accordingly. -->
+  <script>
+    (function () {
+      function fitOne(el) {
+        const container = el.parentElement;
+        if (!container) return;
+        const targetWidth = container.clientWidth;
+        if (targetWidth <= 0) return;
+        const probeSize = 100;
+        const clone = el.cloneNode(true);
+        clone.style.cssText =
+          "position:absolute; visibility:hidden; left:-9999px; top:-9999px; " +
+          "width:auto; display:inline-block; white-space:nowrap; " +
+          "font-size:" + probeSize + "px;";
+        document.body.appendChild(clone);
+        const measuredWidth = clone.offsetWidth;
+        document.body.removeChild(clone);
+        if (measuredWidth <= 0) return;
+        const max = parseFloat(el.dataset.fitTextMax) || Infinity;
+        const min = parseFloat(el.dataset.fitTextMin) || 0;
+        const newSize = Math.max(min, Math.min(max, (targetWidth / measuredWidth) * probeSize));
+        el.style.setProperty("font-size", newSize + "px", "important");
+      }
+      function fitAll() {
+        document.querySelectorAll("[data-fit-text]").forEach(fitOne);
+      }
+      function start() {
+        fitAll();
+        // Re-fit after fonts load (font metrics change)
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitAll);
+        // Re-fit a few times to catch async layout shifts
+        setTimeout(fitAll, 100);
+        setTimeout(fitAll, 400);
+        // Debounced resize handler
+        let raf = null;
+        window.addEventListener("resize", function () {
+          if (raf) cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(fitAll);
+        });
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", start);
+      } else {
+        start();
+      }
+    })();
+  </script>
 
   <!-- Persistent floating CTAs: RESERVA + PIDE YA (use LUMOS button components) -->
   <div class="floating-ctas">
