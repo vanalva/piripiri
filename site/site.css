@@ -4347,6 +4347,34 @@ button { color: inherit; }
 
 
 
+/* ─── Persistent floating CTAs (RESERVA + PIDE YA) ─────────────────────────
+   Sit at bottom-right of every page so the primary actions follow the user
+   as they scroll. Uses the standard LUMOS button_main_* components so they
+   inherit the site's button styling automatically. */
+.floating-ctas {
+  position: fixed;
+  bottom: var(--site--margin);
+  right: var(--site--margin);
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  z-index: 10;
+  pointer-events: none;
+  align-items: center;
+}
+
+.floating-ctas > * {
+  pointer-events: auto;
+}
+
+@media (max-width: 600px) {
+  .floating-ctas {
+    bottom: 1rem;
+    right: 1rem;
+    gap: 0.5rem;
+  }
+}
+
 /* ─── u-text-style-tiny utility ─── */
 .u-text-style-tiny {
   font-family: var(--_text-style---font-family);

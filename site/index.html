@@ -440,20 +440,6 @@
         </address>
       </div>
 
-      <!-- Buttons right -->
-      <div class="u-flex-horizontal-nowrap u-gap-4" style="justify-self: end;">
-        <div class="button_main_wrap" data-trigger="hover focus">
-          <a href="#reserva" class="button_main_element" data-style="secondary">
-            <div class="button_main_text u-text-style-main">RESERVA</div>
-          </a>
-        </div>
-        <div class="button_main_wrap" data-trigger="hover focus">
-          <a href="https://carta.somospiripiri.com/" target="_blank" class="button_main_element">
-            <div class="button_main_text u-text-style-main">PIDE YA</div>
-          </a>
-        </div>
-      </div>
-
     </footer>
 
     <!-- Bottom-left image: aligned to same gutter as nav/canvas -->
@@ -2893,6 +2879,23 @@
     });
   })();
   </script>
+
+
+  <!-- Persistent floating CTAs: RESERVA + PIDE YA (use LUMOS button components) -->
+  <div class="floating-ctas">
+    <!-- RESERVA — matches the SUSCRIBIRSE button (orchid mode + secondary style) -->
+    <div data-button-mode="orchid" class="button_main_wrap" data-trigger="hover focus">
+      <a href="#reserva" class="button_main_element" data-style="secondary">
+        <div class="button_main_text u-text-style-main">RESERVA</div>
+      </a>
+    </div>
+    <!-- PIDE YA — matches the menu's PIDE YA button (secondary style) -->
+    <div class="button_main_wrap" data-trigger="hover focus">
+      <a href="https://carta.somospiripiri.com/" target="_blank" rel="noopener" class="button_main_element" data-style="secondary">
+        <div class="button_main_text u-text-style-main">PIDE YA</div>
+      </a>
+    </div>
+  </div>
 
 </body>
 </html>
