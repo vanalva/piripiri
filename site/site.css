@@ -1981,7 +1981,7 @@
   grid-row-gap: var(--_spacing---space--4);
   border-top: var(--border-width--main) solid var(--_theme---border);
   flex-flow: wrap;
-  place-content: center space-between;
+  place-content: center;
   align-items: center;
   padding-top: 2.5rem;
   padding-bottom: 2.5rem;
@@ -4380,10 +4380,21 @@ textarea.form_field::-webkit-scrollbar {
   z-index: 10;
   pointer-events: none;
   align-items: center;
+  transition: bottom 0.25s ease, right 0.25s ease, left 0.25s ease, transform 0.25s ease;
 }
 
 .floating-ctas > * {
   pointer-events: auto;
+}
+
+/* When the page subfooter scrolls into view, dock the CTAs centered
+   above the subfooter so they read as part of that footer section
+   instead of overlapping the legal links. */
+.floating-ctas.is-at-footer {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  bottom: calc(var(--site--margin) + 3.5rem);
 }
 
 @media (max-width: 600px) {
@@ -4391,6 +4402,9 @@ textarea.form_field::-webkit-scrollbar {
     bottom: 1rem;
     right: 1rem;
     gap: 0.5rem;
+  }
+  .floating-ctas.is-at-footer {
+    bottom: 4rem;
   }
 }
 

@@ -2541,10 +2541,10 @@
       </div>
     </div>
 
-    <!-- Bottom Bar -->
+    <!-- Bottom Bar (centered) -->
     <div class="footer_bottom_wrap u-border-top-main" style="border-color: var(--_theme---border);">
       <div class="footer_bottom_contain u-container-full">
-        <div class="footer_bottom_layout u-flex-horizontal-nowrap u-justify-content-between u-align-items-center u-padding-block-4 u-flex-column-mobile u-gap-4">
+        <div class="footer_bottom_layout u-flex-horizontal-wrap u-justify-content-center u-align-items-center u-padding-block-4 u-gap-5">
           <div class="footer_bottom_text u-text-style-small u-opacity-75">
             <span>© </span><span data-dynamic-year="">2025</span><span> Piri Piri. Todos los derechos reservados.</span>
           </div>
@@ -3025,6 +3025,22 @@
       </a>
     </div>
   </div>
+
+  <!-- Dock the floating CTAs to centered above the subfooter once it
+       scrolls into view, so they look like part of the footer section. -->
+  <script>
+    (function () {
+      const ctas = document.querySelector(".floating-ctas");
+      const subfooter = document.querySelector(".footer_bottom_wrap");
+      if (!ctas || !subfooter || !("IntersectionObserver" in window)) return;
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          ctas.classList.toggle("is-at-footer", e.isIntersecting);
+        });
+      }, { threshold: 0 });
+      io.observe(subfooter);
+    })();
+  </script>
 
 </body>
 </html>
