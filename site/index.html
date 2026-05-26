@@ -531,15 +531,19 @@
           overflow: hidden;
           touch-action: pan-y;
         }
-        /* Brand card specific styles — Luis: bigger cards, much bigger titles */
+        /* Brand card specific styles — Luis: bigger cards, eyebrow titles
+           anchored at the top-left (NOT inside the bottom content flow) */
         .brand_card .card_primary_element {
           min-height: clamp(550px, 75vh, 800px);
         }
         .brand_card .card_primary_title {
-          font-size: clamp(3rem, 7.5vw, 5.5rem) !important;
-          line-height: 0.95 !important;
-          letter-spacing: -0.01em !important;
-          margin-bottom: var(--_spacing---space--4) !important;
+          position: absolute;
+          top: var(--_spacing---space--5);
+          left: var(--_spacing---space--5);
+          font-size: clamp(1.1rem, 1.6vw, 1.5rem) !important;
+          line-height: 1 !important;
+          letter-spacing: 0.04em !important;
+          margin: 0 !important;
         }
         .brand_card_icon {
           position: absolute;
