@@ -4154,35 +4154,46 @@ html {
   container-type: inline-size;
 }
 
+/* Edge-to-edge 2-column grid: image fills left column, text on right. */
+.historia_hero_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  min-height: 100vh;
+}
+
 .historia_hero_visual {
-  max-width: 50%;
+  display: flex;
+  overflow: hidden;
 }
 
 .historia_hero_image {
   width: 100%;
-  height: auto;
-  max-width: 60rem;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .historia_hero_content {
-  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--_spacing---space--10) + 5rem) var(--site--gutter) var(--_spacing---space--10);
 }
 
-/* Responsive: container query (Lumos breakpointless) */
+/* Responsive: stack columns at narrower viewports */
 @container (width < 50em) {
-  .historia_hero_visual,
-  .historia_hero_content {
-    max-width: 100%;
+  .historia_hero_grid {
+    grid-template-columns: 1fr;
+    min-height: auto;
   }
 
   .historia_hero_visual {
-    order: -1;
+    aspect-ratio: 4 / 3;
   }
 
-  .historia_hero_image {
-    max-width: 16rem;
-    margin-inline: auto;
-    display: block;
+  .historia_hero_content {
+    padding: var(--_spacing---space--8) var(--site--gutter);
   }
 }
 
