@@ -1064,9 +1064,7 @@
 
       viewButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
-          const v = btn.dataset.viewBtn;
-          try { sessionStorage.setItem("carta:view", v); } catch(e) {}
-          setView(v);
+          setView(btn.dataset.viewBtn);
         });
       });
 
@@ -2560,9 +2558,10 @@
       });
 
       setFilter("all");
-      const savedView = (() => { try { return sessionStorage.getItem("carta:view"); } catch(e) { return null; } })();
-      const validView = (savedView === "grid" || savedView === "list") ? savedView : "list";
-      setView(validView);
+      // Always start in list view when entering the page, regardless of where
+      // the user came from. The toggle still switches in-session; we just no
+      // longer remember the choice across navigations.
+      setView("list");
 
       const collapseBtn = document.querySelector("[data-grid-collapse]");
       const panelBody = document.querySelector("[data-grid-panel-body]");
