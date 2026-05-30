@@ -201,6 +201,61 @@
       z-index: 2;
     }
 
+    /* Discontinued items: non-interactive everywhere. The visual dim is
+       applied to the inner image + text via per-view selectors below, so
+       the "NO DISPONIBLE" badge can sit at full opacity on top. */
+    .is-disabled {
+      cursor: not-allowed !important;
+      pointer-events: none;
+    }
+    .carta-grid .grid-item.is-disabled:hover {
+      transform: none;
+    }
+    /* Grid mosaic tiles: dim the whole tile (no badge needed there since
+       tiles are tiny and the dim already reads as "off"). */
+    .carta-grid .grid-item.is-disabled {
+      opacity: 0.35;
+      filter: grayscale(60%);
+    }
+    /* List-view + masonry cards: dim only the image + content, leave the
+       badge fully opaque. */
+    .masonry-item.is-disabled .masonry-item-image,
+    .masonry-item.is-disabled .masonry-item-content,
+    [data-menu-list] .is-disabled .list-card-image,
+    [data-menu-list] .is-disabled .list-card-content {
+      opacity: 0.35;
+      filter: grayscale(60%);
+    }
+
+    /* "NO DISPONIBLE" badge — bold diagonal-free label centered on the
+       image. Image already grayscaled underneath; the badge has its own
+       dark backdrop so it stays readable. */
+    .is-disabled-badge {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.55);
+      color: var(--swatch--brand-500);
+      font-family: var(--_typography---font--primary-family);
+      font-weight: 900;
+      font-size: clamp(1.1rem, 2.4vw, 2rem);
+      line-height: 1;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0.4em 0.6em;
+      pointer-events: none;
+      z-index: 5;
+    }
+    /* The badge's parent (image wrap) needs to be positioned so the badge
+       can use inset:0 over it. */
+    .masonry-item-image,
+    .list-card-image {
+      position: relative;
+    }
+
     .carta-grid .grid-item.exp-title,
     .carta-grid .grid-item.exp-sticker,
     .carta-grid .grid-item.exp-empty {
@@ -376,21 +431,21 @@
       align-items: center;
       gap: 0;
       border: var(--border-width--main) solid var(--_theme---border);
-      border-radius: var(--radius--main);
+      border-radius: var(--radius--round);
       overflow: hidden;
       background: color-mix(in srgb, var(--_theme---background) 92%, transparent);
       -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       flex: 0 0 auto;
       width: auto;
-      align-self: flex-start;
     }
 
     .view-toggle-compact button {
       appearance: none;
       border: none;
       background: transparent;
-      padding: 0.4rem 0.6rem;
+      padding: 0 0.6rem;
+      height: 2rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -426,6 +481,10 @@
       font-size: 0.875rem !important;
       font-family: var(--_typography---font--secondary-family) !important;
     }
+
+    /* Hide page chrome (footer) while the infinite grid view is active so it
+       stays immersive. setView() writes data-carta-view onto <body>. */
+    body[data-carta-view="grid"] .footer_wrap { display: none; }
 
     /* Grid view: overlay layer (fog + chips) — sibling of <main> so it sits
        above the fixed nav stacking context. The wrapper is fixed/inset:0 with
@@ -479,6 +538,15 @@
       align-items: center;
     }
 
+    /* Lumos applies transform: translateY(-10px) to every .button_main_wrap
+       as part of its 3D drop-shadow button effect. The filter chips don't
+       use that effect, so the lift just leaves them 10px above the toggle
+       next to them. Cancel it for any filter-chip context. */
+    .grid-filter-chips .button_main_wrap,
+    [data-filter-group] .button_main_wrap {
+      transform: none;
+    }
+
     /* Filter chip = mini pill that matches the view-toggle styling:
        same border, bg, blur, dim/active opacity behavior. */
     .grid-filter-chips .button_main_wrap {
@@ -505,7 +573,10 @@
       appearance: none !important;
       border: none !important;
       background: transparent !important;
-      padding: 0.4rem 0.8rem !important;
+      padding: 0 0.8rem !important;
+      height: 2rem !important;
+      display: inline-flex !important;
+      align-items: center !important;
       box-shadow: none !important;
       color: var(--_theme---text) !important;
       font-family: var(--_typography---font--secondary-family) !important;
@@ -651,13 +722,114 @@
       padding-top: 0;
     }
 
+    /* ─── Masonry view: plain 3-column grid, all tiles same size ─── */
+    /* ─── Masonry view: 3-column grid of list-style cards.
+       Each card = image on top, then title / price / description below. ─── */
+    .carta-masonry {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--_spacing---space--4);
+      align-items: start;
+    }
+    @media (min-width: 768px) {
+      .carta-masonry {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .masonry-section-title {
+      grid-column: 1 / -1;
+      margin-bottom: 0;
+      padding-top: var(--_spacing---space--2);
+    }
+
+    .masonry-item {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: var(--radius--main);
+      border: var(--border-width--main) solid var(--_theme---border);
+      background: var(--_theme---background-2);
+      color: inherit;
+      text-decoration: none;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .masonry-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .masonry-item-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      background: var(--_theme---background);
+    }
+    .masonry-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .masonry-item:hover .masonry-item-image img {
+      transform: scale(1.04);
+    }
+
+    .masonry-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--_spacing---space--5);
+      padding: var(--_spacing---space--5) var(--_spacing---space--5) var(--_spacing---space--6);
+    }
+
+    /* Match the list-view item typography so the two views feel like the same
+       card system at different sizes. Title uses the h3 token (still large but
+       fits a narrower tile), price bubble + description use the same
+       primitives the list-view renderer applies inline. */
+    .masonry-item-title {
+      font-family: var(--_typography---font--primary-family);
+      font-weight: 900;
+      font-style: italic;
+      font-size: var(--_typography---font-size--h3);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      margin: 0;
+      color: var(--_theme---text);
+    }
+
+    .masonry-item-price {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--_spacing---space--2);
+      color: var(--_theme---button-primary--background);
+    }
+    .masonry-item-price-bubble {
+      display: inline-block;
+      border: var(--border-width--main) solid var(--_theme---button-primary--background);
+      color: var(--_theme---button-primary--background);
+      border-radius: var(--radius--round);
+      padding: 0.3em 1em;
+      font-family: var(--_typography---font--primary-family);
+      font-size: 1rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .masonry-item-desc {
+      font-size: var(--_typography---font-size--text-main);
+      line-height: 1.5;
+      opacity: 0.75;
+      margin: 0;
+    }
+
   </style>
 </head>
 
 <body class="u-theme-dark">
   <div class="page_wrap">
     <main class="page_main">
-      <nav class="hero_nav u-flex-horizontal-nowrap u-justify-content-end u-align-items-center u-padding-block-4 u-padding-inline-gutter u-width-full u-position-fixed u-zindex-3" style="top: 0; left: 0; right: 0; pointer-events: none;">
+      <nav class="hero_nav is-minimal u-flex-horizontal-nowrap u-justify-content-end u-align-items-center u-padding-block-4 u-padding-inline-gutter u-width-full u-position-fixed u-zindex-3" style="top: 0; left: 0; right: 0; pointer-events: none;">
         <div data-modal-trigger="menu" class="button_main_wrap u-radius-round" data-trigger="hover focus" style="pointer-events: auto;">
           <button class="button_main_element" aria-label="Abrir menú" style="background: var(--swatch--dark-900);" data-style="secondary">
             <svg class="button_main_icon" viewBox="0 0 39.261 32.661" fill="currentColor" aria-hidden="true" style="width: 1.25rem; height: auto;">
@@ -685,7 +857,38 @@
         <div class="modal_inner u-position-relative u-bg-dark-900" data-style="full-screen">
           <div data-modal-close="" class="modal_backdrop"></div>
           <div class="modal_content u-bg-transparent u-position-relative" style="overflow: visible;" data-style="full-screen">
-            <img src="resources/graphics/fire-decorative_alpha_1024.svg" alt="" class="u-position-absolute u-pointer-off" style="top: -16rem; right: -16rem; width: clamp(24rem, 65vw, 70rem); height: auto; z-index: 0;">
+            <!-- Animated fire fan — top-right corner, 16 flames rotated 225° as a group, wider abanico fan -->
+            <div class="pp-inline-fire u-position-absolute u-pointer-off" style="top: -60rem; right: -18rem; width: clamp(32rem, 54vw, 50rem); height: clamp(32rem, 54vw, 50rem); z-index: 0; transform: rotate(225deg); transform-origin: 88% 100%;">
+              <div class="pp-flame-wrap" style="position:absolute;left:45%;bottom:4.17%;width:30%;height:90%;transform:rotate(-41deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:48.73%;bottom:5.59%;width:30%;height:90%;transform:rotate(-35.53deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:52.47%;bottom:1.16%;width:30%;height:90%;transform:rotate(-30.07deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:56.2%;bottom:0.88%;width:30%;height:90%;transform:rotate(-24.6deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:59.93%;bottom:5.38%;width:30%;height:90%;transform:rotate(-19.13deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:63.67%;bottom:4.5%;width:30%;height:90%;transform:rotate(-13.67deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:67.4%;bottom:0.23%;width:30%;height:90%;transform:rotate(-8.2deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:71.13%;bottom:2.21%;width:30%;height:90%;transform:rotate(-2.73deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:74.87%;bottom:5.97%;width:30%;height:90%;transform:rotate(2.73deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:78.6%;bottom:3.02%;width:30%;height:90%;transform:rotate(8.2deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:82.33%;bottom:0.02%;width:30%;height:90%;transform:rotate(13.67deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:86.07%;bottom:3.74%;width:30%;height:90%;transform:rotate(19.13deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:89.8%;bottom:5.79%;width:30%;height:90%;transform:rotate(24.6deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:93.53%;bottom:1.54%;width:30%;height:90%;transform:rotate(30.07deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:97.27%;bottom:0.59%;width:30%;height:90%;transform:rotate(35.53deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:101%;bottom:5.08%;width:30%;height:90%;transform:rotate(41deg);transform-origin:bottom center;"></div>
+            </div>
+            <!-- Animated fire fan — bottom-left corner, 10 flames rotated 45° as a group, wider abanico fan -->
+            <div class="pp-inline-fire u-position-absolute u-pointer-off" style="bottom: -18rem; left: -26rem; width: clamp(32rem, 54vw, 50rem); height: clamp(32rem, 54vw, 50rem); z-index: 0; transform: rotate(45deg); transform-origin: 12% 100%;">
+              <div class="pp-flame-wrap" style="position:absolute;left:-27%;bottom:2.78%;width:30%;height:90%;transform:rotate(-34deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:-21.67%;bottom:3.73%;width:30%;height:90%;transform:rotate(-26.44deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:-16.33%;bottom:0.78%;width:30%;height:90%;transform:rotate(-18.89deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:-11%;bottom:0.59%;width:30%;height:90%;transform:rotate(-11.33deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:-5.67%;bottom:3.59%;width:30%;height:90%;transform:rotate(-3.78deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:-0.33%;bottom:3%;width:30%;height:90%;transform:rotate(3.78deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:5%;bottom:0.15%;width:30%;height:90%;transform:rotate(11.33deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:10.33%;bottom:1.47%;width:30%;height:90%;transform:rotate(18.89deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:15.67%;bottom:3.98%;width:30%;height:90%;transform:rotate(26.44deg);transform-origin:bottom center;"></div>
+              <div class="pp-flame-wrap" style="position:absolute;left:21%;bottom:2.02%;width:30%;height:90%;transform:rotate(34deg);transform-origin:bottom center;"></div>
+            </div>
             <div data-lenis-prevent=" " data-modal-scroll="" class="modal_scroll u-zindex-1 u-flex-vertical-nowrap u-min-height-full" style="padding: var(--_spacing---space--4) var(--_spacing---space--3);" data-style="full-screen">
               <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-start u-width-full">
                 <a href="index.html#inicio" class="hero_logo_wrap" aria-label="Ir al inicio" style="width: 8rem;">
@@ -711,27 +914,27 @@
                 <div class="u-flex-vertical-nowrap u-gap-4" data-menu-list>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="index.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">INICIO</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="historia.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">HISTORIA</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="club-secreto.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">CLUB SECRETO</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="carta.html" class="u-text-style-display u-text-transform-uppercase u-text-brand u-text-decoration-none u-transition-color-main u-hover-color-brand">CARTA</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="contacto.html" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">CONTACTO</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                   <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-3" data-menu-item>
                     <a href="https://carta.somospiripiri.com/" target="_blank" class="u-text-style-display u-text-transform-uppercase u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">PEDIDOS</a>
-                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 1.5em; width: auto;" data-menu-heart>
+                    <img src="resources/icons/heart-icon_alpha_512.svg" alt="" class="u-height-auto" style="height: 2.5em; width: auto;" data-menu-heart>
                   </div>
                 </div>
               </div>
@@ -739,28 +942,14 @@
               <div class="u-flex-horizontal-nowrap u-justify-content-between u-align-items-end u-width-full u-gap-6 u-flex-column-mobile">
                 <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-4 u-padding-left-6">
                   <ul class="u-flex-horizontal-nowrap u-gap-4 u-list-style-none">
-                    <li>
-                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="YouTube">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M23.5 6.5c-.3-1.2-1.2-2.1-2.4-2.4C19.1 3.5 12 3.5 12 3.5s-7.1 0-9.1.6C1.7 4.4.8 5.3.5 6.5 0 8.5 0 12 0 12s0 3.5.5 5.5c.3 1.2 1.2 2.1 2.4 2.4 2 .6 9.1.6 9.1.6s7.1 0 9.1-.6c1.2-.3 2.1-1.2 2.4-2.4.5-2 .5-5.5.5-5.5s0-3.5-.5-5.5zM9.5 15.5v-7l6 3.5-6 3.5z"/>
-                        </svg>
-                      </a>
-                    </li>
-                    <li>
+<li>
                       <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="Instagram">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.2.1 4.7 1.7 4.8 4.8.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.1-1.6 4.7-4.8 4.8-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.2-.1-4.7-1.7-4.8-4.8-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-3.1 1.6-4.7 4.8-4.8 1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zM12 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6.4-11.8c-.8 0-1.4.6-1.4 1.4s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z"/>
                         </svg>
                       </a>
                     </li>
-                    <li>
-                      <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="Facebook">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3v-2.6c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/>
-                        </svg>
-                      </a>
-                    </li>
-                    <li>
+<li>
                       <a href="#" class="u-flex-horizontal-nowrap u-align-items-center u-justify-content-center u-color-inherit u-size-8 u-transition-color-main u-hover-color-brand" aria-label="TikTok">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M19.6 8.2c-2.3 0-4.2-1.9-4.2-4.2V3h-3.5v13.4c0 1.7-1.4 3.1-3.1 3.1s-3.1-1.4-3.1-3.1 1.4-3.1 3.1-3.1c.3 0 .6 0 .9.1V9.9c-.3 0-.6-.1-.9-.1-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4V9.3c1.4 1 3.1 1.6 4.9 1.6V7.6c-.3 0-.9.1-1.5.6z"/>
@@ -791,14 +980,14 @@
         </div>
       </dialog>
       <section id="carta" class="u-section u-width-full u-padding-block-8 u-theme-dark">
-        <div class="u-container u-flex-vertical-nowrap u-gap-6">
-          <div class="u-flex-vertical-nowrap u-gap-4" data-view-header="list">
+        <div class="u-container u-flex-vertical-nowrap u-gap-8">
+          <div class="u-flex-vertical-nowrap u-gap-2" data-view-header="list masonry" style="padding-bottom: var(--_spacing---space--4);">
             <div>
               <h1 class="u-text-style-h1 u-margin-bottom-2">Carta</h1>
-              <p class="u-text-style-main u-opacity-75">Explora el menú con imágenes o cambia a vista en lista para ver descripción, precio y dieta.</p>
+              <p class="u-text-style-main u-opacity-75" style="max-width: 50ch;">Explora el menú con imágenes o cambia a vista en lista para ver descripción, precio y dieta.</p>
             </div>
 
-            <div class="u-flex-vertical-nowrap u-gap-3 u-align-items-start">
+            <div class="u-flex-vertical-nowrap u-gap-1 u-align-items-start">
               <!-- Sort dropdown + compact toggle, right-aligned above the filter pills -->
               <div class="u-flex-horizontal-nowrap u-justify-content-end u-align-items-center u-gap-3" style="width: 100%;">
 
@@ -830,7 +1019,14 @@
                       <rect x="13" y="13" width="8" height="8" rx="2"/>
                     </svg>
                   </button>
-                  <button type="button" data-view-btn="list" aria-pressed="true" aria-label="Vista de lista" title="Vista de lista">
+                  <button type="button" data-view-btn="masonry" aria-pressed="true" aria-label="Vista mosaico" title="Vista mosaico">
+                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <rect x="3" y="3" width="8" height="18" rx="2"/>
+                      <rect x="13" y="3" width="8" height="8" rx="2"/>
+                      <rect x="13" y="13" width="8" height="8" rx="2"/>
+                    </svg>
+                  </button>
+                  <button type="button" data-view-btn="list" aria-pressed="false" aria-label="Vista de lista" title="Vista de lista">
                     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <rect x="3" y="5" width="18" height="2"/>
                       <rect x="3" y="11" width="18" height="2"/>
@@ -858,6 +1054,11 @@
                 <div class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
                   <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
                     <div class="button_main_text">Abrebocas</div>
+                  </button>
+                </div>
+                <div class="button_main_wrap" data-filter-btn="salseo" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
+                  <button type="button" class="button_main_element" style="padding-block: var(--_spacing---space--1); padding-inline: var(--_spacing---space--2); box-shadow: none; width: 100%; text-align: center; font-family: var(--_typography---font--secondary-family); font-weight: 400; font-size: 0.75rem; font-style: normal; text-transform: none; letter-spacing: normal;">
+                    <div class="button_main_text">Salseo</div>
                   </button>
                 </div>
                 <div class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false" style="flex: 1 1 calc(33.333% - var(--_spacing---space--2));">
@@ -889,8 +1090,13 @@
           </div>
 
           <!-- List View -->
-          <div class="u-width-full" data-view-panel="list">
+          <div class="u-width-full u-display-none" data-view-panel="list">
             <div class="u-flex-vertical-nowrap u-gap-4" data-menu-list></div>
+          </div>
+
+          <!-- Masonry View (default) -->
+          <div class="u-width-full" data-view-panel="masonry">
+            <div class="carta-masonry" data-menu-masonry></div>
           </div>
         </div>
       </section>
@@ -912,6 +1118,13 @@
               <rect x="3" y="3" width="8" height="8" rx="2"/>
               <rect x="13" y="3" width="8" height="8" rx="2"/>
               <rect x="3" y="13" width="8" height="8" rx="2"/>
+              <rect x="13" y="13" width="8" height="8" rx="2"/>
+            </svg>
+          </button>
+          <button type="button" data-view-btn="masonry" aria-pressed="false" aria-label="Vista mosaico" title="Vista mosaico">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <rect x="3" y="3" width="8" height="18" rx="2"/>
+              <rect x="13" y="3" width="8" height="8" rx="2"/>
               <rect x="13" y="13" width="8" height="8" rx="2"/>
             </svg>
           </button>
@@ -938,6 +1151,9 @@
           <div class="button_main_wrap" data-filter-btn="para-compartir" data-trigger="hover focus" aria-pressed="false">
             <button type="button" class="button_main_element"><div class="button_main_text">Abrebocas</div></button>
           </div>
+          <div class="button_main_wrap" data-filter-btn="salseo" data-trigger="hover focus" aria-pressed="false">
+            <button type="button" class="button_main_element"><div class="button_main_text">Salseo</div></button>
+          </div>
           <div class="button_main_wrap" data-filter-btn="postres" data-trigger="hover focus" aria-pressed="false">
             <button type="button" class="button_main_element"><div class="button_main_text">Postres</div></button>
           </div>
@@ -948,6 +1164,145 @@
 
       </div>
     </div>
+
+  <!-- FOOTER -->
+  <footer class="footer_wrap u-section u-width-full u-theme-dark">
+    <h2 class="footer_title u-sr-only">Footer</h2>
+    <div class="footer_contain u-container-full" style="padding-bottom: 0;">
+      <div class="u-flex-horizontal-nowrap u-flex-column-mobile u-align-items-end u-gap-8 u-padding-block-8 u-justify-content-between" style="width: 100%;">
+        <!-- Logo & Social (Left Column) -->
+        <div class="u-flex-vertical-nowrap u-justify-content-end u-align-items-start u-gap-6" style="flex: 0 0 auto; min-width: 10rem;">
+          <a aria-label="Ir al inicio" href="/" class="footer_logo_wrap" style="width: 8rem;">
+            <svg viewBox="0 0 84 36" fill="currentColor" class="u-svg" aria-hidden="true">
+              <path d="M64.6885 3.86108C64.8623 3.85696 68.8297 3.80551 71.3027 6.45288C72.7493 8.00106 73.368 10.0776 73.1406 12.6257C72.6719 17.9369 69.8975 20.0423 67.582 20.6511C68.1416 23.1532 70.5841 31.2958 76.2754 31.5671L75.9121 34.7185C67.0161 34.2787 65.2897 23.7924 65.0752 23.1765L64.7695 29.8064L61.6992 29.0896L63.2637 3.89136L64.6885 3.86108ZM6.99707 6.59741C7.1744 6.5602 11.3916 5.70245 14.5674 8.13745C16.5419 9.65468 17.6341 12.0254 17.8066 15.1843C18.0975 20.4552 15.9866 23.2423 14.167 24.6531C13.0478 25.5171 11.9196 25.9707 11.1055 26.2058L11.8828 32.5837L8.66699 34.0203L5.5 6.91479L6.99707 6.59741ZM23.7842 28.95L20.7227 29.7302L19.8496 16.8943L22.9111 16.0925L23.7842 28.95ZM77.708 18.8767C77.7024 18.9162 77.1315 22.9073 76.3848 29.2234C75.4614 29.2971 74.0147 28.6829 73.3594 27.8357C74.2828 20.1906 74.6191 17.988 74.6191 17.988L77.708 18.8767ZM26.2275 2.73804C26.3931 2.71309 30.3224 2.16052 33.1104 4.47632C34.7391 5.82959 35.6176 7.81267 35.7129 10.3689C35.9085 15.4906 33.6156 17.9432 31.459 18.9207C32.992 22.0045 34.671 24.7838 37.4053 26.4001L35.8174 29.0886C32.6653 27.2244 30.7319 24.7374 28.9805 20.9119L29.3213 27.8894L26.2324 28.4646L24.8174 2.948L26.2275 2.73804ZM60.1846 15.5974L59.3477 28.6677L56.2539 28.1433L57.0908 15.0466L60.1846 15.5974ZM46.4678 1.40991C46.6407 1.39518 50.7305 1.08814 53.4736 3.81128C55.2252 5.55288 55.9944 8.04505 55.7578 11.2166C55.3667 16.4241 53.0008 18.8957 51.0811 20.0515C49.9027 20.7622 48.7608 21.0679 47.9463 21.198L47.8193 27.1238L44.5303 26.9734L44.9844 1.53296L46.4678 1.40991ZM42.0684 26.9402L38.9521 26.9451L38.9336 13.8318L42.0498 13.8259L42.0684 26.9402ZM10.2686 21.9119C11.8016 21.3161 14.2851 19.5618 14.0078 14.4773C13.8893 12.3529 13.2439 10.8225 12.0928 9.92944C11.0645 9.13292 9.76826 8.91972 8.76758 8.89429L10.2686 21.9119ZM65.4521 18.5671L65.916 18.6189C66.2663 18.6439 69.5602 18.6608 70.0381 13.2429C70.179 11.6009 69.8559 10.3735 69.0371 9.48999C68.2318 8.62195 67.0762 8.22024 66.166 8.03491L65.4521 18.5671ZM28.7168 17.4626L29.1855 17.4558C29.5381 17.4301 32.8014 17.0356 32.5967 11.6033C32.533 9.95635 32.0556 8.77933 31.1318 8.00562C30.2264 7.24561 29.0298 6.99322 28.1064 6.92358L28.7168 17.4626ZM47.7822 16.9441C49.3201 16.5362 51.8769 15.1011 52.25 10.0779C52.4137 7.91183 51.9678 6.2898 50.9307 5.25854C50.071 4.40364 48.9107 4.04378 48.001 3.89526L47.7822 16.9441ZM77.0303 11.8044C77.9537 11.8833 78.6048 13.0464 78.4863 14.4011C78.3726 15.7557 77.5312 16.7903 76.6123 16.7117C75.6933 16.6328 75.0426 15.4697 75.1562 14.115C75.2745 12.76 76.1115 11.726 77.0303 11.8044ZM20.8135 9.91772C21.7369 9.88309 22.5241 10.9571 22.5742 12.3162C22.6243 13.6753 21.9198 14.8052 20.9961 14.8396C20.0727 14.8739 19.2858 13.7994 19.2354 12.4402C19.1855 11.081 19.8903 9.95228 20.8135 9.91772ZM58.9297 8.60718C59.853 8.60741 60.5986 9.70994 60.5986 11.0701C60.5985 12.4296 59.8529 13.5318 58.9297 13.532C58.0064 13.532 57.2599 12.4298 57.2598 11.0701C57.2598 9.71016 58.0062 8.60718 58.9297 8.60718ZM40.5039 7.23022C41.4277 7.23022 42.1738 8.33284 42.1738 9.69312C42.1737 11.0528 41.4228 12.155 40.5039 12.155C39.585 12.155 38.8302 11.0532 38.8301 9.69312C38.8301 8.33287 39.5801 7.23026 40.5039 7.23022Z"/>
+            </svg>
+          </a>
+          <div class="footer_social_wrap u-margin-top-6">
+            <h3 class="footer_social_title u-text-style-h6 u-margin-bottom-4">Síguenos</h3>
+            <div role="list" class="footer_social_list u-flex-horizontal-nowrap u-gap-3">
+              <div role="listitem" class="footer_social_item">
+                <a aria-label="Instagram" href="https://www.instagram.com/piripirialcarbon" target="_blank" class="footer_social_link u-color-inherit u-transition-color-main u-hover-color-brand">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.2.1 4.7 1.7 4.8 4.8.1 1.2.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.1-1.6 4.7-4.8 4.8-1.2.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.2-.1-4.7-1.7-4.8-4.8-.1-1.2-.1-1.6-.1-4.8s0-3.6.1-4.8c.1-3.1 1.6-4.7 4.8-4.8 1.2-.1 1.6-.1 4.8-.1zM12 0C8.7 0 8.3 0 7.1.1 2.7.3.3 2.7.1 7.1 0 8.3 0 8.7 0 12s0 3.7.1 4.9c.2 4.4 2.6 6.8 7 7 1.2.1 1.6.1 4.9.1s3.7 0 4.9-.1c4.4-.2 6.8-2.6 7-7 .1-1.2.1-1.6.1-4.9s0-3.7-.1-4.9c-.2-4.4-2.6-6.8-7-7C15.7 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zM12 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6.4-11.8c-.8 0-1.4.6-1.4 1.4s.6 1.4 1.4 1.4 1.4-.6 1.4-1.4-.6-1.4-1.4-1.4z"/>
+                  </svg>
+                </a>
+              </div>
+              <div role="listitem" class="footer_social_item">
+                <a aria-label="TikTok" href="https://www.tiktok.com/@piripirialcarbon" target="_blank" class="footer_social_link u-color-inherit u-transition-color-main u-hover-color-brand">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M19.6 8.2c-2.3 0-4.2-1.9-4.2-4.2V3h-3.5v13.4c0 1.7-1.4 3.1-3.1 3.1s-3.1-1.4-3.1-3.1 1.4-3.1 3.1-3.1c.3 0 .6 0 .9.1V9.9c-.3 0-.6-.1-.9-.1-3.5 0-6.4 2.9-6.4 6.4s2.9 6.4 6.4 6.4 6.4-2.9 6.4-6.4V9.3c1.4 1 3.1 1.6 4.9 1.6V7.6c-.3 0-.9.1-1.5.6z"/>
+                  </svg>
+                </a>
+              </div>
+</div>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup (Center) -->
+        <div class="u-flex-vertical-nowrap u-gap-4 u-align-items-center u-text-align-center" style="flex: 1 1 auto; max-width: 32rem;">
+          <p class="u-text-style-main" style="font-style: italic;">Únete a nuestro boletín para estar al día con novedades y lanzamientos.</p>
+          <form class="newsletter_form u-flex-horizontal-nowrap u-gap-3 u-flex-column-mobile u-justify-content-center" style="align-items: stretch; width: 100%;">
+            <input type="email" placeholder="Introduce tu email" required class="form_field is-pill" style="flex: 1; max-width: 20rem;">
+            <div data-button-mode="orchid" class="button_main_wrap" data-trigger="hover focus">
+              <button type="submit" class="button_main_element" data-style="secondary">
+                <div class="button_main_text u-text-style-main">SUSCRIBIRSE</div>
+              </button>
+            </div>
+          </form>
+          <label class="newsletter-consent u-flex-horizontal-nowrap u-gap-2 u-align-items-start u-cursor-pointer">
+            <span class="newsletter-checkbox-box">
+              <input type="checkbox" required class="newsletter_checkbox">
+              <svg class="newsletter-checkbox-check" width="12" height="12" viewBox="0 0 39.276 32.661" aria-hidden="true">
+                <path d="M3 18 L8 13 L16 21 L32 5 L36 9 L16 29 Z" fill="currentColor"></path>
+              </svg>
+            </span>
+            <span class="u-text-style-small u-opacity-75 u-text-align-left">Acepto la <a href="legal.html#privacidad" class="u-color-inherit u-text-decoration-underline">Política de Privacidad</a> y consiento recibir actualizaciones.</span>
+          </label>
+        </div>
+
+        <!-- Contacto (Right Side) -->
+        <section data-trigger="group" class="footer_group_wrap" style="flex: 0 0 auto;">
+          <h3 class="footer_group_title u-text-style-h5 u-margin-bottom-4">Contacto</h3>
+          <div role="list" class="footer_group_list u-flex-vertical-nowrap u-gap-2">
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
+              <a href="tel:919192934" class="footer_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_link_text u-text-style-small" style="white-space: nowrap;">919 192 934 (Lavapiés)</div>
+              </a>
+            </div>
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
+              <a href="tel:912629421" class="footer_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_link_text u-text-style-small" style="white-space: nowrap;">912 629 421 (Prosperidad)</div>
+              </a>
+            </div>
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
+              <a href="tel:912563497" class="footer_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_link_text u-text-style-small" style="white-space: nowrap;">912 563 497 (Las Tablas)</div>
+              </a>
+            </div>
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_group_item">
+              <a href="mailto:info@somospiripiri.com" class="footer_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_link_text u-text-style-small">info@somospiripiri.com</div>
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- LOGO + VOLVER ARRIBA (between footer content and subfooter) -->
+    <div class="u-position-relative u-overflow-hidden" style="margin: 0; padding: 0; line-height: 0; width: 100vw; margin-left: calc(50% - 50vw);">
+      <!-- Large PiRiPiRi Logo -->
+      <div style="display: flex; justify-content: center; width: 100%;">
+        <img src="resources/logos/piripiri-logotipo_alpha_512.svg" alt="" aria-hidden="true" style="width: 106vw; max-width: none; height: auto; display: block;">
+      </div>
+      <!-- Volver Arriba Button -->
+      <div class="u-flex-horizontal-nowrap u-justify-content-center" style="margin-top: -6rem; margin-bottom: 6rem;">
+        <div class="button_main_wrap" data-trigger="hover focus">
+          <a href="#top" class="button_main_element" onclick="event.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'});" data-style="secondary">
+            <div class="button_main_text u-text-style-main">VOLVER ARRIBA</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar (centered) -->
+    <div class="footer_bottom_wrap u-border-top-main" style="border-color: var(--_theme---border);">
+      <div class="footer_bottom_contain u-container-full">
+        <div class="footer_bottom_layout u-flex-horizontal-wrap u-justify-content-center u-align-items-center u-padding-block-4 u-gap-5">
+          <div class="footer_bottom_text u-text-style-small u-opacity-75">
+            <span>© </span><span data-dynamic-year="">2025</span><span> Piri Piri. Todos los derechos reservados.</span>
+          </div>
+          <div data-trigger="group" role="list" class="footer_bottom_list u-flex-horizontal-nowrap u-gap-5">
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_bottom_item">
+              <a href="legal.html#privacidad" class="footer_bottom_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_bottom_link_text u-text-style-small">Política de Privacidad</div>
+              </a>
+            </div>
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_bottom_item">
+              <a href="legal.html#aviso-legal" class="footer_bottom_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_bottom_link_text u-text-style-small">Aviso Legal</div>
+              </a>
+            </div>
+            <div data-trigger="hover-other focus-other" role="listitem" class="footer_bottom_item">
+              <a href="legal.html#cookies" class="footer_bottom_link_wrap u-color-inherit u-text-decoration-none u-transition-color-main u-hover-color-brand">
+                <div class="footer_bottom_link_text u-text-style-small">Política de Cookies</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dynamic Year Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-dynamic-year]").forEach(function (el) {
+          el.textContent = new Date().getFullYear();
+        });
+      });
+    </script>
+  </footer>
+
   </div>
 
   <script src="sandbox/resources/data/menu_items.js"></script>
@@ -957,6 +1312,7 @@
       const itemNodes = Array.from(document.querySelectorAll("[data-menu-items] li"));
       const menuEmpty = document.querySelector("[data-menu-empty]");
       const listContainer = document.querySelector("[data-view-panel='list'] [data-menu-list]");
+      const masonryContainer = document.querySelector("[data-view-panel='masonry'] [data-menu-masonry]");
       const gridRoot = document.querySelector(".carta-grid");
       const viewButtons = Array.from(document.querySelectorAll("[data-view-btn]"));
       const viewPanels = Array.from(document.querySelectorAll("[data-view-panel]"));
@@ -971,7 +1327,8 @@
             desc: item.description || "",
             dietary: Array.isArray(item.dietary) ? item.dietary.join(", ") : (item.dietary || ""),
             slug: item.slug || "",
-            category: item.category || ""
+            category: item.category || "",
+            disabled: !!item.disabled
           }))
         : itemNodes.map((node) => ({
             title: node.dataset.title || "",
@@ -1016,7 +1373,7 @@
           .replace(/-+/g, "-");
       };
 
-      let currentView = "list";
+      let currentView = "masonry";
 
       const getCategoryLabel = (category) => {
         const normalized = normalizeCategory(category);
@@ -1027,6 +1384,8 @@
             return "Principales";
           case "complementos":
             return "Acompañamientos";
+          case "salseo":
+            return "Salseo";
           case "bebidas":
             return "Bebidas";
           case "postres":
@@ -1038,6 +1397,9 @@
 
       const setView = (view) => {
         currentView = view;
+        // Reflect the active view on <body> so page chrome (e.g. the footer)
+        // can hide itself in the immersive grid view via CSS.
+        document.body.dataset.cartaView = view;
         viewPanels.forEach((panel) => {
           if (panel.dataset.viewPanel === view) {
             panel.classList.remove("u-display-none");
@@ -1046,7 +1408,10 @@
           }
         });
         viewHeaders.forEach((header) => {
-          if (header.dataset.viewHeader === view) {
+          // data-view-header can list multiple views ("list masonry") when
+          // the same header chrome should appear in more than one view.
+          const headerViews = (header.dataset.viewHeader || "").split(/\s+/).filter(Boolean);
+          if (headerViews.includes(view)) {
             header.classList.remove("u-display-none");
           } else {
             header.classList.add("u-display-none");
@@ -1065,11 +1430,14 @@
       viewButtons.forEach((btn) => {
         btn.addEventListener("click", () => {
           setView(btn.dataset.viewBtn);
+          // Switching views resets the active filter back to "all" so the
+          // user doesn't carry a narrow filter into a fresh view by surprise.
+          setFilter("all");
         });
       });
 
       if (!menuItems.length) {
-        setView("list");
+        setView("masonry");
         return;
       }
 
@@ -1080,6 +1448,8 @@
             return "var(--swatch--brand-500)";
           case "complementos":
             return "var(--swatch--orchid-500)";
+          case "salseo":
+            return "var(--swatch--brand-300)";
           case "postres":
             return "var(--swatch--gold)";
           case "bebidas":
@@ -1153,7 +1523,6 @@
 
       const buildList = (items) => {
         listContainer.innerHTML = "";
-        listItemRefs = [];
         // Section headers only make sense when sorting by category
         const showSectionHeaders = activeSort === "category";
         let currentSectionCategory = null;
@@ -1173,21 +1542,25 @@
           const itemUrl = item.slug ? `carta-item.html?slug=${encodeURIComponent(item.slug)}` : "#";
           card.href = itemUrl;
           card.className = "u-flex-horizontal-nowrap u-gap-5 u-radius-main u-padding-5 u-flex-column-mobile u-align-items-center u-color-inherit u-text-decoration-none";
+          if (item.disabled) card.classList.add("is-disabled");
           card.style.border = `var(--border-width--main) solid ${getItemBorderColor(item.category)}`;
           card.style.background = "var(--_theme---background-2)";
-          if (item.slug) {
+          if (item.slug && !item.disabled) {
             card.addEventListener("click", () => {
               try {
                 sessionStorage.setItem("carta:lastSlug", item.slug);
               } catch (err) {}
             });
           }
+          if (item.disabled) {
+            card.addEventListener("click", (e) => e.preventDefault());
+          }
           listItemRefs.push({ element: card, category: item.category });
 
           let imageWrap = null;
           if (item.image) {
             imageWrap = document.createElement("div");
-            imageWrap.className = "u-radius-main";
+            imageWrap.className = "list-card-image u-radius-main";
             imageWrap.style.flex = "0 0 38%";
             imageWrap.style.overflow = "hidden";
             imageWrap.style.aspectRatio = "4 / 3";
@@ -1198,33 +1571,42 @@
             image.className = "u-width-full u-height-full u-object-fit-cover";
 
             imageWrap.appendChild(image);
+
+            if (item.disabled) {
+              const badge = document.createElement("div");
+              badge.className = "is-disabled-badge";
+              badge.textContent = "No disponible";
+              imageWrap.appendChild(badge);
+            }
           }
 
           const content = document.createElement("div");
-          content.className = "u-flex-vertical-nowrap u-gap-3 u-align-items-start";
+          content.className = "list-card-content u-flex-vertical-nowrap u-gap-4 u-align-items-start";
           content.style.flex = "1";
 
           const title = document.createElement("h2");
-          title.className = "u-text-style-h2 u-margin-bottom-0";
+          title.className = "u-text-style-h1 u-margin-bottom-0";
           title.style.maxWidth = "16ch";
           title.textContent = item.title;
 
           const price = document.createElement("div");
           price.className = "u-flex-horizontal-wrap u-gap-2";
           const priceChunks = item.price.split(";").map((t) => t.trim()).filter(Boolean);
+          const withEuro = (chunk) => chunk.replace(/(\d+,\d+)/, "€$1");
           if (priceChunks.length) {
             priceChunks.forEach((chunk) => {
               const bubble = document.createElement("span");
-              bubble.textContent = chunk;
-              bubble.style.cssText = "display:inline-block; border: var(--border-width--main) solid var(--_theme---button-primary--background); color: var(--_theme---button-primary--background); border-radius: var(--radius--round); padding: 0.3em 1em; font-size: 1rem; font-weight: 500; white-space: nowrap;";
+              bubble.textContent = withEuro(chunk);
+              bubble.style.cssText = "display:inline-block; border: var(--border-width--main) solid var(--_theme---button-primary--background); color: var(--_theme---button-primary--background); border-radius: var(--radius--round); padding: 0.3em 1em; font-family: var(--_typography---font--primary-family); font-size: 1rem; font-weight: 500; white-space: nowrap;";
               price.appendChild(bubble);
             });
           } else {
-            price.textContent = item.price;
+            price.textContent = withEuro(item.price);
           }
 
           const desc = document.createElement("p");
           desc.className = "u-text-style-main u-opacity-75";
+          desc.style.marginTop = "var(--_spacing---space--2)";
           desc.textContent = item.desc;
 
           const dietary = document.createElement("div");
@@ -1248,6 +1630,91 @@
         });
       };
 
+      const buildMasonry = (items) => {
+        if (!masonryContainer) return;
+        masonryContainer.innerHTML = "";
+        // Masonry is photo-first: items without a real image would render
+        // as empty tiles, so we skip them. Disabled items are kept (sorted
+        // to the bottom of their category) and get a "NO DISPONIBLE" badge.
+        const photoItems = items.filter((item) => item.image);
+        const showSectionHeaders = activeSort === "category";
+        let currentSectionCategory = null;
+
+        photoItems.forEach((item) => {
+          if (showSectionHeaders) {
+            const itemCategory = normalizeCategory(item.category);
+            if (itemCategory !== currentSectionCategory) {
+              const heading = document.createElement("h2");
+              heading.className = "list-section-title masonry-section-title";
+              heading.textContent = getCategoryLabel(item.category);
+              masonryContainer.appendChild(heading);
+              currentSectionCategory = itemCategory;
+            }
+          }
+
+          const card = document.createElement("a");
+          card.href = `carta-item.html?slug=${encodeURIComponent(item.slug)}`;
+          card.className = "masonry-item" + (item.disabled ? " is-disabled" : "");
+          card.style.borderColor = getItemBorderColor(item.category);
+          if (!item.disabled) {
+            card.addEventListener("click", () => {
+              try { sessionStorage.setItem("carta:lastSlug", item.slug); } catch (err) {}
+            });
+          } else {
+            card.addEventListener("click", (e) => e.preventDefault());
+          }
+          listItemRefs.push({ element: card, category: item.category });
+
+          const imageWrap = document.createElement("div");
+          imageWrap.className = "masonry-item-image";
+          const image = document.createElement("img");
+          image.src = item.image;
+          image.alt = item.title;
+          image.loading = "lazy";
+          imageWrap.appendChild(image);
+
+          if (item.disabled) {
+            const badge = document.createElement("div");
+            badge.className = "is-disabled-badge";
+            badge.textContent = "No disponible";
+            imageWrap.appendChild(badge);
+          }
+
+          const content = document.createElement("div");
+          content.className = "masonry-item-content";
+
+          const title = document.createElement("h3");
+          title.className = "masonry-item-title";
+          title.textContent = item.title;
+          content.appendChild(title);
+
+          if (item.price) {
+            const price = document.createElement("div");
+            price.className = "masonry-item-price";
+            const priceChunks = item.price.split(";").map((t) => t.trim()).filter(Boolean);
+            const withEuro = (chunk) => chunk.replace(/(\d+,\d+)/, "€$1");
+            priceChunks.forEach((chunk) => {
+              const bubble = document.createElement("span");
+              bubble.className = "masonry-item-price-bubble";
+              bubble.textContent = withEuro(chunk);
+              price.appendChild(bubble);
+            });
+            content.appendChild(price);
+          }
+
+          if (item.desc) {
+            const desc = document.createElement("p");
+            desc.className = "masonry-item-desc";
+            desc.textContent = item.desc;
+            content.appendChild(desc);
+          }
+
+          card.appendChild(imageWrap);
+          card.appendChild(content);
+          masonryContainer.appendChild(card);
+        });
+      };
+
       const applyFilter = () => {
         const filteredItems = activeFilter === "all"
           ? menuItems
@@ -1257,6 +1724,7 @@
           "para-compartir",
           "platos-principales",
           "complementos",
+          "salseo",
           "bebidas",
           "postres"
         ];
@@ -1266,19 +1734,22 @@
           return index === -1 ? categoryOrder.length : index;
         };
         listItems.sort((a, b) => {
+          // Category mode: group by category first, so the disabled-last
+          // rule applies within each section. Other modes: disabled goes
+          // to the very bottom of the whole list.
+          if (activeSort === "category") {
+            const rankA = getCategoryRank(a.category);
+            const rankB = getCategoryRank(b.category);
+            if (rankA !== rankB) return rankA - rankB;
+          }
+          if (a.disabled !== b.disabled) return a.disabled ? 1 : -1;
           if (activeSort === "price-asc") {
             return parsePrice(a.price) - parsePrice(b.price);
           }
           if (activeSort === "price-desc") {
             return parsePrice(b.price) - parsePrice(a.price);
           }
-          if (activeSort === "name") {
-            return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
-          }
-          // default: category order, then alphabetical within
-          const rankA = getCategoryRank(a.category);
-          const rankB = getCategoryRank(b.category);
-          if (rankA !== rankB) return rankA - rankB;
+          // name + the alphabetical fallback for category mode
           return a.title.localeCompare(b.title, "es", { sensitivity: "base" });
         });
         const gridItems = listItems.map((item) => ({
@@ -1286,7 +1757,9 @@
           image: item.image || defaultImage
         }));
 
+        listItemRefs = [];
         buildList(listItems);
+        buildMasonry(listItems);
 
         currentGridItems = gridItems;
         if (!gridItems.length) {
@@ -1715,6 +2188,7 @@
             });
             item.addEventListener("click", () => {
               if (this.justDragged) return;
+              if (item.dataset.disabled === "true") return;
               const slug = item.dataset.slug;
               if (slug) {
                 try {
@@ -1731,6 +2205,7 @@
           const isSticker = dataType === "sticker";
           const isEmpty = dataType === "empty";
           const isItem = !isTitle && !isSticker && !isEmpty;
+          const isDisabled = isItem && !!(data && data.disabled);
           const bg = item.querySelector(".item-bg");
           const title = item.querySelector(".item-title");
           const desc = item.querySelector(".item-desc");
@@ -1739,7 +2214,9 @@
           item.classList.toggle("exp-sticker", isSticker);
           item.classList.toggle("exp-empty", isEmpty);
           item.classList.toggle("exp-large", data && data.size === "large");
-          item.style.pointerEvents = isItem ? "auto" : "none";
+          item.classList.toggle("is-disabled", isDisabled);
+          item.dataset.disabled = isDisabled ? "true" : "false";
+          item.style.pointerEvents = (isItem && !isDisabled) ? "auto" : "none";
 
           bg.style.backgroundImage = isItem && data.image ? `url(${data.image})` : "none";
           title.classList.toggle("u-text-style-display", isTitle);
@@ -1940,6 +2417,7 @@
             "para-compartir",
             "platos-principales",
             "complementos",
+            "salseo",
             "bebidas",
             "postres",
             "otros"
@@ -2558,10 +3036,7 @@
       });
 
       setFilter("all");
-      // Always start in list view when entering the page, regardless of where
-      // the user came from. The toggle still switches in-session; we just no
-      // longer remember the choice across navigations.
-      setView("list");
+      setView("masonry");
 
       const collapseBtn = document.querySelector("[data-grid-collapse]");
       const panelBody = document.querySelector("[data-grid-panel-body]");
@@ -2576,6 +3051,65 @@
   </script>
 
   <script src="https://cdn.prod.website-files.com/gsap/3.14.2/gsap.min.js" type="text/javascript"></script>
+  <script src="https://cdn.prod.website-files.com/gsap/3.14.2/ScrollTrigger.min.js" type="text/javascript"></script>
+  <script>
+    // ── Page-wide entrance animations (Carta) ─────────────────────────
+    // The grid view drives its own InfiniteGrid choreography, so we keep
+    // animations to the chrome (header, filters) and to the list/masonry
+    // items as they scroll into view. ScrollTrigger.refresh() is called
+    // after each filter/sort change because the list contents reflow.
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
+      gsap.registerPlugin(ScrollTrigger);
+
+      const ease = "power3.out";
+
+      // ── Header / view chrome ──
+      const header = document.querySelector('[data-view-header*="list"]');
+      if (header) {
+        gsap.fromTo(header,
+          { opacity: 0, y: 30 },
+          { opacity: 1, y: 0, duration: 0.9, ease, delay: 0.1 }
+        );
+      }
+
+      // ── List + Masonry items: stagger reveal as they enter viewport ──
+      function bindItemReveals() {
+        const lists = document.querySelectorAll("[data-menu-list], [data-menu-masonry]");
+        lists.forEach((list) => {
+          const items = list.querySelectorAll(":scope > a, :scope > .masonry-item");
+          if (!items.length) return;
+          ScrollTrigger.batch(items, {
+            start: "top 92%",
+            onEnter: (els) => gsap.fromTo(els,
+              { opacity: 0, y: 28 },
+              { opacity: 1, y: 0, duration: 0.7, ease, stagger: 0.05, overwrite: true }
+            ),
+            once: true,
+          });
+        });
+      }
+
+      // Initial binding once the menu has rendered (next tick).
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bindItemReveals();
+        ScrollTrigger.refresh();
+      }));
+
+      // Re-bind whenever the list/masonry containers reflow (filter or
+      // sort change). MutationObserver is cheap here since reflows are
+      // user-driven, not high-frequency.
+      const observed = document.querySelectorAll("[data-menu-list], [data-menu-masonry]");
+      const mo = new MutationObserver(() => {
+        ScrollTrigger.getAll().forEach((t) => {
+          if (t.vars && t.vars.start === "top 92%") t.kill();
+        });
+        bindItemReveals();
+        ScrollTrigger.refresh();
+      });
+      observed.forEach((el) => mo.observe(el, { childList: true }));
+    });
+  </script>
   <script>
     // Lumos Modal Initialization
     document.addEventListener("DOMContentLoaded", function () {
@@ -2652,6 +3186,9 @@
       </a>
     </div>
   </div>
+
+  <!-- Site-wide flame cursor + button fire -->
+  <script src="site.js" defer></script>
 
 </body>
 </html>

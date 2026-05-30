@@ -17,7 +17,11 @@
   --_text-style---letter-spacing: var(--_typography---letter-spacing--normal);
   --site--gutter: clamp(1 * 1rem, ((1 - ((2 - 1) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((2 - 1) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 2 * 1rem);
   --_spacing---space--8: clamp(2 * 1rem, ((2 - ((3 - 2) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((3 - 2) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 3 * 1rem);
-  --radius--main: 1rem;
+  --radius--main: 2.2rem;
+  /* Minimal gap between swiper items, shared by all sliders so testimonial
+     and image carousels stay visually consistent. Stays small across all
+     viewports — overrides should be rare. */
+  --swiper-gap: clamp(0.2rem, 0.3vw, 0.4rem);
   --_theme---background-2: var(--swatch--light-500);
   --site--column-count: 12;
   --site--column-width: calc((min(var(--max-width--main), 100% - var(--site--margin) * 2)  - (var(--site--gutter) * (var(--site--column-count)  - 1))) / var(--site--column-count));
@@ -57,14 +61,14 @@
   --_theme---heading-accent: var(--swatch--brand-500);
   --_spacing---space--1: clamp(.375 * 1rem, ((.375 - ((.5 - .375) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((.5 - .375) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), .5 * 1rem);
   --_spacing---space--4: clamp(1.25 * 1rem, ((1.25 - ((1.5 - 1.25) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((1.5 - 1.25) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 1.5 * 1rem);
-  --_typography---font--primary-family: "Paytone One", sans-serif;
+  --_typography---font--primary-family: "Neulis Neue", sans-serif;
   --_typography---font--primary-regular: 400;
   --_typography---font--primary-medium: 500;
   --_typography---font--primary-bold: 700;
   --radius--small: .5rem;
   --radius--round: 100vw;
   --_theme---border: var(--swatch--dark-900-o20);
-  --_typography---font-size--text-large: clamp(1.25 * 1rem, ((1.25 - ((1.875 - 1.25) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((1.875 - 1.25) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), 1.875 * 1rem);
+  --_typography---font-size--text-large: clamp(1.5 * 1rem, ((1.5 - ((2.5 - 1.5) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((2.5 - 1.5) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), 2.5 * 1rem);
   --swatch--transparent: transparent;
   --_trigger---on: 1;
   --_trigger---off: 0;
@@ -136,7 +140,7 @@
   --nav--banner-height: 2.4rem;
   --_typography---font--primary-trim-top: .33em;
   --_typography---font--primary-trim-bottom: .38em;
-  --_typography---font--secondary-family: Montserrat, 'MontserratFallback', sans-serif;
+  --_typography---font--secondary-family: "Neulis Neue", sans-serif;
   --_typography---font--secondary-trim-top: .33em;
   --_typography---font--secondary-trim-bottom: .38em;
   --_typography---font--secondary-regular: 400;
@@ -370,7 +374,9 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 1.125rem 1.875rem;
+  /* Vertical padding bumped (1.125rem → 1.85rem) so buttons feel chunkier;
+     horizontal padding unchanged. */
+  padding: 1.85rem 1.875rem;
   line-height: 1;
   transition-property: all;
   transition-duration: .2s;
@@ -402,6 +408,17 @@
 .button_main_text {
   line-height: inherit;
   position: relative;
+  /* Default button label is clearly larger than body copy. site.css loads
+     after lumos.css so this beats utility classes like u-text-style-main at
+     the same specificity; smaller variants (u-text-style-small / -tiny)
+     still win on the few places that opt out (e.g. cookie banner buttons). */
+  font-size: 1.375rem;
+}
+.button_main_element .button_main_text.u-text-style-small {
+  font-size: var(--_typography---font-size--text-small);
+}
+.button_main_element .button_main_text.u-text-style-tiny {
+  font-size: var(--_typography---font-size--text-tiny);
 }
 .button_toggle_element {
   width: var(--button-size--medium);
@@ -1010,6 +1027,35 @@
 .slider_bullet_item.is-active {
   border-color: var(--_theme---text);
   background-color: var(--_theme---text);
+}
+
+/* ─── Shared pill-style pagination ────────────────────────────────────────
+   Sliders that have a `.slider_bullet_list` get an elongated-pill nav by
+   default (cream inactive + brand-orange active). Individual sliders can
+   override this for a different accent color — the reviews carousel uses
+   pink/orchid for its active pill, defined in its inline section style. */
+.slider_bullet_list {
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--_spacing---space--6);
+  width: 100% !important;
+  flex-wrap: wrap;
+}
+.slider_bullet_item {
+  aspect-ratio: auto;
+  width: 1.25rem;
+  height: 0.5rem;
+  background-color: var(--swatch--light-400);
+  border: none;
+  border-radius: 100vw;
+  padding: 0;
+  cursor: pointer;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+.slider_bullet_item.is-active {
+  width: 3rem;
+  background-color: var(--swatch--brand-500);
+  border: none;
 }
 .slider_wrap {
   grid-column-gap: 0rem;
@@ -2561,16 +2607,82 @@
   min-width: min(80vw, 100%);
 }
 
-/* Hero: single column on smaller screens so title always stays 2 lines */
-@media (max-width: 900px) {
+/* Cream borders on dark theme — the default uses a 20%-opacity cream that
+   reads as muddy grey on dark backgrounds. Use the full brand cream
+   (--swatch--light-400) instead so card outlines are crisp. */
+.u-theme-dark,
+.section_wrap[data-style="dark"] {
+  --_theme---border: var(--swatch--light-400);
+}
+
+/* Hide hero nav links on small desktop too — the centered link strip
+   collides with the top-right hero image until viewport ≥1920px. The
+   MENÚ button remains the primary nav at every breakpoint. */
+@media (max-width: 1919px) {
+  .hero_nav_links {
+    display: none !important;
+  }
+}
+
+/* Hero: tablet + mobile (≤991px)
+   - Top-right image becomes a full-width 50vh banner at the top
+   - Logo and MENÚ button float over the banner (fixed, mirrored corners)
+   - Heading drops below the banner, single column, no negative pull-up
+   - Right-side graphic column is hidden (kept for desktop only)
+   - Floating CTAs centered + lifted so social/address sit visibly below */
+@media (max-width: 991px) {
+  /* Top image: full-width banner across the top, fixed 50vh height */
+  .hero_topright_image {
+    left: var(--site--gutter) !important;
+    right: var(--site--gutter) !important;
+    width: auto !important;
+    height: 50vh;
+  }
+  .hero_topright_image_inner {
+    height: 100%;
+  }
+  .hero_topright_image_img {
+    height: 100% !important;
+    aspect-ratio: auto !important;
+  }
+
+  /* Logo: float at top-left of the banner, mirroring the MENÚ button's
+     fixed top-right placement so both sit on top of the image. */
+  .hero_nav .hero_logo_wrap {
+    position: fixed !important;
+    top: calc(2 * var(--site--gutter)) !important;
+    left: calc(2 * var(--site--gutter)) !important;
+    z-index: 11 !important;
+  }
+
+  /* Canvas: single column, content starts below the banner */
   .hero_canvas {
     grid-template-columns: 1fr !important;
+    align-items: start !important;
+    padding-top: calc(50vh + var(--site--gutter)) !important;
   }
   .hero_graphic_col {
     display: none !important;
   }
+
+  /* Heading column: kill the desktop pull-up so it sits below the banner */
+  .hero_heading_col {
+    margin-top: 0 !important;
+    align-self: start !important;
+    width: 100% !important;
+  }
+
   .hero_title_slide {
     font-size: clamp(4rem, 14vw, 7rem) !important;
+  }
+
+  /* Floating CTAs: center them and lift above the hero_footer row so
+     social icons + address remain visible BELOW the buttons. */
+  .floating-ctas {
+    left: 0 !important;
+    right: 0 !important;
+    justify-content: center !important;
+    bottom: calc(5rem + var(--pp-cookie-offset, 0px)) !important;
   }
 }
 
@@ -3747,6 +3859,13 @@ html {
   transition: width 0.3s ease;
 }
 
+/* Text-alignment utility. Lumos defines u-align-items-* but no
+   text-align utility — markup already references .u-text-align-center
+   in a few places, so this fills the gap. */
+.u-text-align-center { text-align: center; }
+.u-text-align-left { text-align: left; }
+.u-text-align-right { text-align: right; }
+
 /* =====================================================================
    OUTLINE TEXT - Stroke/Hollow Heading
    ===================================================================== */
@@ -4093,6 +4212,13 @@ html {
    NEWSLETTER CHECKBOX - Custom Square Tick
    ===================================================================== */
 
+/* Override the u-align-items-start on the label so the box centers with the
+   first line of text (instead of top-aligning, which leaves it visually low
+   because the text glyph sits below the line-height top). */
+.newsletter-consent {
+  align-items: center;
+}
+
 .newsletter-checkbox-box {
   position: relative;
   width: 1.5rem;
@@ -4105,7 +4231,6 @@ html {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  margin-top: 0.1rem;
 }
 
 .newsletter-checkbox-box .newsletter_checkbox {
@@ -4154,31 +4279,39 @@ html {
   container-type: inline-size;
 }
 
-/* Edge-to-edge 2-column grid: image fills left column, text on right. */
+/* Edge-to-edge 2-column grid: image fills left column, text on right.
+   Capped at 75vh so the hero never dominates the viewport on tall screens. */
 .historia_hero_grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: stretch;
-  min-height: 100vh;
+  min-height: 75vh;
+  max-height: 75vh;
 }
 
 .historia_hero_visual {
-  display: flex;
+  position: relative;
   overflow: hidden;
 }
 
+/* Absolutely positioned image fills the visual cell exactly — image's natural
+   aspect ratio can't push the grid row past 100vh anymore. */
 .historia_hero_image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
+  display: block;
 }
 
 .historia_hero_content {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: calc(var(--_spacing---space--10) + 5rem) var(--site--gutter) var(--_spacing---space--10);
+  /* Generous right padding so the headline/lede don't touch the viewport edge. */
+  padding: calc(var(--_spacing---space--10) + 5rem) var(--_spacing---space--10) var(--_spacing---space--10) var(--site--gutter);
 }
 
 /* Responsive: stack columns at narrower viewports */
@@ -4377,18 +4510,198 @@ textarea.form_field::-webkit-scrollbar {
   display: none;                  /* Chrome / Safari / new Edge */
 }
 
+/* ─── Site navigation system ───────────────────────────────────────────────
+   Canonical nav pattern (mirrors what was inline on index.html).
+   Variants are applied via modifier classes on the <nav> element:
+     .hero_nav                   → base
+     .hero_nav.u-theme-brand     → brand-orange bg with dark text (historia hero)
+     .hero_nav.is-minimal        → hide the nav links list; only the MENU
+                                    button (which is a separate fixed element)
+                                    remains visible. Use on pages like carta.
+
+   Each link should be wrapped with:
+     <li class="hero_nav_item">
+       <img class="hero_nav_item_heart" ...>
+       <a class="hero_nav_link" ...>
+   so the heart-on-hover behaves consistently across pages. */
+
+.hero_nav_item { position: relative; }
+
+.hero_nav_item_heart {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0.6);
+  width: 2.5rem; height: auto;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.hero_nav_item:hover .hero_nav_item_heart {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Minimal layout: hide nav links entirely. The MENU button stays
+   visible because it's a separate fixed element (.button_main_wrap
+   with data-modal-trigger="menu"), not a child of the nav. */
+.hero_nav.is-minimal .hero_nav_links {
+  display: none !important;
+}
+
+
+/* ─── Custom site cursor (arrow + active fire-red state) ───────────────────
+   Cream arrow + dark border on dark themes; dark arrow + cream border on
+   light/brand themes. :active swaps the fill to brand orange.
+   Nested .u-theme-dark inside a light/brand parent gets the cream variant. */
+
+*, *::before, *::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23efdece' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+*:active, *:active::before, *:active::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+
+.u-theme-light *, .u-theme-light *::before, .u-theme-light *::after,
+.u-theme-brand *, .u-theme-brand *::before, .u-theme-brand *::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%231d1d1b' stroke='%23efdece' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+.u-theme-light *:active, .u-theme-light *:active::before, .u-theme-light *:active::after,
+.u-theme-brand *:active, .u-theme-brand *:active::before, .u-theme-brand *:active::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%23efdece' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+
+.u-theme-light .u-theme-dark *, .u-theme-light .u-theme-dark *::before, .u-theme-light .u-theme-dark *::after,
+.u-theme-brand .u-theme-dark *, .u-theme-brand .u-theme-dark *::before, .u-theme-brand .u-theme-dark *::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23efdece' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+.u-theme-light .u-theme-dark *:active, .u-theme-light .u-theme-dark *:active::before, .u-theme-light .u-theme-dark *:active::after,
+.u-theme-brand .u-theme-dark *:active, .u-theme-brand .u-theme-dark *:active::before, .u-theme-brand .u-theme-dark *:active::after {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
+}
+
+
+/* ─── Muted text without killing ::selection ─────────────────────────────
+   `u-opacity-75` / `u-opacity-50` apply `opacity` to the whole element, and
+   element opacity cascades into the ::selection background (so highlights
+   look washed out). For text elements specifically, mute the color via
+   color-mix instead — the selection background then renders at full
+   opacity. SVGs / images / non-text elements with u-opacity-* keep their
+   original behavior. */
+p.u-opacity-75,
+span.u-opacity-75,
+.u-text-style-main.u-opacity-75,
+.u-text-style-large.u-opacity-75,
+.u-text-style-small.u-opacity-75,
+.u-text-style-tiny.u-opacity-75,
+.u-text-style-h1.u-opacity-75,
+.u-text-style-h2.u-opacity-75,
+.u-text-style-h3.u-opacity-75,
+.u-text-style-h4.u-opacity-75 {
+  opacity: 1;
+  color: color-mix(in srgb, currentColor 75%, transparent);
+}
+p.u-opacity-50,
+span.u-opacity-50,
+.u-text-style-main.u-opacity-50,
+.u-text-style-large.u-opacity-50,
+.u-text-style-small.u-opacity-50,
+.u-text-style-tiny.u-opacity-50,
+.u-text-style-h1.u-opacity-50,
+.u-text-style-h2.u-opacity-50,
+.u-text-style-h3.u-opacity-50,
+.u-text-style-h4.u-opacity-50 {
+  opacity: 1;
+  color: color-mix(in srgb, currentColor 50%, transparent);
+}
+
+
+/* ─── Text selection: theme-aware ─────────────────────────────────────────
+   Default / dark / light themes → full brand-orange selection with dark
+   text (avoids the washed-out browser default).
+   Brand-themed sections → dark selection + cream text so the highlight
+   reads against the orange background. */
+::selection {
+  background-color: var(--swatch--brand-500);
+  color: var(--swatch--brand-text);
+}
+.u-theme-brand ::selection,
+.u-theme-brand::selection {
+  background-color: var(--swatch--dark-900);
+  color: var(--swatch--light-200);
+}
+/* Nested dark/light theme inside a brand parent reverts to the default
+   brand-orange selection (mirrors the cursor cascade). */
+.u-theme-brand .u-theme-dark ::selection,
+.u-theme-brand .u-theme-light ::selection {
+  background-color: var(--swatch--brand-500);
+  color: var(--swatch--brand-text);
+}
+
+
+/* ─── Button shadow compensation ───────────────────────────────────────────
+   .button_main_element renders with a 5px drop shadow (`box-shadow: 0 5px 0 0`).
+   The shadow lives outside the layout box, so positioning the wrapper flush
+   against a neighbor (e.g. a fixed MENÚ button next to a card border) leaves
+   the shadow visually overlapping that neighbor. Shift the wrapper up by 5px
+   (visual only, no layout impact) so the shadow's bottom edge aligns with
+   where the element's bottom used to be — alignment matches what you see. */
+.button_main_wrap {
+  transform: translateY(-10px);
+}
+
+
+/* ─── Fullscreen menu hover color on brand themes ─────────────────────────
+   Menu links use u-hover-color-brand (brand orange) on hover. On the
+   brand-themed dialog variants (orange / pink) the bg is already brand-
+   colored, so the hover would be invisible. Flip the hover color to cream
+   so it actually reads against the brand background. */
+.modal_dialog.u-theme-brand a.u-hover-color-brand:hover,
+.modal_dialog.u-theme-brand-2 a.u-hover-color-brand:hover {
+  color: var(--swatch--light-200);
+}
+
+
+/* ─── Inline flame color (theme-aware) ────────────────────────────────────
+   Flame SVGs are filled with `currentColor`. Default is brand orange so
+   they read against dark/light backgrounds. On brand-themed parents
+   (orange or pink) the orange flames would disappear into the bg, so they
+   switch to the theme's text color (the same dark used for the links). */
+.pp-inline-fire {
+  color: var(--swatch--brand-500);
+}
+.u-theme-brand .pp-inline-fire,
+.u-theme-brand-2 .pp-inline-fire {
+  color: var(--_theme---text);
+}
+
+
+/* ─── Fullscreen menu: drop the modal backdrop dim ─────────────────────────
+   .modal_backdrop sits inside .modal_inner and adds a 50% dark wash so the
+   standard modal pattern has a dim layer around the centered card. For
+   data-style="full-screen" menus the modal fills the viewport, so the
+   wash just dims the themed background. Make it transparent there; the
+   click-to-close target still works because it has no fill. */
+.modal_inner[data-style="full-screen"] .modal_backdrop {
+  background-color: transparent;
+}
+
+
 /* ─── Persistent floating CTAs (RESERVA + PIDE YA) ─────────────────────────
    Sit at bottom-right of every page so the primary actions follow the user
    as they scroll. Uses the standard LUMOS button_main_* components so they
    inherit the site's button styling automatically. */
 .floating-ctas {
   position: fixed;
-  bottom: var(--site--margin);
+  /* --pp-cookie-offset is set by site.js while the cookie banner is open,
+     so the CTAs sit above the banner. Resets to 0 once the banner is closed. */
+  bottom: calc(var(--site--margin) + var(--pp-cookie-offset, 0px));
   right: var(--site--margin);
   display: flex;
   flex-direction: row;
   gap: 0.75rem;
-  z-index: 10;
+  z-index: 1000; /* above cookie banner (z-index: 999) */
   pointer-events: none;
   align-items: center;
   transition: bottom 0.25s ease, right 0.25s ease, left 0.25s ease, transform 0.25s ease;
@@ -4398,24 +4711,19 @@ textarea.form_field::-webkit-scrollbar {
   pointer-events: auto;
 }
 
-/* When the page subfooter scrolls into view, dock the CTAs centered
-   above the subfooter so they read as part of that footer section
-   instead of overlapping the legal links. */
+/* When the page subfooter scrolls into view, dock the CTAs vertically
+   centered inside the subfooter strip on the right. JS sets `top`
+   inline based on the subfooter's bounding rect each scroll frame. */
 .floating-ctas.is-at-footer {
-  left: 50%;
-  right: auto;
-  transform: translateX(-50%);
-  bottom: calc(var(--site--margin) + 3.5rem);
+  bottom: auto;
+  /* right stays at var(--site--margin) from the base rule */
 }
 
 @media (max-width: 600px) {
   .floating-ctas {
-    bottom: 1rem;
+    bottom: calc(1rem + var(--pp-cookie-offset, 0px));
     right: 1rem;
     gap: 0.5rem;
-  }
-  .floating-ctas.is-at-footer {
-    bottom: 4rem;
   }
 }
 

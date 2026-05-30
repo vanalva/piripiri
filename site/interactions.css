@@ -1288,54 +1288,6 @@ input[type="range"]::-moz-range-thumb:active {
           margin-left: 0;
         }
 
-/* Review cards - 2.5 per view */
-      .reviews_slider .slider_list > .swiper-slide {
-        padding-inline: calc(var(--_spacing---space--1) / 2);
-        width: calc(100% / 2.5) !important;
-        flex-shrink: 0;
-        transition: opacity 0.5s ease;
-      }
-      /* Card inner styling */
-      .reviews_slider .review-card-inner {
-        min-height: clamp(400px, 50vh, 500px);
-        padding: var(--_spacing---space--6);
-      }
-      /* Review text - match brand card body */
-      .reviews_slider .review-text {
-        font-size: var(--_typography---font-size--text-large);
-        line-height: 1.5;
-      }
-      /* Name - match h3 scale */
-      .reviews_slider .review-name {
-        font-size: var(--_typography---font-size--h3);
-      }
-      /* Stars */
-      .reviews_slider .review-stars img {
-        width: 1.5rem;
-        height: auto;
-      }
-      /* Fade left */
-      .reviews_slider .slider_list > .swiper-slide-prev {
-        opacity: 0;
-      }
-      .reviews_slider .slider_list > .swiper-slide-active {
-        opacity: 0.6;
-      }
-      .reviews_slider .slider_list > .swiper-slide-next,
-      .reviews_slider .slider_list > .swiper-slide-next ~ .swiper-slide {
-        opacity: 1;
-      }
-      @media (max-width: 991px) {
-        .reviews_slider .slider_list > .swiper-slide {
-          width: calc(100% / 1.5) !important;
-        }
-      }
-      @media (max-width: 767px) {
-        .reviews_slider .slider_list > .swiper-slide {
-          width: 85% !important;
-        }
-      }
-
 /* Slider item sizing for gallery slides - negative margin for border overlap */
         html .slider_list > .gallery_slide_item {
           padding-inline: 0;
@@ -1347,62 +1299,6 @@ input[type="range"]::-moz-range-thumb:active {
         html .slider_list > .gallery_slide_item:first-child {
           margin-left: 0;
         }
-
-/* Review cards - 4 per view on big screens, no gap between borders */
-      .reviews_slider .slider_list > .swiper-slide {
-        padding-inline: 0;
-        margin-right: -1px;
-        width: calc(100% / 4) !important;
-        flex-shrink: 0;
-        transition: opacity 0.5s ease;
-      }
-      /* Card inner styling - taller cards */
-      .reviews_slider .review-card-inner {
-        min-height: 280px;
-        padding: var(--_spacing---space--6);
-      }
-      /* Bigger review text */
-      .reviews_slider .review-text {
-        font-size: 1.1rem;
-        line-height: 1.5;
-      }
-      /* Bigger name */
-      .reviews_slider .review-name {
-        font-size: 1.5rem;
-      }
-      /* Bigger stars */
-      .reviews_slider .review-stars img {
-        width: 1.5rem;
-        height: auto;
-      }
-      /* Fade out the previous slide (the one going out of view on the left) */
-      .reviews_slider .slider_list > .swiper-slide-prev {
-        opacity: 0;
-      }
-      /* Also fade the active slide slightly so it starts fading earlier */
-      .reviews_slider .slider_list > .swiper-slide-active {
-        opacity: 0.6;
-      }
-      /* Next slides stay fully visible */
-      .reviews_slider .slider_list > .swiper-slide-next,
-      .reviews_slider .slider_list > .swiper-slide-next ~ .swiper-slide {
-        opacity: 1;
-      }
-      @media (max-width: 1200px) {
-        .reviews_slider .slider_list > .swiper-slide {
-          width: calc(100% / 3) !important;
-        }
-      }
-      @media (max-width: 991px) {
-        .reviews_slider .slider_list > .swiper-slide {
-          width: calc(100% / 2) !important;
-        }
-      }
-      @media (max-width: 767px) {
-        .reviews_slider .slider_list > .swiper-slide {
-          width: 85% !important;
-        }
-      }
 
 .styleguide_nav_item:has(.w--current) .styleguide_nav_sub_wrap,
 .styleguide_nav_item:is(:hover, :focus-within) .styleguide_nav_sub_wrap {
