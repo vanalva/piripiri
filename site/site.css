@@ -3748,6 +3748,21 @@ html {
   .slider_offset {
     --slide-count: 1 !important;
   }
+
+  /* Gutter-align every mobile slider so its single card matches normal content
+     width and all sliders line up with each other (same width → same height,
+     since the food/gallery images share aspect-ratio: 4/5). Two things cause
+     the inconsistent, edge-bleeding widths today:
+       1. .slider_offset pulls itself out by -0.5 × gutter for the desktop peek;
+       2. some wraps add their own inline padding (e.g. u-padding-inline-3).
+     Reset both and inset every wrap by the page margin. The testimonial slider
+     (.reviews_slider) has its own bespoke mobile layout, so exclude it. */
+  .slider_wrap:not(.reviews_slider *) {
+    padding-inline: var(--site--margin) !important;
+  }
+  .slider_offset:not(.reviews_slider *) {
+    margin-inline: 0 !important;
+  }
 }
 
 /* =====================================================================
