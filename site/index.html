@@ -1477,10 +1477,25 @@
         background-color: var(--swatch--orchid-500);
       }
 
+      /* Responsive card density steps down with the viewport so the cards
+         never get too narrow: 5 (big desktop) → 4 → 3 → 2 → mobile peek.
+         The dimming chain above is relative to the active slide, so it keeps
+         working at every count; these breakpoints only change the slide width
+         (and whether the heavily-dimmed outer pair is shown). Ordered widest→
+         narrowest so the narrowest matching rule wins. */
+
+      /* Large desktop: 4 per view. Keep the dimmed outer pair (matches the
+         5-card look, just less dense). */
+      @media (max-width: 1439px) {
+        .reviews_slider .slider_list > .swiper-slide {
+          width: calc(100% / 4) !important;
+        }
+      }
+
       /* Medium screens: 3 cards per view (prev | ACTIVE | next).
-         The 5-card outer pair sits off-screen, so the adjacent prev/next
-         are now the visible outer cards. Hide the prev-prev / next-next
-         so they don't bleed into the layout at 0.4 opacity. */
+         The outer pair sits off-screen, so the adjacent prev/next are now the
+         visible outer cards. Hide the prev-prev / next-next so they don't
+         bleed into the layout. */
       @media (max-width: 1199px) {
         .reviews_slider .slider_list > .swiper-slide {
           width: calc(100% / 3) !important;
@@ -1491,6 +1506,15 @@
           opacity: 0;
           --content-opacity: 0;
           --card-scale: 0.8;
+        }
+      }
+
+      /* Small desktop / large tablet: 2 per view (active centred with a hint
+         of the prev/next on each side). Outer pair stays hidden (inherited
+         from the ≤1199px rule, which also matches here). */
+      @media (max-width: 991px) {
+        .reviews_slider .slider_list > .swiper-slide {
+          width: calc(100% / 2) !important;
         }
       }
 
