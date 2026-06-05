@@ -152,7 +152,7 @@
               <!-- Slide 0: SUSCRIBE (PRENDE LA MECHA) -->
               <div class="popup-slide">
                 <div class="popup-slide-image">
-                  <img src="resources/images/general/eating-closeup-02.webp" alt="Vive la experiencia Piri Piri" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                  <img src="resources/images/general/eating-closeup-02.webp" srcset="resources/images/general/480w/eating-closeup-02_480w.webp 480w, resources/images/general/768w/eating-closeup-02_768w.webp 768w" sizes="(max-width: 767px) 90vw, 520px" loading="lazy" decoding="async" alt="Vive la experiencia Piri Piri" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                 </div>
                 <div class="popup-slide-body u-flex-vertical-nowrap u-align-items-center u-gap-6 u-padding-block-7 u-padding-inline-7" style="text-align: center;">
                   <h2 class="u-text-style-h2 u-text-transform-uppercase u-margin-0" style="line-height: 0.95;">PRENDE<br>LA MECHA</h2>
@@ -180,7 +180,7 @@
               <!-- Slide 1: VER LA CARTA (restored from old welcome popup) -->
               <div class="popup-slide">
                 <div class="popup-slide-image">
-                  <img src="resources/images/general/food-wings-iso.webp" alt="Alitas Piri Piri con salsa" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+                  <img src="resources/images/general/food-wings-iso.webp" srcset="resources/images/general/480w/food-wings-iso_480w.webp 480w, resources/images/general/768w/food-wings-iso_768w.webp 768w" sizes="(max-width: 767px) 90vw, 520px" loading="lazy" decoding="async" alt="Alitas Piri Piri con salsa" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                 </div>
                 <div class="popup-slide-body u-flex-vertical-nowrap u-align-items-center u-gap-6 u-padding-block-7 u-padding-inline-7" style="text-align: center;">
                   <h2 class="u-text-style-h2 u-text-transform-uppercase u-margin-0" style="line-height: 0.95;">¡BIENVENIDO!</h2>
@@ -593,7 +593,7 @@
     <!-- Top-right image: absolute on section so it touches the true edge -->
     <div class="hero_topright_image" style="position: absolute; top: var(--site--gutter); right: var(--site--gutter); width: clamp(22rem, 38vw, 38rem); z-index: 1; border-radius: var(--radius--main); border: var(--border-width--main) solid var(--swatch--brand-500); overflow: visible;">
       <div class="hero_topright_image_inner" style="border-radius: var(--radius--main); overflow: hidden; position: relative;">
-        <img src="resources/images/general/group-table-01.webp" alt="Clientes disfrutando en Piri Piri" class="hero_topright_image_img" style="width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover;">
+        <img src="resources/images/general/group-table-01.webp" srcset="resources/images/general/320w/group-table-01_320w.webp 320w, resources/images/general/480w/group-table-01_480w.webp 480w, resources/images/general/768w/group-table-01_768w.webp 768w, resources/images/general/1024w/group-table-01_1024w.webp 1024w" sizes="(max-width: 767px) 60vw, 600px" loading="eager" decoding="async" fetchpriority="high" alt="Clientes disfrutando en Piri Piri" class="hero_topright_image_img" style="width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover;">
         <!-- Fire icon overlapping bottom-center of image -->
         <div class="hero_nav_fire u-text-brand" style="position: absolute; bottom: -15%; left: 50%; transform: translateX(-50%) scale(0.8); width: clamp(5rem, 9vw, 9rem); z-index: 5; pointer-events: none; opacity: 0; transition: opacity 0.2s ease, transform 0.2s ease;">
           <svg viewBox="0 0 59.522 73.562" fill="currentColor" aria-hidden="true" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));">
@@ -666,7 +666,7 @@
 
     <!-- Bottom-left image: aligned to same gutter as nav/canvas -->
     <div class="hero_bottomleft_image u-hide-tablet" style="position: absolute; bottom: var(--site--gutter); left: var(--site--gutter); width: clamp(17rem, 30vw, 28rem); z-index: 1; border-radius: var(--radius--main); border: var(--border-width--main) solid currentColor; overflow: hidden;">
-      <img src="resources/images/general/interior-establishing.webp" alt="Interior del local Piri Piri" style="width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover;">
+      <img src="resources/images/general/interior-establishing.webp" srcset="resources/images/general/480w/interior-establishing_480w.webp 480w, resources/images/general/768w/interior-establishing_768w.webp 768w" sizes="448px" loading="eager" decoding="async" fetchpriority="high" alt="Interior del local Piri Piri" style="width: 100%; height: auto; display: block; aspect-ratio: 4 / 3; object-fit: cover;">
     </div>
 
   </section>
@@ -806,6 +806,15 @@
           height: 100%;
           object-fit: cover;
           display: block;
+        }
+        /* Mobile: match the image-card sliders (food/gallery) so every carousel
+           card shares the same footprint. Those cards are aspect-ratio 4/5, so
+           drop the tall 550–800px min-height and use the same ratio here. */
+        @media (max-width: 767px) {
+          .brand_card .card_primary_element {
+            min-height: 0 !important;
+            aspect-ratio: 4 / 5;
+          }
         }
       </style>
       <div style="--lg: 3; --md: 2; --sm: 1.2; --xs: 1;" class="slider_offset">
@@ -1012,16 +1021,33 @@
             if (!wrap || !items.length) return;
             var bySlug = Object.create(null);
             items.forEach(function (it) { if (it && it.slug) bySlug[it.slug] = it; });
+            // Responsive srcset for the marquee cards: derive smaller widths
+            // from the 1600w menu image so phones don't load full-size files.
+            var SLW = [480, 768, 1024, 1366];
+            function wvar(p, w) {
+              return /\/1600w\/.*_1600w\./.test(p)
+                ? p.replace(/\/1600w\//, "/" + w + "w/").replace(/_1600w\./, "_" + w + "w.")
+                : p;
+            }
+            function sset(p) {
+              return /\/1600w\/.*_1600w\./.test(p)
+                ? SLW.map(function (w) { return wvar(p, w) + " " + w + "w"; }).join(", ")
+                : "";
+            }
             var html = FEATURED_SLUGS.map(function (slug) {
               var it = bySlug[slug];
               // Drop missing, disabled, or image-less items so we never link to
               // a dead carta-item page or render an empty tile.
               if (!it || it.disabled || !it.image) return "";
               var safeName = String(it.name || "").replace(/"/g, "&quot;");
+              var ss = sset(it.image);
+              var imgAttrs = ss
+                ? 'src="' + wvar(it.image, 768) + '" srcset="' + ss + '" sizes="(max-width: 767px) 60vw, 28vw"'
+                : 'src="' + it.image + '"';
               return (
                 '<a href="carta-item.html?slug=' + encodeURIComponent(slug) + '" class="food_slide_item">' +
                   '<div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">' +
-                    '<img src="' + it.image + '" alt="' + safeName + '" class="u-object-fit-cover u-width-full u-height-full">' +
+                    '<img ' + imgAttrs + ' loading="lazy" decoding="async" alt="' + safeName + '" class="u-object-fit-cover u-width-full u-height-full">' +
                   '</div>' +
                 '</a>'
               );
@@ -1474,7 +1500,11 @@
           width: 100% !important;
         }
         .reviews_slider .review-card-inner {
-          min-height: clamp(320px, 60vh, 420px);
+          /* Match the image-card sliders (food/gallery are aspect-ratio 4/5) so
+             every carousel card is the same size. Drops the old min-height
+             clamp; aspect-ratio still lets a long testimonial grow taller. */
+          aspect-ratio: 4 / 5;
+          min-height: 0;
           padding: var(--_spacing---space--5);
         }
         .reviews_slider .slider_bullet_item {
@@ -2045,7 +2075,11 @@
           autoplay = swiperElement.getAttribute("data-autoplay") === "true",
           autoplayDelay = +swiperElement.getAttribute("data-autoplay-delay") || 3000,
           speed = +swiperElement.getAttribute("data-speed") || 600,
-          spaceBetween = +swiperElement.getAttribute("data-space-between") || 0,
+          // Default the inter-slide gap to 16px on mobile (no data attribute set)
+          // so the peeking cards are clearly separated; honour an explicit
+          // data-space-between when one is provided.
+          spaceBetween = +swiperElement.getAttribute("data-space-between")
+            || (window.matchMedia("(max-width: 767px)").matches ? 16 : 0),
           // On mobile every slider runs centered so the ~1.2-per-view CSS shows
           // a peek of the previous AND next item around the centred active one.
           centered = swiperElement.getAttribute("data-centered") === "true"
@@ -2651,56 +2685,56 @@
             <!-- Slide 1: Group eating chicken -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/group-dining-02.webp" alt="Grupo disfrutando del pollo Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/group-dining-02.webp" srcset="resources/images/general/480w/group-dining-02_480w.webp 480w, resources/images/general/768w/group-dining-02_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Grupo disfrutando del pollo Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 2: Restaurant interior -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/eating-closeup-01.webp" alt="Cliente disfrutando de unas alitas Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/eating-closeup-01.webp" srcset="resources/images/general/480w/eating-closeup-01_480w.webp 480w, resources/images/general/768w/eating-closeup-01_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Cliente disfrutando de unas alitas Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 3: Sharing chicken bucket -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/product-bucket-hero.webp" alt="Cubo de pollo Piri Piri para llevar" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/product-bucket-hero.webp" srcset="resources/images/general/480w/product-bucket-hero_480w.webp 480w, resources/images/general/768w/product-bucket-hero_768w.webp 768w, resources/images/general/1024w/product-bucket-hero_1024w.webp 1024w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Cubo de pollo Piri Piri para llevar" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 4: Fire grill -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/food-wings-topdown.webp" alt="Alitas Piri Piri al carbón" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/food-wings-topdown.webp" srcset="resources/images/general/480w/food-wings-topdown_480w.webp 480w, resources/images/general/768w/food-wings-topdown_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Alitas Piri Piri al carbón" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 5: Roasted cauliflower -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/portrait-plate-01.webp" alt="Cliente con su plato Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/portrait-plate-01.webp" srcset="resources/images/general/480w/portrait-plate-01_480w.webp 480w, resources/images/general/768w/portrait-plate-01_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Cliente con su plato Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 6: Branded packaging -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/food-burger-topdown.webp" alt="Burger y patatas Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/food-burger-topdown.webp" srcset="resources/images/general/480w/food-burger-topdown_480w.webp 480w, resources/images/general/768w/food-burger-topdown_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Burger y patatas Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 7: Shrimp skewers -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/eating-candid-02.webp" alt="Disfrutando un cubo Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/eating-candid-02.webp" srcset="resources/images/general/480w/eating-candid-02_480w.webp 480w, resources/images/general/768w/eating-candid-02_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Disfrutando un cubo Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
             <!-- Slide 8: Branded napkins -->
             <div class="gallery_slide_item">
               <div class="gallery_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/general/food-chicken-side.webp" alt="Pollo al carbón Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
+                <img src="resources/images/general/food-chicken-side.webp" srcset="resources/images/general/480w/food-chicken-side_480w.webp 480w, resources/images/general/768w/food-chicken-side_768w.webp 768w" sizes="(max-width: 767px) 72vw, 30vw" loading="lazy" decoding="async" alt="Pollo al carbón Piri Piri" class="u-object-fit-cover u-width-full u-height-full">
               </div>
             </div>
 
