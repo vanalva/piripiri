@@ -4944,48 +4944,34 @@ html {
   to   { opacity: 1; }
 }
 
-/* ─── Persistent header (logo + MENÚ), built by site.js ────────────────────
-   A body-level fixed bar so the logo + menu button always sit above every
-   section (escaping the hero's z-index:1 stacking context). z-index sits above
-   the floating CTAs (1000) and cookie banner (999); the menu dialog renders in
-   the browser top layer, so it still covers this. */
-.pp-fixed-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 4000;
-  display: flex;
-  align-items: center;
-  gap: var(--site--gutter);
-  padding: var(--_spacing---space--4) var(--site--gutter);
-  pointer-events: none; /* let clicks fall through the empty strip */
-}
-.pp-fixed-header > * {
-  pointer-events: auto;
-}
-.pp-header-logo {
-  width: 8rem;
-  flex: 0 0 auto;
-  display: block;
-  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
-}
-.pp-header-menu {
-  flex: 0 0 auto;
-}
-.pp-header-menu .button_main_text {
-  transition: opacity 0.2s ease;
+/* ─── Logo + MENÚ stay on top of every section ─────────────────────────────
+   The fixed logo + MENÚ button live inside the hero, whose own stacking context
+   (u-zindex-1) traps them BELOW later sections. Lifting the hero's z-index above
+   the highest section (reviews uses 20) frees the fixed children to sit on top —
+   WITHOUT moving or repositioning anything, so their on-load placement is
+   exactly as authored. The hero is full-height and scrolls fully out of view, so
+   raising its z-index has no effect on the sections that follow it. */
+.hero {
+  z-index: 30;
 }
 
-/* Mobile: scrolling down collapses the header — hide the logo and reduce the
-   MENÚ button to just its icon. Scrolling up removes .is-collapsed (site.js). */
+/* Mobile scroll-collapse for the logo + MENÚ (classes toggled by site.js).
+   Default (on load) = nothing applied, so placement is untouched. */
+.hero_nav .hero_logo_wrap {
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.2s ease;
+}
+[data-modal-trigger="menu"] .button_main_text {
+  transition: opacity 0.2s ease;
+}
 @media (max-width: 767px) {
-  .pp-fixed-header.is-collapsed .pp-header-logo {
+  /* scrolling down → logo fades out */
+  .hero_nav .hero_logo_wrap.is-nav-hidden {
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
   }
-  .pp-fixed-header.is-collapsed .pp-header-menu .button_main_text {
+  /* scrolling down → MENÚ button drops its label, leaving just the icon */
+  [data-modal-trigger="menu"].is-nav-collapsed .button_main_text {
     display: none;
   }
 }

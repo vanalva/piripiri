@@ -563,18 +563,18 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
 })();
 
 
-// ─── Persistent header: logo + MENÚ always on top, simplify on mobile scroll ─
-// The fixed MENÚ button (and, on the home page, the fixed logo) live inside the
-// hero, whose stacking context (z-index:1) traps them BELOW later sections. We
-// move both into a single body-level fixed header so they sit above everything.
-// On mobile, scrolling down collapses the header — the logo hides and the MENÚ
-// button drops its label to just the icon; scrolling up restores both.
-(function initPersistentHeader() {
-  if (window._ppHeaderInited) return;
-  window._ppHeaderInited = true;
+// ─── Sticky nav: keep the EXISTING logo + MENÚ exactly where they are, just
+// simplify them on mobile scroll ────────────────────────────────────────────
+// No DOM moves, no repositioning — the on-load placement is untouched. The
+// z-index trapping (logo/menu live in the hero's z-index:1 context) is fixed in
+// CSS by lifting the hero. On mobile, scrolling DOWN hides the logo and reduces
+// the MENÚ button to just its icon; scrolling UP restores both.
+(function initStickyNav() {
+  if (window._ppStickyNavInited) return;
+  window._ppStickyNavInited = true;
 
-  // Cream logo on dark/brand sections, dark logo on light ones — so the (no
-  // background) wordmark stays legible as it floats over different sections.
+  // Cream wordmark on dark/brand sections, dark on light ones, so the (no
+  // background) logo stays legible while it floats over different sections.
   function themeColorFor(node) {
     while (node && node !== document.documentElement) {
       if (node.classList) {
@@ -585,43 +585,33 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
       }
       node = node.parentElement;
     }
-    return 'var(--swatch--light-200)';
+    return '';
   }
 
   function init() {
     const menuBtn = document.querySelector('[data-modal-trigger="menu"]');
-    if (!menuBtn) return;
     const logo = document.querySelector('.hero_nav .hero_logo_wrap');
-
-    const header = document.createElement('div');
-    header.className = 'pp-fixed-header';
-    document.body.appendChild(header);
-
-    let logoEl = null;
-    if (logo) {
-      ['position', 'top', 'left', 'right', 'bottom', 'margin', 'z-index'].forEach(p => logo.style.removeProperty(p));
-      logo.classList.add('pp-header-logo');
-      header.appendChild(logo);
-      logoEl = logo;
-    }
-    ['position', 'top', 'left', 'right', 'bottom', 'z-index'].forEach(p => menuBtn.style.removeProperty(p));
-    menuBtn.style.marginLeft = 'auto'; // pin to the right even when there's no logo
-    menuBtn.classList.add('pp-header-menu');
-    header.appendChild(menuBtn);
+    if (!menuBtn && !logo) return;
 
     const mq = window.matchMedia('(max-width: 767px)');
     let lastY = window.scrollY || 0, raf = 0;
 
     function updateLogoColor() {
-      if (!logoEl) return;
-      const r = logoEl.getBoundingClientRect();
-      if (r.width === 0) return;
+      if (!logo) return;
+      const r = logo.getBoundingClientRect();
+      // Only adapt while the logo is the persistent (fixed) one — on desktop it
+      // scrolls away inside the hero and keeps its theme colour.
+      if (r.width === 0 || getComputedStyle(logo).position !== 'fixed') return;
       const els = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2);
-      const behind = els.find(e => !header.contains(e));
-      logoEl.style.color = themeColorFor(behind);
+      const behind = els.find(e => e !== logo && !logo.contains(e));
+      const c = themeColorFor(behind);
+      if (c) logo.style.color = c;
     }
-    function setCollapsed(on) { header.classList.toggle('is-collapsed', !!on && mq.matches); }
-
+    function setCollapsed(on) {
+      const c = !!on && mq.matches;
+      if (menuBtn) menuBtn.classList.toggle('is-nav-collapsed', c);
+      if (logo) logo.classList.toggle('is-nav-hidden', c);
+    }
     function frame() {
       raf = 0;
       const y = window.scrollY || 0, d = y - lastY;
