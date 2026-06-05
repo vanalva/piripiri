@@ -561,3 +561,83 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
     init();
   }
 })();
+
+
+// ─── Persistent header: logo + MENÚ always on top, simplify on mobile scroll ─
+// The fixed MENÚ button (and, on the home page, the fixed logo) live inside the
+// hero, whose stacking context (z-index:1) traps them BELOW later sections. We
+// move both into a single body-level fixed header so they sit above everything.
+// On mobile, scrolling down collapses the header — the logo hides and the MENÚ
+// button drops its label to just the icon; scrolling up restores both.
+(function initPersistentHeader() {
+  if (window._ppHeaderInited) return;
+  window._ppHeaderInited = true;
+
+  // Cream logo on dark/brand sections, dark logo on light ones — so the (no
+  // background) wordmark stays legible as it floats over different sections.
+  function themeColorFor(node) {
+    while (node && node !== document.documentElement) {
+      if (node.classList) {
+        if (node.classList.contains('u-theme-light')) return 'var(--swatch--dark-900)';
+        if (node.classList.contains('u-theme-dark')
+          || node.classList.contains('u-theme-brand')
+          || node.classList.contains('u-theme-brand-2')) return 'var(--swatch--light-200)';
+      }
+      node = node.parentElement;
+    }
+    return 'var(--swatch--light-200)';
+  }
+
+  function init() {
+    const menuBtn = document.querySelector('[data-modal-trigger="menu"]');
+    if (!menuBtn) return;
+    const logo = document.querySelector('.hero_nav .hero_logo_wrap');
+
+    const header = document.createElement('div');
+    header.className = 'pp-fixed-header';
+    document.body.appendChild(header);
+
+    let logoEl = null;
+    if (logo) {
+      ['position', 'top', 'left', 'right', 'bottom', 'margin', 'z-index'].forEach(p => logo.style.removeProperty(p));
+      logo.classList.add('pp-header-logo');
+      header.appendChild(logo);
+      logoEl = logo;
+    }
+    ['position', 'top', 'left', 'right', 'bottom', 'z-index'].forEach(p => menuBtn.style.removeProperty(p));
+    menuBtn.style.marginLeft = 'auto'; // pin to the right even when there's no logo
+    menuBtn.classList.add('pp-header-menu');
+    header.appendChild(menuBtn);
+
+    const mq = window.matchMedia('(max-width: 767px)');
+    let lastY = window.scrollY || 0, raf = 0;
+
+    function updateLogoColor() {
+      if (!logoEl) return;
+      const r = logoEl.getBoundingClientRect();
+      if (r.width === 0) return;
+      const els = document.elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2);
+      const behind = els.find(e => !header.contains(e));
+      logoEl.style.color = themeColorFor(behind);
+    }
+    function setCollapsed(on) { header.classList.toggle('is-collapsed', !!on && mq.matches); }
+
+    function frame() {
+      raf = 0;
+      const y = window.scrollY || 0, d = y - lastY;
+      if (mq.matches && Math.abs(d) > 6) setCollapsed(d > 0 && y > 50);
+      lastY = y;
+      updateLogoColor();
+    }
+    window.addEventListener('scroll', () => { if (!raf) raf = requestAnimationFrame(frame); }, { passive: true });
+    if (mq.addEventListener) mq.addEventListener('change', () => { if (!mq.matches) setCollapsed(false); updateLogoColor(); });
+
+    updateLogoColor();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

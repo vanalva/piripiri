@@ -2706,13 +2706,14 @@
     font-size: clamp(4rem, 14vw, 7rem) !important;
   }
 
-  /* Floating CTAs: center them and lift above the hero_footer row so
-     social icons + address remain visible BELOW the buttons. */
+  /* Floating CTAs: centered and pinned near the bottom edge (was 5rem, which
+     sat too high). The collapsed FAB / expanded pair now sit in the natural
+     thumb zone. */
   .floating-ctas {
     left: 0 !important;
     right: 0 !important;
     justify-content: center !important;
-    bottom: calc(5rem + var(--pp-cookie-offset, 0px)) !important;
+    bottom: calc(1.5rem + var(--pp-cookie-offset, 0px)) !important;
   }
 }
 
@@ -4941,6 +4942,52 @@ html {
 @keyframes pp-cta-fade-in {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+/* ─── Persistent header (logo + MENÚ), built by site.js ────────────────────
+   A body-level fixed bar so the logo + menu button always sit above every
+   section (escaping the hero's z-index:1 stacking context). z-index sits above
+   the floating CTAs (1000) and cookie banner (999); the menu dialog renders in
+   the browser top layer, so it still covers this. */
+.pp-fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 4000;
+  display: flex;
+  align-items: center;
+  gap: var(--site--gutter);
+  padding: var(--_spacing---space--4) var(--site--gutter);
+  pointer-events: none; /* let clicks fall through the empty strip */
+}
+.pp-fixed-header > * {
+  pointer-events: auto;
+}
+.pp-header-logo {
+  width: 8rem;
+  flex: 0 0 auto;
+  display: block;
+  transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+}
+.pp-header-menu {
+  flex: 0 0 auto;
+}
+.pp-header-menu .button_main_text {
+  transition: opacity 0.2s ease;
+}
+
+/* Mobile: scrolling down collapses the header — hide the logo and reduce the
+   MENÚ button to just its icon. Scrolling up removes .is-collapsed (site.js). */
+@media (max-width: 767px) {
+  .pp-fixed-header.is-collapsed .pp-header-logo {
+    opacity: 0;
+    transform: translateY(-8px);
+    pointer-events: none;
+  }
+  .pp-fixed-header.is-collapsed .pp-header-menu .button_main_text {
+    display: none;
+  }
 }
 
 /* ─── u-text-style-tiny utility ─── */
