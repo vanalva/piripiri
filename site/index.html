@@ -1279,7 +1279,7 @@
           <div class="u-flex-horizontal-nowrap u-align-items-center u-gap-4 u-margin-top-8" style="flex-wrap: wrap;">
             <!-- Animated Frango Logo -->
             <div style="width: 6rem; flex-shrink: 0;">
-              <img src="resources/images/loyalty/piripiri-logo-anim-light.gif" loading="lazy" alt="Piri Piri" class="u-width-full u-height-auto">
+              <img src="resources/images/loyalty/piripiri-logo-anim-light.webp" loading="lazy" alt="Piri Piri" class="u-width-full u-height-auto">
             </div>
             <!-- Ribbon Logo -->
             <div style="width: 12rem; flex-shrink: 0;">
@@ -1318,7 +1318,7 @@
 
         <!-- Right Column: Illustration -->
         <div class="u-flex-horizontal-nowrap u-justify-content-center u-align-items-center" style="flex: 1;">
-          <img src="resources/images/loyalty/piripiri-fire-logo-anim.gif" loading="lazy" alt="Club Secreto - Piri Piri" style="width: auto; height: 100%; max-height: 40rem; object-fit: contain; display: block;">
+          <img src="resources/images/loyalty/piripiri-fire-logo-anim.webp" loading="lazy" alt="Club Secreto - Piri Piri" style="width: auto; height: 100%; max-height: 40rem; object-fit: contain; display: block;">
         </div>
       </div>
     </div>
@@ -1494,41 +1494,37 @@
         }
       }
 
-      /* Mobile: single card, full width, no peek */
+      /* Mobile: behave EXACTLY like the food/gallery peek carousels — one
+         centred card at 1.2 per view (~83vw) with the previous/next testimonial
+         peeking, full-bleed (100vw) and the same 16px gap (spaceBetween from the
+         shared init). Drops the bespoke stacked-card dimming/scale and the edge
+         fade so it reads as the same component. */
       @media (max-width: 767px) {
+        /* full-bleed + no edge-fade mask, matching the other sliders */
+        .reviews_slider .slider_offset { margin-inline: 0; }
+        .reviews_slider .slider_wrap { padding-inline: 0; }
+        .reviews_slider::before,
+        .reviews_slider::after { display: none; }
+        /* every slide visible at full size — 1.2 per view, no opacity/scale step */
         .reviews_slider .slider_list > .swiper-slide {
-          width: 100% !important;
+          width: calc(100% / 1.2) !important;
+          opacity: 1 !important;
+          --content-opacity: 1 !important;
+          --card-scale: 1 !important;
         }
         .reviews_slider .review-card-inner {
-          /* Match the image-card sliders (food/gallery are aspect-ratio 4/5) so
-             every carousel card is the same size. Drops the old min-height
-             clamp; aspect-ratio still lets a long testimonial grow taller. */
+          /* Same footprint as the image cards (aspect-ratio 4/5 → ~355x444). */
           aspect-ratio: 4 / 5;
           min-height: 0;
           padding: var(--_spacing---space--5);
         }
+        .reviews_slider .review-card-inner > * { opacity: 1; }
         .reviews_slider .slider_bullet_item {
           width: 1rem;
           height: 0.4rem;
         }
         .reviews_slider .slider_bullet_item.is-active {
           width: 2.5rem;
-        }
-        /* Only the active card is visible. Hide the adjacent prev/next
-           and their outer pair so a single card sits full-width. */
-        .reviews_slider .slider_list > .swiper-slide:has(+ .swiper-slide.is-active),
-        .reviews_slider .slider_list > .swiper-slide.is-active + .swiper-slide {
-          opacity: 0;
-          --content-opacity: 0;
-          --card-scale: 0.8;
-        }
-        /* The active card on desktop scales UP to 1.1 to stand out against
-           its neighbours. On a single full-width mobile card there are no
-           neighbours, and the 1.1 zoom pushes the card wider than the
-           viewport so its text touches the screen edge. Keep it at 1 so the
-           card's padding gives the testimonial comfortable side breathing room. */
-        .reviews_slider .slider_list > .swiper-slide.is-active {
-          --card-scale: 1;
         }
       }
     </style>
