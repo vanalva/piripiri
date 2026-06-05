@@ -261,6 +261,17 @@
         white-space: nowrap;
       }
     }
+    /* The rule above sets .legal_page_wrap { flex-direction: column } inside an
+       @container query — but a container query can only style DESCENDANTS of its
+       container, never the container element itself. So the wrap stayed
+       flex-direction:row and its content column collapsed to 0 width (the whole
+       legal text was pushed off-screen and invisible). Switch to column with a
+       real media query that can target the wrap. */
+    @media (max-width: 1023px) {
+      .legal_page_wrap {
+        flex-direction: column;
+      }
+    }
     @media (max-width: 768px) {
       .search_input:not(:placeholder-shown),
       .search_input:focus {

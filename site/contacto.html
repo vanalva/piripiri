@@ -60,6 +60,18 @@
     .u-theme-brand .u-theme-dark *:active, .u-theme-brand .u-theme-dark *:active::before, .u-theme-brand .u-theme-dark *:active::after {
       cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
     }
+
+    /* Contact form fix — the "Información / Escríbenos" row becomes a column on
+       mobile via u-flex-column-mobile, but its parent keeps u-align-items-start,
+       so the form wrapper (flex:1, no explicit width) does NOT stretch and
+       collapses to ~0px: the pill inputs shrink to circles and the textarea
+       disappears. Force both columns to full width when stacked. */
+    @media (max-width: 767px) {
+      .contact_form_wrap { width: 100%; }
+      /* Single-column inputs on small phones so the pill fields are tappable
+         and the Nombre/Apellido pair isn't squeezed. */
+      .contact_form_grid { grid-template-columns: 1fr; }
+    }
   </style>
 
   <div class="page_wrap">
