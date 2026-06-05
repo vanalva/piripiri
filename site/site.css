@@ -3738,6 +3738,18 @@ html {
   }
 }
 
+/* Mobile: one slide per view (single column) for every --slide-count slider.
+   Several sliders default to 1.1–2 per view at small sizes (--sm / --xs), which
+   reads as a cramped 2-up peek on phones. The brand-cards container queries
+   higher up set --slide-count with !important, so this must use !important too;
+   being later in source it wins among the !important author rules. The reviews
+   slider uses its own width rules (already 100% ≤767px) and is unaffected. */
+@media (max-width: 767px) {
+  .slider_offset {
+    --slide-count: 1 !important;
+  }
+}
+
 /* =====================================================================
    MARQUEE - Lumos Infinite Scroll Component
    ===================================================================== */
