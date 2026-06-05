@@ -4925,7 +4925,9 @@ html {
   transition: transform 0.2s ease;
 }
 .floating-ctas-fab:active { transform: scale(0.92); }
-.floating-ctas-fab svg { width: 1.6rem; height: 1.6rem; display: block; }
+/* Fuego Interior glyph is taller than wide (viewBox 33.73x38.05) — size by
+   height so it keeps its aspect and reads as the flame, not a squished box. */
+.floating-ctas-fab svg { width: auto; height: 1.85rem; display: block; }
 
 @media (max-width: 767px) {
   /* collapsed → show only the FAB, hide the two pills */
