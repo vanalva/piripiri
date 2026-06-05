@@ -1373,6 +1373,19 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const defaultImage = "resources/images/lumos-v2.webp";
+
+      // Responsive images: the carta dish photos are generated at multiple
+      // widths (480..2560w) but the menu data only references the 1600w file.
+      // These helpers derive the other widths so each viewport downloads an
+      // appropriately sized image instead of the full 1600w everywhere.
+      const widthVariant = (path, w) =>
+        path && /\/1600w\/.*_1600w\./.test(path)
+          ? path.replace(/\/1600w\//, `/${w}w/`).replace(/_1600w\./, `_${w}w.`)
+          : path;
+      const srcsetFor = (path, widths) =>
+        path && /\/1600w\/.*_1600w\./.test(path)
+          ? widths.map((w) => `${widthVariant(path, w)} ${w}w`).join(", ")
+          : "";
       const itemNodes = Array.from(document.querySelectorAll("[data-menu-items] li"));
       const menuEmpty = document.querySelector("[data-menu-empty]");
       const listContainer = document.querySelector("[data-view-panel='list'] [data-menu-list]");
@@ -1630,8 +1643,15 @@
             imageWrap.style.aspectRatio = "4 / 3";
 
             const image = document.createElement("img");
-            image.src = item.image || defaultImage;
+            image.src = widthVariant(item.image, 768) || item.image || defaultImage;
+            const listSrcset = srcsetFor(item.image, [480, 768, 1024, 1366]);
+            if (listSrcset) {
+              image.srcset = listSrcset;
+              image.sizes = "(max-width: 767px) 90vw, 38vw";
+            }
             image.alt = item.title;
+            image.loading = "lazy";
+            image.decoding = "async";
             image.className = "u-width-full u-height-full u-object-fit-cover";
 
             imageWrap.appendChild(image);
@@ -1735,9 +1755,15 @@
           imageWrap.className = "masonry-item-image";
           if (item.image) {
             const image = document.createElement("img");
-            image.src = item.image;
+            image.src = widthVariant(item.image, 768) || item.image;
+            const masonrySrcset = srcsetFor(item.image, [480, 768, 1024, 1366]);
+            if (masonrySrcset) {
+              image.srcset = masonrySrcset;
+              image.sizes = "(max-width: 767px) 46vw, 30vw";
+            }
             image.alt = item.title;
             image.loading = "lazy";
+            image.decoding = "async";
             imageWrap.appendChild(image);
           } else {
             imageWrap.classList.add("is-missing-photo");
@@ -2293,7 +2319,7 @@
           item.dataset.disabled = isDisabled ? "true" : "false";
           item.style.pointerEvents = (isItem && !isDisabled) ? "auto" : "none";
 
-          bg.style.backgroundImage = isItem && data.image ? `url(${data.image})` : "none";
+          bg.style.backgroundImage = isItem && data.image ? `url(${widthVariant(data.image, 1024)})` : "none";
           title.classList.toggle("u-text-style-display", isTitle);
           title.textContent = isTitle || isSticker ? (data.title || "") : (data.title || "");
           const titleLength = (data.title || "").trim().length;

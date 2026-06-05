@@ -470,6 +470,16 @@
       }
 
       const defaultImage = "resources/images/lumos-v2.webp";
+      // Hero is a large display: derive a wide srcset (up to 1920w) from the
+      // 1600w path so big/retina screens stay crisp while phones load smaller.
+      const widthVariant = (path, w) =>
+        path && /\/1600w\/.*_1600w\./.test(path)
+          ? path.replace(/\/1600w\//, `/${w}w/`).replace(/_1600w\./, `_${w}w.`)
+          : path;
+      const srcsetFor = (path, widths) =>
+        path && /\/1600w\/.*_1600w\./.test(path)
+          ? widths.map((w) => `${widthVariant(path, w)} ${w}w`).join(", ")
+          : "";
       const imageEl = document.querySelector("[data-item-image]");
       const titleEl = document.querySelector("[data-item-title]");
       const priceEl = document.querySelector("[data-item-price]");
@@ -486,8 +496,14 @@
       const orderEl = document.querySelector("[data-item-order]");
 
       if (imageEl) {
-        imageEl.src = item.image || defaultImage;
+        imageEl.src = widthVariant(item.image, 1024) || item.image || defaultImage;
+        const heroSrcset = srcsetFor(item.image, [768, 1024, 1366, 1600, 1920]);
+        if (heroSrcset) {
+          imageEl.srcset = heroSrcset;
+          imageEl.sizes = "(max-width: 767px) 100vw, 50vw";
+        }
         imageEl.alt = item.name || "Plato Piri Piri";
+        imageEl.decoding = "async";
       }
       if (titleEl) titleEl.textContent = item.name || "Plato Piri Piri";
 
@@ -562,11 +578,24 @@
         const galleryImgs = (window.CARTA_GALLERY && window.CARTA_GALLERY[item.slug]) || [];
         if (!galleryImgs.length) { gallerySection.style.display = "none"; return; }
         const marquee = galleryGrid.querySelector(".marquee_wrap");
+        // Gallery tiles are square; responsive variants live in
+        // .../gallery/{320,480,768}w/<name>_<w>w.webp (generated via the
+        // Compression Lab protocol). Build a srcset from the flat path.
+        const GALLERY_W = [320, 480, 768];
+        const galleryVariant = (flat, w) =>
+          flat.replace(/\/gallery\//, `/gallery/${w}w/`).replace(/\.webp$/, `_${w}w.webp`);
+        const gallerySrcset = (flat) =>
+          /\/gallery\/[^/]+\.webp$/.test(flat)
+            ? GALLERY_W.map((w) => `${galleryVariant(flat, w)} ${w}w`).join(", ")
+            : "";
         const makeTile = (src, sizeClass) => {
           const tile = document.createElement("div");
           tile.className = "masonry-item " + sizeClass;
           const im = document.createElement("img");
-          im.src = src; im.alt = item.name || ""; im.loading = "lazy"; im.className = "masonry-image";
+          const ss = gallerySrcset(src);
+          im.src = ss ? galleryVariant(src, 480) : src;
+          if (ss) { im.srcset = ss; im.sizes = "(max-width: 767px) 50vw, 33vw"; }
+          im.alt = item.name || ""; im.loading = "lazy"; im.decoding = "async"; im.className = "masonry-image";
           tile.appendChild(im);
           return tile;
         };
