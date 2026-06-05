@@ -3745,23 +3745,23 @@ html {
    being later in source it wins among the !important author rules. The reviews
    slider uses its own width rules (already 100% ≤767px) and is unaffected. */
 @media (max-width: 767px) {
-  .slider_offset {
-    --slide-count: 1 !important;
-  }
-
-  /* Gutter-align every mobile slider so its single card matches normal content
-     width and all sliders line up with each other (same width → same height,
-     since the food/gallery images share aspect-ratio: 4/5). Two things cause
-     the inconsistent, edge-bleeding widths today:
-       1. .slider_offset pulls itself out by -0.5 × gutter for the desktop peek;
-       2. some wraps add their own inline padding (e.g. u-padding-inline-3).
-     Reset both and inset every wrap by the page margin. The testimonial slider
-     (.reviews_slider) has its own bespoke mobile layout, so exclude it. */
-  .slider_wrap:not(.reviews_slider *) {
-    padding-inline: var(--site--margin) !important;
-  }
+  /* One main item per view with a peek of the previous and next slides, at
+     full-bleed (100vw). ~1.2 per view → active ≈ 83vw with an ~8.5vw sliver of
+     each neighbour. centeredSlides is enabled on mobile in the swiper init
+     (index.html / club-secreto.html) so BOTH neighbours show, symmetrically.
+     margin-inline:0 drops the desktop peek offset and lets the slider span the
+     full wrap; since the wraps are already full-width sections, the overflow
+     clip lands at the screen edge — so there's no noticeable mask. The reviews
+     slider keeps its own bespoke layout, so it's excluded. */
   .slider_offset:not(.reviews_slider *) {
+    --slide-count: 1.2 !important;
     margin-inline: 0 !important;
+  }
+  /* Full-bleed every slider wrap so slider_element == 100vw and the active
+     slide width is identical across sliders (the food wrap otherwise keeps
+     u-padding-inline-3 and ends up ~23px narrower than the gallery). */
+  .slider_wrap:not(.reviews_slider *) {
+    padding-inline: 0 !important;
   }
 }
 
