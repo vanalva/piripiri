@@ -25,7 +25,13 @@ function ppFlameColorAt(x, y) {
   return PP_FLAME_BRAND;
 }
 
+// True on touch-primary devices (phones/tablets) that have no hover-capable,
+// precise pointer. Used to skip the cursor-follow flame and button-hover fire,
+// which are meaningless (and can misfire on tap) without a mouse.
+const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (pointer: coarse)').matches);
+
 (function initFlameCursor() {
+  if (PP_IS_TOUCH) return;
   if (window._ppFlameCursorInited) return;
   window._ppFlameCursorInited = true;
 
@@ -231,6 +237,7 @@ function ppFlameColorAt(x, y) {
 
 // ─── Button fire — flames spawn above hovered buttons / nav links ──────────
 (function initButtonFire() {
+  if (PP_IS_TOUCH) return;
   if (window._ppButtonFireInited) return;
   window._ppButtonFireInited = true;
 

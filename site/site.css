@@ -4664,6 +4664,21 @@ textarea.form_field::-webkit-scrollbar {
   cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 80 80'%3E%3Cg transform='translate(40, 40) rotate(-135) translate(-23, -28)'%3E%3Cpath d='M2.927,36.379l20.5-8.11-18.247-8.108L8.0,0l37.84,19.147-2.59,18.246L0,56.535Z' fill='%23ff5224' stroke='%231d1d1b' stroke-width='2'/%3E%3C/g%3E%3C/svg%3E") 12 12, auto !important;
 }
 
+/* Touch devices (no hover-capable, precise pointer) have no on-screen cursor,
+   so drop the custom arrow and fall back to the native default. The cursor
+   rules above — plus their duplicates in interactions.css and a few page
+   <style> blocks — all use !important; repeating :root inflates this selector
+   to (0,4,0) specificity so it beats every one of them regardless of source
+   order, without needing a JS-added class on <html>. The JS flame-cursor and
+   button-hover fire are disabled separately in site.js (PP_IS_TOUCH). */
+@media (hover: none), (pointer: coarse) {
+  :root:root:root:root *,
+  :root:root:root:root *::before,
+  :root:root:root:root *::after {
+    cursor: auto !important;
+  }
+}
+
 
 /* ─── Muted text without killing ::selection ─────────────────────────────
    `u-opacity-75` / `u-opacity-50` apply `opacity` to the whole element, and
