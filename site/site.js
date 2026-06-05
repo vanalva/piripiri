@@ -484,3 +484,80 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
     init();
   }
 })();
+
+
+// ─── Mobile: collapse the floating RESERVA/PIDE YA bar to one FAB ───────────
+// On phones the two pills are bulky. Collapse them to a single round flame
+// button (FAB) by default; expand to the full pair when the user scrolls UP
+// (or taps the FAB). Scrolling down collapses again. Desktop is untouched.
+(function initFloatingCtaCollapse() {
+  if (window._ppCtaCollapseInited) return;
+  window._ppCtaCollapseInited = true;
+
+  function init() {
+    const ctas = document.querySelector('.floating-ctas');
+    if (!ctas) return;
+
+    const mobileMq = window.matchMedia('(max-width: 767px)');
+
+    // Build the collapsed FAB once. A flame glyph keeps it on-brand; tapping
+    // it expands the pair so it stays reachable without scrolling.
+    const fab = document.createElement('button');
+    fab.type = 'button';
+    fab.className = 'floating-ctas-fab';
+    fab.setAttribute('aria-label', 'Reservar o pedir');
+    fab.innerHTML =
+      '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+      '<path d="M13.4 1.5c.3 2.6-.8 4.4-2.3 5.9C9.2 9.1 7 10.9 7 14.2 7 18 9.9 21 13 21c3.4 0 6-2.6 6-6.2 0-2.2-1-4-2.4-5.6.1 1.2-.4 2.2-1.3 2.8.6-2 0-4.2-1.9-7.5z"/>' +
+      '<path d="M11 14.5c0-1.4.9-2.4 1.6-3 0 .9.4 1.4 1 1.9.7.5 1.4 1.2 1.4 2.3 0 1.5-1.2 2.6-2.6 2.6S9.9 17.2 9.9 15.8c0-.6.2-1.1.5-1.6.1.5.3.9.6 1.2-.1-.3 0-.6 0-.9z"/>' +
+      '</svg>';
+    fab.addEventListener('click', function () { setCollapsed(false); });
+    ctas.appendChild(fab);
+
+    let collapsed = true;
+    let lastY = window.scrollY || window.pageYOffset || 0;
+    let rafId = 0;
+
+    function setCollapsed(next) {
+      collapsed = next;
+      ctas.classList.toggle('is-collapsed', collapsed && mobileMq.matches);
+    }
+
+    function onScrollFrame() {
+      rafId = 0;
+      const y = window.scrollY || window.pageYOffset || 0;
+      const delta = y - lastY;
+      // ignore tiny jitter / rubber-banding
+      if (Math.abs(delta) > 6) {
+        if (delta < 0) setCollapsed(false);   // scrolling up → expand
+        else setCollapsed(true);              // scrolling down → collapse
+      }
+      lastY = y;
+    }
+    function onScroll() {
+      if (!mobileMq.matches) return;
+      if (!rafId) rafId = requestAnimationFrame(onScrollFrame);
+    }
+
+    function applyMode() {
+      if (mobileMq.matches) {
+        setCollapsed(collapsed);              // honor current state on mobile
+      } else {
+        ctas.classList.remove('is-collapsed'); // desktop: always full pair
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    (mobileMq.addEventListener
+      ? mobileMq.addEventListener('change', applyMode)
+      : mobileMq.addListener(applyMode));
+
+    applyMode();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

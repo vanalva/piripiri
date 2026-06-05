@@ -4876,6 +4876,46 @@ html {
   }
 }
 
+/* ─── Mobile: collapse the floating CTA pair to a single FAB ────────────────
+   The RESERVA + PIDE YA pair is bulky on phones. site.js injects
+   .floating-ctas-fab and toggles .is-collapsed by scroll direction: collapsed
+   (FAB only) while scrolling down / at rest, expanded (full pair) on scroll-up
+   or when the FAB is tapped. Hidden entirely on desktop. */
+.floating-ctas-fab {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  padding: 0;
+  border-radius: 100vw;
+  border: var(--border-width--main, 2px) solid var(--_theme---border, #1d1d1b);
+  background: var(--swatch--brand-500, #ff5224);
+  color: var(--swatch--dark-900, #1d1d1b);
+  pointer-events: auto;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease;
+}
+.floating-ctas-fab:active { transform: scale(0.92); }
+.floating-ctas-fab svg { width: 1.6rem; height: 1.6rem; display: block; }
+
+@media (max-width: 767px) {
+  /* collapsed → show only the FAB, hide the two pills */
+  .floating-ctas.is-collapsed .button_main_wrap { display: none; }
+  .floating-ctas.is-collapsed .floating-ctas-fab { display: flex; }
+  /* expanded → show the pills (their normal display), hide the FAB, and give
+     the pair a quick fade-in. Opacity only — the pills carry a
+     translateY(-10px) shadow offset we must not clobber. */
+  .floating-ctas:not(.is-collapsed) .floating-ctas-fab { display: none; }
+  .floating-ctas:not(.is-collapsed) .button_main_wrap {
+    animation: pp-cta-fade-in 0.28s ease both;
+  }
+}
+@keyframes pp-cta-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ─── u-text-style-tiny utility ─── */
 .u-text-style-tiny {
   font-family: var(--_text-style---font-family);
