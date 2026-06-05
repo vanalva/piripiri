@@ -43,10 +43,27 @@
 .wf-design-mode [data-show-in-designer="true"] { display: block; }
 [data-menu-list] [data-menu-heart] { opacity: 0; transform: scale(.9); transition: opacity .2s ease, transform .2s ease; }
 [data-menu-item]:hover [data-menu-heart] { opacity: 1; transform: scale(1); }
+.item-picante-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1em;
+  border: var(--border-width--main) solid var(--_theme---button-primary--background);
+  border-radius: var(--radius--round);
+  padding: 0.35em 0.9em;
+  font-size: 1.15rem;
+  line-height: 1;
+}
           </style>
         </div>
         <div class="modal_inner u-position-relative u-bg-dark-900" data-style="full-screen">
           <div data-modal-close="" class="modal_backdrop"></div>
+          <button type="button" data-modal-close class="popup-close-btn" aria-label="Cerrar menú">
+            <svg width="14" height="14" viewBox="0 0 39.276 39.277" fill="currentColor" aria-hidden="true">
+              <path d="M6.505,0.79L39.276,33.561l-6.505,4.926L0,5.716Z"/>
+              <path d="M38.486,6.506L5.715,39.277l-4.926-6.505L33.56,0Z"/>
+            </svg>
+            <span class="u-sr-only">Cerrar</span>
+          </button>
           <div class="modal_content u-bg-transparent u-position-relative" style="overflow: visible;" data-style="full-screen">
             <!-- Animated fire fan — top-right corner, 16 flames rotated 225° as a group, wider abanico fan -->
             <div class="pp-inline-fire u-position-absolute u-pointer-off" style="top: -60rem; right: -18rem; width: clamp(32rem, 54vw, 50rem); height: clamp(32rem, 54vw, 50rem); z-index: 0; transform: rotate(225deg); transform-origin: 88% 100%;">
@@ -86,18 +103,6 @@
                 <a href="index.html" class="hero_logo_wrap" aria-label="Ir al inicio" style="width: 8rem;">
                   <img src="resources/logos/piripiri-logotipo_alpha_512.svg" alt="Piri Piri" class="u-width-full u-height-auto">
                 </a>
-                <div class="modal_close">
-                  <div data-modal-close=" " class="button_close_wrap" autofocus=" " data-button=" " data-trigger="hover focus">
-                    <div class="button_close_element u-bg-transparent" data-style="secondary-medium">
-                      <div aria-hidden="true" class="button_close_icon">
-                        <img src="resources/icons/close-icon_alpha_512.svg" alt="" class="u-cover-absolute">
-                      </div>
-                    </div>
-                    <div class="clickable_wrap u-cover-absolute">
-                      <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Close</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Close</span></button>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <!-- Middle: Menu links -->
@@ -223,15 +228,27 @@
                   <div class="u-text-style-main" data-item-portions></div>
                 </div>
 
+                <div class="u-flex-vertical-nowrap u-gap-2" data-item-picante-block style="display: none;">
+                  <div class="u-text-style-small u-text-transform-uppercase u-opacity-75">Picante</div>
+                  <div data-item-picante></div>
+                </div>
+
                 <div class="u-flex-vertical-nowrap u-gap-2" data-item-dietary-block>
                   <div class="u-text-style-small u-text-transform-uppercase u-opacity-75">Dietas</div>
                   <div class="u-text-style-main u-opacity-75" data-item-dietary-text></div>
                   <div class="u-flex-horizontal-wrap u-gap-2" data-item-dietary></div>
                 </div>
-                <div class="button_main_wrap" data-trigger="hover focus">
-                  <a href="#" class="button_main_element" data-item-order>
-                    <div class="button_main_text u-text-style-main">Pedir ahora</div>
-                  </a>
+                <div class="u-flex-horizontal-wrap u-gap-3 u-margin-top-4">
+                  <div class="button_main_wrap" data-trigger="hover focus">
+                    <a href="https://carta.somospiripiri.com/" target="_blank" rel="noopener" class="button_main_element" data-item-order>
+                      <div class="button_main_text u-text-style-main">Pedir ahora</div>
+                    </a>
+                  </div>
+                  <div data-wf--button-main--variant="secondary" class="button_main_wrap" data-trigger="hover focus">
+                    <a href="carta.html" data-back-to-carta aria-label="Volver a la carta" class="button_main_element">
+                      <div class="button_main_text u-text-style-main">Volver a Carta</div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -239,24 +256,9 @@
         </div>
       </section>
 
-      <section class="section_masonry u-width-full u-theme-dark">
-        <div class="masonry-grid u-padding-inline-sitemargin">
-          <div class="masonry-row">
-            <div class="masonry-item masonry-item--half">
-              <img src="https://picsum.photos/seed/coliflor/600/600" alt="Coliflor asada" class="masonry-image">
-            </div>
-            <div class="masonry-item masonry-item--half">
-              <img src="https://picsum.photos/seed/grupo/600/600" alt="Grupo comiendo" class="masonry-image">
-            </div>
-          </div>
-          <div class="masonry-row">
-            <div class="masonry-item masonry-item--wide">
-              <img src="https://picsum.photos/seed/gambas/800/500" alt="Gambas a la brasa" class="masonry-image">
-            </div>
-            <div class="masonry-item masonry-item--narrow">
-              <img src="https://picsum.photos/seed/chica/400/500" alt="Chica con camiseta Piri Piri" class="masonry-image">
-            </div>
-          </div>
+      <section class="section_masonry u-width-full u-theme-dark" data-item-gallery-section style="display: none;">
+        <div class="masonry-grid u-padding-inline-sitemargin" data-item-gallery>
+          <!-- gallery rows injected by JS from window.CARTA_GALLERY[slug] -->
 
           <div class="marquee_wrap masonry-marquee" data-marquee="component">
             <div style="--lg: 1" class="marquee_offset">
@@ -426,6 +428,7 @@
   </div>
 
   <script src="sandbox/resources/data/menu_items.js"></script>
+  <script src="sandbox/resources/data/carta_gallery.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const params = new URLSearchParams(window.location.search);
@@ -456,6 +459,16 @@
       }
       if (!item) return;
 
+      // "Volver a Carta" — return to the carta in the view the user came from
+      // (?from=list|masonry|grid), passed through as ?view= so carta.html restores it.
+      const backBtn = document.querySelector("[data-back-to-carta]");
+      if (backBtn) {
+        const fromView = params.get("from");
+        backBtn.href = ["grid", "masonry", "list"].includes(fromView)
+          ? `carta.html?view=${fromView}`
+          : "carta.html";
+      }
+
       const defaultImage = "resources/images/lumos-v2.webp";
       const imageEl = document.querySelector("[data-item-image]");
       const titleEl = document.querySelector("[data-item-title]");
@@ -465,6 +478,8 @@
       const longDescEl = document.querySelector("[data-item-long-description]");
       const portionsBlockEl = document.querySelector("[data-item-portions-block]");
       const portionsEl = document.querySelector("[data-item-portions]");
+      const picanteBlockEl = document.querySelector("[data-item-picante-block]");
+      const picanteEl = document.querySelector("[data-item-picante]");
       const dietaryBlockEl = document.querySelector("[data-item-dietary-block]");
       const dietaryTextEl = document.querySelector("[data-item-dietary-text]");
       const dietaryEl = document.querySelector("[data-item-dietary]");
@@ -521,7 +536,60 @@
           portionsEl.textContent = portions;
         }
       }
-      if (orderEl && item.orderUrl) orderEl.href = item.orderUrl;
+      // Picante: a 0–3 "picante" field renders that many chili icons in a
+      // bubble. Missing / 0 hides the block entirely.
+      if (picanteBlockEl && picanteEl) {
+        const level = Math.max(0, Math.min(3, parseInt(item.picante, 10) || 0));
+        if (level > 0) {
+          picanteEl.innerHTML = "";
+          const bubble = document.createElement("span");
+          bubble.className = "item-picante-bubble";
+          bubble.setAttribute("aria-label", `Nivel de picante ${level} de 3`);
+          bubble.textContent = "🌶️".repeat(level);
+          picanteEl.appendChild(bubble);
+          picanteBlockEl.style.display = "";
+        } else {
+          picanteBlockEl.style.display = "none";
+        }
+      }
+      if (orderEl) orderEl.href = item.orderUrl || "https://carta.somospiripiri.com/";
+
+      // ── Secondary image gallery (square tiles from window.CARTA_GALLERY) ──
+      (() => {
+        const gallerySection = document.querySelector("[data-item-gallery-section]");
+        const galleryGrid = document.querySelector("[data-item-gallery]");
+        if (!gallerySection || !galleryGrid) return;
+        const galleryImgs = (window.CARTA_GALLERY && window.CARTA_GALLERY[item.slug]) || [];
+        if (!galleryImgs.length) { gallerySection.style.display = "none"; return; }
+        const marquee = galleryGrid.querySelector(".marquee_wrap");
+        const makeTile = (src, sizeClass) => {
+          const tile = document.createElement("div");
+          tile.className = "masonry-item " + sizeClass;
+          const im = document.createElement("img");
+          im.src = src; im.alt = item.name || ""; im.loading = "lazy"; im.className = "masonry-image";
+          tile.appendChild(im);
+          return tile;
+        };
+        // rows of two, alternating equal squares with a wide/narrow pair
+        const rowPairs = [["masonry-item--half", "masonry-item--half"], ["masonry-item--wide", "masonry-item--narrow"]];
+        let i = 0, r = 0;
+        while (i < galleryImgs.length) {
+          const row = document.createElement("div");
+          row.className = "masonry-row";
+          if (galleryImgs.length - i === 1) {
+            row.appendChild(makeTile(galleryImgs[i], "masonry-item--half"));
+            i += 1;
+          } else {
+            const pair = rowPairs[r % 2];
+            row.appendChild(makeTile(galleryImgs[i], pair[0]));
+            row.appendChild(makeTile(galleryImgs[i + 1], pair[1]));
+            i += 2;
+          }
+          galleryGrid.insertBefore(row, marquee);
+          r++;
+        }
+        gallerySection.style.display = "";
+      })();
 
       if (dietaryEl) {
         dietaryEl.innerHTML = "";
@@ -584,13 +652,13 @@
         { opacity: 0, y: 22 },
         { opacity: 1, y: 0, duration: 0.85, ease, delay: 0.4, stagger: 0.08 }
       );
-      gsap.fromTo("[data-item-order]",
+      gsap.fromTo("[data-item-order], [data-back-to-carta]",
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.7, ease, delay: 0.6 }
+        { opacity: 1, y: 0, duration: 0.7, ease, delay: 0.6, stagger: 0.08 }
       );
 
       // ── Long-form blocks: reveal as user scrolls ──
-      const longBlocks = document.querySelectorAll("[data-item-long-block], [data-item-portions-block], [data-item-dietary-block]");
+      const longBlocks = document.querySelectorAll("[data-item-long-block], [data-item-portions-block], [data-item-picante-block], [data-item-dietary-block]");
       longBlocks.forEach((block) => {
         gsap.fromTo(block,
           { opacity: 0, y: 40 },

@@ -68,7 +68,19 @@
   --radius--small: .5rem;
   --radius--round: 100vw;
   --_theme---border: var(--swatch--dark-900-o20);
-  --_typography---font-size--text-large: clamp(1.5 * 1rem, ((1.5 - ((2.5 - 1.5) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((2.5 - 1.5) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), 2.5 * 1rem);
+  /* Standard width for centered single-column info blocks (tagline + display
+     heading + lead paragraph + body). Lifted from the canonical "Desplumemos
+     tu recompensa" section in club-secreto so all similar sections share the
+     exact same measure. Combine with the "Centered info block" composition:
+     padding-block: space-12 / tagline mb-4 / h2 mb-6 / lead mb-5 / body mb-4. */
+  --cs-measure: 64rem;
+  /* text-large: 1.125-2.5rem (18-40px). Uses a dedicated viewport-max of 160
+     (= 2560px) rather than the global 120 so big screens (2K/4K) keep ramping
+     up past the small-desktop sweet spot instead of pinning early. At 1440px
+     this still lands ~29px (close to where the previous 2rem max landed) but
+     at 2560px+ it reaches 40px. Basis stays `min(100vw, 220vh)` so unusually
+     short viewports rein in by height. */
+  --_typography---font-size--text-large: clamp(1.125 * 1rem, ((1.125 - ((2.5 - 1.125) / (160 - 20) * 20)) * 1rem + ((2.5 - 1.125) / (160 - 20)) * min(100vw, 220vh)), 2.5 * 1rem);
   --swatch--transparent: transparent;
   --_trigger---on: 1;
   --_trigger---off: 0;
@@ -103,7 +115,12 @@
   --_theme---text-link--border-hover: var(--_theme---text);
   --_text-style---text-transform: var(--_typography---text-transform--none);
   --_text-style---text-style: var(--_typography---text-transform--none);
-  --site--viewport-max: 90;
+  /* Was 90 (= 1440px). Lumos uses this as the upper end of the fluid-type
+     ramp, so any viewport ≥ this value pins every clamp to its MAX. At 1440
+     the whole system was already at max → "small desktops" (1440-1920) had
+     no headroom and everything felt oversized. Bumping to 120 (= 1920px)
+     extends the interpolation so 1440 lands ~70% of the way up the ramp. */
+  --site--viewport-max: 120;
   --_theme---text-2: var(--swatch--dark-900);
   --site--viewport-min: 20;
   --_theme---heading-accent-2: var(--swatch--orchid-500);
@@ -148,7 +165,11 @@
   --_typography---font--secondary-bold: 700;
   --_typography---font-size--text-tiny: clamp(.6875 * 1rem, ((.6875 - ((.75 - .6875) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((.75 - .6875) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), .75 * 1rem);
   --_typography---font-size--text-small: clamp(.8125 * 1rem, ((.8125 - ((.875 - .8125) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((.875 - .8125) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), .875 * 1rem);
-  --_typography---font-size--text-main: clamp(1 * 1rem, ((1 - ((1.375 - 1) / (var(--site--viewport-max) - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((1.375 - 1) / (var(--site--viewport-max) - var(--site--viewport-min))) * 100vw), 1.375 * 1rem);
+  /* text-main: 1-1.5rem (16-24px). Same dedicated viewport-max of 160 as
+     text-large so the body type keeps growing into 2K/4K territory. At
+     1440px lands ~20px (where small desktops felt right); at 1920px ~22px;
+     at 2560px+ tops out at 24px. */
+  --_typography---font-size--text-main: clamp(1 * 1rem, ((1 - ((1.5 - 1) / (160 - 20) * 20)) * 1rem + ((1.5 - 1) / (160 - 20)) * min(100vw, 220vh)), 1.5 * 1rem);
   --_typography---font-size--h6: clamp(1 * 1rem, ((1 - ((1.125 - 1) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((1.125 - 1) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 1.125 * 1rem);
   --_typography---font-size--h5: clamp(1.375 * 1rem, ((1.375 - ((1.5 - 1.375) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((1.5 - 1.375) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 1.5 * 1rem);
   --_typography---font-size--h4: clamp(1.75 * 1rem, ((1.75 - ((2 - 1.75) / (var(--site--viewport-max)  - var(--site--viewport-min)) * var(--site--viewport-min))) * 1rem + ((2 - 1.75) / (var(--site--viewport-max)  - var(--site--viewport-min))) * 100vw), 2 * 1rem);
@@ -404,6 +425,13 @@
 .button_main_element:hover {
   box-shadow: 0 0 0 0 var(--_theme---button-primary--background);
   transform: translate(0, 5px);
+}
+/* Dark-on-brand primary buttons (e.g. the historia/menu CONTACTO and the
+   club CTAs) should keep their solid dark fill on hover — only the 5px
+   shadow/press interaction, no brightness shift. Lumos defaults the brand
+   hover fill to a white-10% mix; pin it back to the base fill. */
+.u-theme-brand {
+  --_theme---button-primary--background-hover: var(--_theme---button-primary--background);
 }
 .button_main_text {
   line-height: inherit;
@@ -2025,7 +2053,9 @@
 .footer_bottom_layout {
   grid-column-gap: var(--_spacing---space--4);
   grid-row-gap: var(--_spacing---space--4);
-  border-top: var(--border-width--main) solid var(--_theme---border);
+  /* Border-top removed — the parent .footer_bottom_wrap already provides it
+     via .u-border-top-main, so keeping one here drew a second line just
+     below the first (visible in the screenshot). */
   flex-flow: wrap;
   place-content: center;
   align-items: center;
@@ -4185,6 +4215,27 @@ html {
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* In the fullscreen menus the close button sits over an animated corner
+   decoration; give it the menu's surface colour so the X stays legible on
+   every theme. Pinned to the viewport corner with equal top/right offsets
+   (independent of the menu's asymmetric content padding) and a touch larger.
+   The homepage popup keeps its transparent look. */
+.modal_dialog .modal_close {
+  position: static;
+}
+.modal_dialog .popup-close-btn {
+  position: absolute;
+  top: var(--_spacing---space--4);
+  right: var(--_spacing---space--4);
+  width: 3rem;
+  height: 3rem;
+  background-color: var(--_theme---background);
+}
+.modal_dialog .popup-close-btn svg {
+  width: 1rem;
+  height: 1rem;
+}
+
 .popup-close-btn:hover {
   background-color: var(--swatch--light-400);
   color: var(--swatch--dark-900);
@@ -4310,8 +4361,10 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* Generous right padding so the headline/lede don't touch the viewport edge. */
-  padding: calc(var(--_spacing---space--10) + 5rem) var(--_spacing---space--10) var(--_spacing---space--10) var(--site--gutter);
+  /* Symmetric padding all sides so `justify-content: center` actually
+     centers the text vertically (the previous +5rem on top dragged the
+     whole column visually off-center). */
+  padding: var(--_spacing---space--10);
 }
 
 /* Responsive: stack columns at narrower viewports */
@@ -4621,22 +4674,73 @@ span.u-opacity-50,
    Default / dark / light themes → full brand-orange selection with dark
    text (avoids the washed-out browser default).
    Brand-themed sections → dark selection + cream text so the highlight
-   reads against the orange background. */
-::selection {
-  background-color: var(--swatch--brand-500);
-  color: var(--swatch--brand-text);
+   reads against the orange background.
+   Notes:
+   • Hex literal `#ff5224` (= --swatch--brand-500) used directly to avoid any
+     edge-case in browsers blending CSS variables inside ::selection.
+   • `!important` keeps any element-level opacity / mix-blend-mode from
+     re-tinting the highlight.
+   • Both `::selection` (modern) and `::-moz-selection` (older Firefox builds)
+     are kept in sync. */
+::selection,
+::-moz-selection {
+  background-color: #ff5224 !important;
+  color: #1d1d1b !important;
+  text-shadow: none !important;
 }
 .u-theme-brand ::selection,
-.u-theme-brand::selection {
-  background-color: var(--swatch--dark-900);
-  color: var(--swatch--light-200);
+.u-theme-brand::selection,
+.u-theme-brand ::-moz-selection,
+.u-theme-brand::-moz-selection {
+  background-color: #1d1d1b !important;
+  color: #efdece !important;
+  text-shadow: none !important;
 }
 /* Nested dark/light theme inside a brand parent reverts to the default
    brand-orange selection (mirrors the cursor cascade). */
 .u-theme-brand .u-theme-dark ::selection,
-.u-theme-brand .u-theme-light ::selection {
-  background-color: var(--swatch--brand-500);
-  color: var(--swatch--brand-text);
+.u-theme-brand .u-theme-light ::selection,
+.u-theme-brand .u-theme-dark ::-moz-selection,
+.u-theme-brand .u-theme-light ::-moz-selection {
+  background-color: #ff5224 !important;
+  color: #1d1d1b !important;
+}
+
+
+/* ─── Page scrollbar: narrow brand-orange thumb, dark gutter ──────────────
+   Lumos paints `<html>` cream via `html { background-color: var(--_theme---background) }`
+   which leaks through any "transparent" scrollbar track on Windows/Linux —
+   so we pin the html background to dark with !important AND paint the
+   scrollbar gutter explicitly dark in every layer (Firefox `scrollbar-color`
+   track, WebKit `::-webkit-scrollbar` track, color-scheme hint). Result:
+   single orange pill on a flush dark gutter. */
+html {
+  scrollbar-width: thin !important;
+  scrollbar-color: #ff5224 #1d1d1b !important;
+  color-scheme: dark;
+  background-color: #1d1d1b !important;
+}
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: #1d1d1b;
+}
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+  background: #1d1d1b;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #ff5224;
+  border-radius: 999px;
+  border: none;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(in srgb, #ff5224 80%, #fff);
+}
+::-webkit-scrollbar-button {
+  display: none;
+  height: 0;
+  width: 0;
 }
 
 

@@ -328,6 +328,13 @@
         </div>
         <div class="modal_inner u-position-relative u-bg-dark-900" data-style="full-screen">
           <div data-modal-close="" class="modal_backdrop"></div>
+          <button type="button" data-modal-close class="popup-close-btn" aria-label="Cerrar menú">
+            <svg width="14" height="14" viewBox="0 0 39.276 39.277" fill="currentColor" aria-hidden="true">
+              <path d="M6.505,0.79L39.276,33.561l-6.505,4.926L0,5.716Z"/>
+              <path d="M38.486,6.506L5.715,39.277l-4.926-6.505L33.56,0Z"/>
+            </svg>
+            <span class="u-sr-only">Cerrar</span>
+          </button>
           <div class="modal_content u-bg-transparent u-position-relative" style="overflow: visible;" data-style="full-screen">
             <!-- Animated fire fan — top-right corner, 16 flames rotated 225° as a group, wider abanico fan -->
             <div class="pp-inline-fire u-position-absolute u-pointer-off" style="top: -60rem; right: -18rem; width: clamp(32rem, 54vw, 50rem); height: clamp(32rem, 54vw, 50rem); z-index: 0; transform: rotate(225deg); transform-origin: 88% 100%;">
@@ -369,18 +376,6 @@
                     <path d="M64.6885 3.86108C64.8623 3.85696 68.8297 3.80551 71.3027 6.45288C72.7493 8.00106 73.368 10.0776 73.1406 12.6257C72.6719 17.9369 69.8975 20.0423 67.582 20.6511C68.1416 23.1532 70.5841 31.2958 76.2754 31.5671L75.9121 34.7185C67.0161 34.2787 65.2897 23.7924 65.0752 23.1765L64.7695 29.8064L61.6992 29.0896L63.2637 3.89136L64.6885 3.86108ZM6.99707 6.59741C7.1744 6.5602 11.3916 5.70245 14.5674 8.13745C16.5419 9.65468 17.6341 12.0254 17.8066 15.1843C18.0975 20.4552 15.9866 23.2423 14.167 24.6531C13.0478 25.5171 11.9196 25.9707 11.1055 26.2058L11.8828 32.5837L8.66699 34.0203L5.5 6.91479L6.99707 6.59741ZM23.7842 28.95L20.7227 29.7302L19.8496 16.8943L22.9111 16.0925L23.7842 28.95ZM77.708 18.8767C77.7024 18.9162 77.1315 22.9073 76.3848 29.2234C75.4614 29.2971 74.0147 28.6829 73.3594 27.8357C74.2828 20.1906 74.6191 17.988 74.6191 17.988L77.708 18.8767ZM26.2275 2.73804C26.3931 2.71309 30.3224 2.16052 33.1104 4.47632C34.7391 5.82959 35.6176 7.81267 35.7129 10.3689C35.9085 15.4906 33.6156 17.9432 31.459 18.9207C32.992 22.0045 34.671 24.7838 37.4053 26.4001L35.8174 29.0886C32.6653 27.2244 30.7319 24.7374 28.9805 20.9119L29.3213 27.8894L26.2324 28.4646L24.8174 2.948L26.2275 2.73804ZM60.1846 15.5974L59.3477 28.6677L56.2539 28.1433L57.0908 15.0466L60.1846 15.5974ZM46.4678 1.40991C46.6407 1.39518 50.7305 1.08814 53.4736 3.81128C55.2252 5.55288 55.9944 8.04505 55.7578 11.2166C55.3667 16.4241 53.0008 18.8957 51.0811 20.0515C49.9027 20.7622 48.7608 21.0679 47.9463 21.198L47.8193 27.1238L44.5303 26.9734L44.9844 1.53296L46.4678 1.40991ZM42.0684 26.9402L38.9521 26.9451L38.9336 13.8318L42.0498 13.8259L42.0684 26.9402ZM10.2686 21.9119C11.8016 21.3161 14.2851 19.5618 14.0078 14.4773C13.8893 12.3529 13.2439 10.8225 12.0928 9.92944C11.0645 9.13292 9.76826 8.91972 8.76758 8.89429L10.2686 21.9119ZM65.4521 18.5671L65.916 18.6189C66.2663 18.6439 69.5602 18.6608 70.0381 13.2429C70.179 11.6009 69.8559 10.3735 69.0371 9.48999C68.2318 8.62195 67.0762 8.22024 66.166 8.03491L65.4521 18.5671ZM28.7168 17.4626L29.1855 17.4558C29.5381 17.4301 32.8014 17.0356 32.5967 11.6033C32.533 9.95635 32.0556 8.77933 31.1318 8.00562C30.2264 7.24561 29.0298 6.99322 28.1064 6.92358L28.7168 17.4626ZM47.7822 16.9441C49.3201 16.5362 51.8769 15.1011 52.25 10.0779C52.4137 7.91183 51.9678 6.2898 50.9307 5.25854C50.071 4.40364 48.9107 4.04378 48.001 3.89526L47.7822 16.9441ZM77.0303 11.8044C77.9537 11.8833 78.6048 13.0464 78.4863 14.4011C78.3726 15.7557 77.5312 16.7903 76.6123 16.7117C75.6933 16.6328 75.0426 15.4697 75.1562 14.115C75.2745 12.76 76.1115 11.726 77.0303 11.8044ZM20.8135 9.91772C21.7369 9.88309 22.5241 10.9571 22.5742 12.3162C22.6243 13.6753 21.9198 14.8052 20.9961 14.8396C20.0727 14.8739 19.2858 13.7994 19.2354 12.4402C19.1855 11.081 19.8903 9.95228 20.8135 9.91772ZM58.9297 8.60718C59.853 8.60741 60.5986 9.70994 60.5986 11.0701C60.5985 12.4296 59.8529 13.5318 58.9297 13.532C58.0064 13.532 57.2599 12.4298 57.2598 11.0701C57.2598 9.71016 58.0062 8.60718 58.9297 8.60718ZM40.5039 7.23022C41.4277 7.23022 42.1738 8.33284 42.1738 9.69312C42.1737 11.0528 41.4228 12.155 40.5039 12.155C39.585 12.155 38.8302 11.0532 38.8301 9.69312C38.8301 8.33287 39.5801 7.23026 40.5039 7.23022Z"/>
                   </svg>
                 </a>
-                <div class="modal_close">
-                  <div data-modal-close=" " class="button_close_wrap" autofocus=" " data-button=" " data-trigger="hover focus">
-                    <div class="button_close_element u-bg-transparent" data-style="secondary-medium" style="--_button-style---border: var(--_theme---text); --_button-style---border-hover: var(--_theme---text); --_button-style---background-hover: transparent;">
-                      <div aria-hidden="true" class="button_close_icon">
-                        <img src="resources/icons/close-icon_alpha_512.svg" alt="" class="u-cover-absolute">
-                      </div>
-                    </div>
-                    <div class="clickable_wrap u-cover-absolute">
-                      <a target="" href="#" class="clickable_link w-inline-block"><span class="clickable_text u-sr-only">Close</span></a><button type="button" class="clickable_btn"><span class="clickable_text u-sr-only">Close</span></button>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <!-- Middle: Menu links with left padding -->
@@ -499,7 +494,10 @@
             font-family: var(--_typography---font--primary-family);
             font-weight: 900;
             line-height: 1;
-            font-size: clamp(3.5rem, 8.5vw, 11rem);
+            /* Cap lowered from 11rem (176px) → 8rem (128px) so the title
+               doesn't dominate at small-desktop widths. Floor + vw ratio
+               unchanged so mobile/tablet sizing is preserved. */
+            font-size: clamp(3.5rem, 8.5vw, 8rem);
             text-transform: uppercase;
           }
           .hero-line {
@@ -569,7 +567,12 @@
           });
         })();
         </script>
-        <p class="u-text-style-large u-color-inherit u-opacity-75" style="margin-top: var(--_spacing---space--8); contain: inline-size;">
+        <!-- Width tuning: min-width nudges the fit-content column wider on
+             big screens so the lede doesn't drop to 5+ lines; max-width caps
+             the measure so it doesn't sprawl across the hero at the new
+             larger text-large size. Aimed at a 2–3 line sweet spot from
+             1440 → 4K. -->
+        <p class="u-text-style-large u-color-inherit u-opacity-75" style="margin-top: var(--_spacing---space--8); min-width: clamp(0px, 22vw, 28rem); max-width: 38ch;">
           Somos Piri Piri, un ají picante que suena divertido, pero no te confíes. Puede ser un bastardo que te muerda la lengua, y lo mejor es que te va a gustar.
         </p>
       </div>
@@ -700,6 +703,11 @@
           /* Solid dark border so adjacent flush cards show a clean dark seam
              against their bright brand backgrounds. */
           border-color: var(--swatch--dark-900) !important;
+          /* Enables container-query units (cqi / cqw) for absolutely-
+             positioned children (icon, title, arrow) so they scale with the
+             CARD width, not the viewport — fixes oversized icons when 3 cards
+             share a small-desktop viewport. */
+          container-type: inline-size;
         }
         /* Title, icon, arrow and content all anchor at the same inset.
            The card face (.card_primary_element) pads with space-7, so the
@@ -713,9 +721,9 @@
              guarantees a break between every word in the title regardless
              of how long they are. Width still capped so it never collides
              with the icon at top-right. */
-          max-width: calc(100% - var(--_spacing---space--7) * 2 - clamp(80px, 12vw, 140px) - var(--_spacing---space--4));
+          max-width: calc(100% - var(--_spacing---space--7) * 2 - clamp(56px, 22cqi, 110px) - var(--_spacing---space--4));
           word-spacing: 100vw;
-          font-size: clamp(1.75rem, 2.6vw, 2.75rem) !important;
+          font-size: clamp(1.5rem, 5cqi, 2.5rem) !important;
           line-height: 1 !important;
           letter-spacing: 0.04em !important;
           margin: 0 !important;
@@ -726,38 +734,55 @@
           position: absolute;
           top: var(--_spacing---space--7);
           right: var(--_spacing---space--7);
-          width: clamp(80px, 12vw, 140px);
-          height: clamp(80px, 12vw, 140px);
+          /* Sized as 22% of the card width (via container query unit), clamped
+             so it never gets tiny on mobile or oversized on a single-card
+             desktop view. Was clamp(80, 12vw, 140) — too big when 3 cards
+             shared a small viewport. */
+          width: clamp(56px, 22cqi, 110px);
+          height: clamp(56px, 22cqi, 110px);
           object-fit: contain;
         }
         .brand_card_arrow {
           position: absolute;
           bottom: var(--_spacing---space--7);
           right: var(--_spacing---space--7);
-          width: clamp(28px, 5vw, 48px);
+          /* Also card-relative now so the arrow doesn't dwarf shrunken cards. */
+          width: clamp(22px, 8cqi, 44px);
           height: auto;
         }
         .brand_card_body {
-          /* Bigger than u-text-style-large to read as the card's hero copy
-             rather than body. Uses the same primary heading-family scale. */
-          font-size: clamp(1.75rem, 2.4vw, 2.5rem);
-          line-height: 1.2;
+          /* Inherit the global `u-text-style-large` token (set in site.css
+             :root) instead of a hand-rolled clamp — keeps all card bodies in
+             lockstep with the site type scale. line-height stays tighter
+             than the default so it reads as card hero copy. */
+          line-height: 1.25;
         }
         .brand_card .card_primary_content {
           /* Reserve right side so body text doesn't run under the arrow. */
           padding-right: clamp(48px, 8vw, 72px);
         }
-        /* 3D card-flip interaction — click/tap to flip and reveal illustration */
+        /* 3D card-flip interaction — click/tap to flip and reveal illustration.
+           Hover gives a subtle 3D tilt as a "I can be flipped" affordance.
+           Flip + tilt are composed via CSS variables so they stack cleanly
+           in any state (resting, flipped, hover, flipped+hover). */
         .brand_card { perspective: 1200px; }
         .brand_card .card_primary_group {
+          --flip-y: 0deg;
+          --tilt-x: 0deg;
+          --tilt-y: 0deg;
           position: relative;
           transform-style: preserve-3d;
-          transition: transform 0.7s ease;
+          transform: rotateY(var(--flip-y)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+          transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
           cursor: pointer;
+          will-change: transform;
         }
         .brand_card.is-flipped .card_primary_group {
-          transform: rotateY(180deg);
+          --flip-y: 180deg;
         }
+        /* Tilt is driven by JS (see initBrandCardTilt below) — only the four
+           corner zones tilt the card, and the direction follows whichever
+           corner the cursor is in. The CSS just owns the variables. */
         .brand_card .card_primary_element,
         .brand_card .card_primary_back {
           backface-visibility: hidden;
@@ -767,19 +792,20 @@
           position: absolute;
           inset: 0;
           transform: rotateY(180deg);
-          display: flex;
-          align-items: center;
-          justify-content: center;
           overflow: hidden;
           /* Match the front face so the dark border persists after the flip */
           border: var(--border-width--main) solid var(--swatch--dark-900);
+          /* Mirror the card radius so the illustration is clipped to the
+             same rounded corners as the front face. */
+          border-radius: inherit;
         }
+        /* Fill the entire back face so the illustration's colored background
+           reaches the card border — no centered padding. */
         .brand_card .card_primary_back img {
-          max-width: 80%;
-          max-height: 80%;
-          width: auto;
-          height: auto;
-          object-fit: contain;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
         }
       </style>
       <div style="--lg: 3; --md: 2; --sm: 1.2; --xs: 1;" class="slider_offset">
@@ -850,10 +876,11 @@
             <div class="card_primary_wrap brand_card brand_card--picante">
               <div data-trigger="hover focus" class="card_primary_group">
                 <div class="card_primary_element u-position-relative u-flex-vertical-nowrap u-justify-content-end u-padding-6 u-radius-main u-bg-gold u-text-dark-900">
-                  <!-- Icon - top right -->
-                  <svg class="brand_card_icon" viewBox="0 0 33.73 38.05" fill="currentColor" aria-hidden="true">
-                    <path d="M26.57,15.21c.31.07.54.41.71.66,1.92,2.87,4.3,6.9,5.92,9.96.21.39.63,1.01.51,1.41l-6.47,8.95-.67.33c-2.29.22-4.69,1.2-6.92,1.51-1.18.16-.43-.76-.37-1.37.19-1.89.31-3.79.53-5.69.09-.76.41-1.26.2-2.2-.18-.84-2.75-3.14-3.43-4.02-.15-.19-.27-.38-.24-.63-.23,0-.35.23-.46.4-.92,1.44-1.64,3.42-2.54,4.93l1.46,8.57-7.94-2.64L.99,25.12l-.99-7.62,9.43-5.33-4.71,6.53c1.33,1.89,2.07,4.35,3.84,5.85l2.07,1.04-2.72-7.58,5.71-7.73c.04-1.05.11-2.14.06-3.2-.09-1.95-.1-4-.23-5.96-.03-.42-.61-1.22.11-1.1l11.23,12.62c.02.81.09,1.65.04,2.46-.15,2.28-1.04,4.17-1.98,6.23l1.68,5.31c.35-.03.4-.36.51-.61.21-.5,1.49-3.77,1.49-3.98l.02-6.83Z"/>
-                    <polygon points="9.94 8.94 2.23 12.51 9.97 2.23 9.94 8.94"/>
+                  <!-- Icon - top right (matches the Picante values-tab in historia: simple flame) -->
+                  <svg class="brand_card_icon" viewBox="0 0 31.71 31.92" fill="currentColor" aria-hidden="true">
+                    <path d="M17.49,4.19l3.71.95.68,2.84c.29.06.26-.22.33-.44.39-1.22.75-2.46,1.06-3.71l2.07-1.57c.24.08.09.52.05.72-.18,1.04-.48,2.08-.64,3.13l.88,1.56,1.75-1.01.26-1.96c.42.19,1.2,1.22,1.07,1.63l-4.93,8.01-5.01,2.03-2.41,4.11-5.24-.04-5.31-4.86-.32.09c-1.22.97-2.38,2.06-3.66,2.96-.19.13-.2.31-.55.22L0,10.03l2.75,3.1.88-.65L1.61,7.72l2.63-4.06c.38-.06.24.54.21.76-.13.85-.76,2.29-.68,3.09.07.64,1.25,3.32,1.58,4.15.09.24.06.66.38.61l.27-6.4,2.85,2.45c.35-1.5.87-3.01,1.41-4.46.09-.23.08-.66.39-.6l.63,6.28-2.4,1.32c.26.46.11.96.26,1.46.33,1.04,1.83,2.18,2.09,3.31l.44-.11.47-3.64,1.54.89c.02-1.21.97-2.85.59-3.98-.12-.35-1.78-2.75-1.65-2.87l3.72,2.14-.47,4.16.22,1.22,1.75-3.22c-.08-.88.7-2.86.06-3.49-.5-.49-1.96-1.17-2.64-1.46v-.32S17.52,0,17.52,0c.38-.05.21.51.21.77.01,1.17-.1,2.26-.24,3.41Z"/>
+                    <path d="M28.43,17.08l-.16,7.28-8.11,7.56H7.81S1.92,21.38,1.92,21.38l2.97-2.92,5.76,4.64c.79.24,1.48-.14,2.17-.18,1.48-.09,3.18-.03,4.64-.18.25-.03.51-.15.73-.26.91-1.1,1.84-3.47,2.83-4.36.78-.69,2.53-1.16,3.37-1.93l4.04.89Z"/>
+                    <path d="M26.02,14.63l3.36-6.59c.29-.3,1.96.86,2.32,1.11-.27.85-1.53,5.8-1.92,6.07-.42.3-3.07-.5-3.76-.59Z"/>
                   </svg>
                   <!-- Title - top left -->
                   <h3 class="card_primary_title u-text-style-h5 u-text-transform-uppercase u-margin-bottom-0">SABOR PICANTE</h3>
@@ -917,7 +944,12 @@
     </div>
   </section>
 
-  <!-- PLATOS ESTRELLA SECTION -->
+  <!-- PLATOS ESTRELLA — menu data drives the slider so disabled/missing items
+       auto-drop out (no more dead links). Featured slugs are listed in
+       display order below; any slug not found in MENU_ITEMS or flagged
+       `disabled: true` or missing an image is silently skipped. -->
+  <script src="sandbox/resources/data/menu_items.js"></script>
+
   <section class="section_platos u-theme-dark u-padding-block-8">
 
     <!-- Infinite Marquee -->
@@ -954,80 +986,49 @@
       </style>
       <div style="--lg: 4; --md: 3; --sm: 2; --xs: 1.5;" class="slider_offset">
         <div data-speed="600" data-follow-finger="true" data-free-mode="false" data-mousewheel="true" data-loop="true" data-autoplay="true" data-autoplay-delay="3000" class="slider_element swiper">
-          <div data-slot="" class="slider_list swiper-wrapper">
-
-            <!-- Slide 1: Pollo Entero -->
-            <a href="carta-item.html?slug=pollo-entero" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/pollo-entero_1600w.webp" alt="Pollo Entero" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 2: Medio Pollo -->
-            <a href="carta-item.html?slug=medio-pollo" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/medio-pollo_1600w.webp" alt="Medio Pollo" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 3: Costillar Mazorca -->
-            <a href="carta-item.html?slug=costillar-mazorca" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/costillar-mazorca_1600w.webp" alt="Costillar con Mazorca" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 5: Special Burger -->
-            <a href="carta-item.html?slug=special-burger" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/special-burger_1600w.webp" alt="Special Burger" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 6: Truffa Burger -->
-            <a href="carta-item.html?slug=truffa-burger" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/truffa-burger_1600w.webp" alt="Truffa Burger" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 8: Crispy Piri -->
-            <a href="carta-item.html?slug=crispy-piri" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/crispy-piri_1600w.webp" alt="Crispy Piri" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 9: Piri Piri Bowl -->
-            <a href="carta-item.html?slug=piripiri-bowl" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/piripiri-bowl_1600w.webp" alt="Piri Piri Bowl" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 10: Feta Bowl -->
-            <a href="carta-item.html?slug=feta-bowl" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/feta-bowl_1600w.webp" alt="Feta Bowl" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 11: Salchicha Criolla -->
-            <a href="carta-item.html?slug=salchicha-criolla" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/salchicha-criolla_1600w.webp" alt="Salchicha Criolla" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
-            <!-- Slide 12: Arroz Especial -->
-            <a href="carta-item.html?slug=arroz-especial" class="food_slide_item">
-              <div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">
-                <img src="resources/images/Carta/1600w/arroz-especial_1600w.webp" alt="Arroz Especial" class="u-object-fit-cover u-width-full u-height-full">
-              </div>
-            </a>
-
+          <div data-slot="" class="slider_list swiper-wrapper" data-platos-slides>
+            <!-- Slides populated by the inline script below from window.MENU_ITEMS. -->
           </div>
         </div>
+        <script>
+          // Run synchronously, before Swiper init at DOMContentLoaded so the
+          // carousel sees the final slide set. Edit FEATURED_SLUGS below to
+          // change which dishes appear and in what order.
+          (function renderPlatosEstrella() {
+            var FEATURED_SLUGS = [
+              "pollo-entero-al-carbn",
+              "12-pollo-al-carbn",
+              "costillas-de-mazorcas-ahumadas",
+              "special-burger",
+              "truffa-burger",
+              "piri-crispy-burger",
+              "bowl-piri-piri",
+              "bowl-piri-feta-crunch",
+              "salchicha-criolla",
+              "arroz-especial"
+            ];
+            var wrap = document.querySelector("[data-platos-slides]");
+            var items = Array.isArray(window.MENU_ITEMS) ? window.MENU_ITEMS : [];
+            if (!wrap || !items.length) return;
+            var bySlug = Object.create(null);
+            items.forEach(function (it) { if (it && it.slug) bySlug[it.slug] = it; });
+            var html = FEATURED_SLUGS.map(function (slug) {
+              var it = bySlug[slug];
+              // Drop missing, disabled, or image-less items so we never link to
+              // a dead carta-item page or render an empty tile.
+              if (!it || it.disabled || !it.image) return "";
+              var safeName = String(it.name || "").replace(/"/g, "&quot;");
+              return (
+                '<a href="carta-item.html?slug=' + encodeURIComponent(slug) + '" class="food_slide_item">' +
+                  '<div class="food_slide_image u-radius-main u-overflow-hidden u-border-main">' +
+                    '<img src="' + it.image + '" alt="' + safeName + '" class="u-object-fit-cover u-width-full u-height-full">' +
+                  '</div>' +
+                '</a>'
+              );
+            }).join("");
+            wrap.innerHTML = html;
+          })();
+        </script>
       </div>
       <!-- Pill pagination (populated by Swiper) -->
       <div class="slider_bullet_list" aria-label="Navegación de platos"></div>
@@ -1054,16 +1055,20 @@
     <!-- Top: Orange background, min 75vh. Text anchored to the top so the
          bigger chicken below has room without overlapping. -->
     <div class="u-theme-brand u-radius-bottom-main" style="min-height: 100vh; padding-top: 15vh; padding-bottom: var(--_spacing---space--8); display: flex; align-items: flex-start; justify-content: center; position: relative; overflow: hidden;">
-      <div class="u-container-small u-align-items-center" style="text-align: center; position: relative; z-index: 2;">
+      <!-- Centered info block — width matches the canonical --cs-measure recipe. -->
+      <div class="u-container-small u-align-items-center" style="text-align: center; position: relative; z-index: 2; max-width: var(--cs-measure); min-width: 0;">
         <!-- Tagline -->
         <p class="u-text-style-main u-text-transform-uppercase u-margin-bottom-4">¿Y ahora? ¿Quienes somos?</p>
 
-        <!-- Main Heading -->
-        <h2 class="u-text-style-display u-text-transform-uppercase u-margin-bottom-6">QUEMAMOS<br>NUESTRA CARTA ANTERIOR</h2>
+        <!-- Main Heading — inline margin kills the h2's default 0.83em
+             user-agent margin-block (huge at the display font size) and
+             pairs with `margin-top: 0` on the paragraph so the gap is exactly
+             space-3. Mirrors the historia QUIENES SOMOS section. -->
+        <h2 class="u-text-style-display u-text-transform-uppercase" style="margin: 0 0 var(--_spacing---space--3) 0;">QUEMAMOS<br>NUESTRA CARTA ANTERIOR</h2>
 
         <!-- Body text - italic -->
         <div style="margin-inline: auto;">
-          <p class="u-text-style-large u-margin-bottom-0" style="font-style: italic; font-family: var(--_font---font--heading);">
+          <p class="u-text-style-large u-margin-bottom-5" style="margin-top: 0; font-style: italic; font-family: var(--_font---font--heading);">
             Y de sus cenizas nació el nuevo Piri Piri. Lo que empezó como Frango al carbón hoy es carbón a lo bestia con nuestras carnes, pollo, burgers...y salseo a lo bruto con nuestro Salsa Bar ilimitado.
           </p>
         </div>
@@ -2425,6 +2430,56 @@
     });
   </script>
 
+  <script>
+    // Brand-card corner-tilt affordance — only the four corner zones tilt the
+    // card, and the tilt direction follows the corner the cursor is in
+    // (top-left lifts that corner toward the viewer, etc.). Skipped on touch
+    // devices so a tap doesn't leave a tilt stuck.
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!window.matchMedia || !window.matchMedia("(hover: hover)").matches) return;
+
+      const MAX_TILT = 12;          // degrees at full corner
+      const CORNER_THRESHOLD = 0.4; // |nx| AND |ny| must exceed this to tilt
+
+      document.querySelectorAll(".brand_card").forEach(card => {
+        const group = card.querySelector(".card_primary_group") || card;
+        let rafId = 0;
+        let pendingX = 0, pendingY = 0;
+
+        const apply = () => {
+          rafId = 0;
+          group.style.setProperty("--tilt-x", pendingX.toFixed(2) + "deg");
+          group.style.setProperty("--tilt-y", pendingY.toFixed(2) + "deg");
+        };
+        const schedule = () => { if (!rafId) rafId = requestAnimationFrame(apply); };
+
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const nx = ((e.clientX - rect.left) / rect.width) * 2 - 1;   // -1..1, left..right
+          const ny = ((e.clientY - rect.top) / rect.height) * 2 - 1;   // -1..1, top..bottom
+          const inCorner = Math.abs(nx) > CORNER_THRESHOLD && Math.abs(ny) > CORNER_THRESHOLD;
+          if (inCorner) {
+            // Lift the corner closest to the cursor toward the viewer.
+            // rotateX(-ny * MAX) pulls the top edge forward when ny<0 (cursor at top);
+            // rotateY(nx * MAX) pulls the right edge forward when nx>0 (cursor at right).
+            pendingX = -ny * MAX_TILT;
+            pendingY = nx * MAX_TILT;
+          } else {
+            pendingX = 0;
+            pendingY = 0;
+          }
+          schedule();
+        });
+
+        card.addEventListener("mouseleave", () => {
+          pendingX = 0;
+          pendingY = 0;
+          schedule();
+        });
+      });
+    });
+  </script>
+
   <!-- CoverManager iframe resizer -->
   <script src="https://www.covermanager.com/js/iframeResizer/iframeResizer.min.js"></script>
   <script type="text/javascript" src="https://www.covermanager.com/reservation/gtmcrossdomain/restaurante-piripiri"></script>
@@ -2487,7 +2542,7 @@
         </p>
 
         <!-- Secondary Button with Orange Shadow -->
-        <div class="u-margin-top-4">
+        <div class="u-margin-top-6">
           <div class="button_main_wrap" data-trigger="hover focus">
             <a href="#reserva" class="button_main_element" data-style="secondary">
               <div class="button_main_text u-text-style-main">RESERVA YA</div>

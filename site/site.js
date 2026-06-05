@@ -430,7 +430,12 @@ function ppFlameColorAt(x, y) {
     function placeDocked() {
       const rect = subfooter.getBoundingClientRect();
       const center = rect.top + rect.height / 2;
-      ctas.style.top = (center - ctas.offsetHeight / 2) + 'px';
+      // .button_main_wrap has `transform: translateY(-10px)` (the shadow
+      // compensation utility in site.css), so the painted buttons sit 10px
+      // above the floating-ctas layout box. Shift the docked layout DOWN by
+      // 10px so the painted buttons land in the subfooter's visual center.
+      const SHADOW_OFFSET = 10;
+      ctas.style.top = (center - ctas.offsetHeight / 2 + SHADOW_OFFSET) + 'px';
     }
 
     function apply() {
