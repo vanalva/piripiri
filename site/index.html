@@ -1492,6 +1492,14 @@
           --content-opacity: 0;
           --card-scale: 0.8;
         }
+        /* The active card on desktop scales UP to 1.1 to stand out against
+           its neighbours. On a single full-width mobile card there are no
+           neighbours, and the 1.1 zoom pushes the card wider than the
+           viewport so its text touches the screen edge. Keep it at 1 so the
+           card's padding gives the testimonial comfortable side breathing room. */
+        .reviews_slider .slider_list > .swiper-slide.is-active {
+          --card-scale: 1;
+        }
       }
     </style>
     <div class="reviews_grid u-width-full u-position-relative">

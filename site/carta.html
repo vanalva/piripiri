@@ -767,6 +767,14 @@
       overflow: visible;
       width: calc((100% - var(--_spacing---space--4)) / 2);
     }
+    /* Small phones: a single full-width column. Two columns at 479px squeeze
+       the description to 2–3 words per line and clip long uppercase titles
+       like "ACOMPAÑAMIENTOS"; one column keeps the menu readable and tappable. */
+    @media (max-width: 479px) {
+      .carta-masonry .masonry-item {
+        width: 100%;
+      }
+    }
     @media (min-width: 768px) {
       .carta-masonry .masonry-item {
         width: calc((100% - 2 * var(--_spacing---space--4)) / 3);
@@ -852,6 +860,11 @@
       text-transform: uppercase;
       margin: 0;
       color: var(--_theme---text);
+      /* Long single words (e.g. ACOMPAÑAMIENTOS) must break inside the narrow
+         tile instead of overflowing past the card edge. */
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     .masonry-item-price {

@@ -3605,6 +3605,36 @@ html {
   .u-flex-column-mobile {
     flex-direction: column;
   }
+
+  /* Mobile-specific flex wrap — overrides u-flex-horizontal-nowrap's
+     flex-flow:row (nowrap) so heading+CTA rows can stack instead of
+     pushing the CTA off-screen. Same specificity, declared later, so it
+     wins over lumos.css without !important. */
+  .u-flex-wrap-mobile {
+    flex-wrap: wrap;
+  }
+
+  /* Footer columns — the desktop row uses u-align-items-end to baseline-
+     align the three columns. Once u-flex-column-mobile stacks them, that
+     end-alignment pushes each block to the RIGHT edge (Contacto + Síguenos
+     floating right with empty space on the left). Center the stacked blocks
+     and their content so the footer reads as a tidy single column. */
+  .footer_contain > .u-flex-column-mobile {
+    align-items: center;
+  }
+  .footer_contain .footer_social_wrap,
+  .footer_contain .footer_group_wrap {
+    text-align: center;
+  }
+  .footer_contain .footer_social_list,
+  .footer_contain .footer_group_list {
+    align-items: center;
+  }
+  /* Logo/social column declares u-align-items-start internally — center it
+     too so the logo, "Síguenos" and the icons sit under the newsletter. */
+  .footer_contain .u-flex-vertical-nowrap.u-align-items-start {
+    align-items: center;
+  }
 }
 
 @media (max-width: 479px) {
