@@ -3677,6 +3677,37 @@ html {
   }
 }
 
+/* ─── Fullscreen menu on mobile/tablet ─────────────────────────────────────
+   The nav links were pushed off-centre by the modal_slot's left padding plus
+   the invisible hover-heart icons taking up space. Drop both so the items sit
+   dead-centre. */
+@media (max-width: 991px) {
+  [data-modal-target="menu"] .modal_slot {
+    padding-left: 0 !important;
+  }
+  [data-modal-target="menu"] [data-menu-heart] {
+    display: none;
+  }
+  /* center wrapped link text too (e.g. CLUB SECRETO breaking onto two lines) */
+  [data-modal-target="menu"] [data-menu-item] a {
+    text-align: center;
+  }
+}
+/* Bottom row stacks on mobile — center the social/address and put RESERVA on
+   the left and PIDE YA on the right (one on each side). */
+@media (max-width: 767px) {
+  [data-modal-target="menu"] .u-flex-column-mobile.u-justify-content-between > * {
+    width: 100%;
+  }
+  [data-modal-target="menu"] .u-flex-column-mobile.u-justify-content-between > div:first-child {
+    padding-left: 0 !important;
+    justify-content: center;
+  }
+  [data-modal-target="menu"] .u-flex-column-mobile.u-justify-content-between > div:last-child {
+    justify-content: space-between;
+  }
+}
+
 /* ─── Footer on desktop (≥992px) ───────────────────────────────────────────
    The 3-column row was bottom-aligned (jagged top edge) and stretched the full
    width, flinging the narrow side columns to the screen edges with huge gaps.
