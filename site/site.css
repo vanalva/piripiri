@@ -3657,6 +3657,18 @@ html {
   }
 }
 
+/* ─── Footer on desktop (≥992px) ───────────────────────────────────────────
+   The 3-column row was bottom-aligned (jagged top edge) and stretched the full
+   width, flinging the narrow side columns to the screen edges with huge gaps.
+   Top-align the columns and cap the row width so they stay grouped and tidy. */
+@media (min-width: 992px) {
+  .footer_contain > .u-flex-horizontal-nowrap {
+    align-items: flex-start;
+    max-width: 72rem;
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 479px) {
   .u-hide-mobile-portrait {
     display: none;
