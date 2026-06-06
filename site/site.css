@@ -3695,13 +3695,17 @@ html {
 }
 /* Location cards (Reserva tu mesa) on mobile — make each a single bordered,
    rounded card instead of two separately-rounded pieces. The wrapper takes the
-   border + radius and clips both halves; the image and content halves drop
-   their own radius/border so the image rounds only at the top and the content
-   only at the bottom — one continuous card. */
+   border + radius AND a unified background so the whole card is one solid
+   surface; the image and content halves drop their own radius/border so the
+   image rounds only at the top and the content only at the bottom — one
+   continuous card. Without the wrapper background, the seam between the two
+   halves (and the rounded corners during the sticky-scroll transform) let you
+   see straight through to the section behind. */
 @media (max-width: 767px) {
   .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap {
     border: var(--border-width--main) solid var(--_theme---border);
     border-radius: var(--radius--main);
+    background: var(--_theme---background-2);
     overflow: hidden;
   }
   .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap > div:first-child {
@@ -3710,6 +3714,7 @@ html {
   .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap > div:last-child {
     border: 0 !important;
     border-radius: 0 !important;
+    background: transparent !important;
   }
 }
 
