@@ -4571,25 +4571,20 @@ html {
   min-height: 0 !important;
 }
 
-/* Mobile: the banner slides up to one gutter from the top and the logo + MENÚ
-   overlay it — exactly like the HOME hero on mobile (a full-bleed banner with
-   the brand floating on top). */
-@media (max-width: 991px) {
-  .section_historia-hero {
-    padding-top: var(--site--gutter) !important;
-  }
+/* The banner slides up to one gutter from the top at every breakpoint, so the
+   hero container sits RIGHT BEHIND the logo + MENÚ (they float on top of it) —
+   exactly like the HOME hero image. */
+.section_historia-hero {
+  padding-top: var(--site--gutter) !important;
 }
 
-/* Desktop/tablet ≥992px: match the HOME hero, where the logo sits over clean
-   dark space (not on the photo). The logo + MENÚ pin to the home insets over
-   the page's dark background, and the banner card drops below them so the logo
-   never collides with the busy image + its rounded border corner. */
+/* Desktop/tablet ≥992px: float the logo + MENÚ on the banner, inset one gutter
+   from the card edges (so the logo sits cleanly on the photo instead of
+   straddling the rounded border corner) and at the home-hero vertical inset. */
 @media (min-width: 992px) {
-  .section_historia-hero {
-    padding-top: calc(2 * var(--site--gutter) + 4.5rem) !important;
-  }
   .hero_nav.is-historia-hero .hero_logo_wrap {
     top: calc(2 * var(--site--gutter)) !important;
+    left: calc(2 * var(--site--gutter)) !important;
   }
   .hero_nav.is-historia-hero ~ [data-modal-trigger="menu"] {
     top: calc(2 * var(--site--gutter)) !important;
