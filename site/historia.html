@@ -1076,29 +1076,39 @@
 
       // ── Parallax on the hero illustration ──
       gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.to(".section_historia-hero .historia_hero_image", {
-          yPercent: -14,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".section_historia-hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
+        // Hold a constant 1.18 scale (baked into the tween so it survives
+        // ScrollTrigger refreshes) so the image always over-covers its mask
+        // through the full parallax travel — otherwise translating it reveals
+        // a gap and the photo looks displaced from its rounded frame.
+        gsap.fromTo(".section_historia-hero .historia_hero_image",
+          { scale: 1.18, yPercent: 0 },
+          {
+            scale: 1.18,
+            yPercent: -7,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".section_historia-hero",
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          });
         // Quote image: gentle counter-drift to give the section depth
-        gsap.to(".section_historia-quote img", {
-          yPercent: 12,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".section_historia-quote",
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 0.8,
-            invalidateOnRefresh: true,
-          },
-        });
+        gsap.fromTo(".section_historia-quote img",
+          { scale: 1.18, yPercent: 0 },
+          {
+            scale: 1.18,
+            yPercent: 7,
+            ease: "none",
+            scrollTrigger: {
+              trigger: ".section_historia-quote",
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 0.8,
+              invalidateOnRefresh: true,
+            },
+          });
       });
     });
   </script>

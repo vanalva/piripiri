@@ -657,9 +657,12 @@
       const ease = "power3.out";
 
       // ── Hero: image scales+fades in while text rises ──
+      // Settle at scale 1.18 (not 1) so the image keeps over-covering its mask
+      // — the parallax below translates it, and at scale 1 that would reveal a
+      // gap and look displaced from the frame.
       gsap.fromTo("[data-item-image]",
-        { opacity: 0, scale: 1.06 },
-        { opacity: 1, scale: 1, duration: 1.1, ease, delay: 0.05 }
+        { opacity: 0, scale: 1.26 },
+        { opacity: 1, scale: 1.18, duration: 1.1, ease, delay: 0.05 }
       );
       gsap.fromTo("[data-item-title]",
         { opacity: 0, y: 30 },
@@ -700,18 +703,24 @@
       }
 
       // ── Subtle parallax on the hero image ──
+      // Hold the same 1.18 scale the entrance settles on (baked into the tween
+      // so it survives ScrollTrigger refreshes) so the image keeps over-covering
+      // its mask through the parallax travel instead of revealing a gap.
       gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.to("[data-item-image]", {
-          yPercent: -10,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "[data-item-image]",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.6,
-            invalidateOnRefresh: true,
-          },
-        });
+        gsap.fromTo("[data-item-image]",
+          { scale: 1.18, yPercent: 0 },
+          {
+            scale: 1.18,
+            yPercent: -7,
+            ease: "none",
+            scrollTrigger: {
+              trigger: "[data-item-image]",
+              start: "top top",
+              end: "bottom top",
+              scrub: 0.6,
+              invalidateOnRefresh: true,
+            },
+          });
       });
     });
   </script>

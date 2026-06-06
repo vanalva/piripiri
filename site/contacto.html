@@ -708,31 +708,41 @@
 
       // ── Parallax on the rooster hero illustration ──
       gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.to("#hero .historia_hero_image", {
-          yPercent: -16,
-          rotate: -2,
-          ease: "none",
-          scrollTrigger: {
-            trigger: "#hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: 0.8,
-            invalidateOnRefresh: true,
-          },
-        });
-        // Gentle drift on each location photo as you pass it
-        document.querySelectorAll('#locales img[src*="local-"]').forEach((img) => {
-          gsap.to(img, {
-            yPercent: -8,
+        // Hold a constant scale (baked into the tween so it survives
+        // ScrollTrigger refreshes) so the image always over-covers its mask
+        // through the full parallax travel (incl. the slight rotation),
+        // otherwise it looks displaced from its rounded frame.
+        gsap.fromTo("#hero .historia_hero_image",
+          { scale: 1.2, yPercent: 0, rotate: 0 },
+          {
+            scale: 1.2,
+            yPercent: -7,
+            rotate: -2,
             ease: "none",
             scrollTrigger: {
-              trigger: img.closest("div") || img,
-              start: "top bottom",
+              trigger: "#hero",
+              start: "top top",
               end: "bottom top",
-              scrub: 1,
+              scrub: 0.8,
               invalidateOnRefresh: true,
             },
           });
+        // Gentle drift on each location photo as you pass it
+        document.querySelectorAll('#locales img[src*="local-"]').forEach((img) => {
+          gsap.fromTo(img,
+            { scale: 1.16, yPercent: 0 },
+            {
+              scale: 1.16,
+              yPercent: -6,
+              ease: "none",
+              scrollTrigger: {
+                trigger: img.closest("div") || img,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: 1,
+                invalidateOnRefresh: true,
+              },
+            });
         });
       });
     });
