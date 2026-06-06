@@ -28,7 +28,7 @@
   <link rel="canonical" href="https://somospiripiri.com/contacto.html">
 
   <link href="lumos.css" rel="stylesheet" type="text/css">
-  <link href="site.css?v=20260606r" rel="stylesheet" type="text/css">
+  <link href="site.css?v=20260606s" rel="stylesheet" type="text/css">
   <link href="interactions.css" rel="stylesheet" type="text/css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -242,8 +242,8 @@
         <!-- MENÚ button: fixed so it follows on scroll. Aligned to the same
              top/right offset the original nav row used (padding-block-4 +
              gutter), not the homepage's deeper inset. -->
-        <div data-modal-trigger="menu" class="button_main_wrap u-radius-round u-theme-brand" data-trigger="hover focus" style="position: fixed; top: var(--_spacing---space--4); right: var(--site--gutter); z-index: 11;">
-          <button class="button_main_element" aria-label="Abrir menú">
+        <div data-modal-trigger="menu" class="button_main_wrap u-radius-round" data-trigger="hover focus" style="position: fixed; top: var(--_spacing---space--4); right: var(--site--gutter); z-index: 11;">
+          <button class="button_main_element" aria-label="Abrir menú" data-style="secondary">
             <svg class="button_main_icon" viewBox="0 0 39.261 32.661" fill="currentColor" aria-hidden="true" style="width: 1.25rem; height: auto;">
               <path d="M.924,25.974h38.337l-.924,6.687H0Z"/>
               <path d="M.924,12.987h38.337l-.924,6.687H0Z"/>
@@ -253,14 +253,14 @@
           </button>
         </div>
 
-        <!-- HERO SECTION — gutter wrapper; the inner grid is the visible card
-             (rounded + bordered + brand-themed), banner sitting right behind
-             the floating logo + MENÚ. -->
-        <section id="hero" class="section_historia-hero" style="padding: 0 var(--site--gutter) var(--site--gutter);">
-          <div class="historia_hero_grid u-theme-brand u-radius-main u-border-main" style="border-color: var(--_theme---border); overflow: hidden;">
-            <!-- Left: Rooster illustration (fills column width + section height) -->
+        <!-- HERO SECTION — light section bg; the inner grid is a DARK rounded
+             card with an orange rooster + light text, banner sitting right
+             behind the floating logo + MENÚ. -->
+        <section id="hero" class="section_historia-hero" style="padding: 0 var(--site--gutter) var(--site--gutter); background: var(--swatch--light-200);">
+          <div class="historia_hero_grid u-theme-dark u-radius-main u-border-main" style="border-color: var(--_theme---border); overflow: hidden;">
+            <!-- Left: Rooster illustration in orange (fills column width + height) -->
             <div class="historia_hero_visual">
-              <img src="resources/graphics/pollo-fuego.svg" alt="Gallo Piri Piri con llamas" class="historia_hero_image">
+              <img src="resources/graphics/pollo-fuego-orange.svg" alt="Gallo Piri Piri con llamas" class="historia_hero_image">
             </div>
 
             <!-- Right: Title + Lede (padded) -->
@@ -826,7 +826,7 @@
   </div>
 
   <!-- Site-wide flame cursor + button fire + floating-CTA dock -->
-  <script src="site.js?v=20260606r" defer></script>
+  <script src="site.js?v=20260606s" defer></script>
 
 </body>
 </html>
