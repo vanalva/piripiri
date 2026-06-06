@@ -3669,6 +3669,21 @@ html {
   }
 }
 
+/* Subfooter (© + legal links) on mobile — the row otherwise wraps the links
+   left-aligned. Stack the copyright above the links and centre everything, and
+   let the links themselves wrap centred. */
+@media (max-width: 767px) {
+  .footer_bottom_layout {
+    flex-direction: column;
+    gap: var(--_spacing---space--3);
+    text-align: center;
+  }
+  .footer_bottom_list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 479px) {
   .u-hide-mobile-portrait {
     display: none;
@@ -4936,12 +4951,17 @@ html {
   pointer-events: auto;
 }
 
-/* When the page subfooter scrolls into view, dock the CTAs vertically
-   centered inside the subfooter strip on the right. JS sets `top`
-   inline based on the subfooter's bounding rect each scroll frame. */
-.floating-ctas.is-at-footer {
-  bottom: auto;
-  /* right stays at var(--site--margin) from the base rule */
+/* When the page subfooter (legal strip) scrolls into view — i.e. the user has
+   reached the very bottom — fade the floating RESERVA/PIDE YA bar (and its
+   collapsed FAB) out; site.js toggles this class. */
+.floating-ctas {
+  transition: bottom 0.25s ease, right 0.25s ease, left 0.25s ease,
+    transform 0.25s ease, opacity 0.25s ease, visibility 0.25s ease;
+}
+.floating-ctas.is-hidden-at-footer {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 @media (max-width: 600px) {

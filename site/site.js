@@ -407,11 +407,12 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
 })();
 
 
-// ─── Floating CTAs: dock to subfooter + lift above cookie banner ───────────
-// • While the subfooter is visible and the cookie banner is hidden, the CTAs
-//   dock vertically centered into the subfooter strip on the right.
-// • While the cookie banner is visible, docking is suppressed and the CTAs
-//   sit just above the banner (via the --pp-cookie-offset CSS variable).
+// ─── Floating CTAs: hide at the very bottom + lift above cookie banner ──────
+// • Once the subfooter (legal strip) scrolls into view — i.e. the user has
+//   reached the bottom — the RESERVA/PIDE YA bar (and its collapsed FAB) fade
+//   out; they're redundant down there next to the footer's own links/CTAs.
+// • While the cookie banner is visible, the CTAs sit just above the banner
+//   (via the --pp-cookie-offset CSS variable).
 (function initFloatingCtaDock() {
   if (window._ppFloatingDockInited) return;
   window._ppFloatingDockInited = true;
@@ -434,23 +435,10 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
       ctas.style.setProperty('--pp-cookie-offset', cookieOffset + 'px');
     }
 
-    function placeDocked() {
-      const rect = subfooter.getBoundingClientRect();
-      const center = rect.top + rect.height / 2;
-      // .button_main_wrap has `transform: translateY(-10px)` (the shadow
-      // compensation utility in site.css), so the painted buttons sit 10px
-      // above the floating-ctas layout box. Shift the docked layout DOWN by
-      // 10px so the painted buttons land in the subfooter's visual center.
-      const SHADOW_OFFSET = 10;
-      ctas.style.top = (center - ctas.offsetHeight / 2 + SHADOW_OFFSET) + 'px';
-    }
-
     function apply() {
       rafId = 0;
-      const wantDocked = subfooterVisible && !!subfooter && cookieOffset === 0;
-      ctas.classList.toggle('is-at-footer', wantDocked);
-      if (wantDocked) placeDocked();
-      else ctas.style.top = '';
+      // Hide the bar once the footer's legal strip is on screen.
+      ctas.classList.toggle('is-hidden-at-footer', subfooterVisible && !!subfooter);
     }
     function schedule() {
       if (rafId) return;
