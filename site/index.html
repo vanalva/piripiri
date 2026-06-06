@@ -819,12 +819,31 @@
         @media (max-width: 767px) {
           .brand_card .card_primary_group {
             aspect-ratio: 4 / 5;
+            /* Symmetric easing so the flip is exactly half-way (90°, edge-on) at
+               0.25s, which is when we swap the visible face below. */
+            transition: transform 0.5s ease-in-out;
           }
           .brand_card .card_primary_element {
             position: absolute;
             inset: 0;
             min-height: 0 !important;
           }
+          /* backface-visibility is unreliable on mobile while the swiper
+             transforms the cards — that's what left the front text visible
+             (mirrored) after a flip and made it flicker on swipe. Turn it off
+             and instead show exactly ONE face via opacity, snapped at the flip's
+             midpoint (instant change after a 0.25s delay). The other half of the
+             rotation brings that face from edge-on to front, so it never looks
+             mirrored, and a plain swipe never hides the front. */
+          .brand_card .card_primary_element,
+          .brand_card .card_primary_back {
+            -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+            transition: opacity 0s linear 0.25s;
+          }
+          .brand_card .card_primary_back { opacity: 0; }
+          .brand_card.is-flipped .card_primary_element { opacity: 0; }
+          .brand_card.is-flipped .card_primary_back { opacity: 1; }
         }
       </style>
       <div style="--lg: 3; --md: 2; --sm: 1.2; --xs: 1;" class="slider_offset">
