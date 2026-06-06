@@ -4564,22 +4564,30 @@ html {
   }
 }
 
-/* Historia hero behaves like the HOME hero at every breakpoint: the empty nav
-   row (logo is positioned out of flow, links hidden ≤1919px) collapses so the
-   banner slides up to one gutter from the top, and the logo + MENÚ overlay the
-   banner instead of sitting in a black bar above it. */
+/* Historia hero: the empty nav row (logo is positioned out of flow, links
+   hidden ≤1919px) collapses so it adds no height of its own. */
 .hero_nav.is-historia-hero {
   padding-block: 0 !important;
   min-height: 0 !important;
 }
-.section_historia-hero {
-  padding-top: var(--site--gutter) !important;
+
+/* Mobile: the banner slides up to one gutter from the top and the logo + MENÚ
+   overlay it — exactly like the HOME hero on mobile (a full-bleed banner with
+   the brand floating on top). */
+@media (max-width: 991px) {
+  .section_historia-hero {
+    padding-top: var(--site--gutter) !important;
+  }
 }
 
-/* Desktop/tablet ≥992px: pin the logo + MENÚ at the home-hero insets so they
-   sit comfortably inside the banner (one gutter of padding above it). Below
-   992px the global mobile rules already place them over the banner. */
+/* Desktop/tablet ≥992px: match the HOME hero, where the logo sits over clean
+   dark space (not on the photo). The logo + MENÚ pin to the home insets over
+   the page's dark background, and the banner card drops below them so the logo
+   never collides with the busy image + its rounded border corner. */
 @media (min-width: 992px) {
+  .section_historia-hero {
+    padding-top: calc(2 * var(--site--gutter) + 4.5rem) !important;
+  }
   .hero_nav.is-historia-hero .hero_logo_wrap {
     top: calc(2 * var(--site--gutter)) !important;
   }
