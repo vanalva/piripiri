@@ -4556,6 +4556,13 @@ html {
   }
 
   .historia_hero_visual {
+    /* Fill the full card width (align-items:stretch + aspect-ratio alone was
+       shrinking the visual's width, leaving a strip of card showing beside the
+       image). width:100% + align-self:start lets the aspect-ratio set the
+       height from the full width, so the image spans edge-to-edge like the
+       home hero banner. */
+    width: 100%;
+    align-self: start;
     aspect-ratio: 4 / 3;
   }
 
