@@ -2680,7 +2680,7 @@
      the top + left edges (deeper inset so it doesn't crowd the corner). */
   .hero_nav .hero_logo_wrap {
     position: fixed !important;
-    top: calc(2.5 * var(--site--gutter)) !important;
+    top: calc(2 * var(--site--gutter)) !important;
     left: calc(2 * var(--site--gutter)) !important;
     z-index: 11 !important;
   }
@@ -5194,7 +5194,7 @@ html {
   /* +0.625rem on top to offset the button's -10px shadow lift, so the MENÚ
      button visually lines up with the logo (which has no lift). */
   [data-modal-trigger="menu"] {
-    top: calc(2.5 * var(--site--gutter) + 0.625rem) !important;
+    top: calc(2 * var(--site--gutter) + 0.625rem) !important;
     right: calc(2 * var(--site--gutter)) !important;
   }
 }
