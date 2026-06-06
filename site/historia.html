@@ -32,7 +32,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
 <!-- CSS -->
   <link href="lumos.css" rel="stylesheet" type="text/css">
-  <link href="site.css?v=20260606q" rel="stylesheet" type="text/css">
+  <link href="site.css?v=20260606r" rel="stylesheet" type="text/css">
   <link href="interactions.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -534,21 +534,10 @@
       <section class="section_quienes u-width-full u-theme-light">
 
         <!-- Top: Orange brand block. Same centered-info recipe as DESPLUMEMOS
-             (cs-measure + space-12 padding + mb-4/6/5/4) PLUS an absolute rooster
-             decoration anchored at the bottom that overflows below the section
-             without ever stacking over the text — content sits on z-index 1,
-             rooster on z-index 0, and overflow:visible lets it spill out into
-             the cream block below instead of clipping. Padding-bottom is big
-             enough that the rooster never gets close to the body paragraph. -->
-        <div class="u-theme-brand u-radius-bottom-main" style="position: relative; padding-top: var(--_spacing---space--12); padding-bottom: clamp(12rem, 22vw, 22rem); display: flex; justify-content: center; overflow: visible;">
-
-          <!-- Rooster decoration — anchored bottom-center, 35% spills below the
-               orange section so it visually "rises" out of the brand block.
-               Shrunken from 34rem max to 24rem so its 70% in-section portion
-               can't geometrically reach the body paragraph (padding-bottom is
-               always ≥ that portion). -->
-          <img src="resources/graphics/pollo-fuego.svg" alt="" aria-hidden=""
-               style="position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 35%); width: clamp(14rem, 28vw, 24rem); height: auto; pointer-events: none; z-index: 0;">
+             (cs-measure + balanced space-12 padding). The rooster that used to
+             spill out of the bottom was removed — it duplicated the rooster in
+             the values-tabs element further down the page. -->
+        <div class="u-theme-brand u-radius-bottom-main" style="position: relative; padding-top: var(--_spacing---space--12); padding-bottom: var(--_spacing---space--12); display: flex; justify-content: center;">
 
           <div class="u-container-small u-align-items-center" style="text-align: center; max-width: var(--cs-measure); min-width: 0; position: relative; z-index: 1;">
             <!-- Tagline -->
@@ -1187,7 +1176,7 @@
   </div>
 
   <!-- Site-wide flame cursor + button fire -->
-  <script src="site.js?v=20260606q" defer></script>
+  <script src="site.js?v=20260606r" defer></script>
 
 </body>
 </html>

@@ -4592,6 +4592,15 @@ html {
   }
 }
 
+/* Historia MENÚ button: the u-theme-brand button's border resolves to a stray
+   white outline in this fixed context. Pin it to brand-orange so it blends with
+   the orange banner — a clean dark pill with orange text, exactly like the
+   VER MÁS button (which has the same brand-orange border). Applies at all
+   breakpoints since the button overlays the orange banner everywhere. */
+.hero_nav.is-historia-hero ~ [data-modal-trigger="menu"] .button_main_element {
+  border-color: var(--swatch--brand-500) !important;
+}
+
 /* =====================================================================
    HISTORIA PAGE - Quote Section
    ===================================================================== */
