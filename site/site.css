@@ -4853,6 +4853,23 @@ html {
   color: var(--_theme---text);
 }
 
+/* Flame frame visibility — site.js (initInlineFlames) cycles the .pp-active
+   class so only one frame shows at a time, which IS the fire animation. This
+   rule used to be injected by the cursor-flame init, but that's skipped on
+   touch devices, so without it here every frame showed at once and the inline
+   flames (e.g. the Reserva tu mesa fan) didn't animate on mobile. */
+.pp-flame-wrap svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.pp-flame-wrap svg.pp-active {
+  opacity: 1;
+}
+
 
 /* ─── Fullscreen menu: drop the modal backdrop dim ─────────────────────────
    .modal_backdrop sits inside .modal_inner and adds a 50% dark wash so the
