@@ -4564,19 +4564,28 @@ html {
   }
 }
 
-/* Mobile/tablet: make the historia hero behave exactly like the HOME hero —
-   the banner image slides up to the top gutter so the fixed logo + MENÚ button
-   overlay the image (same position + padding as the homepage), instead of the
-   banner starting below an empty nav bar. The nav row is empty here (logo is
-   fixed, links hidden ≤1919px), so collapsing its padding removes the gap
-   that was pushing the banner down. Image top now matches home: one gutter. */
-@media (max-width: 991px) {
-  .hero_nav.is-historia-hero {
-    padding-block: 0 !important;
-    min-height: 0 !important;
+/* Historia hero behaves like the HOME hero at every breakpoint: the empty nav
+   row (logo is positioned out of flow, links hidden ≤1919px) collapses so the
+   banner slides up to one gutter from the top, and the logo + MENÚ overlay the
+   banner instead of sitting in a black bar above it. */
+.hero_nav.is-historia-hero {
+  padding-block: 0 !important;
+  min-height: 0 !important;
+}
+.section_historia-hero {
+  padding-top: var(--site--gutter) !important;
+}
+
+/* Desktop/tablet ≥992px: pin the logo + MENÚ at the home-hero insets so they
+   sit comfortably inside the banner (one gutter of padding above it). Below
+   992px the global mobile rules already place them over the banner. */
+@media (min-width: 992px) {
+  .hero_nav.is-historia-hero .hero_logo_wrap {
+    top: calc(2 * var(--site--gutter)) !important;
   }
-  .section_historia-hero {
-    padding-top: var(--site--gutter) !important;
+  .hero_nav.is-historia-hero ~ [data-modal-trigger="menu"] {
+    top: calc(2 * var(--site--gutter)) !important;
+    right: calc(2 * var(--site--gutter)) !important;
   }
 }
 
