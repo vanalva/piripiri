@@ -3657,6 +3657,13 @@ html {
   }
 }
 
+/* Footer newsletter column — more breathing room between the boletín line and
+   the SUSCRIBIRSE button (the button carries a -10px shadow-offset transform,
+   which otherwise leaves them looking cramped). */
+.footer_contain .u-flex-vertical-nowrap.u-text-align-center {
+  gap: var(--_spacing---space--6);
+}
+
 /* ─── Footer on desktop (≥992px) ───────────────────────────────────────────
    The 3-column row was bottom-aligned (jagged top edge) and stretched the full
    width, flinging the narrow side columns to the screen edges with huge gaps.
