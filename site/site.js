@@ -574,19 +574,23 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
   if (window._ppStickyNavInited) return;
   window._ppStickyNavInited = true;
 
-  // Cream wordmark on dark/brand sections, dark on light ones, so the (no
-  // background) logo stays legible while it floats over different sections.
+  // Brand cream wordmark on dark/brand sections, brand dark on light ones, so
+  // the (no background) logo stays legible over different sections. Use the
+  // brand swatches: light-400 (#efdece, cream) and dark-900 (#1d1d1b) — NOT
+  // light-200 (#fbf8f5), which is near-white.
+  const PP_LOGO_CREAM = 'var(--swatch--light-400)';
+  const PP_LOGO_DARK = 'var(--swatch--dark-900)';
   function themeColorFor(node) {
     while (node && node !== document.documentElement) {
       if (node.classList) {
-        if (node.classList.contains('u-theme-light')) return 'var(--swatch--dark-900)';
+        if (node.classList.contains('u-theme-light')) return PP_LOGO_DARK;
         if (node.classList.contains('u-theme-dark')
           || node.classList.contains('u-theme-brand')
-          || node.classList.contains('u-theme-brand-2')) return 'var(--swatch--light-200)';
+          || node.classList.contains('u-theme-brand-2')) return PP_LOGO_CREAM;
       }
       node = node.parentElement;
     }
-    return '';
+    return PP_LOGO_CREAM;
   }
 
   function init() {
