@@ -1,128 +1,705 @@
 // Per-dish secondary image galleries for carta items.
-// slug -> [image paths]. Dishes not listed show no gallery.
+// { slug: [ {b: <base name>, w: [available widths]} ] }.
+// Files live at resources/images/Carta/gallery/<w>w/<b>_<w>w.webp
 window.CARTA_GALLERY = {
   "pollo-entero-al-carbn": [
-    "resources/images/Carta/gallery/pollo-entero-al-carbn-1.webp",
-    "resources/images/Carta/gallery/pollo-entero-al-carbn-2.webp",
-    "resources/images/Carta/gallery/pollo-entero-al-carbn-3.webp",
-    "resources/images/Carta/gallery/pollo-entero-al-carbn-4.webp"
+    {
+      "b": "pollo-entero-al-carbn-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "pollo-entero-al-carbn-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "pollo-entero-al-carbn-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "pollo-entero-al-carbn-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "12-pollo-al-carbn": [
-    "resources/images/Carta/gallery/12-pollo-al-carbn-1.webp",
-    "resources/images/Carta/gallery/12-pollo-al-carbn-2.webp",
-    "resources/images/Carta/gallery/12-pollo-al-carbn-3.webp",
-    "resources/images/Carta/gallery/12-pollo-al-carbn-4.webp"
+    {
+      "b": "12-pollo-al-carbn-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "12-pollo-al-carbn-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "12-pollo-al-carbn-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "12-pollo-al-carbn-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "menu-single": [
-    "resources/images/Carta/gallery/menu-single-1.webp",
-    "resources/images/Carta/gallery/menu-single-2.webp",
-    "resources/images/Carta/gallery/menu-single-3.webp",
-    "resources/images/Carta/gallery/menu-single-4.webp"
+    {
+      "b": "menu-single-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-single-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-single-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-single-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "menu-pollo-acompanamiento": [
-    "resources/images/Carta/gallery/menu-pollo-acompanamiento-1.webp",
-    "resources/images/Carta/gallery/menu-pollo-acompanamiento-2.webp",
-    "resources/images/Carta/gallery/menu-pollo-acompanamiento-3.webp",
-    "resources/images/Carta/gallery/menu-pollo-acompanamiento-4.webp"
+    {
+      "b": "menu-pollo-acompanamiento-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-pollo-acompanamiento-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-pollo-acompanamiento-3",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "menu-pollo-acompanamiento-4",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    }
   ],
   "menu-piri-piri-para-2": [
-    "resources/images/Carta/gallery/menu-piri-piri-para-2-1.webp",
-    "resources/images/Carta/gallery/menu-piri-piri-para-2-2.webp",
-    "resources/images/Carta/gallery/menu-piri-piri-para-2-3.webp",
-    "resources/images/Carta/gallery/menu-piri-piri-para-2-4.webp"
+    {
+      "b": "menu-piri-piri-para-2-1",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "menu-piri-piri-para-2-2",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "menu-piri-piri-para-2-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-piri-piri-para-2-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "menu-gran-pack": [
-    "resources/images/Carta/gallery/menu-gran-pack-1.webp",
-    "resources/images/Carta/gallery/menu-gran-pack-2.webp",
-    "resources/images/Carta/gallery/menu-gran-pack-3.webp",
-    "resources/images/Carta/gallery/menu-gran-pack-4.webp"
+    {
+      "b": "menu-gran-pack-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-gran-pack-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-gran-pack-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-gran-pack-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "menu-pack-familiar": [
-    "resources/images/Carta/gallery/menu-pack-familiar-1.webp",
-    "resources/images/Carta/gallery/menu-pack-familiar-2.webp",
-    "resources/images/Carta/gallery/menu-pack-familiar-3.webp",
-    "resources/images/Carta/gallery/menu-pack-familiar-4.webp"
+    {
+      "b": "menu-pack-familiar-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-pack-familiar-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-pack-familiar-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "menu-pack-familiar-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "suprema": [
-    "resources/images/Carta/gallery/suprema-1.webp",
-    "resources/images/Carta/gallery/suprema-2.webp",
-    "resources/images/Carta/gallery/suprema-3.webp",
-    "resources/images/Carta/gallery/suprema-4.webp"
+    {
+      "b": "suprema-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "suprema-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "suprema-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "suprema-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "alitas-originales": [
-    "resources/images/Carta/gallery/alitas-originales-1.webp",
-    "resources/images/Carta/gallery/alitas-originales-2.webp",
-    "resources/images/Carta/gallery/alitas-originales-3.webp",
-    "resources/images/Carta/gallery/alitas-originales-4.webp",
-    "resources/images/Carta/gallery/alitas-originales-5.webp",
-    "resources/images/Carta/gallery/alitas-originales-6.webp"
+    {
+      "b": "alitas-originales-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "alitas-originales-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "alitas-originales-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "alitas-originales-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "alitas-originales-5",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "alitas-originales-6",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "arroz-especial": [
-    "resources/images/Carta/gallery/arroz-especial-1.webp",
-    "resources/images/Carta/gallery/arroz-especial-2.webp",
-    "resources/images/Carta/gallery/arroz-especial-3.webp",
-    "resources/images/Carta/gallery/arroz-especial-4.webp"
+    {
+      "b": "arroz-especial-1",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "arroz-especial-2",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "arroz-especial-3",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "arroz-especial-4",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    }
   ],
   "boniato-rostizado": [
-    "resources/images/Carta/gallery/boniato-rostizado-1.webp",
-    "resources/images/Carta/gallery/boniato-rostizado-2.webp",
-    "resources/images/Carta/gallery/boniato-rostizado-3.webp",
-    "resources/images/Carta/gallery/boniato-rostizado-4.webp",
-    "resources/images/Carta/gallery/boniato-rostizado-5.webp",
-    "resources/images/Carta/gallery/boniato-rostizado-6.webp"
+    {
+      "b": "boniato-rostizado-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "boniato-rostizado-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "boniato-rostizado-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "boniato-rostizado-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "boniato-rostizado-5",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "boniato-rostizado-6",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "chupachs-de-pollo": [
-    "resources/images/Carta/gallery/chupachs-de-pollo-1.webp",
-    "resources/images/Carta/gallery/chupachs-de-pollo-2.webp",
-    "resources/images/Carta/gallery/chupachs-de-pollo-3.webp",
-    "resources/images/Carta/gallery/chupachs-de-pollo-4.webp"
+    {
+      "b": "chupachs-de-pollo-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "chupachs-de-pollo-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "chupachs-de-pollo-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "chupachs-de-pollo-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "costillas-de-mazorcas-ahumadas": [
-    "resources/images/Carta/gallery/costillas-de-mazorcas-ahumadas-1.webp"
+    {
+      "b": "costillas-de-mazorcas-ahumadas-1",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    }
   ],
   "piri-crispy-burger": [
-    "resources/images/Carta/gallery/piri-crispy-burger-1.webp",
-    "resources/images/Carta/gallery/piri-crispy-burger-2.webp"
+    {
+      "b": "piri-crispy-burger-1",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "piri-crispy-burger-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "nachetes": [
-    "resources/images/Carta/gallery/nachetes-1.webp",
-    "resources/images/Carta/gallery/nachetes-2.webp",
-    "resources/images/Carta/gallery/nachetes-3.webp",
-    "resources/images/Carta/gallery/nachetes-4.webp"
+    {
+      "b": "nachetes-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "nachetes-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "nachetes-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "nachetes-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "patatas-gozonas": [
-    "resources/images/Carta/gallery/patatas-gozonas-1.webp",
-    "resources/images/Carta/gallery/patatas-gozonas-2.webp",
-    "resources/images/Carta/gallery/patatas-gozonas-3.webp",
-    "resources/images/Carta/gallery/patatas-gozonas-4.webp",
-    "resources/images/Carta/gallery/patatas-gozonas-5.webp",
-    "resources/images/Carta/gallery/patatas-gozonas-6.webp"
+    {
+      "b": "patatas-gozonas-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "patatas-gozonas-2",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "patatas-gozonas-3",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "patatas-gozonas-4",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "patatas-gozonas-5",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    {
+      "b": "patatas-gozonas-6",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    }
   ],
   "patatas-fritas": [
-    "resources/images/Carta/gallery/patatas-fritas-1.webp"
+    {
+      "b": "patatas-fritas-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "salchicha-criolla": [
-    "resources/images/Carta/gallery/salchicha-criolla-1.webp",
-    "resources/images/Carta/gallery/salchicha-criolla-2.webp",
-    "resources/images/Carta/gallery/salchicha-criolla-3.webp",
-    "resources/images/Carta/gallery/salchicha-criolla-4.webp",
-    "resources/images/Carta/gallery/salchicha-criolla-5.webp",
-    "resources/images/Carta/gallery/salchicha-criolla-6.webp"
+    {
+      "b": "salchicha-criolla-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "salchicha-criolla-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "salchicha-criolla-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "salchicha-criolla-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "salchicha-criolla-5",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "salchicha-criolla-6",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "special-burger": [
-    "resources/images/Carta/gallery/special-burger-1.webp"
+    {
+      "b": "special-burger-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "tenders": [
-    "resources/images/Carta/gallery/tenders-1.webp",
-    "resources/images/Carta/gallery/tenders-2.webp",
-    "resources/images/Carta/gallery/tenders-3.webp",
-    "resources/images/Carta/gallery/tenders-4.webp"
+    {
+      "b": "tenders-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "tenders-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "tenders-3",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "tenders-4",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ],
   "tequenos": [
-    "resources/images/Carta/gallery/tequenos-1.webp"
+    {
+      "b": "tequenos-1",
+      "w": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    }
   ],
   "truffa-burger": [
-    "resources/images/Carta/gallery/truffa-burger-1.webp",
-    "resources/images/Carta/gallery/truffa-burger-2.webp"
+    {
+      "b": "truffa-burger-1",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    },
+    {
+      "b": "truffa-burger-2",
+      "w": [
+        320,
+        480,
+        768
+      ]
+    }
   ]
 };

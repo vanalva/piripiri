@@ -566,23 +566,21 @@
         const galleryImgs = (window.CARTA_GALLERY && window.CARTA_GALLERY[item.slug]) || [];
         if (!galleryImgs.length) { gallerySection.style.display = "none"; return; }
         const marquee = galleryGrid.querySelector(".marquee_wrap");
-        // Gallery tiles are square; responsive variants live in
-        // .../gallery/{320,480,768}w/<name>_<w>w.webp (generated via the
-        // Compression Lab protocol). Build a srcset from the flat path.
-        const GALLERY_W = [320, 480, 768];
-        const galleryVariant = (flat, w) =>
-          flat.replace(/\/gallery\//, `/gallery/${w}w/`).replace(/\.webp$/, `_${w}w.webp`);
-        const gallerySrcset = (flat) =>
-          /\/gallery\/[^/]+\.webp$/.test(flat)
-            ? GALLERY_W.map((w) => `${galleryVariant(flat, w)} ${w}w`).join(", ")
-            : "";
-        const makeTile = (src, sizeClass) => {
+        // Each entry: { b: base name, w: [available widths] }. Variants live at
+        // resources/images/Carta/gallery/<w>w/<b>_<w>w.webp (Compression Lab
+        // protocol, from the full-res source). Width list is per-image because
+        // sources differ in resolution — avoids requesting a width that 404s.
+        const galPath = (b, w) => `resources/images/Carta/gallery/${w}w/${b}_${w}w.webp`;
+        const makeTile = (entry, sizeClass) => {
           const tile = document.createElement("div");
           tile.className = "masonry-item " + sizeClass;
           const im = document.createElement("img");
-          const ss = gallerySrcset(src);
-          im.src = ss ? galleryVariant(src, 480) : src;
-          if (ss) { im.srcset = ss; im.sizes = "(max-width: 767px) 50vw, 33vw"; }
+          const ws = (entry && entry.w) || [];
+          if (ws.length) {
+            im.src = galPath(entry.b, ws[ws.length - 1]);
+            im.srcset = ws.map((w) => `${galPath(entry.b, w)} ${w}w`).join(", ");
+            im.sizes = "(max-width: 767px) 50vw, 40vw";
+          }
           im.alt = item.name || ""; im.loading = "lazy"; im.decoding = "async"; im.className = "masonry-image";
           tile.appendChild(im);
           return tile;
