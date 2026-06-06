@@ -3693,6 +3693,26 @@ html {
     text-align: center;
   }
 }
+/* Location cards (Reserva tu mesa) on mobile — make each a single bordered,
+   rounded card instead of two separately-rounded pieces. The wrapper takes the
+   border + radius and clips both halves; the image and content halves drop
+   their own radius/border so the image rounds only at the top and the content
+   only at the bottom — one continuous card. */
+@media (max-width: 767px) {
+  .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap {
+    border: var(--border-width--main) solid var(--_theme---border);
+    border-radius: var(--radius--main);
+    overflow: hidden;
+  }
+  .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap > div:first-child {
+    border-radius: 0 !important;
+  }
+  .section_reserva .u-position-sticky > .u-flex-horizontal-nowrap > div:last-child {
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+}
+
 /* Bottom row stacks on mobile — center the social/address and put RESERVA on
    the left and PIDE YA on the right (one on each side). */
 @media (max-width: 767px) {
