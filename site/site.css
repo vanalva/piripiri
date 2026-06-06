@@ -3615,13 +3615,27 @@ html {
     flex-wrap: wrap;
   }
 
-  /* Footer columns — the desktop row uses u-align-items-end to baseline-
-     align the three columns. Once u-flex-column-mobile stacks them, that
-     end-alignment pushes each block to the RIGHT edge (Contacto + Síguenos
-     floating right with empty space on the left). Center the stacked blocks
-     and their content so the footer reads as a tidy single column. */
-  .footer_contain > .u-flex-column-mobile {
-    align-items: center;
+}
+
+/* ─── Footer layout on mobile + tablet (≤991px) ────────────────────────────
+   The desktop footer is a 3-column row that only collapses at ≤767px, leaving
+   tablet cramped, and it carries two logos plus a VOLVER ARRIBA button pulled
+   up over the big wordmark. Here we: drop the small top logo (the big PIRIPIRI
+   wordmark is the brand mark), stack the columns into one tidy centred column
+   with real breathing room, and sit VOLVER ARRIBA cleanly below the wordmark. */
+@media (max-width: 991px) {
+  /* one logo only */
+  .footer_wrap .footer_logo_wrap {
+    display: none;
+  }
+
+  /* stack + centre the three columns (the row's u-align-items-end otherwise
+     left them cramped / right-aligned at this width) */
+  .footer_contain > .u-flex-horizontal-nowrap {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: var(--_spacing---space--9) !important;
+    padding-block: var(--_spacing---space--9) !important;
   }
   .footer_contain .footer_social_wrap,
   .footer_contain .footer_group_wrap {
@@ -3631,10 +3645,15 @@ html {
   .footer_contain .footer_group_list {
     align-items: center;
   }
-  /* Logo/social column declares u-align-items-start internally — center it
-     too so the logo, "Síguenos" and the icons sit under the newsletter. */
   .footer_contain .u-flex-vertical-nowrap.u-align-items-start {
     align-items: center;
+  }
+
+  /* VOLVER ARRIBA sits below the big wordmark instead of the desktop -6rem
+     pull-up that overlaps the letters on small screens */
+  .footer_wrap .u-position-relative.u-overflow-hidden > .u-flex-horizontal-nowrap.u-justify-content-center {
+    margin-top: 1.25rem !important;
+    margin-bottom: 3rem !important;
   }
 }
 
