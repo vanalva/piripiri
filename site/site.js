@@ -626,12 +626,18 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
 })();
 
 // ─── Shared newsletter popup (PRENDE LA MECHA) ─────────────────────────────
-// Single, lightweight subscribe popup injected on EVERY page so the footer's
-// SUSCRIBIRSE button works site-wide. No Swiper / no carousel — just the
-// newsletter email form. Reuses shared classes already in site.css
-// (modal_content, popup-close-btn, form_field.is-pill, button_main,
+// Lightweight subscribe popup injected on pages that DON'T already ship their
+// own, so the footer's SUSCRIBIRSE button works site-wide. No Swiper / no
+// carousel — just the newsletter email form. Reuses shared classes already in
+// site.css (modal_content, popup-close-btn, form_field.is-pill, button_main,
 // newsletter-consent). Exposes window.openSuscribePopup/closeSuscribePopup.
+//
+// The home page ships its OWN richer 4-slide carousel popup inline (with the
+// auto-open-on-scroll behaviour). That inline script runs before this one and
+// defines window.openSuscribePopup, so we bail here to avoid clobbering it.
 (function () {
+  if (typeof window.openSuscribePopup === 'function') return;
+
   var POPUP_ID = 'suscribe-popup';
 
   function buildPopup() {
