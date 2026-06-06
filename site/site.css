@@ -2676,13 +2676,12 @@
     aspect-ratio: auto !important;
   }
 
-  /* Logo: float at top-left of the banner. Left edge aligns with the page
-     content (one gutter), not the MENÚ button's deeper inset, so the logo
-     lines up with the hero title + copy below it. */
+  /* Logo: float at top-left of the banner with comfortable breathing room from
+     the top + left edges (deeper inset so it doesn't crowd the corner). */
   .hero_nav .hero_logo_wrap {
     position: fixed !important;
-    top: calc(2 * var(--site--gutter)) !important;
-    left: var(--site--gutter) !important;
+    top: calc(3 * var(--site--gutter)) !important;
+    left: calc(2 * var(--site--gutter)) !important;
     z-index: 11 !important;
   }
 
@@ -5192,8 +5191,10 @@ html {
    each page's own inline position. carta.html's menu button is static (inside
    a fixed nav), so top/right are inert there — left untouched. */
 @media (max-width: 767px) {
+  /* +0.625rem on top to offset the button's -10px shadow lift, so the MENÚ
+     button visually lines up with the logo (which has no lift). */
   [data-modal-trigger="menu"] {
-    top: calc(2 * var(--site--gutter)) !important;
+    top: calc(3 * var(--site--gutter) + 0.625rem) !important;
     right: calc(2 * var(--site--gutter)) !important;
   }
 }
