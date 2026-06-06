@@ -4553,6 +4553,9 @@ html {
   .historia_hero_grid {
     grid-template-columns: 1fr;
     min-height: auto;
+    /* Let the stacked card grow to fit the image + content instead of being
+       capped at 75vh (which clipped the lede on mobile). */
+    max-height: none;
   }
 
   .historia_hero_visual {

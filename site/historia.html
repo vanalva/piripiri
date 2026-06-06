@@ -32,7 +32,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
 <!-- CSS -->
   <link href="lumos.css" rel="stylesheet" type="text/css">
-  <link href="site.css?v=20260606t" rel="stylesheet" type="text/css">
+  <link href="site.css?v=20260606u" rel="stylesheet" type="text/css">
   <link href="interactions.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -228,10 +228,9 @@
         </ul>
       </nav>
 
-      <!-- MENÚ button: fixed so it follows on scroll. Aligned to the same
-           top/right offset the original nav row used (padding-block-4 +
-           gutter), not the homepage's deeper inset. -->
-      <div data-modal-trigger="menu" class="button_main_wrap u-radius-round u-theme-brand" data-trigger="hover focus" style="position: fixed; top: var(--_spacing---space--4); right: var(--site--gutter); z-index: 11;">
+      <!-- MENÚ button: fixed so it follows on scroll. Uses the homepage hero
+           inset (2× gutter) so it lines up with the logo over the banner. -->
+      <div data-modal-trigger="menu" class="button_main_wrap u-radius-round u-theme-brand" data-trigger="hover focus" style="position: fixed; top: calc(2 * var(--site--gutter)); right: calc(2 * var(--site--gutter)); z-index: 11;">
         <button class="button_main_element" aria-label="Abrir menú">
           <svg class="button_main_icon" viewBox="0 0 39.261 32.661" fill="currentColor" aria-hidden="true" style="width: 1.25rem; height: auto;">
             <path d="M.924,25.974h38.337l-.924,6.687H0Z"/>
@@ -1176,7 +1175,7 @@
   </div>
 
   <!-- Site-wide flame cursor + button fire -->
-  <script src="site.js?v=20260606t" defer></script>
+  <script src="site.js?v=20260606u" defer></script>
 
 </body>
 </html>
