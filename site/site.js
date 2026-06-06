@@ -624,3 +624,92 @@ const PP_IS_TOUCH = !!(window.matchMedia && window.matchMedia('(hover: none), (p
     init();
   }
 })();
+
+// ─── Shared newsletter popup (PRENDE LA MECHA) ─────────────────────────────
+// Single, lightweight subscribe popup injected on EVERY page so the footer's
+// SUSCRIBIRSE button works site-wide. No Swiper / no carousel — just the
+// newsletter email form. Reuses shared classes already in site.css
+// (modal_content, popup-close-btn, form_field.is-pill, button_main,
+// newsletter-consent). Exposes window.openSuscribePopup/closeSuscribePopup.
+(function () {
+  var POPUP_ID = 'suscribe-popup';
+
+  function buildPopup() {
+    var overlay = document.createElement('div');
+    overlay.id = POPUP_ID;
+    overlay.className = 'popup-overlay';
+    overlay.setAttribute('style', 'position:fixed;inset:0;z-index:1100;display:none;justify-content:center;align-items:center;background-color:color-mix(in srgb, var(--swatch--dark-900) 85%, transparent);cursor:pointer;');
+    overlay.innerHTML = [
+      '<div class="modal_content u-theme-dark u-border-main u-position-relative u-radius-main" style="width:min(30rem,92vw);cursor:default;background-color:var(--_theme---background);overflow:hidden;">',
+        '<button type="button" data-suscribe-close class="popup-close-btn" style="z-index:2;">',
+          '<svg width="14" height="14" viewBox="0 0 39.276 39.277" fill="currentColor" aria-hidden="true">',
+            '<path d="M6.505,0.79L39.276,33.561l-6.505,4.926L0,5.716Z"/>',
+            '<path d="M38.486,6.506L5.715,39.277l-4.926-6.505L33.56,0Z"/>',
+          '</svg>',
+          '<span class="u-sr-only">Cerrar</span>',
+        '</button>',
+        '<div style="width:100%;aspect-ratio:16/10;overflow:hidden;">',
+          '<img src="resources/images/general/eating-closeup-02.webp" srcset="resources/images/general/480w/eating-closeup-02_480w.webp 480w, resources/images/general/768w/eating-closeup-02_768w.webp 768w" sizes="(max-width:767px) 90vw, 520px" loading="lazy" decoding="async" alt="Vive la experiencia Piri Piri" style="width:100%;height:100%;object-fit:cover;display:block;">',
+        '</div>',
+        '<div class="u-flex-vertical-nowrap u-align-items-center u-gap-6 u-padding-block-7 u-padding-inline-7" style="text-align:center;">',
+          '<h2 class="u-text-style-h2 u-text-transform-uppercase u-margin-0" style="line-height:0.95;">PRENDE<br>LA MECHA</h2>',
+          '<p class="u-text-style-main u-margin-0" style="font-style:italic;">Drops, eventos privados y salsas secretas. Directo a tu inbox.</p>',
+          '<form data-suscribe-form class="u-flex-vertical-nowrap u-gap-4" style="width:100%;align-items:stretch;margin-top:var(--_spacing---space--2);">',
+            '<input type="email" name="email" placeholder="Tu email" required class="form_field is-pill" style="width:100%;">',
+            '<div data-button-mode="orchid" class="button_main_wrap" data-trigger="hover focus" style="align-self:center;margin-top:var(--_spacing---space--2);">',
+              '<button type="submit" class="button_main_element" data-style="secondary">',
+                '<div class="button_main_text u-text-style-main">QUIERO ENTRAR</div>',
+              '</button>',
+            '</div>',
+            '<label class="newsletter-consent u-flex-horizontal-nowrap u-gap-2 u-align-items-start u-cursor-pointer" style="margin-top:var(--_spacing---space--3);">',
+              '<span class="newsletter-checkbox-box">',
+                '<input type="checkbox" required class="newsletter_checkbox">',
+                '<svg class="newsletter-checkbox-check" width="12" height="12" viewBox="0 0 39.276 32.661" aria-hidden="true">',
+                  '<path d="M3 18 L8 13 L16 21 L32 5 L36 9 L16 29 Z" fill="currentColor"></path>',
+                '</svg>',
+              '</span>',
+              '<span class="u-text-style-small u-text-align-left" style="opacity:0.75;line-height:1.4;">Acepto la <a href="legal.html#privacidad" class="u-color-inherit u-text-decoration-underline">Política de Privacidad</a> y consiento recibir actualizaciones.</span>',
+            '</label>',
+          '</form>',
+        '</div>',
+      '</div>'
+    ].join('');
+
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay) closeSuscribePopup();
+    });
+    overlay.querySelector('[data-suscribe-close]').addEventListener('click', closeSuscribePopup);
+    overlay.querySelector('[data-suscribe-form]').addEventListener('submit', function (e) {
+      e.preventDefault();
+      closeSuscribePopup();
+      /* TODO: wire to ESP */
+    });
+    document.body.appendChild(overlay);
+    return overlay;
+  }
+
+  function getPopup() {
+    return document.getElementById(POPUP_ID) || buildPopup();
+  }
+
+  function openSuscribePopup() {
+    var el = getPopup();
+    el.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSuscribePopup() {
+    var el = document.getElementById(POPUP_ID);
+    if (!el) return;
+    el.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  window.openSuscribePopup = openSuscribePopup;
+  window.closeSuscribePopup = closeSuscribePopup;
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    var el = document.getElementById(POPUP_ID);
+    if (el && el.style.display !== 'none' && el.style.display !== '') closeSuscribePopup();
+  });
+})();

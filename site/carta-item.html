@@ -27,7 +27,7 @@
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
 <!-- CSS -->
   <link href="lumos.css" rel="stylesheet" type="text/css">
-  <link href="site.css?v=20260606i" rel="stylesheet" type="text/css">
+  <link href="site.css?v=20260606j" rel="stylesheet" type="text/css">
   <link href="interactions.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -320,26 +320,14 @@
           </div>
         </div>
 
-        <!-- Newsletter Signup (Center) -->
+        <!-- Newsletter Signup (Center) — opens the PRENDE LA MECHA modal -->
         <div class="u-flex-vertical-nowrap u-gap-4 u-align-items-center u-text-align-center" style="flex: 1 1 auto; max-width: 32rem;">
           <p class="u-text-style-main" style="font-style: italic;">Únete a nuestro boletín para estar al día con novedades y lanzamientos.</p>
-          <form class="newsletter_form u-flex-horizontal-nowrap u-gap-3 u-flex-column-mobile u-justify-content-center" style="align-items: stretch; width: 100%;">
-            <input type="email" placeholder="Introduce tu email" required class="form_field is-pill" style="flex: 1; max-width: 20rem;">
-            <div data-button-mode="orchid" class="button_main_wrap" data-trigger="hover focus">
-              <button type="submit" class="button_main_element" data-style="secondary">
-                <div class="button_main_text u-text-style-main">SUSCRIBIRSE</div>
-              </button>
-            </div>
-          </form>
-          <label class="newsletter-consent u-flex-horizontal-nowrap u-gap-2 u-align-items-start u-cursor-pointer">
-            <span class="newsletter-checkbox-box">
-              <input type="checkbox" required class="newsletter_checkbox">
-              <svg class="newsletter-checkbox-check" width="12" height="12" viewBox="0 0 39.276 32.661" aria-hidden="true">
-                <path d="M3 18 L8 13 L16 21 L32 5 L36 9 L16 29 Z" fill="currentColor"></path>
-              </svg>
-            </span>
-            <span class="u-text-style-small u-opacity-75 u-text-align-left">Acepto la <a href="legal.html#privacidad" class="u-color-inherit u-text-decoration-underline">Política de Privacidad</a> y consiento recibir actualizaciones.</span>
-          </label>
+          <div data-button-mode="orchid" class="button_main_wrap" data-trigger="hover focus">
+            <button type="button" class="button_main_element" data-style="secondary" onclick="openSuscribePopup();">
+              <div class="button_main_text u-text-style-main">SUSCRIBIRSE</div>
+            </button>
+          </div>
         </div>
 
         <!-- Contacto (Right Side) -->
@@ -792,7 +780,7 @@
   </script>
 
   <!-- Site-wide flame cursor + button fire -->
-  <script src="site.js?v=20260606i" defer></script>
+  <script src="site.js?v=20260606j" defer></script>
 
 </body>
 </html>

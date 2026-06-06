@@ -5132,3 +5132,14 @@ html {
   --_text-style---margin-bottom: var(--_spacing---space--3);
   --_text-style---text-wrap: pretty;
 }
+
+/* Mobile: standardise the floating MENÚ button position across all pages to
+   match the home page (more inset from the top-right corner). Desktop keeps
+   each page's own inline position. carta.html's menu button is static (inside
+   a fixed nav), so top/right are inert there — left untouched. */
+@media (max-width: 767px) {
+  [data-modal-trigger="menu"] {
+    top: calc(2 * var(--site--gutter)) !important;
+    right: calc(2 * var(--site--gutter)) !important;
+  }
+}
