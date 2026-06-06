@@ -808,12 +808,22 @@
           display: block;
         }
         /* Mobile: match the image-card sliders (food/gallery) so every carousel
-           card shares the same footprint. Those cards are aspect-ratio 4/5, so
-           drop the tall 550–800px min-height and use the same ratio here. */
+           card shares the same 4/5 footprint. The card height now comes from the
+           GROUP, and BOTH faces are absolutely positioned (symmetric). The old
+           layout left the front face in normal flow while the back was absolute
+           — that asymmetric 3D structure made backface-visibility flicker on
+           mobile while the swiper moved (text vanishing on swipe, and a flip
+           showing the mirrored front instead of the back illustration). With
+           both faces absolute inside an aspect-ratio'd group the flip stays
+           rock-solid during slider movement. */
         @media (max-width: 767px) {
-          .brand_card .card_primary_element {
-            min-height: 0 !important;
+          .brand_card .card_primary_group {
             aspect-ratio: 4 / 5;
+          }
+          .brand_card .card_primary_element {
+            position: absolute;
+            inset: 0;
+            min-height: 0 !important;
           }
         }
       </style>
