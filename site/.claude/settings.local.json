@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "mcp__chrome-devtools__resize_page"
+      "mcp__chrome-devtools__resize_page",
+      "Bash(mkdir -p _audit)",
+      "Bash(echo \"_audit/\")"
     ]
   }
 }
