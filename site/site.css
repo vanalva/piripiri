@@ -3664,6 +3664,19 @@ html {
   gap: var(--_spacing---space--6);
 }
 
+/* Hero footer (social icons + address) — on mobile/tablet there are no bottom
+   corner images flanking it, so left-align it instead of centering it between
+   the (desktop-only) images. The desktop 1fr/auto/1fr centering is kept above. */
+@media (max-width: 991px) {
+  .hero_footer {
+    grid-template-columns: auto 1fr !important;
+    column-gap: 0 !important; /* don't let the grid gap inset the content past the gutter */
+  }
+  .hero_footer > div:last-child {
+    justify-content: flex-start !important;
+  }
+}
+
 /* ─── Footer on desktop (≥992px) ───────────────────────────────────────────
    The 3-column row was bottom-aligned (jagged top edge) and stretched the full
    width, flinging the narrow side columns to the screen edges with huge gaps.
