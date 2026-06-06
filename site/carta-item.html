@@ -485,7 +485,7 @@
 
       if (imageEl) {
         imageEl.src = widthVariant(item.image, 1024) || item.image || defaultImage;
-        const heroSrcset = srcsetFor(item.image, [768, 1024, 1366, 1600, 1920]);
+        const heroSrcset = srcsetFor(item.image, [768, 1024, 1366, 1600, 1920, 2560]);
         if (heroSrcset) {
           imageEl.srcset = heroSrcset;
           imageEl.sizes = "(max-width: 767px) 100vw, 50vw";
