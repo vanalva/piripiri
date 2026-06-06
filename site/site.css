@@ -4558,6 +4558,22 @@ html {
   }
 }
 
+/* Mobile/tablet: make the historia hero behave exactly like the HOME hero —
+   the banner image slides up to the top gutter so the fixed logo + MENÚ button
+   overlay the image (same position + padding as the homepage), instead of the
+   banner starting below an empty nav bar. The nav row is empty here (logo is
+   fixed, links hidden ≤1919px), so collapsing its padding removes the gap
+   that was pushing the banner down. Image top now matches home: one gutter. */
+@media (max-width: 991px) {
+  .hero_nav.is-historia-hero {
+    padding-block: 0 !important;
+    min-height: 0 !important;
+  }
+  .section_historia-hero {
+    padding-top: var(--site--gutter) !important;
+  }
+}
+
 /* =====================================================================
    HISTORIA PAGE - Quote Section
    ===================================================================== */
