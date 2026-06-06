@@ -2676,12 +2676,13 @@
     aspect-ratio: auto !important;
   }
 
-  /* Logo: float at top-left of the banner, mirroring the MENÚ button's
-     fixed top-right placement so both sit on top of the image. */
+  /* Logo: float at top-left of the banner. Left edge aligns with the page
+     content (one gutter), not the MENÚ button's deeper inset, so the logo
+     lines up with the hero title + copy below it. */
   .hero_nav .hero_logo_wrap {
     position: fixed !important;
     top: calc(2 * var(--site--gutter)) !important;
-    left: calc(2 * var(--site--gutter)) !important;
+    left: var(--site--gutter) !important;
     z-index: 11 !important;
   }
 
