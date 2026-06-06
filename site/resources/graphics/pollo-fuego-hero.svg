@@ -8,7 +8,7 @@
       }
 
       .st1 {
-        fill: #efdece;
+        fill: #1d1d1b;
       }
     </style>
   </defs>
@@ -359,4 +359,5 @@
       </g>
     </g>
   </g>
+  <ellipse id="pp-eye" cx="707" cy="553" rx="26" ry="21" fill="#ffffff"/>
 </svg>
